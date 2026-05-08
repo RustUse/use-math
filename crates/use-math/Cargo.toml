@@ -1,0 +1,47 @@
+[package]
+name = "use-math"
+description = "Utility-first facade crate for RustUse math utilities"
+publish = true
+authors.workspace = true
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+homepage = "https://github.com/RustUse/use-math"
+documentation = "https://docs.rs/use-math"
+keywords = ["math", "geometry", "facade", "prelude", "utilities"]
+categories = ["mathematics", "science"]
+
+[package.metadata.docs.rs]
+all-features = true
+
+[features]
+default = ["full"]
+combinatorics = ["dep:use-combinatorics"]
+geometry = ["dep:use-geometry"]
+full = ["geometry", "combinatorics"]
+
+[dependencies]
+use-combinatorics = { version = "0.0.1", path = "../use-combinatorics", optional = true }
+use-geometry = { version = "0.0.1", path = "../use-geometry", optional = true }
+
+[[example]]
+name = "facade_combinatorics"
+required-features = ["combinatorics"]
+
+[[example]]
+name = "facade_validated_geometry"
+required-features = ["geometry"]
+
+[[test]]
+name = "facade_combinatorics"
+required-features = ["combinatorics"]
+
+[[test]]
+name = "facade_geometry"
+required-features = ["geometry"]
+
+[lints]
+workspace = true

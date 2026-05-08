@@ -1,0 +1,9 @@
+target/
+.tools/
+.env
+.autonomeos/
+node_modules/
+dist/
+
+# local notes
+notes/

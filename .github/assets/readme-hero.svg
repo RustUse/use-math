@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="400" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">RustUse use-math workspace overview</title>
+  <desc id="desc">A banner showing the use-math facade alongside the use-geometry and use-combinatorics crates.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffaf2" />
+      <stop offset="55%" stop-color="#f3f7fb" />
+      <stop offset="100%" stop-color="#eef6f2" />
+    </linearGradient>
+    <linearGradient id="heroGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.20" />
+      <stop offset="100%" stop-color="#0f766e" stop-opacity="0.10" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#0f172a" flood-opacity="0.10" />
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="500" rx="32" fill="url(#bg)" />
+  <circle cx="1030" cy="84" r="110" fill="#fb923c" opacity="0.18" />
+  <circle cx="137" cy="92" r="74" fill="#0f766e" opacity="0.10" />
+  <path d="M874 398c72-74 164-91 242-63v103H798c13-9 48-24 76-40z" fill="#1d4ed8" opacity="0.08" />
+  <rect x="56" y="42" width="1088" height="416" rx="28" fill="url(#heroGlow)" opacity="0.60" />
+
+  <g transform="translate(96 86)">
+    <text x="0" y="0" fill="#0f172a" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="3">RUSTUSE MATH WORKSPACE</text>
+    <text x="0" y="66" fill="#111827" font-family="Segoe UI, Arial, sans-serif" font-size="58" font-weight="800">use-math</text>
+    <text x="0" y="112" fill="#334155" font-family="Segoe UI, Arial, sans-serif" font-size="23">Focused geometry and counting crates.</text>
+    <text x="0" y="146" fill="#475569" font-family="Segoe UI, Arial, sans-serif" font-size="19">A thin facade when one dependency is enough.</text>
+
+    <g transform="translate(0 174)">
+      <rect x="0" y="0" width="152" height="36" rx="18" fill="#ffffff" opacity="0.94" />
+      <text x="22" y="23" fill="#0f172a" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">3 crates</text>
+
+      <rect x="166" y="0" width="188" height="36" rx="18" fill="#ffffff" opacity="0.94" />
+      <text x="188" y="23" fill="#0f172a" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">shared prelude</text>
+
+      <rect x="368" y="0" width="188" height="36" rx="18" fill="#ffffff" opacity="0.94" />
+      <text x="390" y="23" fill="#0f172a" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">feature flags</text>
+    </g>
+  </g>
+
+  <g transform="translate(96 286)" filter="url(#shadow)">
+    <rect x="0" y="0" width="300" height="112" rx="22" fill="#ffffff" stroke="#fdba74" stroke-width="2" />
+    <text x="24" y="34" fill="#c2410c" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="2">FACADE</text>
+    <text x="24" y="66" fill="#0f172a" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="800">use-math</text>
+    <text x="24" y="92" fill="#475569" font-family="Segoe UI, Arial, sans-serif" font-size="17">prelude and re-exports</text>
+
+    <rect x="320" y="0" width="300" height="112" rx="22" fill="#ffffff" stroke="#5eead4" stroke-width="2" />
+    <text x="344" y="34" fill="#0f766e" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="2">GEOMETRY</text>
+    <text x="344" y="66" fill="#0f172a" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="800">use-geometry</text>
+    <text x="344" y="92" fill="#475569" font-family="Segoe UI, Arial, sans-serif" font-size="17">2D primitives, shapes, bounds</text>
+
+    <rect x="640" y="0" width="300" height="112" rx="22" fill="#ffffff" stroke="#93c5fd" stroke-width="2" />
+    <text x="664" y="34" fill="#1d4ed8" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="2">COMBINATORICS</text>
+    <text x="664" y="66" fill="#0f172a" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="800">use-combinatorics</text>
+    <text x="664" y="92" fill="#475569" font-family="Segoe UI, Arial, sans-serif" font-size="17">checked counting helpers</text>
+  </g>
+
+  <g transform="translate(921 72)">
+    <rect x="0" y="0" width="168" height="40" rx="20" fill="#ffffff" opacity="0.92" />
+    <text x="28" y="26" fill="#0f172a" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">Rust 1.95.0+</text>
+  </g>
+</svg>
