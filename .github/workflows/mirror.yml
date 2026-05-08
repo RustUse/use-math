@@ -16,18 +16,18 @@ jobs:
       github.repository_owner == 'RustUse' &&
       github.event.workflow_run.conclusion == 'success' &&
       github.event.workflow_run.event == 'push' && (
-        vars[format('{0}', 'GITLAB_MIRROR_URL')] != '' ||
-        vars[format('{0}', 'CODEBERG_MIRROR_URL')] != '' ||
-        vars[format('{0}', 'SOURCEHUT_MIRROR_URL')] != ''
+        fromJSON(toJSON(vars)).GITLAB_MIRROR_URL != '' ||
+        fromJSON(toJSON(vars)).CODEBERG_MIRROR_URL != '' ||
+        fromJSON(toJSON(vars)).SOURCEHUT_MIRROR_URL != ''
       )
     runs-on: ubuntu-latest
     env:
-      GITLAB_MIRROR_URL: ${{ vars[format('{0}', 'GITLAB_MIRROR_URL')] }}
-      CODEBERG_MIRROR_URL: ${{ vars[format('{0}', 'CODEBERG_MIRROR_URL')] }}
-      SOURCEHUT_MIRROR_URL: ${{ vars[format('{0}', 'SOURCEHUT_MIRROR_URL')] }}
-      GITLAB_MIRROR_SSH_KEY: ${{ secrets[format('{0}', 'GITLAB_MIRROR_SSH_KEY')] }}
-      CODEBERG_MIRROR_SSH_KEY: ${{ secrets[format('{0}', 'CODEBERG_MIRROR_SSH_KEY')] }}
-      SOURCEHUT_MIRROR_SSH_KEY: ${{ secrets[format('{0}', 'SOURCEHUT_MIRROR_SSH_KEY')] }}
+      GITLAB_MIRROR_URL: ${{ fromJSON(toJSON(vars)).GITLAB_MIRROR_URL }}
+      CODEBERG_MIRROR_URL: ${{ fromJSON(toJSON(vars)).CODEBERG_MIRROR_URL }}
+      SOURCEHUT_MIRROR_URL: ${{ fromJSON(toJSON(vars)).SOURCEHUT_MIRROR_URL }}
+      GITLAB_MIRROR_SSH_KEY: ${{ fromJSON(toJSON(secrets)).GITLAB_MIRROR_SSH_KEY }}
+      CODEBERG_MIRROR_SSH_KEY: ${{ fromJSON(toJSON(secrets)).CODEBERG_MIRROR_SSH_KEY }}
+      SOURCEHUT_MIRROR_SSH_KEY: ${{ fromJSON(toJSON(secrets)).SOURCEHUT_MIRROR_SSH_KEY }}
     steps:
       - name: Validate mirror configuration
         shell: bash
