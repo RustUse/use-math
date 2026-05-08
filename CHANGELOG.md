@@ -8,6 +8,9 @@
 - Added `release-plz` configuration and maintainer workflows for lockstep version PR automation and future publish automation across `use-geometry`, `use-combinatorics`, and `use-math`.
 - Added cross-platform Cargo aliases, VS Code task definitions, and extension recommendations so contributors can run the main validation flows without depending on `make`.
 - Added issue forms, a stricter pull request template, optional Cargo tool bootstrap scripts, and a checked-in devcontainer for open-source contributor onboarding.
+- Added `docs/first-public-commit.md` so a clean-history public launch can preserve the current repo, release, and DX decisions.
+- Added `docs/history-reset-and-republish.md` with the exact same-repository history-reset, GitHub verification, and first crates.io publish sequence.
+- Added `docs/maintainer-release-flow.md` with the exact release-plz review, changelog, and publish sequence maintainers should follow after the initial manual release wave.
 
 ### Changed
 
@@ -20,6 +23,11 @@
 - Aligned legal and package metadata on `RustUse Contributors`, added shared crate authorship, and configured `use-math` docs.rs builds to advertise all features.
 - Promoted `Publish Readiness / Release Readiness Checks` from a recommendation to an explicit pre-release branch-protection requirement in the maintainer docs.
 - Hardened the manual facade and release-plz publish workflows with crates.io existence checks so first-release misuse fails fast with an explicit readiness guard.
+- Aligned support and Discussions wording so the public-facing routing stays accurate both before and after Discussions is enabled.
+- Tightened the README landing page and launch posture so the public repository reads correctly before the first crates.io release is live and shows the Git dependency path clearly.
+- Tightened commit and PR title guidance so generated release-plz changelog entries stay readable and low-noise.
+- Tightened the release-plz parser rules to prefer strict conventional-commit shapes before falling back to generic `Changed` entries.
+- Added a shorter maintainer release checklist directly to `RELEASE.md` so the main release policy now carries the high-signal operational flow.
 
 ### Added
 

@@ -31,12 +31,12 @@ header = """# Changelog
 protect_breaking_commits = true
 sort_commits = "oldest"
 commit_parsers = [
-  { message = "^feat", group = "Added" },
-  { message = "^fix", group = "Fixed" },
-  { message = "^security", group = "Security" },
-  { message = "^(refactor|perf|change)", group = "Changed" },
-  { message = "^docs", group = "Documentation" },
-  { message = "^(build|ci|chore|deps|test)", group = "Tooling" },
+  { message = "^feat(?:\\([^)]+\\))?!?: .+", group = "Added" },
+  { message = "^fix(?:\\([^)]+\\))?!?: .+", group = "Fixed" },
+  { message = "^security(?:\\([^)]+\\))?!?: .+", group = "Security" },
+  { message = "^(?:refactor|perf|change)(?:\\([^)]+\\))?!?: .+", group = "Changed" },
+  { message = "^docs(?:\\([^)]+\\))?!?: .+", group = "Documentation" },
+  { message = "^(?:build|ci|chore|deps|test)(?:\\([^)]+\\))?!?: .+", group = "Tooling" },
   { footer = "^changelog: ?ignore$", skip = true },
   { message = "^.*", group = "Changed" },
 ]

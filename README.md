@@ -8,7 +8,7 @@
 	<img alt="Rust 1.95.0+" src="https://img.shields.io/badge/Rust-1.95.0%2B-f46623?logo=rust&logoColor=white">
 	<img alt="Edition 2024" src="https://img.shields.io/badge/edition-2024-0f766e">
 	<img alt="3 workspace crates" src="https://img.shields.io/badge/workspace-3%20crates-1d4ed8">
-	<img alt="Release line 0.0.x" src="https://img.shields.io/badge/release-0.0.x-c2410c">
+	<img alt="Status pre-release" src="https://img.shields.io/badge/status-pre--release-c2410c">
 	<img alt="License MIT or Apache-2.0" src="https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-2a9d8f">
 </p>
 
@@ -20,6 +20,7 @@
 <p align="center">
 	<a href="#what-this-workspace-ships">Workspace</a> ·
 	<a href="#choose-your-entry-point">Choose a crate</a> ·
+	<a href="#current-status">Status</a> ·
 	<a href="#project-structure">Structure</a> ·
 	<a href="#installation">Installation</a> ·
 	<a href="#quick-examples">Examples</a> ·
@@ -29,6 +30,12 @@
 </p>
 
 This repository is the source workspace for RustUse's initial math surface. It pairs two focused crates, `use-geometry` and `use-combinatorics`, with the `use-math` facade for callers who want one dependency and feature-gated re-exports. The design bias is simple: small APIs, predictable dependencies, and validated constructors where external input can go wrong.
+
+## Current status
+
+- The GitHub repository may be public before the first crates.io release is live.
+- Until then, consume the crates from a pinned Git revision or work from the workspace directly.
+- The planned first release order is `use-geometry`, then `use-combinatorics`, then `use-math`.
 
 <table>
 	<tr>
@@ -112,6 +119,22 @@ Pick the crate based on the integration shape you want, not just the total featu
 | `scripts/`                  | Workspace automation and mirror sync helpers                                     |
 
 ## Installation
+
+This repository may become public before the first crates.io publish. Until the
+first release wave is live, use the workspace directly or depend on a Git
+revision. The versioned snippets below apply after the published release line
+exists on crates.io.
+
+Git dependency before the first crates.io release:
+
+```toml
+[dependencies]
+use-math = { git = "https://github.com/RustUse/use-math", rev = "<commit>" }
+```
+
+For focused crates, replace `use-math` with `use-geometry` or
+`use-combinatorics`. Pin a commit or future tag instead of following the moving
+default branch.
 
 When consuming the published release line, pull in the smallest surface that matches your application.
 
@@ -250,7 +273,7 @@ expects through `.vscode/extensions.json`.
 Open-source intake and onboarding:
 
 - GitHub issue forms now cover bugs, feature requests, and docs/onboarding gaps.
-- The issue chooser routes questions and design exploration toward Discussions once the public repository enables them.
+- The issue chooser routes questions and design exploration toward Discussions once the repository enables them.
 - The pull request template now asks for linked issue or discussion context, change type, and the repo-owned Cargo alias checks.
 
 Optional maintainer and contributor tooling bootstrap:
@@ -263,6 +286,11 @@ pwsh -File scripts/bootstrap-dev-tools.ps1
 Both scripts install the optional Cargo tools used across local advisory,
 release, and supply-chain workflows: `cargo-deny`, `cargo-audit`,
 `cargo-cyclonedx`, `release-plz`, and `cargo-machete`.
+
+If you are preparing a clean-history open-source launch, use
+`docs/first-public-commit.md` as the checklist for the first public revision and
+the first public push, and use `docs/history-reset-and-republish.md` as the
+exact operator runbook for rewriting history in the existing private repository.
 
 If you prefer a containerized setup, the repository also ships a checked-in
 devcontainer in `.devcontainer/` with the Rust toolchain, recommended VS Code

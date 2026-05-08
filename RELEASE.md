@@ -5,6 +5,13 @@ RustUse/use-math is not published yet. The root workspace metadata keeps
 already opt in with `publish = true` on this branch. The release task is to
 verify that only the intended crates remain publishable.
 
+If the repository history is reset before the first public push, keep
+`docs/first-public-commit.md` alongside this release policy so the clean-slate
+repository preserves the current launch and release decisions.
+
+For the exact same-repository reset and first publish sequence, use
+`docs/history-reset-and-republish.md`.
+
 Because `use-geometry`, `use-combinatorics`, and `use-math` are already marked
 `publish = true`, `cargo package` and `cargo publish --dry-run` for `use-math`
 will not resolve fully until the matching focused-crate releases are available
@@ -59,11 +66,35 @@ This repository can document the required check name, but it cannot enforce bran
 
 The repository now includes `release-plz` configuration in `release-plz.toml` and maintainer workflows under `.github/workflows/release-plz-*.yml`.
 
+For the maintainer-facing merge, review, and dispatch sequence, use
+`docs/maintainer-release-flow.md`.
+
 - `Release PR Automation` opens or updates a release PR with lockstep version changes for `use-geometry`, `use-combinatorics`, and `use-math`.
 - The workspace is configured with one `version_group` so the three published crates keep the same version.
 - The root `CHANGELOG.md` remains the shared changelog and is updated through the `use-math` package entry, including focused-crate commits.
 - `Release Publish Automation` is manual for now and is meant for the post-initial-release stage, after the repository is ready to rely on trusted publishing or another finalized credential flow.
 - The publish workflow now requires an explicit post-initial-release confirmation and checks that `use-geometry`, `use-combinatorics`, and `use-math` already exist on crates.io before it attempts automated publishing.
+
+## Maintainer Release Checklist
+
+Use this shorter checklist when you want the operational release path without
+reading the longer maintainer guide end to end.
+
+For normal post-initial-release releases:
+
+1. Merge ordinary PRs with clean final commit subjects or squash titles that match `type: summary` or `type(scope)!: summary`.
+2. Let `Release PR Automation` open or update the release PR.
+3. Review the release PR for the lockstep version bump, the generated root `CHANGELOG.md`, and any low-signal fallback entries under `Changed`.
+4. Clean up the changelog directly in the release PR branch when the generated wording is accurate but not maintainer-quality.
+5. Merge the release PR after the required checks pass.
+6. Manually dispatch `Release Publish Automation` with `post-initial-release = true`.
+7. Verify the published crates, docs.rs pages, and any release tags or artifacts after the workflow completes.
+
+For the initial public crates.io wave:
+
+1. Do not use `Release Publish Automation` yet.
+2. Run the full release-readiness path and publish `use-geometry`, then `use-combinatorics`, then `use-math` after crates.io index propagation.
+3. Treat `.github/workflows/facade-publish-readiness.yml` as the final facade check once the focused crates resolve from crates.io.
 
 ## Publish Readiness Checklist
 

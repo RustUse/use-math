@@ -54,7 +54,7 @@ Use the GitHub issue chooser for tracked bugs, feature requests, and
 documentation or onboarding gaps.
 
 Questions, API design exploration, and early roadmap discussion should go to
-GitHub Discussions once Discussions are enabled for the public repository. Until
+GitHub Discussions once Discussions are enabled for the repository. Until
 then, follow `SUPPORT.md` for the current routing path.
 
 Pull requests should link the relevant issue or discussion when one exists and
@@ -125,9 +125,21 @@ matching SSH key secrets.
 
 `release-plz` now drives release PRs and changelog generation for the publishable crates. Keep commit messages predictable:
 
-- Prefer conventional prefixes such as `feat:`, `fix:`, `docs:`, `refactor:`, `build:`, `ci:`, `test:`, and `chore:`.
+- Prefer subjects that match `type: summary` or `type(scope)!: summary`, using prefixes such as `feat:`, `fix:`, `docs:`, `refactor:`, `build:`, `ci:`, `test:`, and `chore:`.
 - Use `!` or a `BREAKING CHANGE:` footer for public API breaks that should bump the `0.x` minor version.
 - Add a `changelog: ignore` footer only when a commit truly should stay out of release notes.
+- Prefer squash-merge titles or final commit subjects that already read like release notes, because non-matching subjects fall back into the generic `Changed` group.
+
+Examples that map cleanly into the generated changelog:
+
+- `feat: add triangle centroid helper`
+- `fix: reject non-finite slope inputs`
+- `docs: clarify facade feature flags`
+- `refactor: simplify aabb validation path`
+- `build: pin cargo-deny for local parity`
+- `security: harden publish workflow gating`
+
+Use `docs/maintainer-release-flow.md` for the maintainer review sequence around release PRs, changelog cleanup, and the manual publish dispatch step.
 
 ## Release Checklist
 

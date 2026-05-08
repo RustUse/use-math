@@ -42,4 +42,3 @@ Describe the change and why it is needed.
 ## Reviewer context
 
 Add anything reviewers should know about tradeoffs, follow-up work, or intentionally deferred cleanup.
-

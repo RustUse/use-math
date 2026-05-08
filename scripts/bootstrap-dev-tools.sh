@@ -3,6 +3,7 @@ set -euo pipefail
 
 TOOLS=(cargo-deny cargo-audit cargo-cyclonedx release-plz cargo-machete)
 DRY_RUN=0
+CARGO_CMD=
 
 usage() {
   cat <<'EOF'
@@ -43,11 +44,15 @@ for arg in "$@"; do
   esac
 done
 
-if ! command -v cargo >/dev/null 2>&1; then
+if command -v cargo >/dev/null 2>&1; then
+  CARGO_CMD=cargo
+elif command -v cargo.exe >/dev/null 2>&1; then
+  CARGO_CMD=cargo.exe
+else
   printf 'cargo is required to bootstrap dev tools.\n' >&2
   exit 1
 fi
 
 for tool in "${TOOLS[@]}"; do
-  run_cmd cargo install --locked "$tool"
+  run_cmd "$CARGO_CMD" install --locked "$tool"
 done
