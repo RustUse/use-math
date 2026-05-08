@@ -27,6 +27,59 @@ cargo test --workspace --no-default-features
 cargo doc --workspace --all-features --no-deps
 ```
 
+## Tooling Shortcuts
+
+The repository also ships cross-platform Cargo aliases in `.cargo/config.toml`:
+
+```sh
+cargo xcheck
+cargo xlint
+cargo xtest
+cargo xtest-minimal
+cargo xexamples
+cargo xdoc
+```
+
+These shortcuts let contributors use the repo-owned validation path without
+depending on `make`, which keeps local workflows friendlier on Windows and other
+environments where `cargo` is available but GNU Make may not be.
+
+VS Code users also get checked-in task definitions in `.vscode/tasks.json` and
+extension recommendations in `.vscode/extensions.json` so the workspace opens
+with the same Rust, TOML, YAML, and workflow tooling the repository expects.
+
+## Community Intake
+
+Use the GitHub issue chooser for tracked bugs, feature requests, and
+documentation or onboarding gaps.
+
+Questions, API design exploration, and early roadmap discussion should go to
+GitHub Discussions once Discussions are enabled for the public repository. Until
+then, follow `SUPPORT.md` for the current routing path.
+
+Pull requests should link the relevant issue or discussion when one exists and
+should use the checked-in PR template to capture change type, repo-owned Cargo
+alias validation, and release impact.
+
+## Optional Dev Tool Bootstrap
+
+Optional Cargo tooling used by local release and advisory flows can be installed
+with either bootstrap script:
+
+```sh
+bash scripts/bootstrap-dev-tools.sh
+pwsh -File scripts/bootstrap-dev-tools.ps1
+```
+
+These scripts install `cargo-deny`, `cargo-audit`, `cargo-cyclonedx`,
+`release-plz`, and `cargo-machete`.
+
+## Dev Container
+
+The repository ships `.devcontainer/devcontainer.json` for contributors who want
+a prewired VS Code container workspace with the Rust toolchain, recommended
+extensions, and a post-create `cargo xcheck` validation.
+
 ## Documentation
 
 - Update the root README when the crate list or facade story changes.

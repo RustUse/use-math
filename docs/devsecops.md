@@ -114,6 +114,7 @@ File: `.github/workflows/facade-publish-readiness.yml`
 
 - Triggers on manual dispatch only
 - Exists for the post-publication window where `use-geometry` and `use-combinatorics` are already visible on crates.io
+- Verifies that `use-geometry` and `use-combinatorics` already resolve from crates.io before continuing
 - Lists the packaged `use-math` files and then runs `cargo publish --dry-run --allow-dirty -p use-math`
 - Should stay manual because it is expected to fail before registry propagation completes
 
@@ -132,6 +133,7 @@ File: `.github/workflows/release-plz-release.yml`
 
 - Triggers on manual dispatch only
 - Runs `release-plz release` for intentional maintainer-driven publishing
+- Requires an explicit post-initial-release confirmation and verifies that all published crates already resolve from crates.io
 - Keeps `id-token: write` so the repository can move to crates.io trusted publishing once the initial manual publish wave is complete
 - Should be treated as post-initial-release automation; crates.io still requires the first publish of new crates to happen outside the trusted-publishing path
 

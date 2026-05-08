@@ -2,6 +2,11 @@ name: Release Publish Automation
 
 on:
     workflow_dispatch:
+        inputs:
+            post-initial-release:
+                description: Confirm the initial manual crates.io release wave is complete and all published crates already exist on crates.io
+                required: true
+                type: boolean
 
 permissions:
     contents: write
@@ -11,7 +16,7 @@ permissions:
 jobs:
     release-plz-release:
         name: Release-plz Release
-        if: ${{ !github.event.repository.fork }}
+        if: ${{ !github.event.repository.fork && inputs.post-initial-release }}
         runs-on: ubuntu-latest
         steps:
             - name: Check out repository
@@ -26,6 +31,12 @@ jobs:
                   rustflags: ""
                   cache-workspaces: |
                       . -> target
+
+                        - name: Confirm published crates already exist on crates.io
+                            run: |
+                                    for crate in use-geometry use-combinatorics use-math; do
+                                        curl --fail --silent --show-error "https://crates.io/api/v1/crates/${crate}" > /dev/null
+                                    done
 
             - name: Run release-plz release
               uses: release-plz/action@v0.5

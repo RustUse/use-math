@@ -230,6 +230,44 @@ Rust 1.95.0 or newer
 cargo
 ```
 
+Repo-owned DX shortcuts:
+
+```sh
+cargo xcheck
+cargo xlint
+cargo xtest
+cargo xtest-minimal
+cargo xexamples
+cargo xdoc
+```
+
+These aliases live in `.cargo/config.toml`, so contributors do not need `make`
+for the common workspace validation path. If you are using VS Code, the same
+flows are available through the checked-in tasks in `.vscode/tasks.json`, and
+the repository recommends the Rust, TOML, YAML, and GitHub Actions extensions it
+expects through `.vscode/extensions.json`.
+
+Open-source intake and onboarding:
+
+- GitHub issue forms now cover bugs, feature requests, and docs/onboarding gaps.
+- The issue chooser routes questions and design exploration toward Discussions once the public repository enables them.
+- The pull request template now asks for linked issue or discussion context, change type, and the repo-owned Cargo alias checks.
+
+Optional maintainer and contributor tooling bootstrap:
+
+```sh
+bash scripts/bootstrap-dev-tools.sh
+pwsh -File scripts/bootstrap-dev-tools.ps1
+```
+
+Both scripts install the optional Cargo tools used across local advisory,
+release, and supply-chain workflows: `cargo-deny`, `cargo-audit`,
+`cargo-cyclonedx`, `release-plz`, and `cargo-machete`.
+
+If you prefer a containerized setup, the repository also ships a checked-in
+devcontainer in `.devcontainer/` with the Rust toolchain, recommended VS Code
+extensions, and an initial `cargo xcheck` post-create validation.
+
 Primary validation commands:
 
 ```sh
@@ -247,6 +285,7 @@ cargo audit
 Convenience targets for the release path:
 
 ```sh
+make help
 make verify
 make examples
 make test-minimal
@@ -258,6 +297,9 @@ make release-readiness
 surface first. The `use-math` facade still needs its final `cargo publish
 --dry-run` only after matching `use-geometry` and `use-combinatorics` versions
 exist in the crates.io index.
+
+If you prefer not to use `make`, the Cargo aliases and VS Code tasks cover the
+same day-to-day validation flows cross-platform.
 
 `Cargo.lock` is committed intentionally for reproducible CI, advisory checks, and release dry runs in this library workspace.
 

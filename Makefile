@@ -1,7 +1,30 @@
-.PHONY: fmt lint test test-minimal build examples audit deny sbom publish-dry-run-focused publish-dry-run-facade release-readiness facade-post-publish-validation verify
+.PHONY: help fmt check lint test test-minimal build doc examples audit deny sbom publish-dry-run-focused publish-dry-run-facade release-readiness facade-post-publish-validation verify
+
+help:
+	@printf "%s\n" \
+		"help                           Show available repository tasks" \
+		"fmt                            Check formatting with rustfmt" \
+		"check                          Run cargo check for the workspace" \
+		"lint                           Run clippy with warnings denied" \
+		"test                           Run workspace tests with all features" \
+		"test-minimal                   Run workspace tests with no default features" \
+		"build                          Build the workspace with all features" \
+		"doc                            Build workspace docs without dependencies" \
+		"examples                       Check all examples" \
+		"audit                          Run cargo-audit" \
+		"deny                           Run cargo-deny" \
+		"sbom                           Generate a CycloneDX SBOM for use-math" \
+		"publish-dry-run-focused        Dry-run publish the focused crates" \
+		"publish-dry-run-facade         Dry-run publish use-math after crates.io propagation" \
+		"release-readiness              Run the pre-release focused-crate validation path" \
+		"facade-post-publish-validation Dry-run the facade crate after focused crates are live" \
+		"verify                         Run the main workspace validation path"
 
 fmt:
 	cargo fmt --all -- --check
+
+check:
+	cargo check --workspace --all-features
 
 lint:
 	cargo clippy --workspace --all-targets --all-features -- -D warnings
@@ -14,6 +37,9 @@ test-minimal:
 
 build:
 	cargo build --workspace --all-features
+
+doc:
+	cargo doc --workspace --all-features --no-deps
 
 examples:
 	cargo check --workspace --all-features --examples

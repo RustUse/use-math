@@ -27,6 +27,12 @@ jobs:
                   cache-workspaces: |
                       . -> target
 
+            - name: Confirm focused crates are visible on crates.io
+              run: |
+                  for crate in use-geometry use-combinatorics; do
+                    curl --fail --silent --show-error "https://crates.io/api/v1/crates/${crate}" > /dev/null
+                  done
+
             - name: List packaged facade files
               run: cargo package --list -p use-math
 

@@ -47,6 +47,7 @@ The repository now includes a dedicated release-validation path:
 - `make release-readiness` runs the same high-value local checks for examples, no-default-features coverage, and focused-crate publish dry-runs.
 - The workflow intentionally dry-runs `use-geometry` and `use-combinatorics` only. The final `use-math` dry-run still depends on those crate versions being visible in the crates.io index.
 - `.github/workflows/facade-publish-readiness.yml` is a manual post-publication check that dry-runs `use-math` only after the focused crates are live on crates.io.
+- The facade workflow now fails fast unless `use-geometry` and `use-combinatorics` already resolve from crates.io, so the manual gate is explicit instead of relying on a downstream Cargo error.
 
 ## Branch Protection Gate
 
@@ -62,6 +63,7 @@ The repository now includes `release-plz` configuration in `release-plz.toml` an
 - The workspace is configured with one `version_group` so the three published crates keep the same version.
 - The root `CHANGELOG.md` remains the shared changelog and is updated through the `use-math` package entry, including focused-crate commits.
 - `Release Publish Automation` is manual for now and is meant for the post-initial-release stage, after the repository is ready to rely on trusted publishing or another finalized credential flow.
+- The publish workflow now requires an explicit post-initial-release confirmation and checks that `use-geometry`, `use-combinatorics`, and `use-math` already exist on crates.io before it attempts automated publishing.
 
 ## Publish Readiness Checklist
 
