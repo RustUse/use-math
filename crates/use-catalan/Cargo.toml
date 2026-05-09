@@ -15,11 +15,8 @@ keywords = ["math", "catalan", "sequence", "combinatorics", "counting"]
 categories = ["mathematics", "algorithms"]
 
 [[example]]
-name = "use-catalan-scaffold"
+name = "use-catalan-counting"
 path = "examples/basic_usage.rs"
-
-[dev-dependencies]
-proptest.workspace = true
 
 [lints]
 workspace = true

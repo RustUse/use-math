@@ -19,6 +19,9 @@ pub use use_calculus::{
 #[cfg(feature = "catalan")]
 pub use use_catalan as catalan;
 
+#[cfg(feature = "catalan")]
+pub use use_catalan::{CatalanError, catalan, fuss_catalan};
+
 #[cfg(feature = "combinatorics")]
 pub use use_combinatorics as combinatorics;
 

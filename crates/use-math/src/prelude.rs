@@ -1,4 +1,7 @@
 /// Commonly used facade items.
+#[cfg(feature = "catalan")]
+pub use crate::{CatalanError, catalan, fuss_catalan};
+
 #[cfg(feature = "calculus")]
 pub use crate::{
     CalculusError, Differentiator, IntegrationInterval, Integrator, LimitApproximator,

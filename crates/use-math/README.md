@@ -1,7 +1,7 @@
 # use-math
 
 <p align="center">
-	<strong>Feature-gated <code>RustUse</code> facade for concrete geometry, checked counting, complex numbers, numerical calculus, probability, real-number primitives, and rational arithmetic plus scaffolded namespace access to the rest of the workspace.</strong><br>
+	<strong>Feature-gated <code>RustUse</code> facade for concrete geometry, checked counting, Catalan-family sequences, integer helpers, complex numbers, numerical calculus, probability, real-number primitives, and rational arithmetic plus scaffolded namespace access to the rest of the workspace.</strong><br>
 	One dependency when you want one import surface. Focused crates stay available when you want the narrowest build or a stable future-facing crate boundary.
 </p>
 
@@ -22,13 +22,13 @@
 	<a href="#design-constraints">Constraints</a>
 </p>
 
-`use-math` composes the focused `RustUse` math crates into one entry point while keeping their APIs direct and explicit. It re-exports the currently supported geometry, combinatorics, complex-number, numerical-calculus, probability, real-number, and rational-number surfaces at the crate root, exposes nested modules for every focused crate in the workspace, and keeps the shared `prelude` limited to the items that already have concrete ergonomic value.
+`use-math` composes the focused `RustUse` math crates into one entry point while keeping their APIs direct and explicit. It re-exports the currently supported geometry, combinatorics, Catalan-family, integer-helper, complex-number, numerical-calculus, probability, real-number, and rational-number surfaces at the crate root, exposes nested modules for every focused crate in the workspace, and keeps the shared `prelude` limited to the items that already have concrete ergonomic value.
 
 <table>
 	<tr>
 		<td width="33%" valign="top">
 			<strong>Root re-exports</strong><br>
-			Call functions like <code>factorial</code> or types like <code>Point2</code>, <code>Complex</code>, <code>Differentiator</code>, <code>Probability</code>, <code>Real</code>, and <code>Rational</code> directly from <code>use_math</code>.
+			Call functions like <code>factorial</code>, <code>catalan</code>, <code>gcd</code>, or types like <code>Point2</code>, <code>IntegerSign</code>, <code>Complex</code>, <code>Differentiator</code>, <code>Probability</code>, <code>Real</code>, and <code>Rational</code> directly from <code>use_math</code>.
 		</td>
 		<td width="33%" valign="top">
 			<strong>Nested modules</strong><br>
@@ -45,7 +45,7 @@
 
 | Entry point                  | What it exposes                                                                    | Best fit                                                                  |
 | ---------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| Root re-exports              | Direct access to enabled geometry, combinatorics, complex-number, numerical-calculus, probability, real-number, and rational-number items | Call sites that want short imports                                        |
+| Root re-exports              | Direct access to enabled geometry, combinatorics, Catalan-family, integer-helper, complex-number, numerical-calculus, probability, real-number, and rational-number items | Call sites that want short imports                                        |
 | `use_math::geometry`         | The `use-geometry` crate as a nested module                                        | Code that prefers explicit geometry namespacing                           |
 | `use_math::combinatorics`    | The `use-combinatorics` crate as a nested module                                   | Code that prefers explicit combinatorics namespacing                      |
 | Scaffolded namespace modules | Focused crates such as `use_math::number`, `use_math::algebra`, or `use_math::set` | Stable crate-shaped namespacing before those focused APIs are implemented |
@@ -56,6 +56,8 @@
 | Add one dependency and opt into math surfaces with features | `use-math`                                              |
 | Keep geometry-only code isolated                            | `use-geometry` directly                                 |
 | Keep counting-only code isolated                            | `use-combinatorics` directly                            |
+| Keep Catalan-family sequence helpers isolated               | `use-catalan` directly                                  |
+| Keep integer-helper code isolated                           | `use-integer` directly                                  |
 | Keep complex-number primitives isolated                     | `use-complex` directly                                  |
 | Keep numerical-calculus helpers isolated                    | `use-calculus` directly                                 |
 | Keep explicit probability primitives isolated               | `use-probability` directly                              |
@@ -70,11 +72,13 @@ Use the facade when consumer ergonomics matter more than squeezing the dependenc
 
 | Scenario                                                               | Choose `use-math`? | Why                                                            |
 | ---------------------------------------------------------------------- | ------------------ | -------------------------------------------------------------- |
-| You want one dependency for geometry, counting, complex primitives, numerical calculus, probability, real-number helpers, and rational arithmetic | Yes | The facade keeps imports unified behind features               |
+| You want one dependency for geometry, counting, Catalan-family sequences, integer helpers, complex primitives, numerical calculus, probability, real-number helpers, and rational arithmetic | Yes | The facade keeps imports unified behind features               |
 | You are building a small app or example project                        | Yes                | Root re-exports and the `prelude` reduce setup friction        |
 | You want namespace access to scaffolded future crate boundaries        | Usually yes        | The facade exposes every focused crate name consistently today |
 | You only need geometry                                                 | Usually no         | `use-geometry` stays narrower and more explicit                |
 | You only need combinatorics                                            | Usually no         | `use-combinatorics` avoids unrelated modules                   |
+| You only need Catalan-family sequence helpers                          | Usually no         | `use-catalan` keeps that counting surface narrow and explicit  |
+| You only need integer helpers                                          | Usually no         | `use-integer` keeps parity, divisibility, and gcd/lcm logic local |
 | You only need numerical calculus                                       | Usually no         | `use-calculus` keeps the approximation policy local and direct |
 | You only need probability primitives                                   | Usually no         | `use-probability` keeps event assumptions local and direct     |
 | You only need finite-value or interval helpers                         | Usually no         | `use-real` keeps floating-point validation and tolerance policy local |
@@ -122,6 +126,40 @@ assert_eq!(combinations(5, 2)?, 10);
 # }
 #
 # #[cfg(not(feature = "combinatorics"))]
+# fn main() {}
+```
+
+### Catalan-family counting from the root
+
+```rust
+# #[cfg(feature = "catalan")]
+# fn main() -> Result<(), use_math::CatalanError> {
+use use_math::{catalan, fuss_catalan};
+
+assert_eq!(catalan(4)?, 14);
+assert_eq!(fuss_catalan(3, 3)?, 12);
+# Ok::<(), use_math::CatalanError>(())
+# }
+#
+# #[cfg(not(feature = "catalan"))]
+# fn main() {}
+```
+
+### Integer helpers from the root
+
+```rust
+# #[cfg(feature = "integer")]
+# fn main() -> Result<(), use_math::IntegerError> {
+use use_math::{IntegerSign, classify_sign, gcd, is_divisible_by, lcm};
+
+assert_eq!(classify_sign(-12), IntegerSign::Negative);
+assert!(is_divisible_by(84, 7)?);
+assert_eq!(gcd(-54, 24), 6);
+assert_eq!(lcm(-6, 15)?, 30);
+# Ok::<(), use_math::IntegerError>(())
+# }
+#
+# #[cfg(not(feature = "integer"))]
 # fn main() {}
 ```
 
@@ -270,12 +308,14 @@ assert_eq!(half.checked_div(third)?, Rational::try_new(3, 2)?);
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ------- |
 | `geometry`                                                                                                                                                 | Re-exports from `use-geometry`, including `Aabb2` and tolerance-aware orientation helpers | No      |
 | `combinatorics`                                                                                                                                            | Re-exports from `use-combinatorics`                                                       | No      |
+| `catalan`                                                                                                                                                  | Re-exports from `use-catalan`, including `catalan`, `fuss_catalan`, and `CatalanError`   | No      |
+| `integer`                                                                                                                                                  | Re-exports from `use-integer`, including `IntegerSign`, divisibility helpers, and gcd/lcm | No      |
 | `complex`                                                                                                                                                  | Re-exports from `use-complex`, including `Complex` and `Imaginary`                        | No      |
 | `calculus`                                                                                                                                                 | Re-exports from `use-calculus`, including `Differentiator`, `Integrator`, and limit helpers | No   |
 | `probability`                                                                                                                                              | Re-exports from `use-probability`, including `Probability`, `Bernoulli`, and independent-event helpers | No |
 | `rational`                                                                                                                                                 | Re-exports from `use-rational`, including `Rational` and `RationalError`                   | No      |
 | `real`                                                                                                                                                     | Re-exports from `use-real`, including `Real`, `RealInterval`, and `approx_eq`            | No      |
-| `number`, `integer`, `series`, `catalan`, `algebra`, `linear`, `statistics`, `trigonometry`, `logic`, `set` | The corresponding focused crate as a nested namespace module only                         | No      |
+| `number`, `series`, `algebra`, `linear`, `statistics`, `trigonometry`, `logic`, `set` | The corresponding focused crate as a nested namespace module only                         | No      |
 | `full`                                                                                                                                                     | Every focused crate feature in the workspace                                              | Yes     |
 
 > [!NOTE]

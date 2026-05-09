@@ -25,13 +25,13 @@
 	<a href="#community-and-project-policy">Community</a>
 </p>
 
-This repository is the source workspace for RustUse's math surface. Today it combines concrete focused crates for geometry, checked combinatorics, complex numbers, numerical calculus, probability, real-number helpers, and rational arithmetic with ten additional scaffolded crate boundaries for future numeric, algebraic, statistical, trigonometric, and logical surfaces. `use-math` composes the whole workspace behind feature flags while keeping root re-exports limited to the crates that already expose real APIs.
+This repository is the source workspace for RustUse's math surface. Today it combines concrete focused crates for geometry, checked combinatorics, Catalan-family sequences, integer helpers, complex numbers, numerical calculus, probability, real-number helpers, and rational arithmetic with eight additional scaffolded crate boundaries for future numeric, algebraic, statistical, trigonometric, and logical surfaces. `use-math` composes the whole workspace behind feature flags while keeping root re-exports limited to the crates that already expose real APIs.
 
 ## Current status
 
 - The GitHub repository may be public before the first crates.io release is live.
 - Until then, consume the crates from a pinned Git revision or work from the workspace directly.
-- `use-geometry`, `use-combinatorics`, `use-complex`, `use-calculus`, `use-probability`, `use-real`, and `use-rational` are the concrete focused APIs today; the remaining focused crates are scaffold-only publishable boundaries.
+- `use-geometry`, `use-combinatorics`, `use-catalan`, `use-integer`, `use-complex`, `use-calculus`, `use-probability`, `use-real`, and `use-rational` are the concrete focused APIs today; the remaining focused crates are scaffold-only publishable boundaries.
 - The planned first release order is every focused crate first, then `use-math` after crates.io index propagation.
 
 <table>
@@ -43,8 +43,8 @@ This repository is the source workspace for RustUse's math surface. Today it com
 		</td>
 		<td width="33%" valign="top">
 			<strong>Use concrete focused crates</strong><br>
-			<code>crates/use-geometry/</code>, <code>crates/use-combinatorics/</code>, <code>crates/use-complex/</code>, <code>crates/use-calculus/</code>, <code>crates/use-probability/</code>, <code>crates/use-real/</code>, and <code>crates/use-rational/</code><br>
-			Use direct APIs today when you want geometry primitives, checked counting helpers, complex-number primitives, numerical-calculus helpers, probability primitives, finite real-number helpers, or exact rational arithmetic without the wider facade.
+			<code>crates/use-geometry/</code>, <code>crates/use-combinatorics/</code>, <code>crates/use-catalan/</code>, <code>crates/use-integer/</code>, <code>crates/use-complex/</code>, <code>crates/use-calculus/</code>, <code>crates/use-probability/</code>, <code>crates/use-real/</code>, and <code>crates/use-rational/</code><br>
+			Use direct APIs today when you want geometry primitives, checked counting helpers, Catalan-family sequence counts, integer classifications and divisor helpers, complex-number primitives, numerical-calculus helpers, probability primitives, finite real-number helpers, or exact rational arithmetic without the wider facade.
 		</td>
 		<td width="33%" valign="top">
 			<strong>Stabilize future boundaries</strong><br>
@@ -63,6 +63,8 @@ RustUse/use-math is now an 18-crate workspace. Each crate is usable on its own, 
 | `use-math`                | `crates/use-math/`                             | Feature-gated facade with direct re-exports for implemented APIs plus namespace access to scaffold crates                  | One dependency and one import surface                           |
 | `use-geometry`            | `crates/use-geometry/`                         | Utility-first 2D geometry primitives, shapes, bounds, orientation, and distance helpers                                    | Geometry is the only math surface you need                      |
 | `use-combinatorics`       | `crates/use-combinatorics/`                    | Checked counting helpers for factorials, permutations, and combinations                                                    | You only need combinatorics helpers                             |
+| `use-catalan`             | `crates/use-catalan/`                          | Checked Catalan and Fuss-Catalan counting helpers                                                                          | You want exact Catalan-family counts without a broader sequence crate |
+| `use-integer`            | `crates/use-integer/`                          | Sign classification, parity checks, validated divisibility, and exact gcd/lcm helpers                                      | You want small integer helpers without a broader numeric framework |
 | `use-complex`             | `crates/use-complex/`                          | Composable complex-number and imaginary-number primitives with rectangular and polar helpers                               | You want a small complex-number layer without a heavy framework |
 | `use-calculus`            | `crates/use-calculus/`                         | Small numerical-calculus helpers for finite-difference derivatives, definite integrals, and symmetric limit estimates      | You want explicit approximation helpers without symbolic math   |
 | `use-probability`         | `crates/use-probability/`                      | Validated probability values, independent-event helpers, and a compact Bernoulli model                                     | You want explicit normalized probabilities without a larger statistics framework |
@@ -70,13 +72,15 @@ RustUse/use-math is now an 18-crate workspace. Each crate is usable on its own, 
 | `use-rational`            | `crates/use-rational/`                         | Exact normalized fractions with checked arithmetic and explicit conversion to approximate floating-point values             | You want exact fraction arithmetic without a broader numeric framework |
 | Scaffolded focused crates | `crates/use-number/` through `crates/use-set/` | Publishable crate boundaries with README, example, test, and facade namespace wiring, but no concrete public math APIs yet | Stable crate naming and release plumbing before API expansion   |
 
-The scaffolded focused crates are `use-number`, `use-integer`, `use-series`, `use-catalan`, `use-algebra`, `use-linear`, `use-statistics`, `use-trigonometry`, `use-logic`, and `use-set`.
+The scaffolded focused crates are `use-number`, `use-series`, `use-algebra`, `use-linear`, `use-statistics`, `use-trigonometry`, `use-logic`, and `use-set`.
 
 | If you need to...                                              | Start here                            |
 | -------------------------------------------------------------- | ------------------------------------- |
 | Add one dependency and opt into math surfaces with features    | `use-math`                            |
 | Validate 2D coordinates and shapes from user or file input     | `use-geometry`                        |
 | Do checked counting without geometry types                     | `use-combinatorics`                   |
+| Work with exact Catalan-family sequence helpers directly       | `use-catalan`                         |
+| Work with sign, parity, and common-divisor helpers directly    | `use-integer`                         |
 | Work with small complex-number primitives directly             | `use-complex`                         |
 | Work with explicit numerical-calculus helpers directly         | `use-calculus`                        |
 | Work with explicit probability primitives directly             | `use-probability`                     |
@@ -97,6 +101,8 @@ Pick the crate based on the integration shape you want, not just the total featu
 | One dependency for the current workspace surface           | `use-math`                                       | The facade unifies the concrete APIs and exposes scaffolded crates as nested namespaces             |
 | Geometry-only code with direct type access                 | `use-geometry`                                   | You avoid facade indirection and keep dependencies minimal                                          |
 | Counting helpers only                                      | `use-combinatorics`                              | You get checked math helpers without bringing in geometry modules                                   |
+| Catalan-family sequence helpers only                       | `use-catalan`                                    | You keep Catalan and Fuss-Catalan counting explicit and local                                       |
+| Integer helpers only                                       | `use-integer`                                    | You keep parity, divisibility, and gcd/lcm logic explicit and local                                 |
 | Complex-number primitives without the rest of the facade   | `use-complex`                                    | You get rectangular, imaginary, and polar helpers directly                                          |
 | Numerical-calculus helpers without the rest of the facade  | `use-calculus`                                   | You keep derivative, integral, and limit approximations explicit and local                          |
 | Probability primitives without the rest of the facade      | `use-probability`                                | You keep normalization and independence assumptions explicit and local                              |
@@ -139,6 +145,8 @@ Pick the crate based on the integration shape you want, not just the total featu
 | `crates/use-math/`                             | Feature-gated facade crate with root re-exports for implemented APIs and nested namespaces |
 | `crates/use-geometry/`                         | Direct 2D geometry APIs, validated constructors, and invariant checks                      |
 | `crates/use-combinatorics/`                    | Direct checked counting APIs                                                               |
+| `crates/use-catalan/`                          | Direct Catalan-family counting APIs                                                       |
+| `crates/use-integer/`                          | Direct integer classification and common-divisor helpers                                  |
 | `crates/use-number/` through `crates/use-set/` | Scaffolded focused crate boundaries for the remaining planned math domains                 |
 | `scripts/`                                     | Workspace automation and mirror sync helpers                                               |
 
@@ -247,8 +255,14 @@ The facade crate exposes a small feature surface:
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ------- |
 | `geometry`                                                                                                                                                 | Re-exports from `use-geometry` and geometry facade examples/tests           | No      |
 | `combinatorics`                                                                                                                                            | Re-exports from `use-combinatorics` and combinatorics facade examples/tests | No      |
+| `catalan`                                                                                                                                                  | Re-exports from `use-catalan`, including Catalan and Fuss-Catalan helpers   | No      |
+| `integer`                                                                                                                                                  | Re-exports from `use-integer`, including sign, parity, divisibility, and gcd/lcm helpers | No      |
 | `complex`                                                                                                                                                  | Re-exports from `use-complex`, including `Complex` and `Imaginary`          | No      |
-| `number`, `integer`, `rational`, `real`, `series`, `catalan`, `algebra`, `linear`, `calculus`, `probability`, `statistics`, `trigonometry`, `logic`, `set` | Exposes the corresponding focused crate as a nested namespace module only   | No      |
+| `calculus`                                                                                                                                                 | Re-exports from `use-calculus`, including derivative, integral, and limit helpers | No |
+| `probability`                                                                                                                                              | Re-exports from `use-probability`, including `Probability`, `Bernoulli`, and event helpers | No |
+| `rational`                                                                                                                                                 | Re-exports from `use-rational`, including `Rational` and `RationalError`    | No      |
+| `real`                                                                                                                                                     | Re-exports from `use-real`, including `Real`, `RealInterval`, and `approx_eq` | No   |
+| `number`, `series`, `algebra`, `linear`, `statistics`, `trigonometry`, `logic`, `set` | Exposes the corresponding focused crate as a nested namespace module only   | No      |
 | `full`                                                                                                                                                     | Enables every focused crate feature in the workspace                        | Yes     |
 
 If you want the facade but only one module, disable defaults and enable the feature you need:

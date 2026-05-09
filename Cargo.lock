@@ -176,9 +176,6 @@ version = "0.0.1"
 [[package]]
 name = "use-catalan"
 version = "0.0.1"
-dependencies = [
- "proptest",
-]
 
 [[package]]
 name = "use-combinatorics"

@@ -33,6 +33,10 @@ pub const fn is_odd(value: i128) -> bool {
 }
 
 /// Returns whether `value` is evenly divisible by `divisor`.
+///
+/// # Errors
+///
+/// Returns [`IntegerError::DivisionByZero`] when `divisor` is zero.
 pub const fn is_divisible_by(value: i128, divisor: i128) -> Result<bool, IntegerError> {
     if divisor == 0 {
         Err(IntegerError::DivisionByZero)
@@ -54,6 +58,10 @@ pub const fn are_coprime(left: i128, right: i128) -> bool {
 }
 
 /// Computes the non-negative least common multiple of two signed integers.
+///
+/// # Errors
+///
+/// Returns [`IntegerError::ArithmeticOverflow`] when the least common multiple does not fit in `u128`.
 pub const fn lcm(left: i128, right: i128) -> Result<u128, IntegerError> {
     if left == 0 || right == 0 {
         return Ok(0);

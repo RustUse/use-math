@@ -122,6 +122,27 @@ fn facade_supports_calculus_without_other_concrete_features() -> Result<(), use_
 }
 
 #[cfg(all(
+    feature = "catalan",
+    not(feature = "geometry"),
+    not(feature = "combinatorics"),
+    not(feature = "integer"),
+    not(feature = "complex"),
+    not(feature = "calculus"),
+    not(feature = "probability"),
+    not(feature = "rational"),
+    not(feature = "real")
+))]
+#[test]
+fn facade_supports_catalan_without_other_concrete_features() -> Result<(), use_math::CatalanError> {
+    use use_math::{catalan, fuss_catalan};
+
+    assert_eq!(catalan(4)?, 14);
+    assert_eq!(fuss_catalan(3, 3)?, 12);
+
+    Ok(())
+}
+
+#[cfg(all(
     feature = "probability",
     not(feature = "geometry"),
     not(feature = "combinatorics"),
