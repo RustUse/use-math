@@ -2,6 +2,9 @@
 all-features = true
 
 [advisories]
+# cargo-deny 0.19+ removed `vulnerability` and `notice`; vulnerability advisories
+# remain denied by default.
+# Keep unmaintained advisories non-blocking in CI while still surfacing yanked crates.
 unmaintained = "none"
 yanked = "warn"
 ignore = []
