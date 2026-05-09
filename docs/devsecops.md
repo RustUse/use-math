@@ -273,11 +273,16 @@ If a result is not actionable yet, document the risk and planned remediation in 
 This repository currently uses it to:
 
 - deny known vulnerable crates
-- warn on unmaintained and yanked crates
+- skip unmaintained advisories and warn on yanked crates
 - allow a pragmatic set of permissive licenses
 - deny unknown licenses unless clarified
 - deny unknown registries and git sources
 - warn about duplicate crate versions instead of failing the build on day one
+
+Unmaintained advisories are intentionally non-blocking in CI because the
+upstream RustSec maintenance flag can be noisy during ecosystem transitions.
+Maintainers should still review unmaintained signals during dependency upgrades
+and release-readiness checks.
 
 Policy lives in `deny.toml`. Any exception should be narrow, documented, and reviewed.
 

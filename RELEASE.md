@@ -108,8 +108,8 @@ For the initial public crates.io wave:
 8. Review README examples, crate metadata, repository health files, `Cargo.lock`, and changelog entries.
 9. Confirm `SECURITY.md`, `SUPPORT.md`, `CODE_OF_CONDUCT.md`, and governance docs reflect the current public launch posture.
 10. Confirm the first-wave crate manifests are the only intentionally publishable crates.
-11. Confirm `cargo publish --dry-run --allow-dirty -p use-geometry` passes.
-12. Confirm `cargo publish --dry-run --allow-dirty -p use-combinatorics` passes.
+11. Confirm `cargo package --list -p use-geometry` and `cargo publish --dry-run --allow-dirty -p use-geometry` pass.
+12. Confirm `cargo package --list -p use-combinatorics` and `cargo publish --dry-run --allow-dirty -p use-combinatorics` pass.
 13. Publish `use-geometry` and `use-combinatorics`, then wait for crates.io
     index resolution.
 14. Confirm branch protection on `main` requires `Publish Readiness / Release Readiness Checks` before the first public release.
