@@ -1,7 +1,7 @@
 # use-math
 
 <p align="center">
-	<strong>Feature-gated <code>RustUse</code> facade for geometry and checked counting.</strong><br>
+	<strong>Feature-gated <code>RustUse</code> facade for geometry, checked counting, and series.</strong><br>
 	One dependency when you want one import surface. Focused crates stay available when you want the narrowest build.
 </p>
 
@@ -9,7 +9,7 @@
 	<img alt="Rust 1.95.0+" src="https://img.shields.io/badge/Rust-1.95.0%2B-f46623?logo=rust&logoColor=white">
 	<img alt="Edition 2024" src="https://img.shields.io/badge/edition-2024-0f766e">
 	<img alt="Default feature full" src="https://img.shields.io/badge/default-full-1d4ed8">
-	<img alt="Features geometry combinatorics" src="https://img.shields.io/badge/features-geometry%20%7C%20combinatorics-c2410c">
+	<img alt="Features geometry combinatorics series" src="https://img.shields.io/badge/features-geometry%20%7C%20combinatorics%20%7C%20series-c2410c">
 	<img alt="License MIT or Apache-2.0" src="https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-2a9d8f">
 </p>
 
@@ -22,7 +22,7 @@
 	<a href="#design-constraints">Constraints</a>
 </p>
 
-`use-math` composes the focused `RustUse` math crates into one entry point while keeping their APIs direct and explicit. It re-exports the currently supported geometry and combinatorics surfaces at the crate root, exposes nested modules when crate-scoped access reads better, and provides a shared `prelude` for quick integration.
+`use-math` composes the focused `RustUse` math crates into one entry point while keeping their APIs direct and explicit. It re-exports the currently supported geometry, combinatorics, and series surfaces at the crate root, exposes nested modules when crate-scoped access reads better, and provides a shared `prelude` for quick integration.
 
 <table>
 	<tr>
@@ -43,18 +43,20 @@
 
 ## What this crate provides
 
-| Entry point               | What it exposes                                           | Best fit                                             |
-| ------------------------- | --------------------------------------------------------- | ---------------------------------------------------- |
-| Root re-exports           | Direct access to enabled geometry and combinatorics items | Call sites that want short imports                   |
-| `use_math::geometry`      | The `use-geometry` crate as a nested module               | Code that prefers explicit geometry namespacing      |
-| `use_math::combinatorics` | The `use-combinatorics` crate as a nested module          | Code that prefers explicit combinatorics namespacing |
-| `use_math::prelude`       | Common items from enabled features                        | Small apps, examples, and quick starts               |
+| Entry point               | What it exposes                                                    | Best fit                                             |
+| ------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------- |
+| Root re-exports           | Direct access to enabled geometry, combinatorics, and series items | Call sites that want short imports                   |
+| `use_math::geometry`      | The `use-geometry` crate as a nested module                        | Code that prefers explicit geometry namespacing      |
+| `use_math::combinatorics` | The `use-combinatorics` crate as a nested module                   | Code that prefers explicit combinatorics namespacing |
+| `use_math::series`        | The `use-series` crate as a nested module                          | Code that prefers explicit series namespacing        |
+| `use_math::prelude`       | Common items from enabled features                                 | Small apps, examples, and quick starts               |
 
 | If you need to...                                           | Start here                   |
 | ----------------------------------------------------------- | ---------------------------- |
 | Add one dependency and opt into math surfaces with features | `use-math`                   |
 | Keep geometry-only code isolated                            | `use-geometry` directly      |
 | Keep counting-only code isolated                            | `use-combinatorics` directly |
+| Keep series-only code isolated                              | `use-series` directly        |
 | Minimize both dependency weight and API width               | The focused crate directly   |
 
 ## When to choose the facade
@@ -163,7 +165,8 @@ assert_eq!(orientation_2d_with_tolerance(a, b, c, 0.0)?, Orientation2::CounterCl
 | --------------- | ----------------------------------------------------------------------------------------- | ------- |
 | `geometry`      | Re-exports from `use-geometry`, including `Aabb2` and tolerance-aware orientation helpers | No      |
 | `combinatorics` | Re-exports from `use-combinatorics`                                                       | No      |
-| `full`          | `geometry` and `combinatorics` together                                                   | Yes     |
+| `series`        | Re-exports from `use-series`                                                              | No      |
+| `full`          | `geometry`, `combinatorics`, and `series` together                                        | Yes     |
 
 > [!NOTE]
 > `full` is the default today because the facade exists to smooth over multi-crate integration. Disable defaults when you need tighter control over compile surface.

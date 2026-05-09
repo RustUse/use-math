@@ -9,3 +9,6 @@ pub use crate::{
     orientation_2d_with_tolerance, triangle_area, triangle_twice_area, triangle_twice_signed_area,
     try_orientation_2d, try_orientation_2d_with_tolerance,
 };
+
+#[cfg(feature = "series")]
+pub use crate::Series;

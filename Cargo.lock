@@ -182,7 +182,12 @@ version = "0.0.1"
 dependencies = [
  "use-combinatorics",
  "use-geometry",
+ "use-series",
 ]
+
+[[package]]
+name = "use-series"
+version = "0.0.1"
 
 [[package]]
 name = "wasip2"

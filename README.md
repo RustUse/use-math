@@ -7,7 +7,7 @@
 <p align="center">
 	<img alt="Rust 1.95.0+" src="https://img.shields.io/badge/Rust-1.95.0%2B-f46623?logo=rust&logoColor=white">
 	<img alt="Edition 2024" src="https://img.shields.io/badge/edition-2024-0f766e">
-	<img alt="3 workspace crates" src="https://img.shields.io/badge/workspace-3%20crates-1d4ed8">
+	<img alt="4 workspace crates" src="https://img.shields.io/badge/workspace-4%20crates-1d4ed8">
 	<img alt="Status pre-release" src="https://img.shields.io/badge/status-pre--release-c2410c">
 	<img alt="License MIT or Apache-2.0" src="https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-2a9d8f">
 </p>
@@ -29,7 +29,7 @@
 	<a href="#community-and-project-policy">Community</a>
 </p>
 
-This repository is the source workspace for RustUse's initial math surface. It pairs two focused crates, `use-geometry` and `use-combinatorics`, with the `use-math` facade for callers who want one dependency and feature-gated re-exports. The design bias is simple: small APIs, predictable dependencies, and validated constructors where external input can go wrong.
+This repository is the source workspace for RustUse's initial math surface. It pairs focused crates — `use-geometry`, `use-combinatorics`, and `use-series` — with the `use-math` facade for callers who want one dependency and feature-gated re-exports. The design bias is simple: small APIs, predictable dependencies, and validated constructors where external input can go wrong.
 
 ## Current status
 
@@ -39,20 +39,25 @@ This repository is the source workspace for RustUse's initial math surface. It p
 
 <table>
 	<tr>
-		<td width="33%" valign="top">
+		<td width="25%" valign="top">
 			<strong>Pull in one facade</strong><br>
 			<code>crates/use-math/</code><br>
 			Reach for the shared <code>prelude</code> and feature flags when one dependency is the cleanest integration point.
 		</td>
-		<td width="33%" valign="top">
+		<td width="25%" valign="top">
 			<strong>Keep geometry focused</strong><br>
 			<code>crates/use-geometry/</code><br>
 			Use points, vectors, lines, segments, circles, triangles, bounds, orientation, and distance helpers directly.
 		</td>
-		<td width="33%" valign="top">
+		<td width="25%" valign="top">
 			<strong>Keep counting focused</strong><br>
 			<code>crates/use-combinatorics/</code><br>
 			Use checked factorial, permutations, and combinations helpers without pulling in geometry types.
+		</td>
+		<td width="25%" valign="top">
+			<strong>Keep series focused</strong><br>
+			<code>crates/use-series/</code><br>
+			Use finite and truncated power series with coefficient access, evaluation, truncation, shifting, differentiation, integration, and basic arithmetic.
 		</td>
 	</tr>
 </table>
@@ -66,12 +71,14 @@ RustUse/use-math is a multi-crate workspace. Each crate is usable on its own, an
 | `use-math`          | `crates/use-math/`          | Feature-gated facade with direct re-exports and a shared `prelude`                      | One dependency and one import surface      |
 | `use-geometry`      | `crates/use-geometry/`      | Utility-first 2D geometry primitives, shapes, bounds, orientation, and distance helpers | Geometry is the only math surface you need |
 | `use-combinatorics` | `crates/use-combinatorics/` | Checked counting helpers for factorials, permutations, and combinations                 | You only need combinatorics helpers        |
+| `use-series`        | `crates/use-series/`        | Finite and truncated power series with coefficient access, evaluation, and arithmetic   | You need series primitives directly        |
 
 | If you need to...                                           | Start here                 |
 | ----------------------------------------------------------- | -------------------------- |
 | Add one dependency and opt into math surfaces with features | `use-math`                 |
 | Validate 2D coordinates and shapes from user or file input  | `use-geometry`             |
 | Do checked counting without geometry types                  | `use-combinatorics`        |
+| Work with finite or truncated power series                  | `use-series`               |
 | Keep the dependency and API surface as narrow as possible   | The focused crate directly |
 
 > [!TIP]
@@ -103,7 +110,11 @@ Pick the crate based on the integration shape you want, not just the total featu
 │   │   ├── examples/
 │   │   ├── src/
 │   │   └── tests/
-│   └── use-math/
+│   ├── use-math/
+│   │   ├── examples/
+│   │   ├── src/
+│   │   └── tests/
+│   └── use-series/
 │       ├── examples/
 │       ├── src/
 │       └── tests/
@@ -116,6 +127,7 @@ Pick the crate based on the integration shape you want, not just the total featu
 | `crates/use-math/`          | Feature-gated facade crate that re-exports the focused crates                    |
 | `crates/use-geometry/`      | Direct 2D geometry APIs, validated constructors, and invariant checks            |
 | `crates/use-combinatorics/` | Direct checked counting APIs                                                     |
+| `crates/use-series/`        | Direct finite and truncated power series APIs                                    |
 | `scripts/`                  | Workspace automation and mirror sync helpers                                     |
 
 ## Installation
@@ -222,7 +234,8 @@ The facade crate exposes a small feature surface:
 | --------------- | --------------------------------------------------------------------------- | ------- |
 | `geometry`      | Re-exports from `use-geometry` and geometry facade examples/tests           | No      |
 | `combinatorics` | Re-exports from `use-combinatorics` and combinatorics facade examples/tests | No      |
-| `full`          | `geometry` and `combinatorics` together                                     | Yes     |
+| `series`        | Re-exports from `use-series` and series facade examples/tests               | No      |
+| `full`          | `geometry`, `combinatorics`, and `series` together                          | Yes     |
 
 If you want the facade but only one module, disable defaults and enable the feature you need:
 

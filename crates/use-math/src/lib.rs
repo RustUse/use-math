@@ -20,4 +20,10 @@ pub use use_geometry::{
     try_orientation_2d, try_orientation_2d_with_tolerance,
 };
 
+#[cfg(feature = "series")]
+pub use use_series as series;
+
+#[cfg(feature = "series")]
+pub use use_series::Series;
+
 pub mod prelude;

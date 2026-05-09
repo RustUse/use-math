@@ -1,0 +1,18 @@
+[package]
+name = "use-series"
+description = "Composable series primitives for finite and truncated power series in RustUse"
+publish = false
+authors.workspace = true
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+homepage = "https://github.com/RustUse/use-math"
+documentation = "https://docs.rs/use-series"
+keywords = ["math", "series", "polynomial", "power-series", "algebra"]
+categories = ["mathematics", "algorithms"]
+
+[lints]
+workspace = true

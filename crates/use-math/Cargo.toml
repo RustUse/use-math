@@ -11,7 +11,7 @@ rust-version.workspace = true
 readme = "README.md"
 homepage = "https://github.com/RustUse/use-math"
 documentation = "https://docs.rs/use-math"
-keywords = ["math", "geometry", "facade", "prelude", "utilities"]
+keywords = ["math", "geometry", "series", "facade", "prelude"]
 categories = ["mathematics", "science"]
 
 [package.metadata.docs.rs]
@@ -21,15 +21,21 @@ all-features = true
 default = ["full"]
 combinatorics = ["dep:use-combinatorics"]
 geometry = ["dep:use-geometry"]
-full = ["geometry", "combinatorics"]
+series = ["dep:use-series"]
+full = ["geometry", "combinatorics", "series"]
 
 [dependencies]
 use-combinatorics = { version = "0.0.1", path = "../use-combinatorics", optional = true }
 use-geometry = { version = "0.0.1", path = "../use-geometry", optional = true }
+use-series = { version = "0.0.1", path = "../use-series", optional = true }
 
 [[example]]
 name = "facade_combinatorics"
 required-features = ["combinatorics"]
+
+[[example]]
+name = "facade_series"
+required-features = ["series"]
 
 [[example]]
 name = "facade_validated_geometry"
@@ -42,6 +48,10 @@ required-features = ["combinatorics"]
 [[test]]
 name = "facade_geometry"
 required-features = ["geometry"]
+
+[[test]]
+name = "facade_series"
+required-features = ["series"]
 
 [lints]
 workspace = true
