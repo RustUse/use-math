@@ -15,11 +15,8 @@ keywords = ["math", "integer", "divisibility", "parity", "helpers"]
 categories = ["mathematics", "algorithms"]
 
 [[example]]
-name = "use-integer-scaffold"
+name = "use-integer-helpers"
 path = "examples/basic_usage.rs"
-
-[dev-dependencies]
-proptest.workspace = true
 
 [lints]
 workspace = true

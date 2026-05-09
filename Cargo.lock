@@ -172,9 +172,6 @@ dependencies = [
 [[package]]
 name = "use-calculus"
 version = "0.0.1"
-dependencies = [
- "proptest",
-]
 
 [[package]]
 name = "use-catalan"
@@ -204,9 +201,6 @@ dependencies = [
 [[package]]
 name = "use-integer"
 version = "0.0.1"
-dependencies = [
- "proptest",
-]
 
 [[package]]
 name = "use-linear"
@@ -255,23 +249,14 @@ dependencies = [
 [[package]]
 name = "use-probability"
 version = "0.0.1"
-dependencies = [
- "proptest",
-]
 
 [[package]]
 name = "use-rational"
 version = "0.0.1"
-dependencies = [
- "proptest",
-]
 
 [[package]]
 name = "use-real"
 version = "0.0.1"
-dependencies = [
- "proptest",
-]
 
 [[package]]
 name = "use-series"

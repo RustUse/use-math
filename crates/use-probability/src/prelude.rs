@@ -1,1 +1,4 @@
-//! Common ergonomic imports for `use-probability`.
+/// Commonly used probability items.
+pub use crate::{
+	Bernoulli, Probability, ProbabilityError, independent_intersection, independent_union,
+};

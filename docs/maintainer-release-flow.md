@@ -89,9 +89,9 @@ Use the manual dependency-ordered publish path instead:
 1. Confirm every focused crate plus `use-math` are still the intended first-wave publishable crates.
 2. Run the full publish-readiness checks.
 3. Publish all focused crates.
-5. Wait for crates.io index propagation.
-6. Run `cargo publish --dry-run -p use-math` or the manual `Facade Publish Readiness` workflow.
-7. Publish `use-math`.
+4. Wait for crates.io index propagation.
+5. Run `cargo publish --dry-run -p use-math` or the manual `Facade Publish Readiness` workflow.
+6. Publish `use-math`.
 
 After that first wave is complete, the manual `Release Publish Automation`
 workflow becomes the path for subsequent releases.

@@ -106,8 +106,8 @@ For the initial public crates.io wave:
 10. Confirm the focused crates under `crates/` plus `use-math` are the only intentionally publishable crates.
 11. Confirm the focused-crate dry-run path passes across the full set, for example via `make publish-dry-run-focused`.
 12. Publish all focused crates, then wait for crates.io index resolution.
-14. Confirm branch protection on `main` requires `Publish Readiness / Release Readiness Checks` before the first public release.
-15. Confirm `cargo publish --dry-run --allow-dirty -p use-math` passes, or run `.github/workflows/facade-publish-readiness.yml`, once the matching focused-crate versions are available on crates.io.
-16. Publish the first wave manually in dependency order, because crates.io trusted publishing cannot create new crates for the first release.
-17. Reconfirm that the first publish wave crate manifests remain intentionally
+13. Confirm branch protection on `main` requires `Publish Readiness / Release Readiness Checks` before the first public release.
+14. Confirm `cargo publish --dry-run --allow-dirty -p use-math` passes, or run `.github/workflows/facade-publish-readiness.yml`, once the matching focused-crate versions are available on crates.io.
+15. Publish the first wave manually in dependency order, because crates.io trusted publishing cannot create new crates for the first release.
+16. Reconfirm that the first publish wave crate manifests remain intentionally
     publishable and that any future non-release crates stay opted out.

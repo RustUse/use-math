@@ -1,1 +1,2 @@
-//! Common ergonomic imports for `use-rational`.
+/// Commonly used rational-number items.
+pub use crate::{Rational, RationalError};

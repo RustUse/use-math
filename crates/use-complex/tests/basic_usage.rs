@@ -3,7 +3,10 @@ use use_complex::{Complex, Imaginary};
 fn assert_close(lhs: f64, rhs: f64) {
     let difference = (lhs - rhs).abs();
 
-    assert!(difference <= 1.0e-10, "left={lhs}, right={rhs}, diff={difference}");
+    assert!(
+        difference <= 1.0e-10,
+        "left={lhs}, right={rhs}, diff={difference}"
+    );
 }
 
 #[test]

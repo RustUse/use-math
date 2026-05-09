@@ -9,6 +9,13 @@ pub use use_algebra as algebra;
 #[cfg(feature = "calculus")]
 pub use use_calculus as calculus;
 
+#[cfg(feature = "calculus")]
+pub use use_calculus::{
+    CalculusError, Differentiator, IntegrationInterval, Integrator, LimitApproximator,
+    central_difference, second_central_difference, simpson_integral, symmetric_limit,
+    trapezoidal_integral,
+};
+
 #[cfg(feature = "catalan")]
 pub use use_catalan as catalan;
 
@@ -38,6 +45,12 @@ pub use use_geometry::{
 #[cfg(feature = "integer")]
 pub use use_integer as integer;
 
+#[cfg(feature = "integer")]
+pub use use_integer::{
+    IntegerError, IntegerSign, are_coprime, classify_sign, gcd, is_divisible_by, is_even,
+    is_odd, lcm,
+};
+
 #[cfg(feature = "linear")]
 pub use use_linear as linear;
 
@@ -50,11 +63,22 @@ pub use use_number as number;
 #[cfg(feature = "probability")]
 pub use use_probability as probability;
 
+#[cfg(feature = "probability")]
+pub use use_probability::{
+    Bernoulli, Probability, ProbabilityError, independent_intersection, independent_union,
+};
+
 #[cfg(feature = "rational")]
 pub use use_rational as rational;
 
+#[cfg(feature = "rational")]
+pub use use_rational::{Rational, RationalError};
+
 #[cfg(feature = "real")]
 pub use use_real as real;
+
+#[cfg(feature = "real")]
+pub use use_real::{Real, RealError, RealInterval, approx_eq};
 
 #[cfg(feature = "series")]
 pub use use_series as series;
