@@ -4,6 +4,8 @@ all-features = true
 [advisories]
 # cargo-deny 0.19+ removed `vulnerability` and `notice`; vulnerability advisories
 # remain denied by default.
+# `unmaintained` now uses scope values (`all|workspace|transitive|none`), so
+# warning-only behavior is not available in this key.
 # Keep unmaintained advisories non-blocking in CI while still surfacing yanked crates.
 unmaintained = "none"
 yanked = "warn"
