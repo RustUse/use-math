@@ -273,7 +273,7 @@ If a result is not actionable yet, document the risk and planned remediation in 
 This repository currently uses it to:
 
 - deny known vulnerable crates
-- warn on unmaintained and yanked crates
+- skip unmaintained advisories and warn on yanked crates
 - allow a pragmatic set of permissive licenses
 - deny unknown licenses unless clarified
 - deny unknown registries and git sources

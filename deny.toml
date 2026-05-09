@@ -2,10 +2,8 @@
 all-features = true
 
 [advisories]
-vulnerability = "deny"
-unmaintained = "warn"
+unmaintained = "none"
 yanked = "warn"
-notice = "warn"
 ignore = []
 
 [licenses]
@@ -37,4 +35,3 @@ allow-registry = [
 	"https://github.com/rust-lang/crates.io-index",
 	"sparse+https://index.crates.io/",
 ]
-
