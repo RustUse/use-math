@@ -1,0 +1,25 @@
+[package]
+name = "use-number"
+description = "Utility-first numeric building blocks for RustUse"
+publish = true
+authors.workspace = true
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+homepage = "https://github.com/RustUse/use-math"
+documentation = "https://docs.rs/use-number"
+keywords = ["math", "number", "numeric", "classification", "constants"]
+categories = ["mathematics", "science"]
+
+[[example]]
+name = "use-number-scaffold"
+path = "examples/basic_usage.rs"
+
+[dev-dependencies]
+proptest.workspace = true
+
+[lints]
+workspace = true

@@ -3,6 +3,21 @@ members = [
     "crates/use-math",
     "crates/use-geometry",
     "crates/use-combinatorics",
+    "crates/use-number",
+    "crates/use-integer",
+    "crates/use-rational",
+    "crates/use-real",
+    "crates/use-complex",
+    "crates/use-series",
+    "crates/use-catalan",
+    "crates/use-algebra",
+    "crates/use-linear",
+    "crates/use-calculus",
+    "crates/use-probability",
+    "crates/use-statistics",
+    "crates/use-trigonometry",
+    "crates/use-logic",
+    "crates/use-set",
 ]
 resolver = "2"
 
@@ -22,8 +37,23 @@ proptest = { version = "1.11.0", default-features = false, features = ["std"] }
 publish = false
 versioning = "lockstep-0.x"
 first-publish-candidates = [
+    "use-number",
+    "use-integer",
+    "use-rational",
+    "use-real",
+    "use-complex",
     "use-geometry",
     "use-combinatorics",
+    "use-series",
+    "use-catalan",
+    "use-algebra",
+    "use-linear",
+    "use-calculus",
+    "use-probability",
+    "use-statistics",
+    "use-trigonometry",
+    "use-logic",
+    "use-set",
     "use-math",
 ]
 

@@ -152,6 +152,26 @@
             "problemMatcher": []
         },
         {
+            "label": "cargo: publish dry-run focused crates",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-lc",
+                "set -euo pipefail; for crate in use-number use-integer use-rational use-real use-complex use-geometry use-combinatorics use-series use-catalan use-algebra use-linear use-calculus use-probability use-statistics use-trigonometry use-logic use-set; do cargo package --list -p \"$crate\"; cargo publish --dry-run --allow-dirty -p \"$crate\"; done"
+            ],
+            "windows": {
+                "command": "powershell",
+                "args": [
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-Command",
+                    "$ErrorActionPreference = 'Stop'; $crates = @('use-number','use-integer','use-rational','use-real','use-complex','use-geometry','use-combinatorics','use-series','use-catalan','use-algebra','use-linear','use-calculus','use-probability','use-statistics','use-trigonometry','use-logic','use-set'); foreach ($crate in $crates) { cargo package --list -p $crate; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; cargo publish --dry-run --allow-dirty -p $crate; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE } }"
+                ]
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "cargo: facade publish dry-run (post-publication)",
             "type": "shell",
             "command": "cargo",
@@ -182,8 +202,7 @@
                 "cargo: verify workspace",
                 "cargo: examples",
                 "cargo: test no-default-features",
-                "cargo: publish dry-run use-geometry",
-                "cargo: publish dry-run use-combinatorics"
+                "cargo: publish dry-run focused crates"
             ]
         }
     ]

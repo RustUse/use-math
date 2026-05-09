@@ -1,5 +1,7 @@
 .PHONY: help fmt check lint test test-minimal build doc examples audit deny sbom publish-dry-run-focused publish-dry-run-facade release-readiness facade-post-publish-validation verify
 
+FOCUSED_CRATES := use-number use-integer use-rational use-real use-complex use-geometry use-combinatorics use-series use-catalan use-algebra use-linear use-calculus use-probability use-statistics use-trigonometry use-logic use-set
+
 help:
 	@printf "%s\n" \
 		"help                           Show available repository tasks" \
@@ -54,10 +56,10 @@ sbom:
 	cargo cyclonedx --manifest-path crates/use-math/Cargo.toml --all-features --format json --spec-version 1.5 --override-filename sbom.cyclonedx
 
 publish-dry-run-focused:
-	cargo package --list -p use-geometry
-	cargo package --list -p use-combinatorics
-	cargo publish --dry-run --allow-dirty -p use-geometry
-	cargo publish --dry-run --allow-dirty -p use-combinatorics
+	@for crate in $(FOCUSED_CRATES); do \
+		cargo package --list -p $$crate; \
+		cargo publish --dry-run --allow-dirty -p $$crate; \
+	done
 
 publish-dry-run-facade:
 	cargo publish --dry-run --allow-dirty -p use-math

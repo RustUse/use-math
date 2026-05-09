@@ -16,6 +16,12 @@ jobs:
     release-readiness:
         name: Release Readiness Checks
         runs-on: ubuntu-latest
+        env:
+            FOCUSED_CRATES: >-
+                use-number use-integer use-rational use-real use-complex use-geometry
+                use-combinatorics use-series use-catalan use-algebra use-linear
+                use-calculus use-probability use-statistics use-trigonometry use-logic
+                use-set
         steps:
             - name: Check out repository
               uses: actions/checkout@v4
@@ -33,12 +39,9 @@ jobs:
             - name: Test workspace without default features
               run: cargo test --workspace --no-default-features
 
-            - name: Dry-run publish use-geometry
+            - name: Dry-run publish focused crates
               run: |
-                  cargo package --list -p use-geometry
-                  cargo publish --dry-run --allow-dirty -p use-geometry
-
-            - name: Dry-run publish use-combinatorics
-              run: |
-                  cargo package --list -p use-combinatorics
-                  cargo publish --dry-run --allow-dirty -p use-combinatorics
+                  for crate in $FOCUSED_CRATES; do
+                    cargo package --list -p "$crate"
+                    cargo publish --dry-run --allow-dirty -p "$crate"
+                  done

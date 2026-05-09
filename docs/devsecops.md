@@ -105,7 +105,7 @@ File: `.github/workflows/publish-readiness.yml`
 - Triggers on pull requests to `main`, pushes to `main`, and manual dispatch
 - Compiles workspace examples with all features enabled
 - Tests the workspace without default features so minimal consumer paths stay healthy
-- Runs `cargo publish --dry-run --allow-dirty` for `use-geometry` and `use-combinatorics`
+- Runs `cargo publish --dry-run --allow-dirty` for every focused crate in the workspace
 - Intentionally does not dry-run `use-math` yet, because the facade crate cannot complete publish validation until matching focused-crate versions are available in the crates.io index
 
 ### `Facade Publish Readiness`
@@ -113,8 +113,8 @@ File: `.github/workflows/publish-readiness.yml`
 File: `.github/workflows/facade-publish-readiness.yml`
 
 - Triggers on manual dispatch only
-- Exists for the post-publication window where `use-geometry` and `use-combinatorics` are already visible on crates.io
-- Verifies that `use-geometry` and `use-combinatorics` already resolve from crates.io before continuing
+- Exists for the post-publication window where the focused crates are already visible on crates.io
+- Verifies that every focused crate already resolves from crates.io before continuing
 - Lists the packaged `use-math` files and then runs `cargo publish --dry-run --allow-dirty -p use-math`
 - Should stay manual because it is expected to fail before registry propagation completes
 
@@ -124,7 +124,7 @@ File: `.github/workflows/release-plz-pr.yml`
 
 - Triggers on pushes to `main` and on manual dispatch
 - Runs `release-plz release-pr` to prepare lockstep version bumps and changelog updates
-- Uses `release-plz.toml` to keep `use-geometry`, `use-combinatorics`, and `use-math` in one version group
+- Uses `release-plz.toml` to keep every publishable crate in one version group
 - Keeps release publishing separate from version/changelog preparation
 
 ### `Release Publish Automation`
@@ -200,8 +200,7 @@ cargo build --workspace --all-features
 ```bash
 cargo check --workspace --all-features --examples
 cargo test --workspace --no-default-features
-cargo publish --dry-run --allow-dirty -p use-geometry
-cargo publish --dry-run --allow-dirty -p use-combinatorics
+make publish-dry-run-focused
 ```
 
 The post-publication facade check is intentionally separate:
@@ -210,7 +209,7 @@ The post-publication facade check is intentionally separate:
 cargo publish --dry-run --allow-dirty -p use-math
 ```
 
-Run it only after matching `use-geometry` and `use-combinatorics` versions are visible on crates.io.
+Run it only after matching focused-crate versions are visible on crates.io.
 
 `make audit`, `make deny`, and `make sbom` assume the corresponding tools are installed locally.
 

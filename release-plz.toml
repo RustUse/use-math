@@ -6,6 +6,31 @@ pr_labels = ["release"]
 max_analyze_commits = 2000
 
 [[package]]
+name = "use-number"
+release = true
+version_group = "rustuse-math"
+
+[[package]]
+name = "use-integer"
+release = true
+version_group = "rustuse-math"
+
+[[package]]
+name = "use-rational"
+release = true
+version_group = "rustuse-math"
+
+[[package]]
+name = "use-real"
+release = true
+version_group = "rustuse-math"
+
+[[package]]
+name = "use-complex"
+release = true
+version_group = "rustuse-math"
+
+[[package]]
 name = "use-geometry"
 release = true
 version_group = "rustuse-math"
@@ -16,12 +41,80 @@ release = true
 version_group = "rustuse-math"
 
 [[package]]
+name = "use-series"
+release = true
+version_group = "rustuse-math"
+
+[[package]]
+name = "use-catalan"
+release = true
+version_group = "rustuse-math"
+
+[[package]]
+name = "use-algebra"
+release = true
+version_group = "rustuse-math"
+
+[[package]]
+name = "use-linear"
+release = true
+version_group = "rustuse-math"
+
+[[package]]
+name = "use-calculus"
+release = true
+version_group = "rustuse-math"
+
+[[package]]
+name = "use-probability"
+release = true
+version_group = "rustuse-math"
+
+[[package]]
+name = "use-statistics"
+release = true
+version_group = "rustuse-math"
+
+[[package]]
+name = "use-trigonometry"
+release = true
+version_group = "rustuse-math"
+
+[[package]]
+name = "use-logic"
+release = true
+version_group = "rustuse-math"
+
+[[package]]
+name = "use-set"
+release = true
+version_group = "rustuse-math"
+
+[[package]]
 name = "use-math"
 release = true
 version_group = "rustuse-math"
 changelog_update = true
 changelog_path = "./CHANGELOG.md"
-changelog_include = ["use-geometry", "use-combinatorics"]
+changelog_include = [
+  "use-number",
+  "use-integer",
+  "use-rational",
+  "use-real",
+  "use-complex",
+  "use-geometry",
+  "use-combinatorics",
+  "use-series",
+  "use-catalan",
+  "use-algebra",
+  "use-linear",
+  "use-calculus",
+  "use-probability",
+  "use-statistics",
+  "use-trigonometry",
+  "use-logic",
+  "use-set",
+]
 
 [changelog]
 header = """# Changelog

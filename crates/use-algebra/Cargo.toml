@@ -1,0 +1,25 @@
+[package]
+name = "use-algebra"
+description = "Utility-first algebraic-structure scaffolding for RustUse"
+publish = true
+authors.workspace = true
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+homepage = "https://github.com/RustUse/use-math"
+documentation = "https://docs.rs/use-algebra"
+keywords = ["math", "algebra", "group", "ring", "field"]
+categories = ["mathematics", "science"]
+
+[[example]]
+name = "use-algebra-scaffold"
+path = "examples/basic_usage.rs"
+
+[dev-dependencies]
+proptest.workspace = true
+
+[lints]
+workspace = true

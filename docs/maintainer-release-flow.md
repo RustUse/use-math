@@ -11,7 +11,7 @@ It covers two different paths:
 ## Current model
 
 - `Release PR Automation` opens or updates a release PR from `main`.
-- `release-plz` keeps `use-geometry`, `use-combinatorics`, and `use-math` in one lockstep version group.
+- `release-plz` keeps every publishable crate in the workspace in one lockstep version group.
 - The shared root `CHANGELOG.md` is generated through the `use-math` package entry and includes focused-crate commits.
 - `Release Publish Automation` stays manual and should be used only after the initial manual publish wave is complete.
 
@@ -86,10 +86,9 @@ Do not use `Release Publish Automation` for the first public crates.io wave.
 
 Use the manual dependency-ordered publish path instead:
 
-1. Confirm `use-geometry`, `use-combinatorics`, and `use-math` are still the only intended first-wave publishable crates.
+1. Confirm every focused crate plus `use-math` are still the intended first-wave publishable crates.
 2. Run the full publish-readiness checks.
-3. Publish `use-geometry`.
-4. Publish `use-combinatorics`.
+3. Publish all focused crates.
 5. Wait for crates.io index propagation.
 6. Run `cargo publish --dry-run -p use-math` or the manual `Facade Publish Readiness` workflow.
 7. Publish `use-math`.
@@ -99,7 +98,7 @@ workflow becomes the path for subsequent releases.
 
 ## Maintainer review checklist for every release PR
 
-- The version bump is still lockstep across the three publishable crates.
+- The version bump is still lockstep across every publishable crate.
 - The root changelog reads cleanly without vague fallback entries.
 - Any intentionally skipped commits actually carry `changelog: ignore` for a good reason.
 - The release still matches the current publish surface and feature model.

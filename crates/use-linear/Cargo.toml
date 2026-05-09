@@ -1,0 +1,25 @@
+[package]
+name = "use-linear"
+description = "Utility-first linear-algebra scaffolding for RustUse"
+publish = true
+authors.workspace = true
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+homepage = "https://github.com/RustUse/use-math"
+documentation = "https://docs.rs/use-linear"
+keywords = ["math", "linear", "matrix", "vector", "algebra"]
+categories = ["mathematics", "science"]
+
+[[example]]
+name = "use-linear-scaffold"
+path = "examples/basic_usage.rs"
+
+[dev-dependencies]
+proptest.workspace = true
+
+[lints]
+workspace = true

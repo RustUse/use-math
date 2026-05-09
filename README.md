@@ -1,20 +1,16 @@
 # RustUse/use-math
 
 <p align="center">
-	<img src=".github/assets/readme-hero.svg" alt="RustUse use-math workspace overview">
-</p>
-
-<p align="center">
 	<img alt="Rust 1.95.0+" src="https://img.shields.io/badge/Rust-1.95.0%2B-f46623?logo=rust&logoColor=white">
 	<img alt="Edition 2024" src="https://img.shields.io/badge/edition-2024-0f766e">
-	<img alt="3 workspace crates" src="https://img.shields.io/badge/workspace-3%20crates-1d4ed8">
+	<img alt="18 workspace crates" src="https://img.shields.io/badge/workspace-18%20crates-1d4ed8">
 	<img alt="Status pre-release" src="https://img.shields.io/badge/status-pre--release-c2410c">
 	<img alt="License MIT or Apache-2.0" src="https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-2a9d8f">
 </p>
 
 <p align="center">
-	<strong>Utility-first Rust math crates for geometry, checked counting, and a feature-gated facade.</strong><br>
-	Focused crates stay small. The facade crate composes them behind opt-in features and a shared <code>prelude</code>.
+	<strong>Utility-first Rust math crates with concrete geometry and counting APIs plus scaffolded focused boundaries for the rest of the workspace.</strong><br>
+	Focused crates stay small. The facade crate composes them behind opt-in features and keeps implemented root re-exports separate from namespace-only scaffolds.
 </p>
 
 <p align="center">
@@ -29,49 +25,54 @@
 	<a href="#community-and-project-policy">Community</a>
 </p>
 
-This repository is the source workspace for RustUse's initial math surface. It pairs two focused crates, `use-geometry` and `use-combinatorics`, with the `use-math` facade for callers who want one dependency and feature-gated re-exports. The design bias is simple: small APIs, predictable dependencies, and validated constructors where external input can go wrong.
+This repository is the source workspace for RustUse's math surface. Today it combines concrete focused crates for geometry and checked combinatorics with fifteen additional scaffolded crate boundaries for future numeric, algebraic, analytic, probabilistic, and logical surfaces. `use-math` composes the whole workspace behind feature flags while keeping root re-exports limited to the crates that already expose real APIs.
 
 ## Current status
 
 - The GitHub repository may be public before the first crates.io release is live.
 - Until then, consume the crates from a pinned Git revision or work from the workspace directly.
-- The planned first release order is `use-geometry`, then `use-combinatorics`, then `use-math`.
+- `use-geometry` and `use-combinatorics` are the concrete focused APIs today; the remaining focused crates are scaffold-only publishable boundaries.
+- The planned first release order is every focused crate first, then `use-math` after crates.io index propagation.
 
 <table>
 	<tr>
 		<td width="33%" valign="top">
 			<strong>Pull in one facade</strong><br>
 			<code>crates/use-math/</code><br>
-			Reach for the shared <code>prelude</code> and feature flags when one dependency is the cleanest integration point.
+			Reach for the shared <code>prelude</code>, root re-exports for implemented APIs, and namespace modules for the scaffolded crate boundaries.
 		</td>
 		<td width="33%" valign="top">
-			<strong>Keep geometry focused</strong><br>
-			<code>crates/use-geometry/</code><br>
-			Use points, vectors, lines, segments, circles, triangles, bounds, orientation, and distance helpers directly.
+			<strong>Use concrete focused crates</strong><br>
+			<code>crates/use-geometry/</code> and <code>crates/use-combinatorics/</code><br>
+			Use direct APIs today when you want geometry primitives or checked counting helpers without the wider facade.
 		</td>
 		<td width="33%" valign="top">
-			<strong>Keep counting focused</strong><br>
-			<code>crates/use-combinatorics/</code><br>
-			Use checked factorial, permutations, and combinations helpers without pulling in geometry types.
+			<strong>Stabilize future boundaries</strong><br>
+			<code>crates/use-number/</code> through <code>crates/use-set/</code><br>
+			Depend on the scaffolded focused crates when stable crate names and release plumbing matter before the concrete APIs land.
 		</td>
 	</tr>
 </table>
 
 ## What this workspace ships
 
-RustUse/use-math is a multi-crate workspace. Each crate is usable on its own, and the facade crate composes the focused crates when you want one import surface.
+RustUse/use-math is now an 18-crate workspace. Each crate is usable on its own, and the facade crate composes the focused crates when you want one import surface.
 
-| Crate               | Path                        | Purpose                                                                                 | Best fit                                   |
-| ------------------- | --------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------ |
-| `use-math`          | `crates/use-math/`          | Feature-gated facade with direct re-exports and a shared `prelude`                      | One dependency and one import surface      |
-| `use-geometry`      | `crates/use-geometry/`      | Utility-first 2D geometry primitives, shapes, bounds, orientation, and distance helpers | Geometry is the only math surface you need |
-| `use-combinatorics` | `crates/use-combinatorics/` | Checked counting helpers for factorials, permutations, and combinations                 | You only need combinatorics helpers        |
+| Crate                    | Path                                   | Purpose                                                                                                    | Best fit                                                        |
+| ------------------------ | -------------------------------------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| `use-math`               | `crates/use-math/`                     | Feature-gated facade with direct re-exports for implemented APIs plus namespace access to scaffold crates | One dependency and one import surface                           |
+| `use-geometry`           | `crates/use-geometry/`                 | Utility-first 2D geometry primitives, shapes, bounds, orientation, and distance helpers                    | Geometry is the only math surface you need                      |
+| `use-combinatorics`      | `crates/use-combinatorics/`            | Checked counting helpers for factorials, permutations, and combinations                                    | You only need combinatorics helpers                             |
+| Scaffolded focused crates | `crates/use-number/` through `crates/use-set/` | Publishable crate boundaries with README, example, test, and facade namespace wiring, but no concrete public math APIs yet | Stable crate naming and release plumbing before API expansion |
+
+The scaffolded focused crates are `use-number`, `use-integer`, `use-rational`, `use-real`, `use-complex`, `use-series`, `use-catalan`, `use-algebra`, `use-linear`, `use-calculus`, `use-probability`, `use-statistics`, `use-trigonometry`, `use-logic`, and `use-set`.
 
 | If you need to...                                           | Start here                 |
 | ----------------------------------------------------------- | -------------------------- |
 | Add one dependency and opt into math surfaces with features | `use-math`                 |
 | Validate 2D coordinates and shapes from user or file input  | `use-geometry`             |
 | Do checked counting without geometry types                  | `use-combinatorics`        |
+| Lock in a focused crate boundary before its concrete API ships | The scaffolded focused crate directly |
 | Keep the dependency and API surface as narrow as possible   | The focused crate directly |
 
 > [!TIP]
@@ -81,12 +82,13 @@ RustUse/use-math is a multi-crate workspace. Each crate is usable on its own, an
 
 Pick the crate based on the integration shape you want, not just the total feature count.
 
-| You want...                                   | Choose...                                        | Why                                                                                       |
-| --------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------- |
-| One dependency for geometry and combinatorics | `use-math`                                       | The facade re-exports focused crates behind feature flags and exposes a unified `prelude` |
-| Geometry-only code with direct type access    | `use-geometry`                                   | You avoid facade indirection and keep dependencies minimal                                |
-| Counting helpers only                         | `use-combinatorics`                              | You get checked math helpers without bringing in geometry modules                         |
-| Maximum control over enabled API surface      | A focused crate, or `use-math` with defaults off | You choose exactly which modules compile into the final build                             |
+| You want...                                                | Choose...                                        | Why                                                                                                  |
+| ---------------------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
+| One dependency for the current workspace surface           | `use-math`                                       | The facade unifies the concrete APIs and exposes scaffolded crates as nested namespaces             |
+| Geometry-only code with direct type access                 | `use-geometry`                                   | You avoid facade indirection and keep dependencies minimal                                           |
+| Counting helpers only                                      | `use-combinatorics`                              | You get checked math helpers without bringing in geometry modules                                    |
+| A stable future-focused crate boundary while APIs incubate | The scaffolded focused crate directly            | You can depend on the crate name now without implying more concrete API than the crate actually has |
+| Maximum control over enabled API surface                   | A focused crate, or `use-math` with defaults off | You choose exactly which modules compile into the final build                                        |
 
 ## Project structure
 
@@ -95,28 +97,35 @@ Pick the crate based on the integration shape you want, not just the total featu
 ├── Cargo.toml
 ├── README.md
 ├── crates/
+│   ├── use-algebra/
+│   ├── use-calculus/
+│   ├── use-catalan/
 │   ├── use-combinatorics/
-│   │   ├── examples/
-│   │   ├── src/
-│   │   └── tests/
+│   ├── use-complex/
 │   ├── use-geometry/
-│   │   ├── examples/
-│   │   ├── src/
-│   │   └── tests/
-│   └── use-math/
-│       ├── examples/
-│       ├── src/
-│       └── tests/
+│   ├── use-integer/
+│   ├── use-linear/
+│   ├── use-logic/
+│   ├── use-math/
+│   ├── use-number/
+│   ├── use-probability/
+│   ├── use-rational/
+│   ├── use-real/
+│   ├── use-series/
+│   ├── use-set/
+│   ├── use-statistics/
+│   └── use-trigonometry/
 └── scripts/
 ```
 
-| Path                        | Role                                                                             |
-| --------------------------- | -------------------------------------------------------------------------------- |
-| `Cargo.toml`                | Workspace membership, shared package metadata, release metadata, and lint policy |
-| `crates/use-math/`          | Feature-gated facade crate that re-exports the focused crates                    |
-| `crates/use-geometry/`      | Direct 2D geometry APIs, validated constructors, and invariant checks            |
-| `crates/use-combinatorics/` | Direct checked counting APIs                                                     |
-| `scripts/`                  | Workspace automation and mirror sync helpers                                     |
+| Path                                           | Role                                                                                      |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `Cargo.toml`                                   | Workspace membership, shared package metadata, release metadata, and lint policy          |
+| `crates/use-math/`                             | Feature-gated facade crate with root re-exports for implemented APIs and nested namespaces |
+| `crates/use-geometry/`                         | Direct 2D geometry APIs, validated constructors, and invariant checks                     |
+| `crates/use-combinatorics/`                    | Direct checked counting APIs                                                              |
+| `crates/use-number/` through `crates/use-set/` | Scaffolded focused crate boundaries for the remaining planned math domains                |
+| `scripts/`                                     | Workspace automation and mirror sync helpers                                              |
 
 ## Installation
 
@@ -132,9 +141,10 @@ Git dependency before the first crates.io release:
 use-math = { git = "https://github.com/RustUse/use-math", rev = "<commit>" }
 ```
 
-For focused crates, replace `use-math` with `use-geometry` or
-`use-combinatorics`. Pin a commit or future tag instead of following the moving
-default branch.
+For focused crates, replace `use-math` with the focused crate you need, such as
+`use-geometry`, `use-combinatorics`, or one of the scaffolded crates like
+`use-number`. Pin a commit or future tag instead of following the moving default
+branch.
 
 When consuming the published release line, pull in the smallest surface that matches your application.
 
@@ -220,9 +230,10 @@ The facade crate exposes a small feature surface:
 
 | Feature         | Enables                                                                     | Default |
 | --------------- | --------------------------------------------------------------------------- | ------- |
-| `geometry`      | Re-exports from `use-geometry` and geometry facade examples/tests           | No      |
-| `combinatorics` | Re-exports from `use-combinatorics` and combinatorics facade examples/tests | No      |
-| `full`          | `geometry` and `combinatorics` together                                     | Yes     |
+| `geometry`      | Re-exports from `use-geometry` and geometry facade examples/tests                                                                   | No      |
+| `combinatorics` | Re-exports from `use-combinatorics` and combinatorics facade examples/tests                                                         | No      |
+| `number`, `integer`, `rational`, `real`, `complex`, `series`, `catalan`, `algebra`, `linear`, `calculus`, `probability`, `statistics`, `trigonometry`, `logic`, `set` | Exposes the corresponding focused crate as a nested namespace module only | No      |
+| `full`          | Enables every focused crate feature in the workspace                                                                                | Yes     |
 
 If you want the facade but only one module, disable defaults and enable the feature you need:
 
@@ -323,8 +334,8 @@ make release-readiness
 
 `make release-readiness` intentionally validates the focused crates' publish
 surface first. The `use-math` facade still needs its final `cargo publish
---dry-run` only after matching `use-geometry` and `use-combinatorics` versions
-exist in the crates.io index.
+--dry-run` only after matching focused-crate versions exist in the crates.io
+index.
 
 If you prefer not to use `make`, the Cargo aliases and VS Code tasks cover the
 same day-to-day validation flows cross-platform.

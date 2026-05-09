@@ -19,13 +19,61 @@ all-features = true
 
 [features]
 default = ["full"]
+algebra = ["dep:use-algebra"]
+calculus = ["dep:use-calculus"]
+catalan = ["dep:use-catalan"]
 combinatorics = ["dep:use-combinatorics"]
+complex = ["dep:use-complex"]
 geometry = ["dep:use-geometry"]
-full = ["geometry", "combinatorics"]
+integer = ["dep:use-integer"]
+linear = ["dep:use-linear"]
+logic = ["dep:use-logic"]
+number = ["dep:use-number"]
+probability = ["dep:use-probability"]
+rational = ["dep:use-rational"]
+real = ["dep:use-real"]
+series = ["dep:use-series"]
+set = ["dep:use-set"]
+statistics = ["dep:use-statistics"]
+trigonometry = ["dep:use-trigonometry"]
+full = [
+	"number",
+	"integer",
+	"rational",
+	"real",
+	"complex",
+	"geometry",
+	"combinatorics",
+	"series",
+	"catalan",
+	"algebra",
+	"linear",
+	"calculus",
+	"probability",
+	"statistics",
+	"trigonometry",
+	"logic",
+	"set",
+]
 
 [dependencies]
+use-algebra = { version = "0.0.1", path = "../use-algebra", optional = true }
+use-calculus = { version = "0.0.1", path = "../use-calculus", optional = true }
+use-catalan = { version = "0.0.1", path = "../use-catalan", optional = true }
 use-combinatorics = { version = "0.0.1", path = "../use-combinatorics", optional = true }
+use-complex = { version = "0.0.1", path = "../use-complex", optional = true }
 use-geometry = { version = "0.0.1", path = "../use-geometry", optional = true }
+use-integer = { version = "0.0.1", path = "../use-integer", optional = true }
+use-linear = { version = "0.0.1", path = "../use-linear", optional = true }
+use-logic = { version = "0.0.1", path = "../use-logic", optional = true }
+use-number = { version = "0.0.1", path = "../use-number", optional = true }
+use-probability = { version = "0.0.1", path = "../use-probability", optional = true }
+use-rational = { version = "0.0.1", path = "../use-rational", optional = true }
+use-real = { version = "0.0.1", path = "../use-real", optional = true }
+use-series = { version = "0.0.1", path = "../use-series", optional = true }
+use-set = { version = "0.0.1", path = "../use-set", optional = true }
+use-statistics = { version = "0.0.1", path = "../use-statistics", optional = true }
+use-trigonometry = { version = "0.0.1", path = "../use-trigonometry", optional = true }
 
 [[example]]
 name = "facade_combinatorics"

@@ -2,6 +2,9 @@
 #[cfg(feature = "combinatorics")]
 pub use crate::{CombinatoricsError, combinations, factorial, permutations};
 
+#[cfg(feature = "complex")]
+pub use crate::{Complex, Imaginary};
+
 #[cfg(feature = "geometry")]
 pub use crate::{
     Aabb2, Circle, GeometryError, Line2, Orientation2, Point2, Segment2, Triangle, Vector2,

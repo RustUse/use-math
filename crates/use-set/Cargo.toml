@@ -1,0 +1,25 @@
+[package]
+name = "use-set"
+description = "Utility-first set scaffolding for RustUse"
+publish = true
+authors.workspace = true
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+homepage = "https://github.com/RustUse/use-math"
+documentation = "https://docs.rs/use-set"
+keywords = ["math", "set", "union", "intersection", "membership"]
+categories = ["mathematics", "algorithms"]
+
+[[example]]
+name = "use-set-scaffold"
+path = "examples/basic_usage.rs"
+
+[dev-dependencies]
+proptest.workspace = true
+
+[lints]
+workspace = true

@@ -1,15 +1,15 @@
 # use-math
 
 <p align="center">
-	<strong>Feature-gated <code>RustUse</code> facade for geometry and checked counting.</strong><br>
-	One dependency when you want one import surface. Focused crates stay available when you want the narrowest build.
+	<strong>Feature-gated <code>RustUse</code> facade for concrete geometry and checked counting plus scaffolded namespace access to the rest of the workspace.</strong><br>
+	One dependency when you want one import surface. Focused crates stay available when you want the narrowest build or a stable future-facing crate boundary.
 </p>
 
 <p align="center">
 	<img alt="Rust 1.95.0+" src="https://img.shields.io/badge/Rust-1.95.0%2B-f46623?logo=rust&logoColor=white">
 	<img alt="Edition 2024" src="https://img.shields.io/badge/edition-2024-0f766e">
 	<img alt="Default feature full" src="https://img.shields.io/badge/default-full-1d4ed8">
-	<img alt="Features geometry combinatorics" src="https://img.shields.io/badge/features-geometry%20%7C%20combinatorics-c2410c">
+	<img alt="Features 17 optional modules" src="https://img.shields.io/badge/features-17%20optional%20modules-c2410c">
 	<img alt="License MIT or Apache-2.0" src="https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-2a9d8f">
 </p>
 
@@ -22,7 +22,7 @@
 	<a href="#design-constraints">Constraints</a>
 </p>
 
-`use-math` composes the focused `RustUse` math crates into one entry point while keeping their APIs direct and explicit. It re-exports the currently supported geometry and combinatorics surfaces at the crate root, exposes nested modules when crate-scoped access reads better, and provides a shared `prelude` for quick integration.
+`use-math` composes the focused `RustUse` math crates into one entry point while keeping their APIs direct and explicit. It re-exports the currently supported geometry and combinatorics surfaces at the crate root, exposes nested modules for every focused crate in the workspace, and keeps the shared `prelude` limited to the items that already have concrete ergonomic value.
 
 <table>
 	<tr>
@@ -32,7 +32,7 @@
 		</td>
 		<td width="33%" valign="top">
 			<strong>Nested modules</strong><br>
-			Use <code>use_math::geometry</code> or <code>use_math::combinatorics</code> when you want crate-shaped namespacing.
+			Use <code>use_math::geometry</code>, <code>use_math::combinatorics</code>, or any scaffolded namespace like <code>use_math::number</code> when you want crate-shaped namespacing.
 		</td>
 		<td width="33%" valign="top">
 			<strong>Shared prelude</strong><br>
@@ -43,30 +43,33 @@
 
 ## What this crate provides
 
-| Entry point               | What it exposes                                           | Best fit                                             |
-| ------------------------- | --------------------------------------------------------- | ---------------------------------------------------- |
-| Root re-exports           | Direct access to enabled geometry and combinatorics items | Call sites that want short imports                   |
-| `use_math::geometry`      | The `use-geometry` crate as a nested module               | Code that prefers explicit geometry namespacing      |
-| `use_math::combinatorics` | The `use-combinatorics` crate as a nested module          | Code that prefers explicit combinatorics namespacing |
-| `use_math::prelude`       | Common items from enabled features                        | Small apps, examples, and quick starts               |
+| Entry point                  | What it exposes                                                                 | Best fit                                                                 |
+| ---------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Root re-exports              | Direct access to enabled geometry and combinatorics items                       | Call sites that want short imports                                       |
+| `use_math::geometry`         | The `use-geometry` crate as a nested module                                     | Code that prefers explicit geometry namespacing                          |
+| `use_math::combinatorics`    | The `use-combinatorics` crate as a nested module                                | Code that prefers explicit combinatorics namespacing                     |
+| Scaffolded namespace modules | Focused crates such as `use_math::number`, `use_math::algebra`, or `use_math::set` | Stable crate-shaped namespacing before those focused APIs are implemented |
+| `use_math::prelude`          | Common items from enabled concrete features                                     | Small apps, examples, and quick starts                                   |
 
 | If you need to...                                           | Start here                   |
 | ----------------------------------------------------------- | ---------------------------- |
 | Add one dependency and opt into math surfaces with features | `use-math`                   |
 | Keep geometry-only code isolated                            | `use-geometry` directly      |
 | Keep counting-only code isolated                            | `use-combinatorics` directly |
+| Depend on a future-focused crate boundary early             | The nested namespace or focused scaffold crate directly |
 | Minimize both dependency weight and API width               | The focused crate directly   |
 
 ## When to choose the facade
 
 Use the facade when consumer ergonomics matter more than squeezing the dependency graph to the smallest possible shape.
 
-| Scenario                                               | Choose `use-math`? | Why                                                     |
-| ------------------------------------------------------ | ------------------ | ------------------------------------------------------- |
-| You want one dependency for both geometry and counting | Yes                | The facade keeps imports unified behind features        |
-| You are building a small app or example project        | Yes                | Root re-exports and the `prelude` reduce setup friction |
-| You only need geometry                                 | Usually no         | `use-geometry` stays narrower and more explicit         |
-| You only need combinatorics                            | Usually no         | `use-combinatorics` avoids unrelated modules            |
+| Scenario                                                       | Choose `use-math`? | Why                                                             |
+| -------------------------------------------------------------- | ------------------ | --------------------------------------------------------------- |
+| You want one dependency for both geometry and counting         | Yes                | The facade keeps imports unified behind features                |
+| You are building a small app or example project                | Yes                | Root re-exports and the `prelude` reduce setup friction         |
+| You want namespace access to scaffolded future crate boundaries | Usually yes        | The facade exposes every focused crate name consistently today  |
+| You only need geometry                                         | Usually no         | `use-geometry` stays narrower and more explicit                 |
+| You only need combinatorics                                    | Usually no         | `use-combinatorics` avoids unrelated modules                    |
 
 > [!TIP]
 > The facade is intentionally thin. It is not a second abstraction layer over the focused crates.
@@ -159,14 +162,16 @@ assert_eq!(orientation_2d_with_tolerance(a, b, c, 0.0)?, Orientation2::CounterCl
 
 ## Feature model
 
-| Feature         | Enables                                                                                   | Default |
-| --------------- | ----------------------------------------------------------------------------------------- | ------- |
-| `geometry`      | Re-exports from `use-geometry`, including `Aabb2` and tolerance-aware orientation helpers | No      |
-| `combinatorics` | Re-exports from `use-combinatorics`                                                       | No      |
-| `full`          | `geometry` and `combinatorics` together                                                   | Yes     |
+| Feature         | Enables                                                                                                                               | Default |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `geometry`      | Re-exports from `use-geometry`, including `Aabb2` and tolerance-aware orientation helpers                                            | No      |
+| `combinatorics` | Re-exports from `use-combinatorics`                                                                                                   | No      |
+| `number`, `integer`, `rational`, `real`, `complex`, `series`, `catalan`, `algebra`, `linear`, `calculus`, `probability`, `statistics`, `trigonometry`, `logic`, `set` | The corresponding focused crate as a nested namespace module only | No      |
+| `full`          | Every focused crate feature in the workspace                                                                                           | Yes     |
 
 > [!NOTE]
 > `full` is the default today because the facade exists to smooth over multi-crate integration. Disable defaults when you need tighter control over compile surface.
+> The non-geometry and non-combinatorics features currently expose only nested namespace modules, not root-level item re-exports or additional `prelude` items.
 
 ## Design constraints
 
@@ -177,4 +182,4 @@ assert_eq!(orientation_2d_with_tolerance(a, b, c, 0.0)?, Orientation2::CounterCl
 
 ## Status
 
-`use-math` is a scaffolded public facade crate in the `RustUse` docs surface. The API remains pre-1.0, and the `RustUse`-hosted generated rustdocs stay canonical while external crates.io and docs.rs pages remain staged.
+`use-math` is a scaffolded public facade crate in the `RustUse` docs surface. The API remains pre-1.0, and the facade intentionally distinguishes between concrete root-level APIs and namespace-only scaffold features while the rest of the workspace grows.

@@ -84,7 +84,7 @@ extensions, and a post-create `cargo xcheck` validation.
 
 - Update the root README when the crate list or facade story changes.
 - Keep crate README examples small and runnable.
-- Keep docs aligned with the currently supported `use-math`, `use-geometry`, and `use-combinatorics` crates.
+- Keep docs aligned with the current workspace surface, including scaffolded focused crates and the distinction between implemented APIs and namespace-only features.
 - Follow [CRATE_TEMPLATE.md](CRATE_TEMPLATE.md) when introducing a new focused crate or expanding the facade surface.
 
 ## Cross-forge contributions
@@ -117,7 +117,7 @@ matching SSH key secrets.
 
 - The workspace-level default keeps `publish = false`, while the current first-wave crate manifests already opt in with `publish = true`.
 - Before a release, confirm that only the intended first-wave crates remain publishable.
-- The initial supported crates are `use-combinatorics`, `use-geometry`, and `use-math`.
+- The current first-wave publish surface includes every focused crate under `crates/` plus `use-math`, while only `use-geometry` and `use-combinatorics` expose concrete APIs today.
 - Versions move in lockstep at `0.x.y` for now.
 - Until `1.0`, breaking API changes should bump the minor version and compatible additive changes should bump the patch version.
 - `Cargo.lock` is committed intentionally for reproducible CI, security checks, and release dry runs in this library workspace.

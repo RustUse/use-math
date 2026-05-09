@@ -165,8 +165,7 @@ That should cover:
 - workspace validation
 - example compilation
 - no-default-features coverage
-- `use-geometry` dry-run publish
-- `use-combinatorics` dry-run publish
+- focused-crate dry-run publish coverage across the full set
 
 The facade crate still needs to wait until the focused crates are visible in the
 crates.io index.
@@ -177,8 +176,9 @@ For the first release wave, do not use `release-plz release`. Publish in manual
 dependency order.
 
 ```bash
-cargo publish -p use-geometry
-cargo publish -p use-combinatorics
+for crate in use-number use-integer use-rational use-real use-complex use-geometry use-combinatorics use-series use-catalan use-algebra use-linear use-calculus use-probability use-statistics use-trigonometry use-logic use-set; do
+	cargo publish -p "$crate"
+done
 ```
 
 Wait for crates.io index propagation, then verify the facade crate resolves
@@ -199,7 +199,7 @@ post-publication verification gate once the focused crates are live.
 
 ## 10. Finish the first public release state
 
-After the three crates are live:
+After the focused crates and facade are live:
 
 - Confirm docs.rs builds and crate metadata render correctly.
 - Push the release tag if you want the repository history to carry the first public version explicitly.

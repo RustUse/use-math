@@ -40,8 +40,8 @@ you are ready to rewrite `main` and open the repository.
 
 ## Preserve the first-release constraints
 
-- Keep `use-geometry`, `use-combinatorics`, and `use-math` as the only first-wave publishable crates.
-- Publish in dependency order: `use-geometry`, then `use-combinatorics`, wait for crates.io index propagation, then `use-math`.
+- Keep every focused crate under `crates/` plus `use-math` as the first-wave publishable set.
+- Publish all focused crates first, wait for crates.io index propagation, then publish `use-math`.
 - Treat `.github/workflows/facade-publish-readiness.yml` as the post-publication facade gate only after the focused crates resolve from crates.io.
 - Treat `.github/workflows/release-plz-release.yml` as post-initial-release automation only. The first publish wave still needs the manual dependency-ordered path.
 - Keep the shared root changelog and lockstep version group unless you intentionally change the release model.

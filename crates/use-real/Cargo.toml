@@ -1,0 +1,25 @@
+[package]
+name = "use-real"
+description = "Utility-first real-number scaffolding for RustUse"
+publish = true
+authors.workspace = true
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+homepage = "https://github.com/RustUse/use-math"
+documentation = "https://docs.rs/use-real"
+keywords = ["math", "real", "floating-point", "analysis", "numbers"]
+categories = ["mathematics", "science"]
+
+[[example]]
+name = "use-real-scaffold"
+path = "examples/basic_usage.rs"
+
+[dev-dependencies]
+proptest.workspace = true
+
+[lints]
+workspace = true
