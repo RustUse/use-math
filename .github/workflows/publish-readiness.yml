@@ -34,7 +34,11 @@ jobs:
               run: cargo test --workspace --no-default-features
 
             - name: Dry-run publish use-geometry
-              run: cargo publish --dry-run --allow-dirty -p use-geometry
+              run: |
+                  cargo package --list -p use-geometry
+                  cargo publish --dry-run --allow-dirty -p use-geometry
 
             - name: Dry-run publish use-combinatorics
-              run: cargo publish --dry-run --allow-dirty -p use-combinatorics
+              run: |
+                  cargo package --list -p use-combinatorics
+                  cargo publish --dry-run --allow-dirty -p use-combinatorics

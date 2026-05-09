@@ -14,7 +14,7 @@ help:
 		"audit                          Run cargo-audit" \
 		"deny                           Run cargo-deny" \
 		"sbom                           Generate a CycloneDX SBOM for use-math" \
-		"publish-dry-run-focused        Dry-run publish the focused crates" \
+		"publish-dry-run-focused        List package contents and dry-run publish focused crates" \
 		"publish-dry-run-facade         Dry-run publish use-math after crates.io propagation" \
 		"release-readiness              Run the pre-release focused-crate validation path" \
 		"facade-post-publish-validation Dry-run the facade crate after focused crates are live" \
@@ -54,6 +54,8 @@ sbom:
 	cargo cyclonedx --manifest-path crates/use-math/Cargo.toml --all-features --format json --spec-version 1.5 --override-filename sbom.cyclonedx
 
 publish-dry-run-focused:
+	cargo package --list -p use-geometry
+	cargo package --list -p use-combinatorics
 	cargo publish --dry-run --allow-dirty -p use-geometry
 	cargo publish --dry-run --allow-dirty -p use-combinatorics
 
