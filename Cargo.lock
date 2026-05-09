@@ -182,6 +182,14 @@ version = "0.0.1"
 dependencies = [
  "use-combinatorics",
  "use-geometry",
+ "use-polynomial",
+]
+
+[[package]]
+name = "use-polynomial"
+version = "0.0.1"
+dependencies = [
+ "proptest",
 ]
 
 [[package]]

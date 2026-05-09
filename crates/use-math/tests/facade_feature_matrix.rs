@@ -41,7 +41,21 @@ fn facade_supports_combinatorics_without_geometry() -> Result<(), use_math::Comb
     Ok(())
 }
 
-#[cfg(not(any(feature = "geometry", feature = "combinatorics")))]
+#[cfg(feature = "polynomial")]
+#[test]
+fn facade_supports_polynomial() {
+    use use_math::Polynomial;
+
+    let p = Polynomial::quadratic(1.0, -3.0, 2.0);
+    assert!((p.evaluate(5.0) - 36.0).abs() < 1.0e-10);
+    assert_eq!(p.derivative().coefficients(), &[-3.0, 4.0]);
+}
+
+#[cfg(not(any(
+    feature = "geometry",
+    feature = "combinatorics",
+    feature = "polynomial"
+)))]
 #[test]
 fn facade_compiles_without_optional_features() {
     let crate_loaded = true;

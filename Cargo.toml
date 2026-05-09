@@ -3,6 +3,7 @@ members = [
     "crates/use-math",
     "crates/use-geometry",
     "crates/use-combinatorics",
+    "crates/use-polynomial",
 ]
 resolver = "2"
 
@@ -24,6 +25,7 @@ versioning = "lockstep-0.x"
 first-publish-candidates = [
     "use-geometry",
     "use-combinatorics",
+    "use-polynomial",
     "use-math",
 ]
 

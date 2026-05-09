@@ -20,4 +20,10 @@ pub use use_geometry::{
     try_orientation_2d, try_orientation_2d_with_tolerance,
 };
 
+#[cfg(feature = "polynomial")]
+pub use use_polynomial as polynomial;
+
+#[cfg(feature = "polynomial")]
+pub use use_polynomial::Polynomial;
+
 pub mod prelude;

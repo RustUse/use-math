@@ -21,11 +21,13 @@ all-features = true
 default = ["full"]
 combinatorics = ["dep:use-combinatorics"]
 geometry = ["dep:use-geometry"]
-full = ["geometry", "combinatorics"]
+polynomial = ["dep:use-polynomial"]
+full = ["geometry", "combinatorics", "polynomial"]
 
 [dependencies]
 use-combinatorics = { version = "0.0.1", path = "../use-combinatorics", optional = true }
 use-geometry = { version = "0.0.1", path = "../use-geometry", optional = true }
+use-polynomial = { version = "0.0.1", path = "../use-polynomial", optional = true }
 
 [[example]]
 name = "facade_combinatorics"
@@ -35,6 +37,10 @@ required-features = ["combinatorics"]
 name = "facade_validated_geometry"
 required-features = ["geometry"]
 
+[[example]]
+name = "facade_polynomial"
+required-features = ["polynomial"]
+
 [[test]]
 name = "facade_combinatorics"
 required-features = ["combinatorics"]
@@ -42,6 +48,10 @@ required-features = ["combinatorics"]
 [[test]]
 name = "facade_geometry"
 required-features = ["geometry"]
+
+[[test]]
+name = "facade_polynomial"
+required-features = ["polynomial"]
 
 [lints]
 workspace = true

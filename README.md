@@ -7,13 +7,13 @@
 <p align="center">
 	<img alt="Rust 1.95.0+" src="https://img.shields.io/badge/Rust-1.95.0%2B-f46623?logo=rust&logoColor=white">
 	<img alt="Edition 2024" src="https://img.shields.io/badge/edition-2024-0f766e">
-	<img alt="3 workspace crates" src="https://img.shields.io/badge/workspace-3%20crates-1d4ed8">
+	<img alt="3 workspace crates" src="https://img.shields.io/badge/workspace-4%20crates-1d4ed8">
 	<img alt="Status pre-release" src="https://img.shields.io/badge/status-pre--release-c2410c">
 	<img alt="License MIT or Apache-2.0" src="https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-2a9d8f">
 </p>
 
 <p align="center">
-	<strong>Utility-first Rust math crates for geometry, checked counting, and a feature-gated facade.</strong><br>
+	<strong>Utility-first Rust math crates for geometry, checked counting, polynomials, and a feature-gated facade.</strong><br>
 	Focused crates stay small. The facade crate composes them behind opt-in features and a shared <code>prelude</code>.
 </p>
 
@@ -29,13 +29,13 @@
 	<a href="#community-and-project-policy">Community</a>
 </p>
 
-This repository is the source workspace for RustUse's initial math surface. It pairs two focused crates, `use-geometry` and `use-combinatorics`, with the `use-math` facade for callers who want one dependency and feature-gated re-exports. The design bias is simple: small APIs, predictable dependencies, and validated constructors where external input can go wrong.
+This repository is the source workspace for RustUse's initial math surface. It pairs focused crates — `use-geometry`, `use-combinatorics`, and `use-polynomial` — with the `use-math` facade for callers who want one dependency and feature-gated re-exports. The design bias is simple: small APIs, predictable dependencies, and validated constructors where external input can go wrong.
 
 ## Current status
 
 - The GitHub repository may be public before the first crates.io release is live.
 - Until then, consume the crates from a pinned Git revision or work from the workspace directly.
-- The planned first release order is `use-geometry`, then `use-combinatorics`, then `use-math`.
+- The planned first release order is `use-geometry`, then `use-combinatorics`, then `use-polynomial`, then `use-math`.
 
 <table>
 	<tr>
@@ -55,6 +55,13 @@ This repository is the source workspace for RustUse's initial math surface. It p
 			Use checked factorial, permutations, and combinations helpers without pulling in geometry types.
 		</td>
 	</tr>
+	<tr>
+		<td width="33%" valign="top">
+			<strong>Keep polynomials focused</strong><br>
+			<code>crates/use-polynomial/</code><br>
+			Construct, evaluate, differentiate, and combine polynomials with a small, focused <code>f64</code> API.
+		</td>
+	</tr>
 </table>
 
 ## What this workspace ships
@@ -66,12 +73,14 @@ RustUse/use-math is a multi-crate workspace. Each crate is usable on its own, an
 | `use-math`          | `crates/use-math/`          | Feature-gated facade with direct re-exports and a shared `prelude`                      | One dependency and one import surface      |
 | `use-geometry`      | `crates/use-geometry/`      | Utility-first 2D geometry primitives, shapes, bounds, orientation, and distance helpers | Geometry is the only math surface you need |
 | `use-combinatorics` | `crates/use-combinatorics/` | Checked counting helpers for factorials, permutations, and combinations                 | You only need combinatorics helpers        |
+| `use-polynomial`    | `crates/use-polynomial/`    | Polynomial primitives: construction, evaluation, differentiation, and arithmetic        | You only need polynomial helpers           |
 
 | If you need to...                                           | Start here                 |
 | ----------------------------------------------------------- | -------------------------- |
 | Add one dependency and opt into math surfaces with features | `use-math`                 |
 | Validate 2D coordinates and shapes from user or file input  | `use-geometry`             |
 | Do checked counting without geometry types                  | `use-combinatorics`        |
+| Evaluate or differentiate polynomials                       | `use-polynomial`           |
 | Keep the dependency and API surface as narrow as possible   | The focused crate directly |
 
 > [!TIP]
@@ -81,12 +90,13 @@ RustUse/use-math is a multi-crate workspace. Each crate is usable on its own, an
 
 Pick the crate based on the integration shape you want, not just the total feature count.
 
-| You want...                                   | Choose...                                        | Why                                                                                       |
-| --------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------- |
-| One dependency for geometry and combinatorics | `use-math`                                       | The facade re-exports focused crates behind feature flags and exposes a unified `prelude` |
-| Geometry-only code with direct type access    | `use-geometry`                                   | You avoid facade indirection and keep dependencies minimal                                |
-| Counting helpers only                         | `use-combinatorics`                              | You get checked math helpers without bringing in geometry modules                         |
-| Maximum control over enabled API surface      | A focused crate, or `use-math` with defaults off | You choose exactly which modules compile into the final build                             |
+| You want...                                          | Choose...                                        | Why                                                                                       |
+| ---------------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------- |
+| One dependency for all math surfaces                 | `use-math`                                       | The facade re-exports focused crates behind feature flags and exposes a unified `prelude` |
+| Geometry-only code with direct type access           | `use-geometry`                                   | You avoid facade indirection and keep dependencies minimal                                |
+| Counting helpers only                               | `use-combinatorics`                              | You get checked math helpers without bringing in geometry modules                         |
+| Polynomial arithmetic only                          | `use-polynomial`                                 | You get a small, focused polynomial API without other math surfaces                       |
+| Maximum control over enabled API surface             | A focused crate, or `use-math` with defaults off | You choose exactly which modules compile into the final build                             |
 
 ## Project structure
 
@@ -103,7 +113,11 @@ Pick the crate based on the integration shape you want, not just the total featu
 │   │   ├── examples/
 │   │   ├── src/
 │   │   └── tests/
-│   └── use-math/
+│   ├── use-math/
+│   │   ├── examples/
+│   │   ├── src/
+│   │   └── tests/
+│   └── use-polynomial/
 │       ├── examples/
 │       ├── src/
 │       └── tests/
@@ -116,6 +130,7 @@ Pick the crate based on the integration shape you want, not just the total featu
 | `crates/use-math/`          | Feature-gated facade crate that re-exports the focused crates                    |
 | `crates/use-geometry/`      | Direct 2D geometry APIs, validated constructors, and invariant checks            |
 | `crates/use-combinatorics/` | Direct checked counting APIs                                                     |
+| `crates/use-polynomial/`    | Direct polynomial APIs: construction, evaluation, differentiation, arithmetic    |
 | `scripts/`                  | Workspace automation and mirror sync helpers                                     |
 
 ## Installation
@@ -132,8 +147,8 @@ Git dependency before the first crates.io release:
 use-math = { git = "https://github.com/RustUse/use-math", rev = "<commit>" }
 ```
 
-For focused crates, replace `use-math` with `use-geometry` or
-`use-combinatorics`. Pin a commit or future tag instead of following the moving
+For focused crates, replace `use-math` with `use-geometry`, `use-combinatorics`, or
+`use-polynomial`. Pin a commit or future tag instead of following the moving
 default branch.
 
 When consuming the published release line, pull in the smallest surface that matches your application.
@@ -158,6 +173,7 @@ Focused crates directly:
 [dependencies]
 use-geometry = "0.0.1"
 use-combinatorics = "0.0.1"
+use-polynomial = "0.0.1"
 ```
 
 > [!NOTE]
@@ -222,7 +238,8 @@ The facade crate exposes a small feature surface:
 | --------------- | --------------------------------------------------------------------------- | ------- |
 | `geometry`      | Re-exports from `use-geometry` and geometry facade examples/tests           | No      |
 | `combinatorics` | Re-exports from `use-combinatorics` and combinatorics facade examples/tests | No      |
-| `full`          | `geometry` and `combinatorics` together                                     | Yes     |
+| `polynomial`    | Re-exports from `use-polynomial` and polynomial facade examples/tests       | No      |
+| `full`          | `geometry`, `combinatorics`, and `polynomial` together                      | Yes     |
 
 If you want the facade but only one module, disable defaults and enable the feature you need:
 
