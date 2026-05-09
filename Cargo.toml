@@ -3,6 +3,7 @@ members = [
     "crates/use-math",
     "crates/use-geometry",
     "crates/use-combinatorics",
+    "crates/use-catalan",
 ]
 resolver = "2"
 

@@ -7,7 +7,7 @@
 <p align="center">
 	<img alt="Rust 1.95.0+" src="https://img.shields.io/badge/Rust-1.95.0%2B-f46623?logo=rust&logoColor=white">
 	<img alt="Edition 2024" src="https://img.shields.io/badge/edition-2024-0f766e">
-	<img alt="3 workspace crates" src="https://img.shields.io/badge/workspace-3%20crates-1d4ed8">
+	<img alt="4 workspace crates" src="https://img.shields.io/badge/workspace-4%20crates-1d4ed8">
 	<img alt="Status pre-release" src="https://img.shields.io/badge/status-pre--release-c2410c">
 	<img alt="License MIT or Apache-2.0" src="https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-2a9d8f">
 </p>
@@ -66,6 +66,7 @@ RustUse/use-math is a multi-crate workspace. Each crate is usable on its own, an
 | `use-math`          | `crates/use-math/`          | Feature-gated facade with direct re-exports and a shared `prelude`                      | One dependency and one import surface      |
 | `use-geometry`      | `crates/use-geometry/`      | Utility-first 2D geometry primitives, shapes, bounds, orientation, and distance helpers | Geometry is the only math surface you need |
 | `use-combinatorics` | `crates/use-combinatorics/` | Checked counting helpers for factorials, permutations, and combinations                 | You only need combinatorics helpers        |
+| `use-catalan`       | `crates/use-catalan/`       | Exact Catalan number utilities: checked computation, sequence generation, and iteration | You need Catalan number primitives         |
 
 | If you need to...                                           | Start here                 |
 | ----------------------------------------------------------- | -------------------------- |
@@ -95,6 +96,10 @@ Pick the crate based on the integration shape you want, not just the total featu
 ├── Cargo.toml
 ├── README.md
 ├── crates/
+│   ├── use-catalan/
+│   │   ├── examples/
+│   │   ├── src/
+│   │   └── tests/
 │   ├── use-combinatorics/
 │   │   ├── examples/
 │   │   ├── src/
@@ -116,6 +121,7 @@ Pick the crate based on the integration shape you want, not just the total featu
 | `crates/use-math/`          | Feature-gated facade crate that re-exports the focused crates                    |
 | `crates/use-geometry/`      | Direct 2D geometry APIs, validated constructors, and invariant checks            |
 | `crates/use-combinatorics/` | Direct checked counting APIs                                                     |
+| `crates/use-catalan/`       | Direct Catalan number APIs: checked computation, sequences, and iteration        |
 | `scripts/`                  | Workspace automation and mirror sync helpers                                     |
 
 ## Installation
