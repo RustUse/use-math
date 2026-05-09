@@ -6,6 +6,12 @@
 #[cfg(feature = "algebra")]
 pub use use_algebra as algebra;
 
+#[cfg(feature = "algebra")]
+pub use use_algebra::{
+    has_inverses, identity_element, is_abelian_group, is_associative, is_closed_under,
+    is_commutative, is_distributive_over, is_group, is_monoid, is_ring,
+};
+
 #[cfg(feature = "calculus")]
 pub use use_calculus as calculus;
 
@@ -50,18 +56,30 @@ pub use use_integer as integer;
 
 #[cfg(feature = "integer")]
 pub use use_integer::{
-    IntegerError, IntegerSign, are_coprime, classify_sign, gcd, is_divisible_by, is_even,
-    is_odd, lcm,
+    IntegerError, IntegerSign, are_coprime, classify_sign, gcd, is_divisible_by, is_even, is_odd,
+    lcm,
 };
 
 #[cfg(feature = "linear")]
 pub use use_linear as linear;
 
+#[cfg(feature = "linear")]
+pub use use_linear::{LinearError, Matrix2, Vector2 as LinearVector2, dot, solve_2x2};
+
 #[cfg(feature = "logic")]
 pub use use_logic as logic;
 
+#[cfg(feature = "logic")]
+pub use use_logic::{equivalence, exclusive_or, implication, majority, nand, nor};
+
 #[cfg(feature = "number")]
 pub use use_number as number;
+
+#[cfg(feature = "number")]
+pub use use_number::{
+    GOLDEN_RATIO, GOLDEN_RATIO_F32, NumberCategory, NumberSign, SQRT_3, SQRT_3_F32,
+    classify_number, classify_number_sign, is_finite_number,
+};
 
 #[cfg(feature = "probability")]
 pub use use_probability as probability;
@@ -86,13 +104,36 @@ pub use use_real::{Real, RealError, RealInterval, approx_eq};
 #[cfg(feature = "series")]
 pub use use_series as series;
 
+#[cfg(feature = "series")]
+pub use use_series::{
+    SeriesError, arithmetic_nth_term, arithmetic_sum, geometric_nth_term, geometric_sum,
+};
+
 #[cfg(feature = "set")]
 pub use use_set as set;
+
+#[cfg(feature = "set")]
+pub use use_set::{
+    are_disjoint, contains_member, is_subset, set_difference, set_intersection,
+    set_symmetric_difference, set_union,
+};
 
 #[cfg(feature = "statistics")]
 pub use use_statistics as statistics;
 
+#[cfg(feature = "statistics")]
+pub use use_statistics::{
+    StatisticsError, mean, median, population_std_dev, population_variance, sample_std_dev,
+    sample_variance,
+};
+
 #[cfg(feature = "trigonometry")]
 pub use use_trigonometry as trigonometry;
+
+#[cfg(feature = "trigonometry")]
+pub use use_trigonometry::{
+    Angle, cos_deg, degrees_to_radians, normalize_degrees, normalize_radians, radians_to_degrees,
+    sin_deg, tan_deg,
+};
 
 pub mod prelude;

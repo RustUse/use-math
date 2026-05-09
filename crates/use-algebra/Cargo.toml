@@ -1,6 +1,6 @@
 [package]
 name = "use-algebra"
-description = "Utility-first algebraic-structure scaffolding for RustUse"
+description = "Utility-first finite algebra law helpers for RustUse"
 publish = true
 authors.workspace = true
 version.workspace = true
@@ -11,15 +11,12 @@ rust-version.workspace = true
 readme = "README.md"
 homepage = "https://github.com/RustUse/use-math"
 documentation = "https://docs.rs/use-algebra"
-keywords = ["math", "algebra", "group", "ring", "field"]
+keywords = ["math", "algebra", "group", "ring", "laws"]
 categories = ["mathematics", "science"]
 
 [[example]]
-name = "use-algebra-scaffold"
+name = "use-algebra-law-checks"
 path = "examples/basic_usage.rs"
-
-[dev-dependencies]
-proptest.workspace = true
 
 [lints]
 workspace = true

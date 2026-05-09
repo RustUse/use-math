@@ -165,9 +165,6 @@ checksum = "e6e4313cd5fcd3dad5cafa179702e2b244f760991f45397d14d4ebf38247da75"
 [[package]]
 name = "use-algebra"
 version = "0.0.1"
-dependencies = [
- "proptest",
-]
 
 [[package]]
 name = "use-calculus"
@@ -202,16 +199,10 @@ version = "0.0.1"
 [[package]]
 name = "use-linear"
 version = "0.0.1"
-dependencies = [
- "proptest",
-]
 
 [[package]]
 name = "use-logic"
 version = "0.0.1"
-dependencies = [
- "proptest",
-]
 
 [[package]]
 name = "use-math"
@@ -239,9 +230,6 @@ dependencies = [
 [[package]]
 name = "use-number"
 version = "0.0.1"
-dependencies = [
- "proptest",
-]
 
 [[package]]
 name = "use-probability"
@@ -258,30 +246,18 @@ version = "0.0.1"
 [[package]]
 name = "use-series"
 version = "0.0.1"
-dependencies = [
- "proptest",
-]
 
 [[package]]
 name = "use-set"
 version = "0.0.1"
-dependencies = [
- "proptest",
-]
 
 [[package]]
 name = "use-statistics"
 version = "0.0.1"
-dependencies = [
- "proptest",
-]
 
 [[package]]
 name = "use-trigonometry"
 version = "0.0.1"
-dependencies = [
- "proptest",
-]
 
 [[package]]
 name = "wasip2"

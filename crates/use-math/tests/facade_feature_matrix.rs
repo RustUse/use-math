@@ -43,6 +43,39 @@ fn facade_exposes_all_namespace_features() {
     };
 }
 
+#[cfg(all(
+    feature = "algebra",
+    not(feature = "geometry"),
+    not(feature = "combinatorics"),
+    not(feature = "catalan"),
+    not(feature = "series"),
+    not(feature = "integer"),
+    not(feature = "logic"),
+    not(feature = "set"),
+    not(feature = "statistics"),
+    not(feature = "trigonometry"),
+    not(feature = "linear"),
+    not(feature = "number"),
+    not(feature = "complex"),
+    not(feature = "calculus"),
+    not(feature = "probability"),
+    not(feature = "rational"),
+    not(feature = "real")
+))]
+#[test]
+fn facade_supports_algebra_without_other_concrete_features() {
+    use use_math::{identity_element, is_abelian_group, is_distributive_over, is_ring};
+
+    let residues = [0_u8, 1, 2];
+    let add_mod_3 = |left, right| (left + right) % 3;
+    let mul_mod_3 = |left, right| (left * right) % 3;
+
+    assert_eq!(identity_element(&residues, add_mod_3), Some(0));
+    assert!(is_abelian_group(&residues, add_mod_3));
+    assert!(is_distributive_over(&residues, mul_mod_3, add_mod_3));
+    assert!(is_ring(&residues, add_mod_3, mul_mod_3));
+}
+
 #[cfg(all(feature = "geometry", not(feature = "combinatorics")))]
 #[test]
 fn facade_supports_geometry_without_combinatorics() -> Result<(), use_math::GeometryError> {
@@ -82,7 +115,8 @@ fn facade_supports_complex_without_other_concrete_features() {
     not(feature = "complex")
 ))]
 #[test]
-fn facade_supports_calculus_without_other_concrete_features() -> Result<(), use_math::CalculusError> {
+fn facade_supports_calculus_without_other_concrete_features() -> Result<(), use_math::CalculusError>
+{
     use use_math::{
         Differentiator, IntegrationInterval, Integrator, LimitApproximator, symmetric_limit,
     };
@@ -96,11 +130,7 @@ fn facade_supports_calculus_without_other_concrete_features() -> Result<(), use_
     let area = integrator.simpson(|x| x * x, interval)?;
     let sinc_limit = limit.at(
         |x| {
-            if x == 0.0 {
-                1.0
-            } else {
-                x.sin() / x
-            }
+            if x == 0.0 { 1.0 } else { x.sin() / x }
         },
         0.0,
     )?;
@@ -109,12 +139,7 @@ fn facade_supports_calculus_without_other_concrete_features() -> Result<(), use_
     assert!((area - (1.0 / 3.0)).abs() < 1.0e-6);
     assert!((sinc_limit - 1.0).abs() < 1.0e-5);
     assert!(matches!(
-        symmetric_limit(
-            |x| if x < 0.0 { -1.0 } else { 1.0 },
-            0.0,
-            1.0e-6,
-            1.0e-3,
-        ),
+        symmetric_limit(|x| if x < 0.0 { -1.0 } else { 1.0 }, 0.0, 1.0e-6, 1.0e-3,),
         Err(use_math::CalculusError::LimitMismatch { .. })
     ));
 
@@ -150,7 +175,8 @@ fn facade_supports_catalan_without_other_concrete_features() -> Result<(), use_m
     not(feature = "calculus")
 ))]
 #[test]
-fn facade_supports_probability_without_other_concrete_features() -> Result<(), use_math::ProbabilityError> {
+fn facade_supports_probability_without_other_concrete_features()
+-> Result<(), use_math::ProbabilityError> {
     use use_math::{Bernoulli, Probability, independent_intersection, independent_union};
 
     let rain = Probability::from_fraction(1, 4)?;
@@ -189,6 +215,245 @@ fn facade_supports_real_without_other_concrete_features() -> Result<(), use_math
 }
 
 #[cfg(all(
+    feature = "series",
+    not(feature = "geometry"),
+    not(feature = "combinatorics"),
+    not(feature = "catalan"),
+    not(feature = "integer"),
+    not(feature = "complex"),
+    not(feature = "calculus"),
+    not(feature = "probability"),
+    not(feature = "rational"),
+    not(feature = "real")
+))]
+#[test]
+fn facade_supports_series_without_other_concrete_features() -> Result<(), use_math::SeriesError> {
+    use use_math::{arithmetic_nth_term, arithmetic_sum, geometric_nth_term, geometric_sum};
+
+    assert_eq!(arithmetic_nth_term(3, 2, 4)?, 11);
+    assert_eq!(arithmetic_sum(3, 2, 5)?, 35);
+    assert_eq!(geometric_nth_term(2, 3, 4)?, 162);
+    assert_eq!(geometric_sum(2, 3, 4)?, 80);
+
+    Ok(())
+}
+
+#[cfg(all(
+    feature = "logic",
+    not(feature = "geometry"),
+    not(feature = "combinatorics"),
+    not(feature = "catalan"),
+    not(feature = "series"),
+    not(feature = "integer"),
+    not(feature = "complex"),
+    not(feature = "calculus"),
+    not(feature = "probability"),
+    not(feature = "rational"),
+    not(feature = "real")
+))]
+#[test]
+fn facade_supports_logic_without_other_concrete_features() {
+    use use_math::{equivalence, exclusive_or, implication, majority, nand, nor};
+
+    assert!(implication(false, true));
+    assert!(!implication(true, false));
+    assert!(equivalence(true, true));
+    assert!(exclusive_or(true, false));
+    assert!(!nand(true, true));
+    assert!(nor(false, false));
+    assert!(majority(true, true, false));
+}
+
+#[cfg(all(
+    feature = "set",
+    not(feature = "geometry"),
+    not(feature = "combinatorics"),
+    not(feature = "catalan"),
+    not(feature = "series"),
+    not(feature = "integer"),
+    not(feature = "logic"),
+    not(feature = "complex"),
+    not(feature = "calculus"),
+    not(feature = "probability"),
+    not(feature = "rational"),
+    not(feature = "real")
+))]
+#[test]
+fn facade_supports_set_without_other_concrete_features() {
+    use use_math::{
+        are_disjoint, contains_member, is_subset, set_difference, set_intersection,
+        set_symmetric_difference, set_union,
+    };
+
+    let left = [1, 2, 2, 3];
+    let right = [3, 4, 2, 5];
+
+    assert!(contains_member(&left, &1));
+    assert!(is_subset(&[2, 3], &right));
+    assert!(!are_disjoint(&left, &right));
+    assert_eq!(set_union(&left, &right), vec![1, 2, 3, 4, 5]);
+    assert_eq!(set_intersection(&left, &right), vec![2, 3]);
+    assert_eq!(set_difference(&left, &right), vec![1]);
+    assert_eq!(set_symmetric_difference(&left, &right), vec![1, 4, 5]);
+}
+
+#[cfg(all(
+    feature = "trigonometry",
+    not(feature = "geometry"),
+    not(feature = "combinatorics"),
+    not(feature = "catalan"),
+    not(feature = "series"),
+    not(feature = "integer"),
+    not(feature = "logic"),
+    not(feature = "set"),
+    not(feature = "complex"),
+    not(feature = "calculus"),
+    not(feature = "probability"),
+    not(feature = "rational"),
+    not(feature = "real")
+))]
+#[test]
+fn facade_supports_trigonometry_without_other_concrete_features() {
+    use core::f64::consts::PI;
+    use use_math::{
+        Angle, cos_deg, degrees_to_radians, normalize_degrees, radians_to_degrees, sin_deg, tan_deg,
+    };
+
+    let acute = Angle::from_degrees(30.0);
+    let wrapped = Angle::from_degrees(765.0).normalized();
+
+    assert!((acute.radians() - (PI / 6.0)).abs() < 1.0e-12);
+    assert!((degrees_to_radians(90.0) - (PI / 2.0)).abs() < 1.0e-12);
+    assert!((radians_to_degrees(acute.radians()) - 30.0).abs() < 1.0e-12);
+    assert!((wrapped.degrees() - 45.0).abs() < 1.0e-12);
+    assert!((normalize_degrees(-90.0) - 270.0).abs() < 1.0e-12);
+    assert!((acute.sin() - 0.5).abs() < 1.0e-12);
+    assert!((cos_deg(60.0) - 0.5).abs() < 1.0e-12);
+    assert!((sin_deg(30.0) - 0.5).abs() < 1.0e-12);
+    assert!((tan_deg(45.0) - 1.0).abs() < 1.0e-12);
+}
+
+#[cfg(all(
+    feature = "statistics",
+    not(feature = "geometry"),
+    not(feature = "combinatorics"),
+    not(feature = "catalan"),
+    not(feature = "series"),
+    not(feature = "integer"),
+    not(feature = "logic"),
+    not(feature = "set"),
+    not(feature = "trigonometry"),
+    not(feature = "complex"),
+    not(feature = "calculus"),
+    not(feature = "probability"),
+    not(feature = "rational"),
+    not(feature = "real")
+))]
+#[test]
+fn facade_supports_statistics_without_other_concrete_features()
+-> Result<(), use_math::StatisticsError> {
+    use use_math::{
+        mean, median, population_std_dev, population_variance, sample_std_dev, sample_variance,
+    };
+
+    let values = [2.0, 4.0, 4.0, 4.0, 5.0, 5.0, 7.0, 9.0];
+    let sample = [1.0, 2.0, 3.0, 4.0];
+
+    assert!((mean(&values)? - 5.0).abs() < 1.0e-12);
+    assert!((median(&values)? - 4.5).abs() < 1.0e-12);
+    assert!((population_variance(&values)? - 4.0).abs() < 1.0e-12);
+    assert!((population_std_dev(&values)? - 2.0).abs() < 1.0e-12);
+    assert!((sample_variance(&sample)? - 1.666_666_666_666_666_7).abs() < 1.0e-12);
+    assert!((sample_std_dev(&sample)? - 1.290_994_448_735_805_6).abs() < 1.0e-12);
+
+    Ok(())
+}
+
+#[cfg(all(
+    feature = "linear",
+    not(feature = "geometry"),
+    not(feature = "combinatorics"),
+    not(feature = "catalan"),
+    not(feature = "series"),
+    not(feature = "integer"),
+    not(feature = "logic"),
+    not(feature = "set"),
+    not(feature = "statistics"),
+    not(feature = "trigonometry"),
+    not(feature = "complex"),
+    not(feature = "calculus"),
+    not(feature = "probability"),
+    not(feature = "rational"),
+    not(feature = "real")
+))]
+#[test]
+fn facade_supports_linear_without_other_concrete_features() -> Result<(), use_math::LinearError> {
+    use use_math::{LinearVector2, Matrix2, dot, solve_2x2};
+
+    let vector = LinearVector2::new(3.0, 4.0);
+    let other = LinearVector2::new(-2.0, 1.0);
+    let matrix = Matrix2::new(2.0, 1.0, 5.0, 3.0);
+
+    assert_eq!(vector + other, LinearVector2::new(1.0, 5.0));
+    assert!((dot(vector, other) + 2.0).abs() < 1.0e-12);
+    assert!((vector.magnitude() - 5.0).abs() < 1.0e-12);
+    assert_eq!(
+        matrix.mul_vector(LinearVector2::new(1.0, -1.0)),
+        LinearVector2::new(1.0, 2.0)
+    );
+    assert_eq!(matrix * Matrix2::identity(), matrix);
+    assert_eq!(
+        solve_2x2(matrix, LinearVector2::new(1.0, 2.0))?,
+        LinearVector2::new(1.0, -1.0)
+    );
+
+    Ok(())
+}
+
+#[cfg(all(
+    feature = "number",
+    not(feature = "geometry"),
+    not(feature = "combinatorics"),
+    not(feature = "catalan"),
+    not(feature = "series"),
+    not(feature = "integer"),
+    not(feature = "logic"),
+    not(feature = "set"),
+    not(feature = "statistics"),
+    not(feature = "trigonometry"),
+    not(feature = "linear"),
+    not(feature = "complex"),
+    not(feature = "calculus"),
+    not(feature = "probability"),
+    not(feature = "rational"),
+    not(feature = "real")
+))]
+#[test]
+fn facade_supports_number_without_other_concrete_features() {
+    use use_math::{
+        GOLDEN_RATIO, NumberCategory, NumberSign, SQRT_3, classify_number, classify_number_sign,
+        is_finite_number,
+    };
+
+    assert_eq!(classify_number(f64::NAN), NumberCategory::Nan);
+    assert_eq!(
+        classify_number(f64::from_bits(1)),
+        NumberCategory::Subnormal
+    );
+    assert_eq!(classify_number_sign(-12.5), Some(NumberSign::Negative));
+    assert_eq!(classify_number_sign(f64::NAN), None);
+    assert!(is_finite_number(3.5));
+    assert!(!is_finite_number(f64::INFINITY));
+    assert!(
+        GOLDEN_RATIO
+            .mul_add(GOLDEN_RATIO, -(GOLDEN_RATIO + 1.0))
+            .abs()
+            < 1.0e-12
+    );
+    assert!(SQRT_3.mul_add(SQRT_3, -3.0).abs() < 1.0e-12);
+}
+
+#[cfg(all(
     feature = "integer",
     not(feature = "geometry"),
     not(feature = "combinatorics"),
@@ -220,7 +485,8 @@ fn facade_supports_integer_without_other_concrete_features() -> Result<(), use_m
     not(feature = "real")
 ))]
 #[test]
-fn facade_supports_rational_without_other_concrete_features() -> Result<(), use_math::RationalError> {
+fn facade_supports_rational_without_other_concrete_features() -> Result<(), use_math::RationalError>
+{
     use use_math::Rational;
 
     let half = Rational::try_new(1, 2)?;

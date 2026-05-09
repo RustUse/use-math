@@ -15,11 +15,8 @@ keywords = ["math", "statistics", "summary", "distribution", "variance"]
 categories = ["mathematics", "science"]
 
 [[example]]
-name = "use-statistics-scaffold"
+name = "use-statistics-summary-helpers"
 path = "examples/basic_usage.rs"
-
-[dev-dependencies]
-proptest.workspace = true
 
 [lints]
 workspace = true

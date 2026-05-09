@@ -1,4 +1,10 @@
 /// Commonly used facade items.
+#[cfg(feature = "algebra")]
+pub use crate::{
+    has_inverses, identity_element, is_abelian_group, is_associative, is_closed_under,
+    is_commutative, is_distributive_over, is_group, is_monoid, is_ring,
+};
+
 #[cfg(feature = "catalan")]
 pub use crate::{CatalanError, catalan, fuss_catalan};
 
@@ -25,15 +31,52 @@ pub use crate::{
 
 #[cfg(feature = "integer")]
 pub use crate::{
-    IntegerError, IntegerSign, are_coprime, classify_sign, gcd, is_divisible_by, is_even,
-    is_odd, lcm,
+    IntegerError, IntegerSign, are_coprime, classify_sign, gcd, is_divisible_by, is_even, is_odd,
+    lcm,
+};
+
+#[cfg(feature = "logic")]
+pub use crate::{equivalence, exclusive_or, implication, majority, nand, nor};
+
+#[cfg(feature = "linear")]
+pub use crate::{LinearError, LinearVector2, Matrix2, dot, solve_2x2};
+
+#[cfg(feature = "number")]
+pub use crate::{
+    GOLDEN_RATIO, GOLDEN_RATIO_F32, NumberCategory, NumberSign, SQRT_3, SQRT_3_F32,
+    classify_number, classify_number_sign, is_finite_number,
 };
 
 #[cfg(feature = "probability")]
-pub use crate::{Bernoulli, Probability, ProbabilityError, independent_intersection, independent_union};
+pub use crate::{
+    Bernoulli, Probability, ProbabilityError, independent_intersection, independent_union,
+};
 
 #[cfg(feature = "rational")]
 pub use crate::{Rational, RationalError};
 
 #[cfg(feature = "real")]
 pub use crate::{Real, RealError, RealInterval, approx_eq};
+
+#[cfg(feature = "series")]
+pub use crate::{
+    SeriesError, arithmetic_nth_term, arithmetic_sum, geometric_nth_term, geometric_sum,
+};
+
+#[cfg(feature = "set")]
+pub use crate::{
+    are_disjoint, contains_member, is_subset, set_difference, set_intersection,
+    set_symmetric_difference, set_union,
+};
+
+#[cfg(feature = "statistics")]
+pub use crate::{
+    StatisticsError, mean, median, population_std_dev, population_variance, sample_std_dev,
+    sample_variance,
+};
+
+#[cfg(feature = "trigonometry")]
+pub use crate::{
+    Angle, cos_deg, degrees_to_radians, normalize_degrees, normalize_radians, radians_to_degrees,
+    sin_deg, tan_deg,
+};

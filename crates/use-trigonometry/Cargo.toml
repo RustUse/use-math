@@ -15,11 +15,8 @@ keywords = ["math", "trigonometry", "angles", "sine", "cosine"]
 categories = ["mathematics", "science"]
 
 [[example]]
-name = "use-trigonometry-scaffold"
+name = "use-trigonometry-angle-basics"
 path = "examples/basic_usage.rs"
-
-[dev-dependencies]
-proptest.workspace = true
 
 [lints]
 workspace = true

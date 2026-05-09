@@ -15,11 +15,8 @@ keywords = ["math", "linear", "matrix", "vector", "algebra"]
 categories = ["mathematics", "science"]
 
 [[example]]
-name = "use-linear-scaffold"
+name = "use-linear-2d-basics"
 path = "examples/basic_usage.rs"
-
-[dev-dependencies]
-proptest.workspace = true
 
 [lints]
 workspace = true

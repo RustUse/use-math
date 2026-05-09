@@ -187,4 +187,4 @@ Use `try_new` when values may come from user input, files, network payloads, or 
 
 ## Status
 
-`use-geometry` is a scaffolded public crate in the `RustUse` docs surface. The API remains pre-1.0, and the `RustUse`-hosted generated rustdocs stay canonical while external crates.io and docs.rs pages remain staged.
+`use-geometry` is a concrete pre-1.0 crate in the `RustUse` docs surface. The API remains intentionally small, and the `RustUse`-hosted generated rustdocs stay canonical while external crates.io and docs.rs pages remain staged.

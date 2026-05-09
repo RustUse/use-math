@@ -15,11 +15,8 @@ keywords = ["math", "set", "union", "intersection", "membership"]
 categories = ["mathematics", "algorithms"]
 
 [[example]]
-name = "use-set-scaffold"
+name = "use-set-slice-operations"
 path = "examples/basic_usage.rs"
-
-[dev-dependencies]
-proptest.workspace = true
 
 [lints]
 workspace = true
