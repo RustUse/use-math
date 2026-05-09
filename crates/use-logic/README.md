@@ -40,21 +40,21 @@ use-logic = "0.0.1"
     </tr>
 </table>
 
-| Helper group | Primary items | Best fit |
-| ------------ | ------------- | -------- |
+| Helper group     | Primary items                                | Best fit                                                                               |
+| ---------------- | -------------------------------------------- | -------------------------------------------------------------------------------------- |
 | Binary relations | `implication`, `equivalence`, `exclusive_or` | Truth-table oriented code that should stay readable without ad hoc boolean expressions |
-| Gate helpers | `nand`, `nor` | Boolean-algebra code that wants named derived operations |
-| Majority logic | `majority` | Small vote or quorum rules over three predicates |
+| Gate helpers     | `nand`, `nor`                                | Boolean-algebra code that wants named derived operations                               |
+| Majority logic   | `majority`                                   | Small vote or quorum rules over three predicates                                       |
 
 ## When to use directly
 
 Choose `use-logic` directly when predicate and boolean-structure helpers are the only surface you need and you want to keep that concern narrower than the umbrella facade.
 
-| Scenario | Use `use-logic` directly? | Why |
-| -------- | ------------------------ | --- |
-| You only need named boolean helpers | Yes | The crate stays smaller than the facade and keeps boolean intent explicit |
-| You want small majority or truth-table helpers without a broader predicate framework | Yes | The API already covers the common binary and three-input cases directly |
-| You also need geometry, combinatorics, or other math domains | Usually no | `use-math` can unify the concrete surfaces behind features |
+| Scenario                                                                             | Use `use-logic` directly? | Why                                                                       |
+| ------------------------------------------------------------------------------------ | ------------------------- | ------------------------------------------------------------------------- |
+| You only need named boolean helpers                                                  | Yes                       | The crate stays smaller than the facade and keeps boolean intent explicit |
+| You want small majority or truth-table helpers without a broader predicate framework | Yes                       | The API already covers the common binary and three-input cases directly   |
+| You also need geometry, combinatorics, or other math domains                         | Usually no                | `use-math` can unify the concrete surfaces behind features                |
 
 ## Scope
 

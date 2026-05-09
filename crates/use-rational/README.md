@@ -43,29 +43,29 @@
 
 ## What this crate provides
 
-| Area | Root exports | Best fit |
-| --- | --- | --- |
-| Canonical fractions | `Rational`, `RationalError` | Exact reduced fractions without a broader numeric framework |
-| Checked arithmetic | `checked_add`, `checked_sub`, `checked_mul`, `checked_div`, `reciprocal` | Exact operations where invalid denominators and overflow stay explicit |
-| Integer and floating conversions | `from_integer`, `as_f64`, `is_integer` | Boundaries between exact and approximate numeric workflows |
+| Area                             | Root exports                                                             | Best fit                                                               |
+| -------------------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| Canonical fractions              | `Rational`, `RationalError`                                              | Exact reduced fractions without a broader numeric framework            |
+| Checked arithmetic               | `checked_add`, `checked_sub`, `checked_mul`, `checked_div`, `reciprocal` | Exact operations where invalid denominators and overflow stay explicit |
+| Integer and floating conversions | `from_integer`, `as_f64`, `is_integer`                                   | Boundaries between exact and approximate numeric workflows             |
 
-| If you need to... | Start here |
-| --- | --- |
-| Build a validated fraction from two integers | `Rational::try_new(...)` |
-| Lift an integer into an exact rational | `Rational::from_integer(...)` |
-| Keep exact arithmetic explicit | `checked_add(...)`, `checked_mul(...)`, and friends |
-| Move to an approximate representation deliberately | `as_f64()` |
+| If you need to...                                  | Start here                                          |
+| -------------------------------------------------- | --------------------------------------------------- |
+| Build a validated fraction from two integers       | `Rational::try_new(...)`                            |
+| Lift an integer into an exact rational             | `Rational::from_integer(...)`                       |
+| Keep exact arithmetic explicit                     | `checked_add(...)`, `checked_mul(...)`, and friends |
+| Move to an approximate representation deliberately | `as_f64()`                                          |
 
 ## When to use it directly
 
 Choose `use-rational` directly when fractions or exact rational-number support are the only math surface you need, or when you want exact arithmetic to stay separate from the broader facade.
 
-| Scenario | Use `use-rational` directly? | Why |
-| --- | --- | --- |
-| You need exact normalized fractions | Yes | The crate stays narrow and explicit |
-| You want division-by-zero and overflow surfaced as errors | Yes | Arithmetic stays checked instead of implicit |
-| You need generic numeric traits across many number kinds | Usually no | Those belong in adjacent focused crates |
-| You are happy to lose exactness immediately | Usually no | `use-real` may be the better fit |
+| Scenario                                                  | Use `use-rational` directly? | Why                                          |
+| --------------------------------------------------------- | ---------------------------- | -------------------------------------------- |
+| You need exact normalized fractions                       | Yes                          | The crate stays narrow and explicit          |
+| You want division-by-zero and overflow surfaced as errors | Yes                          | Arithmetic stays checked instead of implicit |
+| You need generic numeric traits across many number kinds  | Usually no                   | Those belong in adjacent focused crates      |
+| You are happy to lose exactness immediately               | Usually no                   | `use-real` may be the better fit             |
 
 ## Installation
 

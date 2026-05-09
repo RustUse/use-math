@@ -57,7 +57,10 @@ impl fmt::Display for ProbabilityError {
             },
             Self::ZeroTotal => write!(formatter, "total count must be greater than zero"),
             Self::PartExceedsTotal { part, total } => {
-                write!(formatter, "part must be less than or equal to total, got part={part}, total={total}")
+                write!(
+                    formatter,
+                    "part must be less than or equal to total, got part={part}, total={total}"
+                )
             },
         }
     }

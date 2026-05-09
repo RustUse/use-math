@@ -41,29 +41,29 @@
 
 ## What this crate provides
 
-| Area | Root exports | Best fit |
-| --- | --- | --- |
-| Number classification | `NumberCategory`, `NumberSign`, `classify_number`, `classify_number_sign` | Raw `f64` branching without ad hoc `match` logic on `FpCategory` |
-| Lightweight finite checks | `is_finite_number` | Guard clauses before opting into a heavier validated wrapper |
-| Constants | `GOLDEN_RATIO`, `GOLDEN_RATIO_F32`, `SQRT_3`, `SQRT_3_F32` | Small numeric formulas and geometric ratios |
+| Area                      | Root exports                                                              | Best fit                                                         |
+| ------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Number classification     | `NumberCategory`, `NumberSign`, `classify_number`, `classify_number_sign` | Raw `f64` branching without ad hoc `match` logic on `FpCategory` |
+| Lightweight finite checks | `is_finite_number`                                                        | Guard clauses before opting into a heavier validated wrapper     |
+| Constants                 | `GOLDEN_RATIO`, `GOLDEN_RATIO_F32`, `SQRT_3`, `SQRT_3_F32`                | Small numeric formulas and geometric ratios                      |
 
-| If you need to... | Start here |
-| --- | --- |
-| Branch on whether a raw `f64` is normal, zero, subnormal, infinite, or NaN | `classify_number(...)` |
+| If you need to...                                                           | Start here                  |
+| --------------------------------------------------------------------------- | --------------------------- |
+| Branch on whether a raw `f64` is normal, zero, subnormal, infinite, or NaN  | `classify_number(...)`      |
 | Separate negative, zero, and positive raw values while keeping NaN explicit | `classify_number_sign(...)` |
-| Add a fast finiteness guard without introducing a wrapper type | `is_finite_number(...)` |
-| Reuse the golden ratio or `sqrt(3)` in small formulas | `GOLDEN_RATIO` or `SQRT_3` |
+| Add a fast finiteness guard without introducing a wrapper type              | `is_finite_number(...)`     |
+| Reuse the golden ratio or `sqrt(3)` in small formulas                       | `GOLDEN_RATIO` or `SQRT_3`  |
 
 ## When to use it directly
 
 Choose `use-number` directly when raw-number helpers are the only surface you need and you want to stay narrower than `use-math` or `use-real`.
 
-| Scenario | Use `use-number` directly? | Why |
-| --- | --- | --- |
-| You need raw floating-point classification helpers | Yes | The crate stays small and explicit |
-| You need a couple of reusable numeric constants in one place | Yes | The constants are available without broader wrappers |
-| You want validated finite values or checked intervals | Usually no | `use-real` keeps those invariants attached to types |
-| You need domain-specific integer, rational, probability, or geometry APIs | No | Those belong in adjacent focused crates |
+| Scenario                                                                  | Use `use-number` directly? | Why                                                  |
+| ------------------------------------------------------------------------- | -------------------------- | ---------------------------------------------------- |
+| You need raw floating-point classification helpers                        | Yes                        | The crate stays small and explicit                   |
+| You need a couple of reusable numeric constants in one place              | Yes                        | The constants are available without broader wrappers |
+| You want validated finite values or checked intervals                     | Usually no                 | `use-real` keeps those invariants attached to types  |
+| You need domain-specific integer, rational, probability, or geometry APIs | No                         | Those belong in adjacent focused crates              |
 
 ## Installation
 

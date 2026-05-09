@@ -40,21 +40,21 @@ use-statistics = "0.0.1"
     </tr>
 </table>
 
-| Helper group | Primary items | Best fit |
-| ------------ | ------------- | -------- |
-| Central tendency | `mean`, `median` | Small apps and utilities that need direct descriptive summaries |
-| Dispersion | `population_variance`, `sample_variance`, `population_std_dev`, `sample_std_dev` | Call sites that should remain explicit about population vs. sample summaries |
-| Error handling | `StatisticsError` | Code that needs predictable handling for empty or undersized inputs |
+| Helper group     | Primary items                                                                    | Best fit                                                                     |
+| ---------------- | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Central tendency | `mean`, `median`                                                                 | Small apps and utilities that need direct descriptive summaries              |
+| Dispersion       | `population_variance`, `sample_variance`, `population_std_dev`, `sample_std_dev` | Call sites that should remain explicit about population vs. sample summaries |
+| Error handling   | `StatisticsError`                                                                | Code that needs predictable handling for empty or undersized inputs          |
 
 ## When to use directly
 
 Choose `use-statistics` directly when statistical summaries or distributions are the only surface you need and you want to keep that concern narrower than the full facade.
 
-| Scenario | Use `use-statistics` directly? | Why |
-| -------- | ----------------------------- | --- |
-| You need descriptive summaries over `f64` slices | Yes | The current API already covers the common location and dispersion cases directly |
-| You want explicit population-vs-sample summary functions | Yes | The function names keep estimator choice visible at the call site |
-| You also need probability, calculus, or other math domains | Usually no | `use-math` can compose the concrete surfaces behind features |
+| Scenario                                                   | Use `use-statistics` directly? | Why                                                                              |
+| ---------------------------------------------------------- | ------------------------------ | -------------------------------------------------------------------------------- |
+| You need descriptive summaries over `f64` slices           | Yes                            | The current API already covers the common location and dispersion cases directly |
+| You want explicit population-vs-sample summary functions   | Yes                            | The function names keep estimator choice visible at the call site                |
+| You also need probability, calculus, or other math domains | Usually no                     | `use-math` can compose the concrete surfaces behind features                     |
 
 ## Scope
 

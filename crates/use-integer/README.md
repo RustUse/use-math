@@ -40,21 +40,21 @@ use-integer = "0.0.1"
     </tr>
 </table>
 
-| Helper group | Primary items | Best fit |
-| ------------ | ------------- | -------- |
-| Sign and parity | `IntegerSign`, `classify_sign`, `is_even`, `is_odd` | Branching on signed integer shape without ad hoc match logic |
-| Divisibility | `is_divisible_by`, `IntegerError` | User-supplied divisors or explicit validation paths |
-| Common divisors | `gcd`, `lcm`, `are_coprime` | Normalization, factor checks, and least-common-multiple workflows |
+| Helper group    | Primary items                                       | Best fit                                                          |
+| --------------- | --------------------------------------------------- | ----------------------------------------------------------------- |
+| Sign and parity | `IntegerSign`, `classify_sign`, `is_even`, `is_odd` | Branching on signed integer shape without ad hoc match logic      |
+| Divisibility    | `is_divisible_by`, `IntegerError`                   | User-supplied divisors or explicit validation paths               |
+| Common divisors | `gcd`, `lcm`, `are_coprime`                         | Normalization, factor checks, and least-common-multiple workflows |
 
 ## When to use directly
 
 Choose `use-integer` directly when integer helpers are the only surface you need and you want to keep that concern separate from broader numeric or algebraic APIs.
 
-| Scenario | Use `use-integer` directly? | Why |
-| -------- | -------------------------- | --- |
-| You only need parity, sign, or divisibility helpers | Yes | The crate stays smaller than the facade and avoids unrelated numeric modules |
-| You want exact gcd/lcm helpers over signed `i128` values | Yes | The API already handles sign normalization and explicit error cases |
-| You also need rational, real, probability, or geometry APIs | Usually no | `use-math` can unify imports behind features |
+| Scenario                                                    | Use `use-integer` directly? | Why                                                                          |
+| ----------------------------------------------------------- | --------------------------- | ---------------------------------------------------------------------------- |
+| You only need parity, sign, or divisibility helpers         | Yes                         | The crate stays smaller than the facade and avoids unrelated numeric modules |
+| You want exact gcd/lcm helpers over signed `i128` values    | Yes                         | The API already handles sign normalization and explicit error cases          |
+| You also need rational, real, probability, or geometry APIs | Usually no                  | `use-math` can unify imports behind features                                 |
 
 ## Scope
 

@@ -40,21 +40,21 @@ use-trigonometry = "0.0.1"
     </tr>
 </table>
 
-| Helper group | Primary items | Best fit |
-| ------------ | ------------- | -------- |
-| Angle values and unit conversion | `Angle`, `degrees_to_radians`, `radians_to_degrees` | Code that should stay explicit about whether an input is degrees or radians |
-| Normalization | `Angle::normalized`, `Angle::normalized_signed`, `normalize_degrees`, `normalize_radians` | Handling wrapped or cyclic inputs before downstream math |
-| Direct trig helpers | `Angle::sin`, `Angle::cos`, `Angle::tan`, `sin_deg`, `cos_deg`, `tan_deg` | Small apps and utilities that want direct numeric trig without a larger abstraction |
+| Helper group                     | Primary items                                                                             | Best fit                                                                            |
+| -------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Angle values and unit conversion | `Angle`, `degrees_to_radians`, `radians_to_degrees`                                       | Code that should stay explicit about whether an input is degrees or radians         |
+| Normalization                    | `Angle::normalized`, `Angle::normalized_signed`, `normalize_degrees`, `normalize_radians` | Handling wrapped or cyclic inputs before downstream math                            |
+| Direct trig helpers              | `Angle::sin`, `Angle::cos`, `Angle::tan`, `sin_deg`, `cos_deg`, `tan_deg`                 | Small apps and utilities that want direct numeric trig without a larger abstraction |
 
 ## When to use directly
 
 Choose `use-trigonometry` directly when angle or trigonometric utilities are the only surface you need and you want to keep that concern narrower than the full facade.
 
-| Scenario | Use `use-trigonometry` directly? | Why |
-| -------- | ------------------------------- | --- |
-| You need explicit degree/radian handling without a broader math facade | Yes | The crate keeps unit intent local and direct |
-| You need wrapped-angle normalization and basic trig evaluation | Yes | The current surface already covers those cases with a small API |
-| You also need geometry, calculus, or other math domains | Usually no | `use-math` can compose the concrete surfaces behind features |
+| Scenario                                                               | Use `use-trigonometry` directly? | Why                                                             |
+| ---------------------------------------------------------------------- | -------------------------------- | --------------------------------------------------------------- |
+| You need explicit degree/radian handling without a broader math facade | Yes                              | The crate keeps unit intent local and direct                    |
+| You need wrapped-angle normalization and basic trig evaluation         | Yes                              | The current surface already covers those cases with a small API |
+| You also need geometry, calculus, or other math domains                | Usually no                       | `use-math` can compose the concrete surfaces behind features    |
 
 ## Scope
 

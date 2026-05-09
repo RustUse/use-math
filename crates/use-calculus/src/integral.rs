@@ -117,7 +117,11 @@ impl Integrator {
     /// Returns [`CalculusError`] when the interval or subinterval count is
     /// invalid, when an odd number of subintervals is used, or when sampled
     /// evaluations are not finite.
-    pub fn simpson<F>(self, function: F, interval: IntegrationInterval) -> Result<f64, CalculusError>
+    pub fn simpson<F>(
+        self,
+        function: F,
+        interval: IntegrationInterval,
+    ) -> Result<f64, CalculusError>
     where
         F: FnMut(f64) -> f64,
     {
@@ -226,7 +230,9 @@ where
 
 #[cfg(test)]
 mod tests {
-    use super::{CalculusError, IntegrationInterval, Integrator, simpson_integral, trapezoidal_integral};
+    use super::{
+        CalculusError, IntegrationInterval, Integrator, simpson_integral, trapezoidal_integral,
+    };
 
     fn assert_close(left: f64, right: f64, tolerance: f64) {
         assert!(

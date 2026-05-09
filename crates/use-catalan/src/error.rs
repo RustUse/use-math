@@ -23,10 +23,13 @@ impl fmt::Display for CatalanError {
             Self::ZeroOrder => formatter.write_str("Fuss-Catalan order must be at least 1"),
             Self::CatalanOverflow(n) => {
                 write!(formatter, "Catalan number overflowed u128 for n={n}")
-            }
+            },
             Self::FussCatalanOverflow { order, n } => {
-                write!(formatter, "Fuss-Catalan number overflowed u128 for order={order}, n={n}")
-            }
+                write!(
+                    formatter,
+                    "Fuss-Catalan number overflowed u128 for order={order}, n={n}"
+                )
+            },
         }
     }
 }

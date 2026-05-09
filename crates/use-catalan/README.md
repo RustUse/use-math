@@ -40,20 +40,20 @@ use-catalan = "0.0.1"
     </tr>
 </table>
 
-| Helper group | Primary items | Best fit |
-| ------------ | ------------- | -------- |
-| Standard Catalan | `catalan`, `CatalanError` | Exact counts for binary-tree, Dyck-word, and balanced-parenthesization style problems |
-| Generalized Catalan | `fuss_catalan` | Wider Catalan-family counts without a broader sequence toolbox |
+| Helper group        | Primary items             | Best fit                                                                              |
+| ------------------- | ------------------------- | ------------------------------------------------------------------------------------- |
+| Standard Catalan    | `catalan`, `CatalanError` | Exact counts for binary-tree, Dyck-word, and balanced-parenthesization style problems |
+| Generalized Catalan | `fuss_catalan`            | Wider Catalan-family counts without a broader sequence toolbox                        |
 
 ## When to use directly
 
 Choose `use-catalan` directly when Catalan-family sequence helpers are the only surface you need and you want to keep that concern explicit and narrow.
 
-| Scenario | Use `use-catalan` directly? | Why |
-| -------- | -------------------------- | --- |
-| You only need exact Catalan counts | Yes | The crate stays smaller than the facade and keeps the counting domain explicit |
-| You need generalized Fuss-Catalan counts alongside standard Catalan numbers | Yes | The current surface already covers both without a broader sequence abstraction |
-| You also need combinatorics, geometry, or other math domains | Usually no | `use-math` can unify the concrete surfaces behind feature flags |
+| Scenario                                                                    | Use `use-catalan` directly? | Why                                                                            |
+| --------------------------------------------------------------------------- | --------------------------- | ------------------------------------------------------------------------------ |
+| You only need exact Catalan counts                                          | Yes                         | The crate stays smaller than the facade and keeps the counting domain explicit |
+| You need generalized Fuss-Catalan counts alongside standard Catalan numbers | Yes                         | The current surface already covers both without a broader sequence abstraction |
+| You also need combinatorics, geometry, or other math domains                | Usually no                  | `use-math` can unify the concrete surfaces behind feature flags                |
 
 ## Scope
 

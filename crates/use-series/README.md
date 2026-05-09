@@ -40,20 +40,20 @@ use-series = "0.0.1"
     </tr>
 </table>
 
-| Helper group | Primary items | Best fit |
-| ------------ | ------------- | -------- |
+| Helper group            | Primary items                           | Best fit                                                       |
+| ----------------------- | --------------------------------------- | -------------------------------------------------------------- |
 | Arithmetic progressions | `arithmetic_nth_term`, `arithmetic_sum` | Linear sequences, step-based schedules, and exact partial sums |
-| Geometric progressions | `geometric_nth_term`, `geometric_sum` | Exponential growth or decay with exact signed ratios |
+| Geometric progressions  | `geometric_nth_term`, `geometric_sum`   | Exponential growth or decay with exact signed ratios           |
 
 ## When to use directly
 
 Choose `use-series` directly when sequence and series helpers are the only surface you need and you want to keep that concern narrower than the full facade crate.
 
-| Scenario | Use `use-series` directly? | Why |
-| -------- | ------------------------- | --- |
-| You only need arithmetic or geometric progression helpers | Yes | The crate stays smaller than the facade and keeps progression arithmetic explicit |
-| You want exact signed partial sums without floating-point rounding | Yes | The current surface is checked and stays in `i128` |
-| You also need combinatorics, geometry, or other math domains | Usually no | `use-math` can unify the concrete surfaces behind features |
+| Scenario                                                           | Use `use-series` directly? | Why                                                                               |
+| ------------------------------------------------------------------ | -------------------------- | --------------------------------------------------------------------------------- |
+| You only need arithmetic or geometric progression helpers          | Yes                        | The crate stays smaller than the facade and keeps progression arithmetic explicit |
+| You want exact signed partial sums without floating-point rounding | Yes                        | The current surface is checked and stays in `i128`                                |
+| You also need combinatorics, geometry, or other math domains       | Usually no                 | `use-math` can unify the concrete surfaces behind features                        |
 
 ## Scope
 

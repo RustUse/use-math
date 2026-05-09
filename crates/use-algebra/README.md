@@ -41,29 +41,29 @@
 
 ## What this crate provides
 
-| Area | Root exports | Best fit |
-| --- | --- | --- |
-| Basic law checks | `is_closed_under`, `is_associative`, `is_commutative` | Finite structure checks over explicit sample sets and operations |
-| Identity and inverse checks | `identity_element`, `has_inverses` | Building monoid and group checks without a trait hierarchy |
-| Combined structure predicates | `is_monoid`, `is_group`, `is_abelian_group`, `is_distributive_over`, `is_ring` | Small algebra experiments, education, and validation helpers |
+| Area                          | Root exports                                                                   | Best fit                                                         |
+| ----------------------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
+| Basic law checks              | `is_closed_under`, `is_associative`, `is_commutative`                          | Finite structure checks over explicit sample sets and operations |
+| Identity and inverse checks   | `identity_element`, `has_inverses`                                             | Building monoid and group checks without a trait hierarchy       |
+| Combined structure predicates | `is_monoid`, `is_group`, `is_abelian_group`, `is_distributive_over`, `is_ring` | Small algebra experiments, education, and validation helpers     |
 
-| If you need to... | Start here |
-| --- | --- |
-| Check whether a binary operation stays inside a sample set | `is_closed_under(...)` |
-| Discover a two-sided identity element inside a sample set | `identity_element(...)` |
-| Check whether every value has a two-sided inverse | `has_inverses(...)` |
-| Validate a finite abelian group or ring model | `is_abelian_group(...)` or `is_ring(...)` |
+| If you need to...                                          | Start here                                |
+| ---------------------------------------------------------- | ----------------------------------------- |
+| Check whether a binary operation stays inside a sample set | `is_closed_under(...)`                    |
+| Discover a two-sided identity element inside a sample set  | `identity_element(...)`                   |
+| Check whether every value has a two-sided inverse          | `has_inverses(...)`                       |
+| Validate a finite abelian group or ring model              | `is_abelian_group(...)` or `is_ring(...)` |
 
 ## When to use it directly
 
 Choose `use-algebra` directly when finite algebra-law checks are the only surface you need and you want to keep that concern narrower than the umbrella facade.
 
-| Scenario | Use `use-algebra` directly? | Why |
-| --- | --- | --- |
-| You want explicit law checks over a finite sample set | Yes | The crate stays small and does not force a trait hierarchy |
-| You are teaching or validating modular arithmetic structures | Yes | The helpers work directly with caller-supplied operations |
-| You need symbolic algebra or generic numeric towers | No | Those are intentionally out of scope for this first slice |
-| You need matrix-specific or geometry-specific abstractions | Usually no | Those belong in adjacent focused crates |
+| Scenario                                                     | Use `use-algebra` directly? | Why                                                        |
+| ------------------------------------------------------------ | --------------------------- | ---------------------------------------------------------- |
+| You want explicit law checks over a finite sample set        | Yes                         | The crate stays small and does not force a trait hierarchy |
+| You are teaching or validating modular arithmetic structures | Yes                         | The helpers work directly with caller-supplied operations  |
+| You need symbolic algebra or generic numeric towers          | No                          | Those are intentionally out of scope for this first slice  |
+| You need matrix-specific or geometry-specific abstractions   | Usually no                  | Those belong in adjacent focused crates                    |
 
 ## Installation
 

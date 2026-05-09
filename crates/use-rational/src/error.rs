@@ -23,10 +23,16 @@ impl fmt::Display for RationalError {
             Self::ZeroDenominator => write!(formatter, "denominator must not be zero"),
             Self::DivisionByZero => write!(formatter, "division by zero-valued rational"),
             Self::NormalizationOverflow => {
-                write!(formatter, "rational normalization overflowed the current representation")
+                write!(
+                    formatter,
+                    "rational normalization overflowed the current representation"
+                )
             },
             Self::ArithmeticOverflow { operation } => {
-                write!(formatter, "rational {operation} overflowed the current representation")
+                write!(
+                    formatter,
+                    "rational {operation} overflowed the current representation"
+                )
             },
         }
     }

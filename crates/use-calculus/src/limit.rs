@@ -160,11 +160,7 @@ mod tests {
     fn approximates_two_sided_limits() -> Result<(), CalculusError> {
         let limit = symmetric_limit(
             |x| {
-                if x == 0.0 {
-                    1.0
-                } else {
-                    x.sin() / x
-                }
+                if x == 0.0 { 1.0 } else { x.sin() / x }
             },
             0.0,
             1.0e-6,
@@ -178,12 +174,7 @@ mod tests {
     #[test]
     fn rejects_mismatched_limits() {
         assert!(matches!(
-            symmetric_limit(
-                |x| if x < 0.0 { -1.0 } else { 1.0 },
-                0.0,
-                1.0e-6,
-                1.0e-3,
-            ),
+            symmetric_limit(|x| if x < 0.0 { -1.0 } else { 1.0 }, 0.0, 1.0e-6, 1.0e-3,),
             Err(CalculusError::LimitMismatch { .. })
         ));
     }

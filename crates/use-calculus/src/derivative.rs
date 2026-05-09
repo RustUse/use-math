@@ -100,11 +100,7 @@ impl Differentiator {
 /// Returns [`CalculusError`] when `step` is invalid, `at` is not finite, or
 /// sampled evaluations are not finite.
 #[must_use = "derivative estimates should be used or handled"]
-pub fn central_difference<F>(
-    mut function: F,
-    at: f64,
-    step: f64,
-) -> Result<f64, CalculusError>
+pub fn central_difference<F>(mut function: F, at: f64, step: f64) -> Result<f64, CalculusError>
 where
     F: FnMut(f64) -> f64,
 {

@@ -1,6 +1,6 @@
 use use_integer::{
-    IntegerError, IntegerSign, are_coprime, classify_sign, gcd, is_divisible_by, is_even,
-    is_odd, lcm,
+    IntegerError, IntegerSign, are_coprime, classify_sign, gcd, is_divisible_by, is_even, is_odd,
+    lcm,
 };
 
 #[test]

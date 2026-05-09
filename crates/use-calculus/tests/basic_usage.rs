@@ -11,7 +11,8 @@ fn assert_close(left: f64, right: f64, tolerance: f64) {
 }
 
 #[test]
-fn direct_calculus_crate_usage_covers_derivatives_integrals_and_limits() -> Result<(), CalculusError> {
+fn direct_calculus_crate_usage_covers_derivatives_integrals_and_limits() -> Result<(), CalculusError>
+{
     let differentiator = Differentiator::try_new(1.0e-5)?;
     let interval = IntegrationInterval::try_new(0.0, 1.0)?;
     let integrator = Integrator::try_new(128)?;
@@ -21,11 +22,7 @@ fn direct_calculus_crate_usage_covers_derivatives_integrals_and_limits() -> Resu
     let area = integrator.simpson(|x| x * x, interval)?;
     let sinc_limit = limit.at(
         |x| {
-            if x == 0.0 {
-                1.0
-            } else {
-                x.sin() / x
-            }
+            if x == 0.0 { 1.0 } else { x.sin() / x }
         },
         0.0,
     )?;
@@ -40,12 +37,7 @@ fn direct_calculus_crate_usage_covers_derivatives_integrals_and_limits() -> Resu
 #[test]
 fn symmetric_limit_reports_discontinuities_explicitly() {
     assert!(matches!(
-        symmetric_limit(
-            |x| if x < 0.0 { -1.0 } else { 1.0 },
-            0.0,
-            1.0e-6,
-            1.0e-3,
-        ),
+        symmetric_limit(|x| if x < 0.0 { -1.0 } else { 1.0 }, 0.0, 1.0e-6, 1.0e-3,),
         Err(CalculusError::LimitMismatch { .. })
     ));
 }

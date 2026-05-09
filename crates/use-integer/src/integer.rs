@@ -88,7 +88,9 @@ const fn gcd_u128(mut left: u128, mut right: u128) -> u128 {
 
 #[cfg(test)]
 mod tests {
-    use super::{IntegerSign, are_coprime, classify_sign, gcd, is_divisible_by, is_even, is_odd, lcm};
+    use super::{
+        IntegerSign, are_coprime, classify_sign, gcd, is_divisible_by, is_even, is_odd, lcm,
+    };
     use crate::IntegerError;
 
     #[test]

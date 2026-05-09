@@ -43,29 +43,29 @@
 
 ## What this crate provides
 
-| Area | Root exports | Best fit |
-| --- | --- | --- |
-| Probability values | `Probability`, `ProbabilityError` | Explicit normalized probabilities instead of raw floating-point conventions |
-| Independent-event rules | `independent_intersection`, `independent_union` | Binary event composition when independence is part of the model |
-| Bernoulli outcomes | `Bernoulli` | Success/failure probabilities with direct mean, variance, and PMF helpers |
+| Area                    | Root exports                                    | Best fit                                                                    |
+| ----------------------- | ----------------------------------------------- | --------------------------------------------------------------------------- |
+| Probability values      | `Probability`, `ProbabilityError`               | Explicit normalized probabilities instead of raw floating-point conventions |
+| Independent-event rules | `independent_intersection`, `independent_union` | Binary event composition when independence is part of the model             |
+| Bernoulli outcomes      | `Bernoulli`                                     | Success/failure probabilities with direct mean, variance, and PMF helpers   |
 
-| If you need to... | Start here |
-| --- | --- |
-| Validate a probability value from external input | `Probability::try_new(...)` |
-| Build a probability from counts | `Probability::from_fraction(...)` |
-| Combine independent events explicitly | `independent_intersection(...)` and `independent_union(...)` |
-| Model a binary success/failure process | `Bernoulli` |
+| If you need to...                                | Start here                                                   |
+| ------------------------------------------------ | ------------------------------------------------------------ |
+| Validate a probability value from external input | `Probability::try_new(...)`                                  |
+| Build a probability from counts                  | `Probability::from_fraction(...)`                            |
+| Combine independent events explicitly            | `independent_intersection(...)` and `independent_union(...)` |
+| Model a binary success/failure process           | `Bernoulli`                                                  |
 
 ## When to use it directly
 
 Choose `use-probability` directly when probability primitives are the only math surface you need, or when you want probability assumptions to stay local and visible instead of being diffused through a broader crate.
 
-| Scenario | Use `use-probability` directly? | Why |
-| --- | --- | --- |
-| You only need normalized probabilities and small binary models | Yes | The crate stays narrow and explicit |
-| You want validation at the boundary of your app | Yes | Out-of-range probabilities and invalid ratios become errors |
-| You need descriptive statistics or inference helpers | Usually no | Those belong in adjacent focused crates |
-| You need random sampling or RNG integration | No | This crate intentionally stops short of a randomness API |
+| Scenario                                                       | Use `use-probability` directly? | Why                                                         |
+| -------------------------------------------------------------- | ------------------------------- | ----------------------------------------------------------- |
+| You only need normalized probabilities and small binary models | Yes                             | The crate stays narrow and explicit                         |
+| You want validation at the boundary of your app                | Yes                             | Out-of-range probabilities and invalid ratios become errors |
+| You need descriptive statistics or inference helpers           | Usually no                      | Those belong in adjacent focused crates                     |
+| You need random sampling or RNG integration                    | No                              | This crate intentionally stops short of a randomness API    |
 
 ## Installation
 

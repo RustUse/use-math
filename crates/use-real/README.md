@@ -43,29 +43,29 @@
 
 ## What this crate provides
 
-| Area | Root exports | Best fit |
-| --- | --- | --- |
-| Finite values | `Real`, `RealError` | Explicit finite-value validation instead of raw `f64` assumptions |
-| Closed intervals | `RealInterval` | Range checks, clamping, width, and midpoint helpers |
-| Tolerance checks | `approx_eq` | Approximate comparisons where tolerance must stay visible |
+| Area             | Root exports        | Best fit                                                          |
+| ---------------- | ------------------- | ----------------------------------------------------------------- |
+| Finite values    | `Real`, `RealError` | Explicit finite-value validation instead of raw `f64` assumptions |
+| Closed intervals | `RealInterval`      | Range checks, clamping, width, and midpoint helpers               |
+| Tolerance checks | `approx_eq`         | Approximate comparisons where tolerance must stay visible         |
 
-| If you need to... | Start here |
-| --- | --- |
-| Validate one finite floating-point value | `Real::try_new(...)` |
+| If you need to...                             | Start here                   |
+| --------------------------------------------- | ---------------------------- |
+| Validate one finite floating-point value      | `Real::try_new(...)`         |
 | Model a closed interval with checked ordering | `RealInterval::try_new(...)` |
-| Clamp or test membership in an interval | `RealInterval` |
-| Compare values with an explicit tolerance | `approx_eq(...)` |
+| Clamp or test membership in an interval       | `RealInterval`               |
+| Compare values with an explicit tolerance     | `approx_eq(...)`             |
 
 ## When to use it directly
 
 Choose `use-real` directly when finite-value validation and real-number helpers are the only math surface you need, or when you want floating-point assumptions to stay local instead of spreading through a broader crate.
 
-| Scenario | Use `use-real` directly? | Why |
-| --- | --- | --- |
-| You need finite-value wrappers and checked intervals | Yes | The crate stays narrow and explicit |
-| You want tolerance-aware comparisons with caller-owned policy | Yes | The tolerance is required at the call site |
-| You need geometry-specific tolerance rules | Usually no | Those stay better attached to geometry types |
-| You need complex analysis or calculus helpers | No | Those belong in adjacent focused crates |
+| Scenario                                                      | Use `use-real` directly? | Why                                          |
+| ------------------------------------------------------------- | ------------------------ | -------------------------------------------- |
+| You need finite-value wrappers and checked intervals          | Yes                      | The crate stays narrow and explicit          |
+| You want tolerance-aware comparisons with caller-owned policy | Yes                      | The tolerance is required at the call site   |
+| You need geometry-specific tolerance rules                    | Usually no               | Those stay better attached to geometry types |
+| You need complex analysis or calculus helpers                 | No                       | Those belong in adjacent focused crates      |
 
 ## Installation
 

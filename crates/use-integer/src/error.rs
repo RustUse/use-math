@@ -14,10 +14,13 @@ impl fmt::Display for IntegerError {
         match self {
             Self::DivisionByZero => {
                 formatter.write_str("integer operation requires a non-zero divisor")
-            }
+            },
             Self::ArithmeticOverflow { operation } => {
-                write!(formatter, "integer operation overflowed while computing {operation}")
-            }
+                write!(
+                    formatter,
+                    "integer operation overflowed while computing {operation}"
+                )
+            },
         }
     }
 }

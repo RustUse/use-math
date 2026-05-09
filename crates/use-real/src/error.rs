@@ -59,7 +59,10 @@ impl fmt::Display for RealError {
                 write!(formatter, "tolerance must be non-negative, got {value}")
             },
             Self::InvalidInterval { min, max } => {
-                write!(formatter, "interval min must not exceed max, got min={min}, max={max}")
+                write!(
+                    formatter,
+                    "interval min must not exceed max, got min={min}, max={max}"
+                )
             },
         }
     }

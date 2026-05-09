@@ -43,29 +43,29 @@
 
 ## What this crate provides
 
-| Area | Root exports | Best fit |
-| --- | --- | --- |
-| Differentiation | `Differentiator`, `central_difference`, `second_central_difference` | Small slope and curvature estimates on `f64` functions |
-| Integration | `IntegrationInterval`, `Integrator`, `trapezoidal_integral`, `simpson_integral` | Signed area approximations with explicit sample density |
-| Limits | `LimitApproximator`, `symmetric_limit` | Two-sided limits where a single symmetric sample scale is a reasonable model |
+| Area            | Root exports                                                                    | Best fit                                                                     |
+| --------------- | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Differentiation | `Differentiator`, `central_difference`, `second_central_difference`             | Small slope and curvature estimates on `f64` functions                       |
+| Integration     | `IntegrationInterval`, `Integrator`, `trapezoidal_integral`, `simpson_integral` | Signed area approximations with explicit sample density                      |
+| Limits          | `LimitApproximator`, `symmetric_limit`                                          | Two-sided limits where a single symmetric sample scale is a reasonable model |
 
-| If you need to... | Start here |
-| --- | --- |
-| Estimate a derivative at one point | `Differentiator::derivative_at(...)` |
-| Approximate a definite integral | `Integrator::trapezoidal(...)` or `Integrator::simpson(...)` |
-| Model a signed interval directly | `IntegrationInterval::try_new(...)` |
-| Reject discontinuities instead of hiding them | `symmetric_limit(...)` or `LimitApproximator` |
+| If you need to...                             | Start here                                                   |
+| --------------------------------------------- | ------------------------------------------------------------ |
+| Estimate a derivative at one point            | `Differentiator::derivative_at(...)`                         |
+| Approximate a definite integral               | `Integrator::trapezoidal(...)` or `Integrator::simpson(...)` |
+| Model a signed interval directly              | `IntegrationInterval::try_new(...)`                          |
+| Reject discontinuities instead of hiding them | `symmetric_limit(...)` or `LimitApproximator`                |
 
 ## When to use it directly
 
 Choose `use-calculus` directly when numerical-calculus helpers are the only math surface you need, or when you want the approximation policy to stay visible instead of being hidden behind a broader abstraction.
 
-| Scenario | Use `use-calculus` directly? | Why |
-| --- | --- | --- |
-| You need a few direct derivative or integral estimates | Yes | The crate stays small and explicit |
-| You want validation at the boundary of your app | Yes | Invalid steps, bounds, and evaluations become errors |
-| You need symbolic manipulation or automatic differentiation | No | This crate intentionally stays numerical and lightweight |
-| You also need several other math surfaces | Usually no | `use-math` may become the better integration point |
+| Scenario                                                    | Use `use-calculus` directly? | Why                                                      |
+| ----------------------------------------------------------- | ---------------------------- | -------------------------------------------------------- |
+| You need a few direct derivative or integral estimates      | Yes                          | The crate stays small and explicit                       |
+| You want validation at the boundary of your app             | Yes                          | Invalid steps, bounds, and evaluations become errors     |
+| You need symbolic manipulation or automatic differentiation | No                           | This crate intentionally stays numerical and lightweight |
+| You also need several other math surfaces                   | Usually no                   | `use-math` may become the better integration point       |
 
 ## Installation
 

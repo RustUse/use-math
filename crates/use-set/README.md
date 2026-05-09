@@ -40,21 +40,21 @@ use-set = "0.0.1"
     </tr>
 </table>
 
-| Helper group | Primary items | Best fit |
-| ------------ | ------------- | -------- |
-| Membership and relations | `contains_member`, `is_subset`, `are_disjoint` | Call sites that want readable set checks over existing slices |
-| Set operations | `set_union`, `set_intersection`, `set_difference` | Small apps and utilities that need explicit, unique results without introducing a custom set type |
-| Exclusive-membership helpers | `set_symmetric_difference` | Comparing two slices for values that appear on exactly one side |
+| Helper group                 | Primary items                                     | Best fit                                                                                          |
+| ---------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Membership and relations     | `contains_member`, `is_subset`, `are_disjoint`    | Call sites that want readable set checks over existing slices                                     |
+| Set operations               | `set_union`, `set_intersection`, `set_difference` | Small apps and utilities that need explicit, unique results without introducing a custom set type |
+| Exclusive-membership helpers | `set_symmetric_difference`                        | Comparing two slices for values that appear on exactly one side                                   |
 
 ## When to use directly
 
 Choose `use-set` directly when mathematical set helpers are the only surface you need and you want to keep that concern narrower than the umbrella facade.
 
-| Scenario | Use `use-set` directly? | Why |
-| -------- | ---------------------- | --- |
-| You already have slices and want explicit set predicates | Yes | The API avoids extra collection wrappers and keeps intent obvious |
-| You need unique set-operation results but still care about input order | Yes | The operation helpers preserve first-seen order while removing duplicates |
-| You also need geometry, probability, or other math domains | Usually no | `use-math` can compose the concrete surfaces behind features |
+| Scenario                                                               | Use `use-set` directly? | Why                                                                       |
+| ---------------------------------------------------------------------- | ----------------------- | ------------------------------------------------------------------------- |
+| You already have slices and want explicit set predicates               | Yes                     | The API avoids extra collection wrappers and keeps intent obvious         |
+| You need unique set-operation results but still care about input order | Yes                     | The operation helpers preserve first-seen order while removing duplicates |
+| You also need geometry, probability, or other math domains             | Usually no              | `use-math` can compose the concrete surfaces behind features              |
 
 ## Scope
 

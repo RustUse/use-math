@@ -97,9 +97,7 @@ impl CalculusError {
         Ok(subintervals)
     }
 
-    pub(crate) fn validate_even_subintervals(
-        subintervals: usize,
-    ) -> Result<usize, Self> {
+    pub(crate) fn validate_even_subintervals(subintervals: usize) -> Result<usize, Self> {
         Self::validate_subintervals(subintervals)?;
 
         if !subintervals.is_multiple_of(2_usize) {

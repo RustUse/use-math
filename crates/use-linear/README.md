@@ -40,21 +40,21 @@ use-linear = "0.0.1"
     </tr>
 </table>
 
-| Helper group | Primary items | Best fit |
-| ------------ | ------------- | -------- |
-| Vector operations | `Vector2`, `dot` | Small numeric code that needs explicit 2D linear operations |
-| Matrix operations | `Matrix2` | Call sites that need compact 2×2 products, determinants, and trace values |
-| Solves and error handling | `solve_2x2`, `LinearError` | Small systems where singular behavior should stay explicit |
+| Helper group              | Primary items              | Best fit                                                                  |
+| ------------------------- | -------------------------- | ------------------------------------------------------------------------- |
+| Vector operations         | `Vector2`, `dot`           | Small numeric code that needs explicit 2D linear operations               |
+| Matrix operations         | `Matrix2`                  | Call sites that need compact 2×2 products, determinants, and trace values |
+| Solves and error handling | `solve_2x2`, `LinearError` | Small systems where singular behavior should stay explicit                |
 
 ## When to use directly
 
 Choose `use-linear` directly when vector and matrix utilities are the only surface you need and you want to keep that concern narrower than the umbrella facade.
 
-| Scenario | Use `use-linear` directly? | Why |
-| -------- | ------------------------- | --- |
-| You need 2D numeric vectors and 2×2 matrices | Yes | The current surface already covers the common small linear-algebra cases directly |
-| You need explicit handling of singular 2×2 solves | Yes | The API keeps failure visible through `LinearError` |
-| You also need geometry, calculus, or other math domains | Usually no | `use-math` can compose the concrete surfaces behind features |
+| Scenario                                                | Use `use-linear` directly? | Why                                                                               |
+| ------------------------------------------------------- | -------------------------- | --------------------------------------------------------------------------------- |
+| You need 2D numeric vectors and 2×2 matrices            | Yes                        | The current surface already covers the common small linear-algebra cases directly |
+| You need explicit handling of singular 2×2 solves       | Yes                        | The API keeps failure visible through `LinearError`                               |
+| You also need geometry, calculus, or other math domains | Usually no                 | `use-math` can compose the concrete surfaces behind features                      |
 
 ## Scope
 

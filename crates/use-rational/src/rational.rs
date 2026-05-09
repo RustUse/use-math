@@ -105,21 +105,26 @@ impl Rational {
     /// Returns [`RationalError::ArithmeticOverflow`] when the intermediate or
     /// normalized result cannot be represented exactly.
     pub fn checked_add(self, other: Self) -> Result<Self, RationalError> {
-        let left = self
-            .numerator
-            .checked_mul(other.denominator)
-            .ok_or(RationalError::ArithmeticOverflow { operation: "addition" })?;
-        let right = other
-            .numerator
-            .checked_mul(self.denominator)
-            .ok_or(RationalError::ArithmeticOverflow { operation: "addition" })?;
+        let left = self.numerator.checked_mul(other.denominator).ok_or(
+            RationalError::ArithmeticOverflow {
+                operation: "addition",
+            },
+        )?;
+        let right = other.numerator.checked_mul(self.denominator).ok_or(
+            RationalError::ArithmeticOverflow {
+                operation: "addition",
+            },
+        )?;
         let numerator = left
             .checked_add(right)
-            .ok_or(RationalError::ArithmeticOverflow { operation: "addition" })?;
-        let denominator = self
-            .denominator
-            .checked_mul(other.denominator)
-            .ok_or(RationalError::ArithmeticOverflow { operation: "addition" })?;
+            .ok_or(RationalError::ArithmeticOverflow {
+                operation: "addition",
+            })?;
+        let denominator = self.denominator.checked_mul(other.denominator).ok_or(
+            RationalError::ArithmeticOverflow {
+                operation: "addition",
+            },
+        )?;
 
         normalize(numerator, denominator)
     }
@@ -131,21 +136,26 @@ impl Rational {
     /// Returns [`RationalError::ArithmeticOverflow`] when the intermediate or
     /// normalized result cannot be represented exactly.
     pub fn checked_sub(self, other: Self) -> Result<Self, RationalError> {
-        let left = self
-            .numerator
-            .checked_mul(other.denominator)
-            .ok_or(RationalError::ArithmeticOverflow { operation: "subtraction" })?;
-        let right = other
-            .numerator
-            .checked_mul(self.denominator)
-            .ok_or(RationalError::ArithmeticOverflow { operation: "subtraction" })?;
+        let left = self.numerator.checked_mul(other.denominator).ok_or(
+            RationalError::ArithmeticOverflow {
+                operation: "subtraction",
+            },
+        )?;
+        let right = other.numerator.checked_mul(self.denominator).ok_or(
+            RationalError::ArithmeticOverflow {
+                operation: "subtraction",
+            },
+        )?;
         let numerator = left
             .checked_sub(right)
-            .ok_or(RationalError::ArithmeticOverflow { operation: "subtraction" })?;
-        let denominator = self
-            .denominator
-            .checked_mul(other.denominator)
-            .ok_or(RationalError::ArithmeticOverflow { operation: "subtraction" })?;
+            .ok_or(RationalError::ArithmeticOverflow {
+                operation: "subtraction",
+            })?;
+        let denominator = self.denominator.checked_mul(other.denominator).ok_or(
+            RationalError::ArithmeticOverflow {
+                operation: "subtraction",
+            },
+        )?;
 
         normalize(numerator, denominator)
     }
@@ -157,14 +167,16 @@ impl Rational {
     /// Returns [`RationalError::ArithmeticOverflow`] when the intermediate or
     /// normalized result cannot be represented exactly.
     pub fn checked_mul(self, other: Self) -> Result<Self, RationalError> {
-        let numerator = self
-            .numerator
-            .checked_mul(other.numerator)
-            .ok_or(RationalError::ArithmeticOverflow { operation: "multiplication" })?;
-        let denominator = self
-            .denominator
-            .checked_mul(other.denominator)
-            .ok_or(RationalError::ArithmeticOverflow { operation: "multiplication" })?;
+        let numerator = self.numerator.checked_mul(other.numerator).ok_or(
+            RationalError::ArithmeticOverflow {
+                operation: "multiplication",
+            },
+        )?;
+        let denominator = self.denominator.checked_mul(other.denominator).ok_or(
+            RationalError::ArithmeticOverflow {
+                operation: "multiplication",
+            },
+        )?;
 
         normalize(numerator, denominator)
     }
@@ -181,14 +193,16 @@ impl Rational {
             return Err(RationalError::DivisionByZero);
         }
 
-        let numerator = self
-            .numerator
-            .checked_mul(other.denominator)
-            .ok_or(RationalError::ArithmeticOverflow { operation: "division" })?;
-        let denominator = self
-            .denominator
-            .checked_mul(other.numerator)
-            .ok_or(RationalError::ArithmeticOverflow { operation: "division" })?;
+        let numerator = self.numerator.checked_mul(other.denominator).ok_or(
+            RationalError::ArithmeticOverflow {
+                operation: "division",
+            },
+        )?;
+        let denominator = self.denominator.checked_mul(other.numerator).ok_or(
+            RationalError::ArithmeticOverflow {
+                operation: "division",
+            },
+        )?;
 
         normalize(numerator, denominator)
     }

@@ -208,7 +208,11 @@ mod tests {
         let left = Probability::from_fraction(1, 4)?;
         let right = Probability::try_new(0.5)?;
 
-        assert_close(independent_intersection(left, right).value(), 0.125, 1.0e-12);
+        assert_close(
+            independent_intersection(left, right).value(),
+            0.125,
+            1.0e-12,
+        );
         assert_close(independent_union(left, right).value(), 0.625, 1.0e-12);
 
         Ok(())
