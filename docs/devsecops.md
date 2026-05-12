@@ -131,11 +131,11 @@ File: `.github/workflows/release-plz-pr.yml`
 
 File: `.github/workflows/release-plz-release.yml`
 
-- Triggers on manual dispatch only
-- Runs `release-plz release` for intentional maintainer-driven publishing
-- Requires an explicit post-initial-release confirmation and verifies that all published crates already resolve from crates.io
-- Keeps `id-token: write` so the repository can move to crates.io trusted publishing once the initial manual publish wave is complete
-- Should be treated as post-initial-release automation; crates.io still requires the first publish of new crates to happen outside the trusted-publishing path
+- Triggers automatically on pushes to `main` after `CRATES_IO_AUTOPUBLISH_ENABLED=true`, and still supports manual dispatch for reruns
+- Runs `release-plz release` for post-initial-release publishing
+- Uses GitHub OIDC trusted publishing, so no long-lived `CARGO_REGISTRY_TOKEN` secret is needed in the workflow
+- Verifies that all published crates already resolve from crates.io before attempting the automated release step
+- Should still be treated as post-initial-release automation; crates.io requires the first publish of new crates to happen outside the trusted-publishing path
 
 ## Which Checks Block Pull Requests
 

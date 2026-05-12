@@ -13,7 +13,16 @@ It covers two different paths:
 - `Release PR Automation` opens or updates a release PR from `main`.
 - `release-plz` keeps every publishable crate in the workspace in one lockstep version group.
 - The shared root `CHANGELOG.md` is generated through the `use-math` package entry and includes focused-crate commits.
-- `Release Publish Automation` stays manual and should be used only after the initial manual publish wave is complete.
+- `Release Publish Automation` runs automatically on pushes to `main` after the initial manual publish wave is complete and the repository enables the guarded auto-publish path.
+
+## One-time post-initial-release setup
+
+Before relying on automated publishing, finish these one-time steps:
+
+- Configure crates.io Trusted Publishing for every published crate with repository owner `RustUse`, repository name `use-math`, and workflow filename `release-plz-release.yml`.
+- Leave the crates.io environment field empty unless you later add a matching GitHub Actions environment to the workflow.
+- Set the repository variable `CRATES_IO_AUTOPUBLISH_ENABLED` to `true` only after the first manual crates.io wave is complete.
+- Do not configure `CARGO_REGISTRY_TOKEN` for the release-plz publish workflow when using trusted publishing.
 
 ## How changelog generation works
 
@@ -77,7 +86,7 @@ Use this flow after the first public crates.io wave already exists.
 4. If the generated changelog needs cleanup, edit the changelog directly in the release PR branch before merging.
 5. Merge the release PR into `main`.
 6. Confirm the push-triggered release-readiness and security checks are green on the merged release commit.
-7. Manually dispatch `Release Publish Automation` with `post-initial-release = true`.
+7. Let `Release Publish Automation` publish from the merged release commit, or manually dispatch it with `post-initial-release = true` if you need a controlled rerun.
 8. Verify the published crates, docs.rs pages, and repository tag or release artifacts after the workflow completes.
 
 ## Initial public release exception
@@ -93,8 +102,8 @@ Use the manual dependency-ordered publish path instead:
 5. Run `cargo publish --dry-run -p use-math` or the manual `Facade Publish Readiness` workflow.
 6. Publish `use-math`.
 
-After that first wave is complete, the manual `Release Publish Automation`
-workflow becomes the path for subsequent releases.
+After that first wave is complete, the guarded auto-publish path can take over
+for subsequent releases.
 
 ## Maintainer review checklist for every release PR
 

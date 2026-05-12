@@ -29,7 +29,7 @@ This repository is the source workspace for RustUse's math surface. Today it com
 
 ## Current status
 
-- The GitHub repository may be public before the first crates.io release is live.
+- The GitHub repository is public before the first crates.io release is live.
 - Until then, consume the crates from a pinned Git revision or work from the workspace directly.
 - `use-geometry`, `use-combinatorics`, `use-catalan`, `use-series`, `use-algebra`, `use-integer`, `use-logic`, `use-set`, `use-trigonometry`, `use-statistics`, `use-linear`, `use-number`, `use-complex`, `use-calculus`, `use-probability`, `use-real`, and `use-rational` are the concrete focused APIs today.
 - The planned first release order is every focused crate first, then `use-math` after crates.io index propagation.
@@ -180,7 +180,7 @@ Pick the crate based on the integration shape you want, not just the total featu
 
 ## Installation
 
-This repository may become public before the first crates.io publish. Until the
+This repository is public before the first crates.io publish. Until the
 first release wave is live, use the workspace directly or depend on a Git
 revision. The versioned snippets below apply after the published release line
 exists on crates.io.

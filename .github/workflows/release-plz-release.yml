@@ -1,6 +1,9 @@
 name: Release Publish Automation
 
 on:
+    push:
+        branches:
+            - main
     workflow_dispatch:
         inputs:
             post-initial-release:
@@ -13,10 +16,14 @@ permissions:
     pull-requests: read
     id-token: write
 
+concurrency:
+    group: release-plz-release-${{ github.ref }}
+    cancel-in-progress: false
+
 jobs:
     release-plz-release:
         name: Release-plz Release
-        if: ${{ !github.event.repository.fork && inputs.post-initial-release }}
+        if: ${{ !github.event.repository.fork && ((github.event_name == 'push' && fromJSON(toJSON(vars)).CRATES_IO_AUTOPUBLISH_ENABLED == 'true') || (github.event_name == 'workflow_dispatch' && inputs.post-initial-release)) }}
         runs-on: ubuntu-latest
         env:
             PUBLISHED_CRATES: >-
@@ -38,11 +45,11 @@ jobs:
                   cache-workspaces: |
                       . -> target
 
-                        - name: Confirm published crates already exist on crates.io
-                            run: |
-                                    for crate in $PUBLISHED_CRATES; do
-                                        curl --fail --silent --show-error "https://crates.io/api/v1/crates/${crate}" > /dev/null
-                                    done
+            - name: Confirm published crates already exist on crates.io
+              run: |
+                  for crate in $PUBLISHED_CRATES; do
+                      curl --fail --silent --show-error "https://crates.io/api/v1/crates/${crate}" > /dev/null
+                  done
 
             - name: Run release-plz release
               uses: release-plz/action@v0.5

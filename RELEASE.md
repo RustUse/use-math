@@ -68,8 +68,15 @@ For the maintainer-facing merge, review, and dispatch sequence, use
 - `Release PR Automation` opens or updates a release PR with lockstep version changes for every publishable crate in the workspace.
 - The workspace is configured with one `version_group` so all published crates keep the same version.
 - The root `CHANGELOG.md` remains the shared changelog and is updated through the `use-math` package entry, including focused-crate commits.
-- `Release Publish Automation` is manual for now and is meant for the post-initial-release stage, after the repository is ready to rely on trusted publishing or another finalized credential flow.
-- The publish workflow now requires an explicit post-initial-release confirmation and checks that every focused crate plus `use-math` already exist on crates.io before it attempts automated publishing.
+- `Release Publish Automation` can publish automatically on pushes to `main` after the initial manual wave is complete, crates.io trusted publishing is configured for every published crate, and the `CRATES_IO_AUTOPUBLISH_ENABLED` repository variable is set to `true`.
+- The publish workflow uses GitHub OIDC, keeps manual dispatch as a fallback, and still checks that every focused crate plus `use-math` already exist on crates.io before it attempts automated publishing.
+
+One-time post-initial-release setup:
+
+- Configure crates.io Trusted Publishing for each published crate with repository owner `RustUse`, repository name `use-math`, and workflow filename `release-plz-release.yml`.
+- Leave the crates.io environment field empty unless you intentionally add a matching GitHub Actions environment to the workflow later.
+- Set the repository variable `CRATES_IO_AUTOPUBLISH_ENABLED` to `true` only after the initial manual crates.io wave is complete.
+- Do not set `CARGO_REGISTRY_TOKEN` for this workflow when using trusted publishing.
 
 ## Maintainer Release Checklist
 
@@ -83,7 +90,7 @@ For normal post-initial-release releases:
 3. Review the release PR for the lockstep version bump, the generated root `CHANGELOG.md`, and any low-signal fallback entries under `Changed`.
 4. Clean up the changelog directly in the release PR branch when the generated wording is accurate but not maintainer-quality.
 5. Merge the release PR after the required checks pass.
-6. Manually dispatch `Release Publish Automation` with `post-initial-release = true`.
+6. Let the push-triggered `Release Publish Automation` run on the merged release commit, or manually dispatch it with `post-initial-release = true` if you need a controlled rerun.
 7. Verify the published crates, docs.rs pages, and any release tags or artifacts after the workflow completes.
 
 For the initial public crates.io wave:
