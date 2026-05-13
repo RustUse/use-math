@@ -109,7 +109,9 @@ For the initial public crates.io wave:
 6. Confirm `cargo clippy --workspace --all-targets --all-features` passes.
 7. Confirm `cargo deny check` and `cargo audit` pass.
 8. Review README examples, crate metadata, repository health files, `Cargo.lock`, and changelog entries.
-9. Confirm `SECURITY.md`, `SUPPORT.md`, `CODE_OF_CONDUCT.md`, and governance docs reflect the current public launch posture.
+9. Confirm the organization-level security, support, and code of conduct
+   defaults, plus the local governance docs, reflect the current public launch
+   posture.
 10. Confirm the focused crates under `crates/` plus `use-math` are the only intentionally publishable crates.
 11. Confirm the focused-crate dry-run path passes across the full set, for example via `make publish-dry-run-focused`.
 12. Publish all focused crates, then wait for crates.io index resolution.

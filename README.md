@@ -419,9 +419,9 @@ Contributions should favor correctness, clear naming, small APIs, and minimal de
 
 ## Community and project policy
 
-- Use `SUPPORT.md` for help and routing guidance.
-- Use `SECURITY.md` for private vulnerability reporting.
-- Use `CODE_OF_CONDUCT.md` for collaboration expectations.
+- Use the RustUse [support guidance](https://github.com/RustUse/.github/blob/main/SUPPORT.md) for help and routing.
+- Use the RustUse [security policy](https://github.com/RustUse/.github/blob/main/SECURITY.md) for private vulnerability reporting.
+- Use the RustUse [code of conduct](https://github.com/RustUse/.github/blob/main/CODE_OF_CONDUCT.md) for collaboration expectations.
 - Use `GOVERNANCE.md` and `MAINTAINERS.md` for decision-making and release authority.
 
 ## License

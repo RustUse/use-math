@@ -147,7 +147,8 @@ After the public push, check the repository as a user would see it.
 
 - Confirm the README renders correctly.
 - Confirm the issue chooser shows the intended forms and contact links.
-- Confirm `SUPPORT.md` and `SECURITY.md` route people to the right channels.
+- Confirm the organization-level support and security defaults route people to
+  the right channels.
 - Confirm the devcontainer and VS Code recommendations still present a clean onboarding path.
 - Confirm the expected required checks appear on pull requests.
 

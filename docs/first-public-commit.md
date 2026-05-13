@@ -8,7 +8,9 @@ decisions already made in this workspace.
 
 ## Keep in the first public revision
 
-- Keep the repository health files: `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md`, `GOVERNANCE.md`, `MAINTAINERS.md`, `SECURITY.md`, and `SUPPORT.md`.
+- Keep the repository health files that stay local: `CONTRIBUTING.md`,
+  `GOVERNANCE.md`, and `MAINTAINERS.md`, and rely on the RustUse
+  organization-level defaults for code of conduct, security, and support.
 - Keep the Rust workspace defaults in `Cargo.toml`, including `publish = false` at the workspace level and the intentional first-wave crate publish settings in the crate manifests.
 - Keep `release-plz.toml`, `CHANGELOG.md`, and `RELEASE.md` so lockstep versioning and the shared changelog policy survive the reset.
 - Keep the repo-owned DX files: `.cargo/config.toml`, `.vscode/tasks.json`, `.vscode/extensions.json`, `.devcontainer/devcontainer.json`, `.devcontainer/post-create.sh`, and the bootstrap scripts under `scripts/`.

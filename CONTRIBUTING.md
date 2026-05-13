@@ -2,9 +2,11 @@
 
 RustUse/use-math is intentionally early and small. Contributions should favor correctness, clear naming, and minimal surface area over broad feature count.
 
-For routing and project policy, use `SUPPORT.md`, `SECURITY.md`,
-`CODE_OF_CONDUCT.md`, `GOVERNANCE.md`, and `MAINTAINERS.md` alongside this
-guide.
+For routing and organization-wide policy, use the RustUse defaults for
+[support](https://github.com/RustUse/.github/blob/main/SUPPORT.md),
+[security](https://github.com/RustUse/.github/blob/main/SECURITY.md), and the
+[code of conduct](https://github.com/RustUse/.github/blob/main/CODE_OF_CONDUCT.md),
+alongside `GOVERNANCE.md` and `MAINTAINERS.md`.
 
 ## Development Flow
 
@@ -55,11 +57,13 @@ documentation or onboarding gaps.
 
 Questions, API design exploration, and early roadmap discussion should go to
 GitHub Discussions once Discussions are enabled for the repository. Until
-then, follow `SUPPORT.md` for the current routing path.
+then, follow the RustUse
+[support guidance](https://github.com/RustUse/.github/blob/main/SUPPORT.md)
+for the current routing path.
 
 Pull requests should link the relevant issue or discussion when one exists and
-should use the checked-in PR template to capture change type, repo-owned Cargo
-alias validation, and release impact.
+should use the RustUse default PR template to capture change type,
+validation, and release impact.
 
 ## Optional Dev Tool Bootstrap
 
