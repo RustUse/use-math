@@ -49,7 +49,7 @@ release-readiness and first-publish sequence:
 
 ```bash
 make release-readiness
-for crate in use-arithmetic use-number use-integer use-modular use-rational use-interval use-real use-complex use-geometry use-combinatorics use-series use-catalan use-geode use-algebra use-vector use-matrix use-linear use-calculus use-probability use-statistics use-trigonometry use-logic use-set; do
+for crate in use-arithmetic use-number use-integer use-modular use-prime use-rational use-interval use-real use-complex use-geometry use-combinatorics use-series use-catalan use-geode use-algebra use-vector use-matrix use-linear use-calculus use-probability use-statistics use-trigonometry use-logic use-set; do
 	cargo publish -p "$crate"
 done
 cargo publish --dry-run -p use-math

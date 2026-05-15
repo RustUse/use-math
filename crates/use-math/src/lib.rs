@@ -98,6 +98,15 @@ pub use use_modular::{
     Modular, is_congruent, mod_add, mod_inverse, mod_mul, mod_normalize, mod_pow, mod_sub,
 };
 
+#[cfg(feature = "prime")]
+pub use use_prime as prime;
+
+#[cfg(feature = "prime")]
+pub use use_prime::{
+    factorization, is_composite, is_prime, next_prime, previous_prime, prime_factors, primes_up_to,
+    sieve, unique_prime_factors,
+};
+
 #[cfg(feature = "matrix")]
 pub use use_matrix as matrix;
 

@@ -157,7 +157,7 @@
             "command": "bash",
             "args": [
                 "-lc",
-                "set -euo pipefail; for crate in use-arithmetic use-number use-integer use-modular use-rational use-interval use-real use-complex use-geometry use-combinatorics use-series use-catalan use-geode use-algebra use-vector use-matrix use-linear use-calculus use-probability use-statistics use-trigonometry use-logic use-set; do cargo package --list -p \"$crate\"; cargo publish --dry-run --allow-dirty -p \"$crate\"; done"
+                "set -euo pipefail; for crate in use-arithmetic use-number use-integer use-modular use-prime use-rational use-interval use-real use-complex use-geometry use-combinatorics use-series use-catalan use-geode use-algebra use-vector use-matrix use-linear use-calculus use-probability use-statistics use-trigonometry use-logic use-set; do cargo package --list -p \"$crate\"; cargo publish --dry-run --allow-dirty -p \"$crate\"; done"
             ],
             "windows": {
                 "command": "powershell",
@@ -166,7 +166,7 @@
                     "-ExecutionPolicy",
                     "Bypass",
                     "-Command",
-                    "$ErrorActionPreference = 'Stop'; $crates = @('use-arithmetic','use-number','use-integer','use-modular','use-rational','use-interval','use-real','use-complex','use-geometry','use-combinatorics','use-series','use-catalan','use-geode','use-algebra','use-vector','use-matrix','use-linear','use-calculus','use-probability','use-statistics','use-trigonometry','use-logic','use-set'); foreach ($crate in $crates) { cargo package --list -p $crate; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; cargo publish --dry-run --allow-dirty -p $crate; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE } }"
+                    "$ErrorActionPreference = 'Stop'; $crates = @('use-arithmetic','use-number','use-integer','use-modular','use-prime','use-rational','use-interval','use-real','use-complex','use-geometry','use-combinatorics','use-series','use-catalan','use-geode','use-algebra','use-vector','use-matrix','use-linear','use-calculus','use-probability','use-statistics','use-trigonometry','use-logic','use-set'); foreach ($crate in $crates) { cargo package --list -p $crate; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; cargo publish --dry-run --allow-dirty -p $crate; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE } }"
                 ]
             },
             "problemMatcher": []

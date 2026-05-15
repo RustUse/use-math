@@ -30,6 +30,7 @@ geode = ["dep:use-geode"]
 integer = ["dep:use-integer"]
 interval = ["dep:use-interval"]
 modular = ["dep:use-modular"]
+prime = ["dep:use-prime"]
 matrix = ["dep:use-matrix"]
 linear = ["dep:use-linear", "matrix", "vector"]
 vector = ["dep:use-vector"]
@@ -56,6 +57,7 @@ full = [
 	"catalan",
 	"algebra",
 	"modular",
+	"prime",
 	"interval",
 	"matrix",
 	"linear",
@@ -80,6 +82,7 @@ use-geode = { version = "0.0.5", path = "../use-geode", optional = true }
 use-integer = { version = "0.0.5", path = "../use-integer", optional = true }
 use-interval = { version = "0.0.5", path = "../use-interval", optional = true }
 use-modular = { version = "0.0.5", path = "../use-modular", optional = true }
+use-prime = { version = "0.0.5", path = "../use-prime", optional = true }
 use-matrix = { version = "0.0.5", path = "../use-matrix", optional = true }
 use-linear = { version = "0.0.5", path = "../use-linear", optional = true }
 use-vector = { version = "0.0.5", path = "../use-vector", optional = true }

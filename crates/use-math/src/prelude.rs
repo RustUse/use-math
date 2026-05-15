@@ -59,6 +59,12 @@ pub use crate::{
     Modular, is_congruent, mod_add, mod_inverse, mod_mul, mod_normalize, mod_pow, mod_sub,
 };
 
+#[cfg(feature = "prime")]
+pub use crate::{
+    factorization, is_composite, is_prime, next_prime, previous_prime, prime_factors, primes_up_to,
+    sieve, unique_prime_factors,
+};
+
 #[cfg(feature = "logic")]
 pub use crate::{equivalence, exclusive_or, implication, majority, nand, nor};
 

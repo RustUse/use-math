@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       FOCUSED_CRATES: >-
-        use-arithmetic use-number use-integer use-modular use-rational use-interval use-real use-complex use-geometry
+        use-arithmetic use-number use-integer use-modular use-prime use-rational use-interval use-real use-complex use-geometry
         use-combinatorics use-series use-catalan use-geode use-algebra use-vector use-matrix use-linear
         use-calculus use-probability use-statistics use-trigonometry use-logic
         use-set

@@ -242,6 +242,7 @@ dependencies = [
  "use-matrix",
  "use-modular",
  "use-number",
+ "use-prime",
  "use-probability",
  "use-rational",
  "use-real",
@@ -265,6 +266,10 @@ version = "0.0.5"
 
 [[package]]
 name = "use-number"
+version = "0.0.5"
+
+[[package]]
+name = "use-prime"
 version = "0.0.5"
 
 [[package]]

@@ -6,10 +6,13 @@
 
 - Added the `use-modular` crate with normalized modular arithmetic helpers, congruence checks, modular inverses, exponentiation, and the optional `Modular` helper type for the RustUse math workspace.
 - Added the `modular` feature to the `use-math` facade with root modular reexports plus the `use_math::modular` namespace.
+- Added the `use-prime` crate with primality checks, prime search, sieve helpers, deterministic factorization, and prime-factor utilities for the RustUse math workspace.
+- Added the `prime` feature to the `use-math` facade with root prime reexports plus the `use_math::prime` namespace.
 
 ### Changed
 
 - Extended workspace release metadata, publish-readiness lists, maintainer publish-order docs, and facade documentation to include `use-modular` as a focused crate in the lockstep release surface.
+- Extended workspace release metadata, publish-readiness lists, maintainer publish-order docs, and facade documentation to include `use-prime` as a focused crate in the lockstep release surface.
 
 ## [0.0.5](https://github.com/RustUse/use-math/compare/use-math-v0.0.4...use-math-v0.0.5) - 2026-05-15
 
