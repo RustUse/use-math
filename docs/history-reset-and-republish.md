@@ -177,7 +177,7 @@ For the first release wave, do not use `release-plz release`. Publish in manual
 dependency order.
 
 ```bash
-for crate in use-number use-integer use-rational use-real use-complex use-geometry use-combinatorics use-series use-catalan use-geode use-algebra use-linear use-calculus use-probability use-statistics use-trigonometry use-logic use-set; do
+for crate in use-arithmetic use-number use-integer use-rational use-real use-complex use-geometry use-combinatorics use-series use-catalan use-geode use-algebra use-linear use-calculus use-probability use-statistics use-trigonometry use-logic use-set; do
 	cargo publish -p "$crate"
 done
 ```

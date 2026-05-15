@@ -6,6 +6,11 @@ pr_labels = ["release"]
 max_analyze_commits = 2000
 
 [[package]]
+name = "use-arithmetic"
+release = true
+version_group = "rustuse-math"
+
+[[package]]
 name = "use-number"
 release = true
 version_group = "rustuse-math"
@@ -102,6 +107,7 @@ version_group = "rustuse-math"
 changelog_update = true
 changelog_path = "./CHANGELOG.md"
 changelog_include = [
+  "use-arithmetic",
   "use-number",
   "use-integer",
   "use-rational",

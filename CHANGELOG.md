@@ -2,6 +2,23 @@
 
 ## Unreleased
 
+## [0.0.3](https://github.com/RustUse/use-math/compare/use-math-v0.0.2...use-math-v0.0.3) - 2026-05-15
+
+### Added
+
+- Added the `use-arithmetic` crate with gcd/lcm, divisibility, parity, floor-division, and explicit checked, saturating, and wrapping arithmetic helpers.
+- Added the `arithmetic` feature to the `use-math` facade with nested `use_math::arithmetic` namespacing plus non-conflicting root and prelude reexports.
+
+### Changed
+
+- Extended workspace docs, publish-readiness lists, and release metadata to include `use-arithmetic` as a focused crate in the lockstep release surface.
+
+## [0.0.2](https://github.com/RustUse/use-math/compare/use-math-v0.0.1...use-math-v0.0.2) - 2026-05-15
+
+### Changed
+
+- Add use-geode crate and integrate into workspace
+
 ### Added
 
 - Added a manual `Facade Publish Readiness` workflow and matching local facade dry-run target so `use-math` can be revalidated once focused crates are live on crates.io.

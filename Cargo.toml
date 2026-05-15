@@ -1,6 +1,7 @@
 [workspace]
 members = [
     "crates/use-math",
+    "crates/use-arithmetic",
     "crates/use-geometry",
     "crates/use-combinatorics",
     "crates/use-number",
@@ -29,7 +30,7 @@ license = "MIT OR Apache-2.0"
 publish = false
 repository = "https://github.com/RustUse/use-math"
 rust-version = "1.95.0"
-version = "0.0.1"
+version = "0.0.3"
 
 [workspace.dependencies]
 proptest = { version = "1.11.0", default-features = false, features = ["std"] }
@@ -38,6 +39,7 @@ proptest = { version = "1.11.0", default-features = false, features = ["std"] }
 publish = false
 versioning = "lockstep-0.x"
 first-publish-candidates = [
+    "use-arithmetic",
     "use-number",
     "use-integer",
     "use-rational",

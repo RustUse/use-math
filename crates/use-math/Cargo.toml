@@ -19,6 +19,7 @@ all-features = true
 
 [features]
 default = ["full"]
+arithmetic = ["dep:use-arithmetic"]
 algebra = ["dep:use-algebra"]
 calculus = ["dep:use-calculus"]
 catalan = ["dep:use-catalan"]
@@ -38,6 +39,7 @@ set = ["dep:use-set"]
 statistics = ["dep:use-statistics"]
 trigonometry = ["dep:use-trigonometry"]
 full = [
+	"arithmetic",
 	"number",
 	"integer",
 	"rational",
@@ -59,24 +61,29 @@ full = [
 ]
 
 [dependencies]
-use-algebra = { version = "0.0.1", path = "../use-algebra", optional = true }
-use-calculus = { version = "0.0.1", path = "../use-calculus", optional = true }
-use-catalan = { version = "0.0.1", path = "../use-catalan", optional = true }
-use-combinatorics = { version = "0.0.1", path = "../use-combinatorics", optional = true }
-use-complex = { version = "0.0.1", path = "../use-complex", optional = true }
-use-geometry = { version = "0.0.1", path = "../use-geometry", optional = true }
-use-geode = { version = "0.0.1", path = "../use-geode", optional = true }
-use-integer = { version = "0.0.1", path = "../use-integer", optional = true }
-use-linear = { version = "0.0.1", path = "../use-linear", optional = true }
-use-logic = { version = "0.0.1", path = "../use-logic", optional = true }
-use-number = { version = "0.0.1", path = "../use-number", optional = true }
-use-probability = { version = "0.0.1", path = "../use-probability", optional = true }
-use-rational = { version = "0.0.1", path = "../use-rational", optional = true }
-use-real = { version = "0.0.1", path = "../use-real", optional = true }
-use-series = { version = "0.0.1", path = "../use-series", optional = true }
-use-set = { version = "0.0.1", path = "../use-set", optional = true }
-use-statistics = { version = "0.0.1", path = "../use-statistics", optional = true }
-use-trigonometry = { version = "0.0.1", path = "../use-trigonometry", optional = true }
+use-arithmetic = { version = "0.0.3", path = "../use-arithmetic", optional = true }
+use-algebra = { version = "0.0.3", path = "../use-algebra", optional = true }
+use-calculus = { version = "0.0.3", path = "../use-calculus", optional = true }
+use-catalan = { version = "0.0.3", path = "../use-catalan", optional = true }
+use-combinatorics = { version = "0.0.3", path = "../use-combinatorics", optional = true }
+use-complex = { version = "0.0.3", path = "../use-complex", optional = true }
+use-geometry = { version = "0.0.3", path = "../use-geometry", optional = true }
+use-geode = { version = "0.0.3", path = "../use-geode", optional = true }
+use-integer = { version = "0.0.3", path = "../use-integer", optional = true }
+use-linear = { version = "0.0.3", path = "../use-linear", optional = true }
+use-logic = { version = "0.0.3", path = "../use-logic", optional = true }
+use-number = { version = "0.0.3", path = "../use-number", optional = true }
+use-probability = { version = "0.0.3", path = "../use-probability", optional = true }
+use-rational = { version = "0.0.3", path = "../use-rational", optional = true }
+use-real = { version = "0.0.3", path = "../use-real", optional = true }
+use-series = { version = "0.0.3", path = "../use-series", optional = true }
+use-set = { version = "0.0.3", path = "../use-set", optional = true }
+use-statistics = { version = "0.0.3", path = "../use-statistics", optional = true }
+use-trigonometry = { version = "0.0.3", path = "../use-trigonometry", optional = true }
+
+[[example]]
+name = "facade_arithmetic"
+required-features = ["arithmetic"]
 
 [[example]]
 name = "facade_combinatorics"
@@ -89,6 +96,10 @@ required-features = ["geometry"]
 [[example]]
 name = "facade_geode"
 required-features = ["geode"]
+
+[[test]]
+name = "facade_arithmetic"
+required-features = ["arithmetic"]
 
 [[test]]
 name = "facade_combinatorics"

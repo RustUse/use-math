@@ -16,6 +16,7 @@ fn facade_supports_geometry_and_combinatorics_together() -> Result<(), Box<dyn s
 }
 
 #[cfg(all(
+    feature = "arithmetic",
     feature = "number",
     feature = "integer",
     feature = "rational",
@@ -38,12 +39,48 @@ fn facade_supports_geometry_and_combinatorics_together() -> Result<(), Box<dyn s
 #[test]
 fn facade_exposes_all_namespace_features() {
     use use_math::{
-        algebra as _, calculus as _, catalan as _, combinatorics as _, complex as _, geometry as _,
-        integer as _, linear as _, logic as _, number as _, probability as _, rational as _,
-        real as _, series as _, set as _, statistics as _, trigonometry as _,
+        algebra as _, arithmetic as _, calculus as _, catalan as _, combinatorics as _,
+        complex as _, geometry as _, integer as _, linear as _, logic as _, number as _,
+        probability as _, rational as _, real as _, series as _, set as _, statistics as _,
+        trigonometry as _,
     };
 
     let _ = use_math::geode::TypeVector::new(vec![0]);
+}
+
+#[cfg(all(
+    feature = "arithmetic",
+    not(feature = "geometry"),
+    not(feature = "combinatorics"),
+    not(feature = "catalan"),
+    not(feature = "series"),
+    not(feature = "integer"),
+    not(feature = "logic"),
+    not(feature = "set"),
+    not(feature = "statistics"),
+    not(feature = "trigonometry"),
+    not(feature = "linear"),
+    not(feature = "number"),
+    not(feature = "complex"),
+    not(feature = "calculus"),
+    not(feature = "probability"),
+    not(feature = "rational"),
+    not(feature = "real"),
+    not(feature = "algebra"),
+    not(feature = "geode")
+))]
+#[test]
+fn facade_supports_arithmetic_without_other_concrete_features() {
+    use use_math::{checked_add, div_floor, mod_floor, saturating_add, wrapping_mul};
+
+    assert_eq!(checked_add(u8::MAX, 1), None);
+    assert_eq!(div_floor(-7, 3), -3);
+    assert_eq!(mod_floor(-7, 3), 2);
+    assert_eq!(saturating_add(u8::MAX, 1), u8::MAX);
+    assert_eq!(wrapping_mul(200_u8, 2), 144);
+    assert_eq!(use_math::arithmetic::gcd(54, 24), 6);
+    assert_eq!(use_math::arithmetic::lcm(6, 15), 30);
+    assert!(use_math::arithmetic::is_divisible_by(84, 7));
 }
 
 #[cfg(all(
