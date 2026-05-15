@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+### Added
+
+- Added the `use-modular` crate with normalized modular arithmetic helpers, congruence checks, modular inverses, exponentiation, and the optional `Modular` helper type for the RustUse math workspace.
+- Added the `modular` feature to the `use-math` facade with root modular reexports plus the `use_math::modular` namespace.
+
+### Changed
+
+- Extended workspace release metadata, publish-readiness lists, maintainer publish-order docs, and facade documentation to include `use-modular` as a focused crate in the lockstep release surface.
+
 ## [0.0.5](https://github.com/RustUse/use-math/compare/use-math-v0.0.4...use-math-v0.0.5) - 2026-05-15
 
 ### Added

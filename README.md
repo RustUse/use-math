@@ -244,6 +244,7 @@ Focused crates directly:
 [dependencies]
 use-geometry = "0.0.5"
 use-combinatorics = "0.0.5"
+use-modular = "0.0.5"
 ```
 
 > [!NOTE]
@@ -312,6 +313,7 @@ The facade crate exposes a small feature surface:
 | `catalan`       | Re-exports from `use-catalan`, including Catalan and Fuss-Catalan helpers                                                                                      | No      |
 | `geode`         | Re-exports from `use-geode`, including `TypeVector`, `hyper_catalan`, `geode_memoized`, and the nested `use_math::geode` module                                | No      |
 | `algebra`       | Re-exports from `use-algebra`, including finite algebra-law helpers such as `identity_element`, `is_abelian_group`, and `is_ring`                              | No      |
+| `modular`       | Re-exports from `use-modular`, including normalized residues, `Modular`, congruence checks, inverses, exponentiation, and the `use_math::modular` namespace    | No      |
 | `series`        | Re-exports from `use-series`, including arithmetic and geometric progression helpers                                                                           | No      |
 | `integer`       | Re-exports from `use-integer`, including sign, parity, divisibility, and gcd/lcm helpers                                                                       | No      |
 | `logic`         | Re-exports from `use-logic`, including implication, equivalence, XOR, NAND, NOR, and majority helpers                                                          | No      |

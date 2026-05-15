@@ -240,6 +240,7 @@ dependencies = [
  "use-linear",
  "use-logic",
  "use-matrix",
+ "use-modular",
  "use-number",
  "use-probability",
  "use-rational",
@@ -257,6 +258,10 @@ version = "0.0.5"
 dependencies = [
  "use-vector",
 ]
+
+[[package]]
+name = "use-modular"
+version = "0.0.5"
 
 [[package]]
 name = "use-number"

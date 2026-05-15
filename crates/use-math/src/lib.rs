@@ -90,6 +90,14 @@ pub use use_interval as interval;
 #[cfg(feature = "interval")]
 pub use use_interval::{Bound, Interval};
 
+#[cfg(feature = "modular")]
+pub use use_modular as modular;
+
+#[cfg(feature = "modular")]
+pub use use_modular::{
+    Modular, is_congruent, mod_add, mod_inverse, mod_mul, mod_normalize, mod_pow, mod_sub,
+};
+
 #[cfg(feature = "matrix")]
 pub use use_matrix as matrix;
 

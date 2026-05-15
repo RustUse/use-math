@@ -54,6 +54,11 @@ pub use crate::{
 #[cfg(feature = "interval")]
 pub use crate::{Bound, Interval};
 
+#[cfg(feature = "modular")]
+pub use crate::{
+    Modular, is_congruent, mod_add, mod_inverse, mod_mul, mod_normalize, mod_pow, mod_sub,
+};
+
 #[cfg(feature = "logic")]
 pub use crate::{equivalence, exclusive_or, implication, majority, nand, nor};
 

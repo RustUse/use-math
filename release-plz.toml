@@ -21,6 +21,11 @@ release = true
 version_group = "rustuse-math"
 
 [[package]]
+name = "use-modular"
+release = true
+version_group = "rustuse-math"
+
+[[package]]
 name = "use-rational"
 release = true
 version_group = "rustuse-math"
@@ -125,6 +130,7 @@ changelog_include = [
   "use-arithmetic",
   "use-number",
   "use-integer",
+  "use-modular",
   "use-rational",
   "use-interval",
   "use-real",
