@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+### Added
+
+- Added the `use-interval` crate with small bound and interval primitives, containment checks, overlap logic, and interval intersections for the RustUse math workspace.
+- Added the `interval` feature to the `use-math` facade with root `Bound` and `Interval` reexports plus the `use_math::interval` namespace.
+
+### Changed
+
+- Made `use-real::RealInterval` compose `use-interval` for its closed-interval representation while keeping finite-value and tolerance policy in `use-real`.
+- Extended workspace release metadata, publish-readiness lists, and maintainer publish-order docs to include `use-interval` as a focused crate in the lockstep release surface, with `use-interval` now ordered before `use-real`.
+
 ## [0.0.4](https://github.com/RustUse/use-math/compare/use-math-v0.0.3...use-math-v0.0.4) - 2026-05-15
 
 ### Added

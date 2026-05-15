@@ -51,6 +51,9 @@ pub use crate::{
     lcm,
 };
 
+#[cfg(feature = "interval")]
+pub use crate::{Bound, Interval};
+
 #[cfg(feature = "logic")]
 pub use crate::{equivalence, exclusive_or, implication, majority, nand, nor};
 

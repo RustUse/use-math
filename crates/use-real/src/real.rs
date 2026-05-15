@@ -1,5 +1,7 @@
 use core::fmt;
 
+use use_interval::Interval;
+
 use crate::RealError;
 
 /// A validated finite `f64` value.
@@ -13,6 +15,7 @@ pub struct Real {
 pub struct RealInterval {
     min: Real,
     max: Real,
+    interval: Interval<Real>,
 }
 
 impl Real {
@@ -94,7 +97,11 @@ impl RealInterval {
     /// Creates an interval from two validated bounds without rechecking order.
     #[must_use]
     pub const fn new(min: Real, max: Real) -> Self {
-        Self { min, max }
+        Self {
+            min,
+            max,
+            interval: Interval::closed(min, max),
+        }
     }
 
     /// Creates an interval from finite `min` and `max` bounds.
@@ -146,6 +153,12 @@ impl RealInterval {
     #[must_use]
     pub const fn max(&self) -> Real {
         self.max
+    }
+
+    /// Returns the generic closed interval representation.
+    #[must_use]
+    pub const fn interval(&self) -> Interval<Real> {
+        self.interval
     }
 
     /// Returns the interval width, `max - min`.
@@ -213,6 +226,7 @@ pub fn approx_eq(left: Real, right: Real, tolerance: f64) -> Result<bool, RealEr
 mod tests {
     use super::{Real, RealInterval, approx_eq};
     use crate::RealError;
+    use use_interval::Interval;
 
     fn assert_close(left: f64, right: f64, tolerance: f64) {
         assert!(
@@ -265,6 +279,10 @@ mod tests {
 
         assert_close(interval.width(), 8.0, 1.0e-12);
         assert_close(interval.midpoint().value(), 2.0, 1.0e-12);
+        assert_eq!(
+            interval.interval(),
+            Interval::closed(Real::try_new(-2.0)?, Real::try_new(6.0)?)
+        );
         assert!(interval.contains(Real::try_new(1.5)?));
         assert_eq!(interval.clamp(Real::try_new(8.0)?), Real::try_new(6.0)?);
         assert!(!interval.is_degenerate());

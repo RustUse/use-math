@@ -18,5 +18,8 @@ categories = ["mathematics", "science"]
 name = "use-real-primitives"
 path = "examples/basic_usage.rs"
 
+[dependencies]
+use-interval = { version = "0.0.4", path = "../use-interval" }
+
 [lints]
 workspace = true

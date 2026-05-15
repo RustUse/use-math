@@ -208,6 +208,10 @@ name = "use-integer"
 version = "0.0.4"
 
 [[package]]
+name = "use-interval"
+version = "0.0.4"
+
+[[package]]
 name = "use-linear"
 version = "0.0.4"
 dependencies = [
@@ -232,6 +236,7 @@ dependencies = [
  "use-geode",
  "use-geometry",
  "use-integer",
+ "use-interval",
  "use-linear",
  "use-logic",
  "use-matrix",
@@ -268,6 +273,9 @@ version = "0.0.4"
 [[package]]
 name = "use-real"
 version = "0.0.4"
+dependencies = [
+ "use-interval",
+]
 
 [[package]]
 name = "use-series"

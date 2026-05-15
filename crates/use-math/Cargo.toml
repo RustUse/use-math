@@ -28,6 +28,7 @@ complex = ["dep:use-complex"]
 geometry = ["dep:use-geometry"]
 geode = ["dep:use-geode"]
 integer = ["dep:use-integer"]
+interval = ["dep:use-interval"]
 matrix = ["dep:use-matrix"]
 linear = ["dep:use-linear", "matrix", "vector"]
 vector = ["dep:use-vector"]
@@ -53,6 +54,7 @@ full = [
 	"series",
 	"catalan",
 	"algebra",
+	"interval",
 	"matrix",
 	"linear",
 	"vector",
@@ -74,6 +76,7 @@ use-complex = { version = "0.0.4", path = "../use-complex", optional = true }
 use-geometry = { version = "0.0.4", path = "../use-geometry", optional = true }
 use-geode = { version = "0.0.4", path = "../use-geode", optional = true }
 use-integer = { version = "0.0.4", path = "../use-integer", optional = true }
+use-interval = { version = "0.0.4", path = "../use-interval", optional = true }
 use-matrix = { version = "0.0.4", path = "../use-matrix", optional = true }
 use-linear = { version = "0.0.4", path = "../use-linear", optional = true }
 use-vector = { version = "0.0.4", path = "../use-vector", optional = true }

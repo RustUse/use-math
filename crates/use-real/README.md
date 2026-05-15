@@ -23,6 +23,7 @@
 </p>
 
 `use-real` provides a deliberately small real-number surface. The crate prefers explicit wrappers over loose `f64` conventions: `Real` keeps finite-value validation attached to the value itself, `RealInterval` encodes closed intervals with checked ordering, and tolerance-aware comparisons require a caller-provided non-negative tolerance.
+`use-real` now composes the generic interval ownership in `use-interval` while keeping `RealInterval` focused on finite, ordered, closed bounds over validated `Real` values.
 
 <table>
     <tr>
@@ -64,6 +65,7 @@ Choose `use-real` directly when finite-value validation and real-number helpers 
 | ------------------------------------------------------------- | ------------------------ | -------------------------------------------- |
 | You need finite-value wrappers and checked intervals          | Yes                      | The crate stays narrow and explicit          |
 | You want tolerance-aware comparisons with caller-owned policy | Yes                      | The tolerance is required at the call site   |
+| You need open, half-open, or unbounded interval semantics     | Usually no               | Those belong in `use-interval`               |
 | You need geometry-specific tolerance rules                    | Usually no               | Those stay better attached to geometry types |
 | You need complex analysis or calculus helpers                 | No                       | Those belong in adjacent focused crates      |
 
@@ -71,7 +73,7 @@ Choose `use-real` directly when finite-value validation and real-number helpers 
 
 ```toml
 [dependencies]
-use-real = "0.0.1"
+use-real = "0.0.4"
 ```
 
 ## Quick examples
@@ -108,13 +110,15 @@ assert!(!approx_eq(left, right, 1.0e-12)?);
 
 Use `try_new` when values, bounds, or tolerances may come from user input, files, or network payloads. Use infallible constructors like `Real::new(...)` and `RealInterval::new(...)` only when finiteness and ordering are already guaranteed by the surrounding code.
 
+When you need to hand a checked real interval to adjacent crates, use `RealInterval::interval()` to recover the underlying closed `use_interval::Interval<Real>`.
+
 > [!IMPORTANT]
 > This crate does not define a global epsilon policy. Approximate comparison requires a caller-provided non-negative tolerance every time.
 
 ## Scope
 
 - Small real-number APIs are preferred over broad trait-heavy abstractions.
-- The initial concrete surface focuses on finite-value validation, closed intervals, and explicit tolerance checks.
+- The initial concrete surface focuses on finite-value validation, closed intervals built on `use-interval`, and explicit tolerance checks.
 - Symbolic algebra, arbitrary precision, and domain-specific tolerance policies are intentionally out of scope for this first slice.
 - Geometry-specific and calculus-specific interpretation rules belong in adjacent focused crates.
 

@@ -26,6 +26,11 @@ release = true
 version_group = "rustuse-math"
 
 [[package]]
+name = "use-interval"
+release = true
+version_group = "rustuse-math"
+
+[[package]]
 name = "use-real"
 release = true
 version_group = "rustuse-math"
@@ -121,6 +126,7 @@ changelog_include = [
   "use-number",
   "use-integer",
   "use-rational",
+  "use-interval",
   "use-real",
   "use-complex",
   "use-geometry",
