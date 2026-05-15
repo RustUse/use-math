@@ -65,27 +65,27 @@ full = [
 ]
 
 [dependencies]
-use-arithmetic = { version = "0.0.3", path = "../use-arithmetic", optional = true }
-use-algebra = { version = "0.0.3", path = "../use-algebra", optional = true }
-use-calculus = { version = "0.0.3", path = "../use-calculus", optional = true }
-use-catalan = { version = "0.0.3", path = "../use-catalan", optional = true }
-use-combinatorics = { version = "0.0.3", path = "../use-combinatorics", optional = true }
-use-complex = { version = "0.0.3", path = "../use-complex", optional = true }
-use-geometry = { version = "0.0.3", path = "../use-geometry", optional = true }
-use-geode = { version = "0.0.3", path = "../use-geode", optional = true }
-use-integer = { version = "0.0.3", path = "../use-integer", optional = true }
-use-matrix = { version = "0.0.3", path = "../use-matrix", optional = true }
-use-linear = { version = "0.0.3", path = "../use-linear", optional = true }
-use-vector = { version = "0.0.3", path = "../use-vector", optional = true }
-use-logic = { version = "0.0.3", path = "../use-logic", optional = true }
-use-number = { version = "0.0.3", path = "../use-number", optional = true }
-use-probability = { version = "0.0.3", path = "../use-probability", optional = true }
-use-rational = { version = "0.0.3", path = "../use-rational", optional = true }
-use-real = { version = "0.0.3", path = "../use-real", optional = true }
-use-series = { version = "0.0.3", path = "../use-series", optional = true }
-use-set = { version = "0.0.3", path = "../use-set", optional = true }
-use-statistics = { version = "0.0.3", path = "../use-statistics", optional = true }
-use-trigonometry = { version = "0.0.3", path = "../use-trigonometry", optional = true }
+use-arithmetic = { version = "0.0.4", path = "../use-arithmetic", optional = true }
+use-algebra = { version = "0.0.4", path = "../use-algebra", optional = true }
+use-calculus = { version = "0.0.4", path = "../use-calculus", optional = true }
+use-catalan = { version = "0.0.4", path = "../use-catalan", optional = true }
+use-combinatorics = { version = "0.0.4", path = "../use-combinatorics", optional = true }
+use-complex = { version = "0.0.4", path = "../use-complex", optional = true }
+use-geometry = { version = "0.0.4", path = "../use-geometry", optional = true }
+use-geode = { version = "0.0.4", path = "../use-geode", optional = true }
+use-integer = { version = "0.0.4", path = "../use-integer", optional = true }
+use-matrix = { version = "0.0.4", path = "../use-matrix", optional = true }
+use-linear = { version = "0.0.4", path = "../use-linear", optional = true }
+use-vector = { version = "0.0.4", path = "../use-vector", optional = true }
+use-logic = { version = "0.0.4", path = "../use-logic", optional = true }
+use-number = { version = "0.0.4", path = "../use-number", optional = true }
+use-probability = { version = "0.0.4", path = "../use-probability", optional = true }
+use-rational = { version = "0.0.4", path = "../use-rational", optional = true }
+use-real = { version = "0.0.4", path = "../use-real", optional = true }
+use-series = { version = "0.0.4", path = "../use-series", optional = true }
+use-set = { version = "0.0.4", path = "../use-set", optional = true }
+use-statistics = { version = "0.0.4", path = "../use-statistics", optional = true }
+use-trigonometry = { version = "0.0.4", path = "../use-trigonometry", optional = true }
 
 [[example]]
 name = "facade_arithmetic"

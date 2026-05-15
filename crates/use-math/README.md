@@ -120,21 +120,21 @@ Default features enable the current full surface:
 
 ```toml
 [dependencies]
-use-math = "0.0.3"
+use-math = "0.0.4"
 ```
 
 Geometry only:
 
 ```toml
 [dependencies]
-use-math = { version = "0.0.3", default-features = false, features = ["geometry"] }
+use-math = { version = "0.0.4", default-features = false, features = ["geometry"] }
 ```
 
 Combinatorics only:
 
 ```toml
 [dependencies]
-use-math = { version = "0.0.3", default-features = false, features = ["combinatorics"] }
+use-math = { version = "0.0.4", default-features = false, features = ["combinatorics"] }
 ```
 
 ## Quick examples

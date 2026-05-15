@@ -32,7 +32,7 @@ This repository is the source workspace for RustUse's math surface. Today it com
 - The GitHub repository is public before the first crates.io release is live.
 - Until then, consume the crates from a pinned Git revision or work from the workspace directly.
 - `use-arithmetic`, `use-vector`, `use-matrix`, `use-geometry`, `use-combinatorics`, `use-catalan`, `use-geode`, `use-series`, `use-algebra`, `use-integer`, `use-logic`, `use-set`, `use-trigonometry`, `use-statistics`, `use-linear`, `use-number`, `use-complex`, `use-calculus`, `use-probability`, `use-real`, and `use-rational` are the concrete focused APIs today.
-- The planned first release order is every focused crate first in dependency order, including `use-matrix` before `use-linear`, then `use-math` after crates.io index propagation.
+- The planned first release order is every focused crate first in dependency order, including `use-vector` before `use-matrix`, `use-matrix` before `use-linear`, then `use-math` after crates.io index propagation.
 
 <table>
 	<tr>
@@ -223,22 +223,22 @@ Facade crate with default features:
 
 ```toml
 [dependencies]
-use-math = "0.0.3"
+use-math = "0.0.4"
 ```
 
 Facade crate with geometry only:
 
 ```toml
 [dependencies]
-use-math = { version = "0.0.3", default-features = false, features = ["geometry"] }
+use-math = { version = "0.0.4", default-features = false, features = ["geometry"] }
 ```
 
 Focused crates directly:
 
 ```toml
 [dependencies]
-use-geometry = "0.0.3"
-use-combinatorics = "0.0.3"
+use-geometry = "0.0.4"
+use-combinatorics = "0.0.4"
 ```
 
 > [!NOTE]
@@ -327,7 +327,7 @@ If you want the facade but only one module, disable defaults and enable the feat
 
 ```toml
 [dependencies]
-use-math = { version = "0.0.3", default-features = false, features = ["combinatorics"] }
+use-math = { version = "0.0.4", default-features = false, features = ["combinatorics"] }
 ```
 
 ## Maturity and release model

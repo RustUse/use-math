@@ -1,6 +1,6 @@
 .PHONY: help fmt check lint test test-minimal build doc examples audit deny sbom publish-dry-run-focused publish-dry-run-facade release-readiness facade-post-publish-validation verify
 
-FOCUSED_CRATES := use-arithmetic use-number use-integer use-rational use-real use-complex use-geometry use-combinatorics use-series use-catalan use-geode use-algebra use-matrix use-linear use-calculus use-probability use-statistics use-trigonometry use-logic use-set
+FOCUSED_CRATES := use-arithmetic use-number use-integer use-rational use-real use-complex use-geometry use-combinatorics use-series use-catalan use-geode use-algebra use-vector use-matrix use-linear use-calculus use-probability use-statistics use-trigonometry use-logic use-set
 
 help:
 	@printf "%s\n" \

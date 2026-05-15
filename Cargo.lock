@@ -164,52 +164,52 @@ checksum = "e6e4313cd5fcd3dad5cafa179702e2b244f760991f45397d14d4ebf38247da75"
 
 [[package]]
 name = "use-algebra"
-version = "0.0.3"
+version = "0.0.4"
 
 [[package]]
 name = "use-arithmetic"
-version = "0.0.3"
+version = "0.0.4"
 
 [[package]]
 name = "use-calculus"
-version = "0.0.3"
+version = "0.0.4"
 
 [[package]]
 name = "use-catalan"
-version = "0.0.3"
+version = "0.0.4"
 
 [[package]]
 name = "use-combinatorics"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "proptest",
 ]
 
 [[package]]
 name = "use-complex"
-version = "0.0.3"
+version = "0.0.4"
 
 [[package]]
 name = "use-geode"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "use-catalan",
 ]
 
 [[package]]
 name = "use-geometry"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "proptest",
 ]
 
 [[package]]
 name = "use-integer"
-version = "0.0.3"
+version = "0.0.4"
 
 [[package]]
 name = "use-linear"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "use-matrix",
  "use-vector",
@@ -217,11 +217,11 @@ dependencies = [
 
 [[package]]
 name = "use-logic"
-version = "0.0.3"
+version = "0.0.4"
 
 [[package]]
 name = "use-math"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "use-algebra",
  "use-arithmetic",
@@ -248,46 +248,46 @@ dependencies = [
 
 [[package]]
 name = "use-matrix"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "use-vector",
 ]
 
 [[package]]
 name = "use-number"
-version = "0.0.3"
+version = "0.0.4"
 
 [[package]]
 name = "use-probability"
-version = "0.0.3"
+version = "0.0.4"
 
 [[package]]
 name = "use-rational"
-version = "0.0.3"
+version = "0.0.4"
 
 [[package]]
 name = "use-real"
-version = "0.0.3"
+version = "0.0.4"
 
 [[package]]
 name = "use-series"
-version = "0.0.3"
+version = "0.0.4"
 
 [[package]]
 name = "use-set"
-version = "0.0.3"
+version = "0.0.4"
 
 [[package]]
 name = "use-statistics"
-version = "0.0.3"
+version = "0.0.4"
 
 [[package]]
 name = "use-trigonometry"
-version = "0.0.3"
+version = "0.0.4"
 
 [[package]]
 name = "use-vector"
-version = "0.0.3"
+version = "0.0.4"
 
 [[package]]
 name = "wasip2"

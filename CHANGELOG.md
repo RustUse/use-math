@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## [0.0.4](https://github.com/RustUse/use-math/compare/use-math-v0.0.3...use-math-v0.0.4) - 2026-05-15
+
 ### Added
 
 - Added the `use-matrix` crate with focused 2x2, 3x3, and 4x4 matrix primitives, direct matrix operations, and matrix-vector multiplication for the RustUse math workspace.
@@ -10,7 +12,7 @@
 ### Changed
 
 - Narrowed `use-linear` so it now composes `use-matrix` and `use-vector` for primitive ownership while keeping `solve_2x2` and `LinearError` as the focused linear helper surface.
-- Extended publish-readiness lists, release metadata, and maintainer publish-order docs to include `use-matrix` before `use-linear` and `use-math`.
+- Extended publish-readiness lists, release metadata, and maintainer publish-order docs to include `use-vector`, plus the dependency-ordered `use-vector` -> `use-matrix` -> `use-linear` publish path ahead of `use-math`.
 
 ## [0.0.3](https://github.com/RustUse/use-math/compare/use-math-v0.0.2...use-math-v0.0.3) - 2026-05-15
 
