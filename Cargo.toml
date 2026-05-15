@@ -33,7 +33,7 @@ license = "MIT OR Apache-2.0"
 publish = false
 repository = "https://github.com/RustUse/use-math"
 rust-version = "1.95.0"
-version = "0.0.4"
+version = "0.0.5"
 
 [workspace.dependencies]
 proptest = { version = "1.11.0", default-features = false, features = ["std"] }

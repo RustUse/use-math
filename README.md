@@ -120,32 +120,32 @@ All focused crates currently ship concrete APIs.
 
 Pick the crate based on the integration shape you want, not just the total feature count.
 
-| You want...                                                      | Choose...                                        | Why                                                                                  |
-| ---------------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| One dependency for the current workspace surface                 | `use-math`                                       | The facade unifies the concrete APIs and exposes matching nested namespaces          |
-| Arithmetic helpers only                                          | `use-arithmetic`                                 | You keep floor division, divisibility, and overflow-mode helpers explicit and local  |
-| Reusable vector primitives only                                  | `use-vector`                                     | You keep dot products, interpolation, distance, and normalization explicit and local |
-| Matrix primitives only                                           | `use-matrix`                                     | You keep direct matrix construction and operations explicit and local                |
-| Geometry-only code with direct type access                       | `use-geometry`                                   | You avoid facade indirection and keep dependencies minimal                           |
-| Counting helpers only                                            | `use-combinatorics`                              | You get checked math helpers without bringing in geometry modules                    |
-| Catalan-family sequence helpers only                             | `use-catalan`                                    | You keep Catalan and Fuss-Catalan counting explicit and local                        |
-| Geode-array primitives only                                      | `use-geode`                                      | You keep finite type vectors and small exact Geode recurrences explicit and local    |
-| Progression helpers only                                         | `use-series`                                     | You keep arithmetic and geometric nth-term and sum helpers explicit and local        |
-| Finite algebra law helpers only                                  | `use-algebra`                                    | You keep closure-based structure checks explicit and local                           |
-| Integer helpers only                                             | `use-integer`                                    | You keep parity, divisibility, and gcd/lcm logic explicit and local                  |
-| Boolean algebra helpers only                                     | `use-logic`                                      | You keep implication, equivalence, and related helpers explicit and local            |
-| Set helpers only                                                 | `use-set`                                        | You keep membership and set-operation intent explicit and local                      |
-| Trigonometry helpers only                                        | `use-trigonometry`                               | You keep degree/radian handling and direct trig evaluation explicit and local        |
-| Descriptive statistics only                                      | `use-statistics`                                 | You keep central-tendency and variance summaries explicit and local                  |
-| Solver-style linear helpers only                                 | `use-linear`                                     | You keep solve logic explicit while matrix/vector ownership stays in focused crates  |
-| Raw-number helpers only                                          | `use-number`                                     | You keep plain `f64` classification and shared constants explicit and local          |
-| Complex-number primitives without the rest of the facade         | `use-complex`                                    | You get rectangular, imaginary, and polar helpers directly                           |
-| Numerical-calculus helpers without the rest of the facade        | `use-calculus`                                   | You keep derivative, integral, and limit approximations explicit and local           |
-| Probability primitives without the rest of the facade            | `use-probability`                                | You keep normalization and independence assumptions explicit and local               |
-| Validated real-number helpers without the rest of the facade     | `use-real`                                       | You keep floating-point validation and real-specific policy explicit and local       |
-| Reusable interval and bound primitives only                     | `use-interval`                                   | You keep containment, overlap, and intersection semantics explicit and local         |
-| Exact rational arithmetic without the rest of the facade         | `use-rational`                                   | You keep fraction normalization and exact arithmetic explicit and local              |
-| Maximum control over enabled API surface                         | A focused crate, or `use-math` with defaults off | You choose exactly which modules compile into the final build                        |
+| You want...                                                  | Choose...                                        | Why                                                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| One dependency for the current workspace surface             | `use-math`                                       | The facade unifies the concrete APIs and exposes matching nested namespaces          |
+| Arithmetic helpers only                                      | `use-arithmetic`                                 | You keep floor division, divisibility, and overflow-mode helpers explicit and local  |
+| Reusable vector primitives only                              | `use-vector`                                     | You keep dot products, interpolation, distance, and normalization explicit and local |
+| Matrix primitives only                                       | `use-matrix`                                     | You keep direct matrix construction and operations explicit and local                |
+| Geometry-only code with direct type access                   | `use-geometry`                                   | You avoid facade indirection and keep dependencies minimal                           |
+| Counting helpers only                                        | `use-combinatorics`                              | You get checked math helpers without bringing in geometry modules                    |
+| Catalan-family sequence helpers only                         | `use-catalan`                                    | You keep Catalan and Fuss-Catalan counting explicit and local                        |
+| Geode-array primitives only                                  | `use-geode`                                      | You keep finite type vectors and small exact Geode recurrences explicit and local    |
+| Progression helpers only                                     | `use-series`                                     | You keep arithmetic and geometric nth-term and sum helpers explicit and local        |
+| Finite algebra law helpers only                              | `use-algebra`                                    | You keep closure-based structure checks explicit and local                           |
+| Integer helpers only                                         | `use-integer`                                    | You keep parity, divisibility, and gcd/lcm logic explicit and local                  |
+| Boolean algebra helpers only                                 | `use-logic`                                      | You keep implication, equivalence, and related helpers explicit and local            |
+| Set helpers only                                             | `use-set`                                        | You keep membership and set-operation intent explicit and local                      |
+| Trigonometry helpers only                                    | `use-trigonometry`                               | You keep degree/radian handling and direct trig evaluation explicit and local        |
+| Descriptive statistics only                                  | `use-statistics`                                 | You keep central-tendency and variance summaries explicit and local                  |
+| Solver-style linear helpers only                             | `use-linear`                                     | You keep solve logic explicit while matrix/vector ownership stays in focused crates  |
+| Raw-number helpers only                                      | `use-number`                                     | You keep plain `f64` classification and shared constants explicit and local          |
+| Complex-number primitives without the rest of the facade     | `use-complex`                                    | You get rectangular, imaginary, and polar helpers directly                           |
+| Numerical-calculus helpers without the rest of the facade    | `use-calculus`                                   | You keep derivative, integral, and limit approximations explicit and local           |
+| Probability primitives without the rest of the facade        | `use-probability`                                | You keep normalization and independence assumptions explicit and local               |
+| Validated real-number helpers without the rest of the facade | `use-real`                                       | You keep floating-point validation and real-specific policy explicit and local       |
+| Reusable interval and bound primitives only                  | `use-interval`                                   | You keep containment, overlap, and intersection semantics explicit and local         |
+| Exact rational arithmetic without the rest of the facade     | `use-rational`                                   | You keep fraction normalization and exact arithmetic explicit and local              |
+| Maximum control over enabled API surface                     | A focused crate, or `use-math` with defaults off | You choose exactly which modules compile into the final build                        |
 
 ## Project structure
 
@@ -228,22 +228,22 @@ Facade crate with default features:
 
 ```toml
 [dependencies]
-use-math = "0.0.4"
+use-math = "0.0.5"
 ```
 
 Facade crate with geometry only:
 
 ```toml
 [dependencies]
-use-math = { version = "0.0.4", default-features = false, features = ["geometry"] }
+use-math = { version = "0.0.5", default-features = false, features = ["geometry"] }
 ```
 
 Focused crates directly:
 
 ```toml
 [dependencies]
-use-geometry = "0.0.4"
-use-combinatorics = "0.0.4"
+use-geometry = "0.0.5"
+use-combinatorics = "0.0.5"
 ```
 
 > [!NOTE]
@@ -326,14 +326,14 @@ The facade crate exposes a small feature surface:
 | `probability`   | Re-exports from `use-probability`, including `Probability`, `Bernoulli`, and event helpers                                                                     | No      |
 | `rational`      | Re-exports from `use-rational`, including `Rational` and `RationalError`                                                                                       | No      |
 | `real`          | Re-exports from `use-real`, including `Real`, `RealInterval`, and `approx_eq`                                                                                  | No      |
-| `interval`      | Re-exports from `use-interval`, including `Bound`, `Interval`, containment checks, overlap tests, intersections, and the `use_math::interval` namespace         | No      |
+| `interval`      | Re-exports from `use-interval`, including `Bound`, `Interval`, containment checks, overlap tests, intersections, and the `use_math::interval` namespace        | No      |
 | `full`          | Enables every focused crate feature in the workspace                                                                                                           | Yes     |
 
 If you want the facade but only one module, disable defaults and enable the feature you need:
 
 ```toml
 [dependencies]
-use-math = { version = "0.0.4", default-features = false, features = ["combinatorics"] }
+use-math = { version = "0.0.5", default-features = false, features = ["combinatorics"] }
 ```
 
 ## Maturity and release model

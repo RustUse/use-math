@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## [0.0.5](https://github.com/RustUse/use-math/compare/use-math-v0.0.4...use-math-v0.0.5) - 2026-05-15
+
 ### Added
 
 - Added the `use-interval` crate with small bound and interval primitives, containment checks, overlap logic, and interval intersections for the RustUse math workspace.

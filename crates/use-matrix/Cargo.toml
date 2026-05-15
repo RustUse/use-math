@@ -18,7 +18,7 @@ categories = ["mathematics", "science"]
 all-features = true
 
 [dependencies]
-use-vector = { version = "0.0.4", path = "../use-vector" }
+use-vector = { version = "0.0.5", path = "../use-vector" }
 
 [lints]
 workspace = true

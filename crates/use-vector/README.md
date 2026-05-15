@@ -16,7 +16,7 @@
 
 ```toml
 [dependencies]
-use-vector = "0.0.4"
+use-vector = "0.0.5"
 ```
 
 ## What belongs here

@@ -73,7 +73,7 @@ Choose `use-real` directly when finite-value validation and real-number helpers 
 
 ```toml
 [dependencies]
-use-real = "0.0.4"
+use-real = "0.0.5"
 ```
 
 ## Quick examples
