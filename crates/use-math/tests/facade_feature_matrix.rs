@@ -28,7 +28,9 @@ fn facade_supports_geometry_and_combinatorics_together() -> Result<(), Box<dyn s
     feature = "series",
     feature = "catalan",
     feature = "algebra",
+    feature = "matrix",
     feature = "linear",
+    feature = "vector",
     feature = "calculus",
     feature = "probability",
     feature = "statistics",
@@ -40,9 +42,9 @@ fn facade_supports_geometry_and_combinatorics_together() -> Result<(), Box<dyn s
 fn facade_exposes_all_namespace_features() {
     use use_math::{
         algebra as _, arithmetic as _, calculus as _, catalan as _, combinatorics as _,
-        complex as _, geometry as _, integer as _, linear as _, logic as _, number as _,
-        probability as _, rational as _, real as _, series as _, set as _, statistics as _,
-        trigonometry as _,
+        complex as _, geometry as _, integer as _, linear as _, logic as _, matrix as _,
+        number as _, probability as _, rational as _, real as _, series as _, set as _,
+        statistics as _, trigonometry as _, vector as _,
     };
 
     let _ = use_math::geode::TypeVector::new(vec![0]);
@@ -67,7 +69,8 @@ fn facade_exposes_all_namespace_features() {
     not(feature = "rational"),
     not(feature = "real"),
     not(feature = "algebra"),
-    not(feature = "geode")
+    not(feature = "geode"),
+    not(feature = "matrix"),
 ))]
 #[test]
 fn facade_supports_arithmetic_without_other_concrete_features() {
@@ -114,6 +117,52 @@ fn facade_supports_algebra_without_other_concrete_features() {
     assert!(is_abelian_group(&residues, add_mod_3));
     assert!(is_distributive_over(&residues, mul_mod_3, add_mod_3));
     assert!(is_ring(&residues, add_mod_3, mul_mod_3));
+}
+
+#[cfg(all(
+    feature = "matrix",
+    not(feature = "geometry"),
+    not(feature = "combinatorics"),
+    not(feature = "catalan"),
+    not(feature = "series"),
+    not(feature = "integer"),
+    not(feature = "logic"),
+    not(feature = "set"),
+    not(feature = "statistics"),
+    not(feature = "trigonometry"),
+    not(feature = "linear"),
+    not(feature = "vector"),
+    not(feature = "number"),
+    not(feature = "complex"),
+    not(feature = "calculus"),
+    not(feature = "probability"),
+    not(feature = "rational"),
+    not(feature = "real"),
+    not(feature = "algebra"),
+    not(feature = "geode")
+))]
+#[test]
+fn facade_supports_matrix_without_other_concrete_features() {
+    use use_math::{Matrix2, Matrix3, Matrix4};
+
+    let matrix2 = Matrix2::new(4.0, 7.0, 2.0, 6.0);
+    let matrix3 = Matrix3::new(1.0, 2.0, 3.0, 0.0, 1.0, 4.0, 5.0, 6.0, 0.0);
+    let matrix4 = Matrix4::from_rows([
+        [2.0, 1.0, 0.0, 0.0],
+        [0.0, 3.0, 4.0, 0.0],
+        [0.0, 0.0, 5.0, 6.0],
+        [0.0, 0.0, 0.0, 7.0],
+    ]);
+
+    let inverse = matrix2.inverse().expect("matrix should invert");
+
+    assert_eq!(use_math::matrix::Matrix2::IDENTITY * matrix2, matrix2);
+    assert!((matrix2.determinant() - 10.0).abs() < 1.0e-12);
+    assert!(((matrix2 * inverse).m00 - 1.0).abs() < 1.0e-10);
+    assert_eq!(matrix3.transpose().transpose(), matrix3);
+    assert_eq!(matrix3.determinant(), 1.0);
+    assert_eq!(matrix4.trace(), 17.0);
+    assert_eq!(matrix4.determinant(), 210.0);
 }
 
 #[cfg(all(feature = "geometry", not(feature = "combinatorics")))]
@@ -428,24 +477,15 @@ fn facade_supports_statistics_without_other_concrete_features()
 ))]
 #[test]
 fn facade_supports_linear_without_other_concrete_features() -> Result<(), use_math::LinearError> {
-    use use_math::{LinearVector2, Matrix2, dot, solve_2x2};
+    use use_math::vector::Vector2;
+    use use_math::{Matrix2, solve_2x2};
 
-    let vector = LinearVector2::new(3.0, 4.0);
-    let other = LinearVector2::new(-2.0, 1.0);
     let matrix = Matrix2::new(2.0, 1.0, 5.0, 3.0);
+    let solution = solve_2x2(matrix, Vector2::new(1.0, 2.0))?;
 
-    assert_eq!(vector + other, LinearVector2::new(1.0, 5.0));
-    assert!((dot(vector, other) + 2.0).abs() < 1.0e-12);
-    assert!((vector.magnitude() - 5.0).abs() < 1.0e-12);
-    assert_eq!(
-        matrix.mul_vector(LinearVector2::new(1.0, -1.0)),
-        LinearVector2::new(1.0, 2.0)
-    );
-    assert_eq!(matrix * Matrix2::identity(), matrix);
-    assert_eq!(
-        solve_2x2(matrix, LinearVector2::new(1.0, 2.0))?,
-        LinearVector2::new(1.0, -1.0)
-    );
+    assert_eq!(solution, Vector2::new(1.0, -1.0));
+    assert_eq!(matrix * solution, Vector2::new(1.0, 2.0));
+    assert_eq!(Matrix2::IDENTITY * matrix, matrix);
 
     Ok(())
 }
@@ -462,6 +502,7 @@ fn facade_supports_linear_without_other_concrete_features() -> Result<(), use_ma
     not(feature = "statistics"),
     not(feature = "trigonometry"),
     not(feature = "linear"),
+    not(feature = "matrix"),
     not(feature = "complex"),
     not(feature = "calculus"),
     not(feature = "probability"),
@@ -551,7 +592,7 @@ fn facade_supports_combinatorics_without_geometry() -> Result<(), use_math::Comb
     Ok(())
 }
 
-#[cfg(not(any(feature = "geometry", feature = "combinatorics")))]
+#[cfg(not(any(feature = "geometry", feature = "combinatorics", feature = "vector")))]
 #[test]
 fn facade_compiles_without_optional_features() {
     let crate_loaded = true;

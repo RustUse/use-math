@@ -54,8 +54,11 @@ pub use crate::{
 #[cfg(feature = "logic")]
 pub use crate::{equivalence, exclusive_or, implication, majority, nand, nor};
 
+#[cfg(feature = "matrix")]
+pub use crate::{Matrix2, Matrix3, Matrix4};
+
 #[cfg(feature = "linear")]
-pub use crate::{LinearError, LinearVector2, Matrix2, dot, solve_2x2};
+pub use crate::{LinearError, solve_2x2};
 
 #[cfg(feature = "number")]
 pub use crate::{

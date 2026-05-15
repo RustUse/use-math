@@ -210,6 +210,10 @@ version = "0.0.3"
 [[package]]
 name = "use-linear"
 version = "0.0.3"
+dependencies = [
+ "use-matrix",
+ "use-vector",
+]
 
 [[package]]
 name = "use-logic"
@@ -230,6 +234,7 @@ dependencies = [
  "use-integer",
  "use-linear",
  "use-logic",
+ "use-matrix",
  "use-number",
  "use-probability",
  "use-rational",
@@ -238,6 +243,14 @@ dependencies = [
  "use-set",
  "use-statistics",
  "use-trigonometry",
+ "use-vector",
+]
+
+[[package]]
+name = "use-matrix"
+version = "0.0.3"
+dependencies = [
+ "use-vector",
 ]
 
 [[package]]
@@ -270,6 +283,10 @@ version = "0.0.3"
 
 [[package]]
 name = "use-trigonometry"
+version = "0.0.3"
+
+[[package]]
+name = "use-vector"
 version = "0.0.3"
 
 [[package]]

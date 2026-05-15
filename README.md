@@ -3,7 +3,7 @@
 <p align="center">
 	<img alt="Rust 1.95.0+" src="https://img.shields.io/badge/Rust-1.95.0%2B-f46623?logo=rust&logoColor=white">
 	<img alt="Edition 2024" src="https://img.shields.io/badge/edition-2024-0f766e">
-	<img alt="20 workspace crates" src="https://img.shields.io/badge/workspace-20%20crates-1d4ed8">
+	<img alt="22 workspace crates" src="https://img.shields.io/badge/workspace-22%20crates-1d4ed8">
 	<img alt="Status pre-release" src="https://img.shields.io/badge/status-pre--release-c2410c">
 	<img alt="License MIT or Apache-2.0" src="https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-2a9d8f">
 </p>
@@ -25,14 +25,14 @@
 	<a href="#community-and-project-policy">Community</a>
 </p>
 
-This repository is the source workspace for RustUse's math surface. Today it combines concrete focused crates for arithmetic helpers, geometry, checked combinatorics, Catalan-family sequences, Geode-array primitives, progression helpers, finite algebra law helpers, integer helpers, boolean algebra helpers, small set helpers, explicit trigonometry helpers, descriptive statistics helpers, compact linear algebra helpers, raw-number helpers, complex numbers, numerical calculus, probability, real-number helpers, and rational arithmetic. `use-math` composes the whole workspace behind feature flags while keeping root re-exports aligned with the concrete APIs each focused crate exposes.
+This repository is the source workspace for RustUse's math surface. Today it combines concrete focused crates for arithmetic helpers, vector primitives, matrix primitives, geometry, checked combinatorics, Catalan-family sequences, Geode-array primitives, progression helpers, finite algebra law helpers, integer helpers, boolean algebra helpers, small set helpers, explicit trigonometry helpers, descriptive statistics helpers, solver-style linear helpers, raw-number helpers, complex numbers, numerical calculus, probability, real-number helpers, and rational arithmetic. `use-math` composes the whole workspace behind feature flags while keeping root re-exports aligned with the concrete APIs each focused crate exposes.
 
 ## Current status
 
 - The GitHub repository is public before the first crates.io release is live.
 - Until then, consume the crates from a pinned Git revision or work from the workspace directly.
-- `use-arithmetic`, `use-geometry`, `use-combinatorics`, `use-catalan`, `use-geode`, `use-series`, `use-algebra`, `use-integer`, `use-logic`, `use-set`, `use-trigonometry`, `use-statistics`, `use-linear`, `use-number`, `use-complex`, `use-calculus`, `use-probability`, `use-real`, and `use-rational` are the concrete focused APIs today.
-- The planned first release order is every focused crate first, then `use-math` after crates.io index propagation.
+- `use-arithmetic`, `use-vector`, `use-matrix`, `use-geometry`, `use-combinatorics`, `use-catalan`, `use-geode`, `use-series`, `use-algebra`, `use-integer`, `use-logic`, `use-set`, `use-trigonometry`, `use-statistics`, `use-linear`, `use-number`, `use-complex`, `use-calculus`, `use-probability`, `use-real`, and `use-rational` are the concrete focused APIs today.
+- The planned first release order is every focused crate first in dependency order, including `use-matrix` before `use-linear`, then `use-math` after crates.io index propagation.
 
 <table>
 	<tr>
@@ -43,8 +43,8 @@ This repository is the source workspace for RustUse's math surface. Today it com
 		</td>
 		<td width="33%" valign="top">
 			<strong>Use concrete focused crates</strong><br>
-			<code>crates/use-arithmetic/</code>, <code>crates/use-geometry/</code>, <code>crates/use-combinatorics/</code>, <code>crates/use-catalan/</code>, <code>crates/use-geode/</code>, <code>crates/use-series/</code>, <code>crates/use-algebra/</code>, <code>crates/use-integer/</code>, <code>crates/use-logic/</code>, <code>crates/use-set/</code>, <code>crates/use-trigonometry/</code>, <code>crates/use-statistics/</code>, <code>crates/use-linear/</code>, <code>crates/use-number/</code>, <code>crates/use-complex/</code>, <code>crates/use-calculus/</code>, <code>crates/use-probability/</code>, <code>crates/use-real/</code>, and <code>crates/use-rational/</code><br>
-			Use direct APIs today when you want arithmetic primitives, geometry primitives, checked counting helpers, Catalan-family sequence counts, Geode-array primitives, arithmetic or geometric progression helpers, finite algebra law checks, integer classifications and divisor helpers, named boolean algebra helpers, explicit set operations, angle conversion and trig helpers, descriptive statistics summaries, compact vector-and-matrix helpers, raw-number classification or constants, complex-number primitives, numerical-calculus helpers, probability primitives, finite real-number helpers, or exact rational arithmetic without the wider facade.
+			<code>crates/use-arithmetic/</code>, <code>crates/use-vector/</code>, <code>crates/use-matrix/</code>, <code>crates/use-geometry/</code>, <code>crates/use-combinatorics/</code>, <code>crates/use-catalan/</code>, <code>crates/use-geode/</code>, <code>crates/use-series/</code>, <code>crates/use-algebra/</code>, <code>crates/use-integer/</code>, <code>crates/use-logic/</code>, <code>crates/use-set/</code>, <code>crates/use-trigonometry/</code>, <code>crates/use-statistics/</code>, <code>crates/use-linear/</code>, <code>crates/use-number/</code>, <code>crates/use-complex/</code>, <code>crates/use-calculus/</code>, <code>crates/use-probability/</code>, <code>crates/use-real/</code>, and <code>crates/use-rational/</code><br>
+			Use direct APIs today when you want arithmetic primitives, reusable vector primitives, reusable matrix primitives, geometry primitives, checked counting helpers, Catalan-family sequence counts, Geode-array primitives, arithmetic or geometric progression helpers, finite algebra law checks, integer classifications and divisor helpers, named boolean algebra helpers, explicit set operations, angle conversion and trig helpers, descriptive statistics summaries, small linear-system helpers, raw-number classification or constants, complex-number primitives, numerical-calculus helpers, probability primitives, finite real-number helpers, or exact rational arithmetic without the wider facade.
 		</td>
 		<td width="33%" valign="top">
 			<strong>Use algebra directly</strong><br>
@@ -56,12 +56,14 @@ This repository is the source workspace for RustUse's math surface. Today it com
 
 ## What this workspace ships
 
-RustUse/use-math is now a 20-crate workspace. Each crate is usable on its own, and the facade crate composes the focused crates when you want one import surface.
+RustUse/use-math is now a 22-crate workspace. Each crate is usable on its own, and the facade crate composes the focused crates when you want one import surface.
 
 | Crate               | Path                        | Purpose                                                                                                               | Best fit                                                                             |
 | ------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
 | `use-math`          | `crates/use-math/`          | Feature-gated facade with direct re-exports for concrete APIs plus namespace access to every focused crate            | One dependency and one import surface                                                |
 | `use-arithmetic`    | `crates/use-arithmetic/`    | Operation-level arithmetic helpers for gcd/lcm, floor division, divisibility, parity, and explicit overflow modes     | You want arithmetic primitives without a broader numeric abstraction                 |
+| `use-vector`        | `crates/use-vector/`        | Reusable 2D, 3D, and 4D vector primitives with dot products, `Vector3::cross`, normalization, distance, and lerp      | You want vector math without geometry-specific or matrix-specific abstractions       |
+| `use-matrix`        | `crates/use-matrix/`        | Reusable 2x2, 3x3, and 4x4 matrix primitives with transpose, determinant, inverse, and matrix-vector products         | You want reusable matrix math without geometry-specific transforms                   |
 | `use-geometry`      | `crates/use-geometry/`      | Utility-first 2D geometry primitives, shapes, bounds, orientation, and distance helpers                               | Geometry is the only math surface you need                                           |
 | `use-combinatorics` | `crates/use-combinatorics/` | Checked counting helpers for factorials, permutations, and combinations                                               | You only need combinatorics helpers                                                  |
 | `use-catalan`       | `crates/use-catalan/`       | Checked Catalan and Fuss-Catalan counting helpers                                                                     | You want exact Catalan-family counts without a broader sequence crate                |
@@ -73,7 +75,7 @@ RustUse/use-math is now a 20-crate workspace. Each crate is usable on its own, a
 | `use-set`           | `crates/use-set/`           | Slice-based membership, subset, disjointness, and order-preserving set-operation helpers                              | You want explicit set helpers without a broader collection framework                 |
 | `use-trigonometry`  | `crates/use-trigonometry/`  | Explicit angle values, degree/radian conversion helpers, normalization helpers, and direct trig wrappers              | You want explicit trig helpers without a broader numeric framework                   |
 | `use-statistics`    | `crates/use-statistics/`    | Mean, median, variance, and standard-deviation helpers over `f64` slices                                              | You want descriptive summaries without a broader data-analysis framework             |
-| `use-linear`        | `crates/use-linear/`        | 2D vectors, 2×2 matrices, dot products, matrix products, and explicit singular-system solves                          | You want compact linear algebra without a broader tensor framework                   |
+| `use-linear`        | `crates/use-linear/`        | Solver-style 2x2 linear-system helpers that compose `use-matrix` and `use-vector`                                     | You want small linear algorithms without owning primitive matrix/vector types        |
 | `use-number`        | `crates/use-number/`        | Floating-point classification helpers, lightweight finiteness checks, and shared numeric constants                    | You want raw-number helpers without a broader numeric framework                      |
 | `use-complex`       | `crates/use-complex/`       | Composable complex-number and imaginary-number primitives with rectangular and polar helpers                          | You want a small complex-number layer without a heavy framework                      |
 | `use-calculus`      | `crates/use-calculus/`      | Small numerical-calculus helpers for finite-difference derivatives, definite integrals, and symmetric limit estimates | You want explicit approximation helpers without symbolic math                        |
@@ -87,6 +89,8 @@ All focused crates currently ship concrete APIs.
 | ------------------------------------------------------------- | -------------------------- |
 | Add one dependency and opt into math surfaces with features   | `use-math`                 |
 | Work with operation-level arithmetic helpers directly         | `use-arithmetic`           |
+| Work with reusable vector primitives directly                 | `use-vector`               |
+| Work with reusable matrix primitives directly                 | `use-matrix`               |
 | Validate 2D coordinates and shapes from user or file input    | `use-geometry`             |
 | Do checked counting without geometry types                    | `use-combinatorics`        |
 | Work with exact Catalan-family sequence helpers directly      | `use-catalan`              |
@@ -98,7 +102,7 @@ All focused crates currently ship concrete APIs.
 | Work with explicit set helpers directly                       | `use-set`                  |
 | Work with explicit angle conversion and trig helpers directly | `use-trigonometry`         |
 | Work with descriptive statistics helpers directly             | `use-statistics`           |
-| Work with compact vector and matrix helpers directly          | `use-linear`               |
+| Work with small linear-system helpers directly                | `use-linear`               |
 | Work with raw-number classification or constants directly     | `use-number`               |
 | Work with small complex-number primitives directly            | `use-complex`              |
 | Work with explicit numerical-calculus helpers directly        | `use-calculus`             |
@@ -114,29 +118,31 @@ All focused crates currently ship concrete APIs.
 
 Pick the crate based on the integration shape you want, not just the total feature count.
 
-| You want...                                                      | Choose...                                        | Why                                                                                 |
-| ---------------------------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------- |
-| One dependency for the current workspace surface                 | `use-math`                                       | The facade unifies the concrete APIs and exposes matching nested namespaces         |
-| Arithmetic helpers only                                          | `use-arithmetic`                                 | You keep floor division, divisibility, and overflow-mode helpers explicit and local |
-| Geometry-only code with direct type access                       | `use-geometry`                                   | You avoid facade indirection and keep dependencies minimal                          |
-| Counting helpers only                                            | `use-combinatorics`                              | You get checked math helpers without bringing in geometry modules                   |
-| Catalan-family sequence helpers only                             | `use-catalan`                                    | You keep Catalan and Fuss-Catalan counting explicit and local                       |
-| Geode-array primitives only                                      | `use-geode`                                      | You keep finite type vectors and small exact Geode recurrences explicit and local   |
-| Progression helpers only                                         | `use-series`                                     | You keep arithmetic and geometric nth-term and sum helpers explicit and local       |
-| Finite algebra law helpers only                                  | `use-algebra`                                    | You keep closure-based structure checks explicit and local                          |
-| Integer helpers only                                             | `use-integer`                                    | You keep parity, divisibility, and gcd/lcm logic explicit and local                 |
-| Boolean algebra helpers only                                     | `use-logic`                                      | You keep implication, equivalence, and related helpers explicit and local           |
-| Set helpers only                                                 | `use-set`                                        | You keep membership and set-operation intent explicit and local                     |
-| Trigonometry helpers only                                        | `use-trigonometry`                               | You keep degree/radian handling and direct trig evaluation explicit and local       |
-| Descriptive statistics only                                      | `use-statistics`                                 | You keep central-tendency and variance summaries explicit and local                 |
-| Compact linear algebra only                                      | `use-linear`                                     | You keep small vectors, matrices, and singular-system handling explicit and local   |
-| Raw-number helpers only                                          | `use-number`                                     | You keep plain `f64` classification and shared constants explicit and local         |
-| Complex-number primitives without the rest of the facade         | `use-complex`                                    | You get rectangular, imaginary, and polar helpers directly                          |
-| Numerical-calculus helpers without the rest of the facade        | `use-calculus`                                   | You keep derivative, integral, and limit approximations explicit and local          |
-| Probability primitives without the rest of the facade            | `use-probability`                                | You keep normalization and independence assumptions explicit and local              |
-| Finite-value and interval helpers without the rest of the facade | `use-real`                                       | You keep floating-point validation and tolerance policy explicit and local          |
-| Exact rational arithmetic without the rest of the facade         | `use-rational`                                   | You keep fraction normalization and exact arithmetic explicit and local             |
-| Maximum control over enabled API surface                         | A focused crate, or `use-math` with defaults off | You choose exactly which modules compile into the final build                       |
+| You want...                                                      | Choose...                                        | Why                                                                                  |
+| ---------------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| One dependency for the current workspace surface                 | `use-math`                                       | The facade unifies the concrete APIs and exposes matching nested namespaces          |
+| Arithmetic helpers only                                          | `use-arithmetic`                                 | You keep floor division, divisibility, and overflow-mode helpers explicit and local  |
+| Reusable vector primitives only                                  | `use-vector`                                     | You keep dot products, interpolation, distance, and normalization explicit and local |
+| Matrix primitives only                                           | `use-matrix`                                     | You keep direct matrix construction and operations explicit and local                |
+| Geometry-only code with direct type access                       | `use-geometry`                                   | You avoid facade indirection and keep dependencies minimal                           |
+| Counting helpers only                                            | `use-combinatorics`                              | You get checked math helpers without bringing in geometry modules                    |
+| Catalan-family sequence helpers only                             | `use-catalan`                                    | You keep Catalan and Fuss-Catalan counting explicit and local                        |
+| Geode-array primitives only                                      | `use-geode`                                      | You keep finite type vectors and small exact Geode recurrences explicit and local    |
+| Progression helpers only                                         | `use-series`                                     | You keep arithmetic and geometric nth-term and sum helpers explicit and local        |
+| Finite algebra law helpers only                                  | `use-algebra`                                    | You keep closure-based structure checks explicit and local                           |
+| Integer helpers only                                             | `use-integer`                                    | You keep parity, divisibility, and gcd/lcm logic explicit and local                  |
+| Boolean algebra helpers only                                     | `use-logic`                                      | You keep implication, equivalence, and related helpers explicit and local            |
+| Set helpers only                                                 | `use-set`                                        | You keep membership and set-operation intent explicit and local                      |
+| Trigonometry helpers only                                        | `use-trigonometry`                               | You keep degree/radian handling and direct trig evaluation explicit and local        |
+| Descriptive statistics only                                      | `use-statistics`                                 | You keep central-tendency and variance summaries explicit and local                  |
+| Solver-style linear helpers only                                 | `use-linear`                                     | You keep solve logic explicit while matrix/vector ownership stays in focused crates  |
+| Raw-number helpers only                                          | `use-number`                                     | You keep plain `f64` classification and shared constants explicit and local          |
+| Complex-number primitives without the rest of the facade         | `use-complex`                                    | You get rectangular, imaginary, and polar helpers directly                           |
+| Numerical-calculus helpers without the rest of the facade        | `use-calculus`                                   | You keep derivative, integral, and limit approximations explicit and local           |
+| Probability primitives without the rest of the facade            | `use-probability`                                | You keep normalization and independence assumptions explicit and local               |
+| Finite-value and interval helpers without the rest of the facade | `use-real`                                       | You keep floating-point validation and tolerance policy explicit and local           |
+| Exact rational arithmetic without the rest of the facade         | `use-rational`                                   | You keep fraction normalization and exact arithmetic explicit and local              |
+| Maximum control over enabled API surface                         | A focused crate, or `use-math` with defaults off | You choose exactly which modules compile into the final build                        |
 
 ## Project structure
 
@@ -154,6 +160,7 @@ Pick the crate based on the integration shape you want, not just the total featu
 │   ├── use-geometry/
 │   ├── use-geode/
 │   ├── use-integer/
+│   ├── use-matrix/
 │   ├── use-linear/
 │   ├── use-logic/
 │   ├── use-math/
@@ -164,6 +171,7 @@ Pick the crate based on the integration shape you want, not just the total featu
 │   ├── use-series/
 │   ├── use-set/
 │   ├── use-statistics/
+│   ├── use-vector/
 │   └── use-trigonometry/
 └── scripts/
 ```
@@ -183,7 +191,9 @@ Pick the crate based on the integration shape you want, not just the total featu
 | `crates/use-set/`           | Direct set helper APIs                                                                     |
 | `crates/use-trigonometry/`  | Direct angle-conversion and trigonometry helper APIs                                       |
 | `crates/use-statistics/`    | Direct descriptive-statistics helper APIs                                                  |
-| `crates/use-linear/`        | Direct compact linear-algebra helper APIs                                                  |
+| `crates/use-matrix/`        | Direct matrix primitive and matrix-operation APIs                                          |
+| `crates/use-linear/`        | Direct solver-style linear helper APIs                                                     |
+| `crates/use-vector/`        | Direct reusable vector primitives and vector-operation APIs                                |
 | `crates/use-number/`        | Direct raw-number helper APIs                                                              |
 | `crates/use-algebra/`       | Direct finite algebra law helper APIs                                                      |
 | `scripts/`                  | Workspace automation and mirror sync helpers                                               |
@@ -213,22 +223,22 @@ Facade crate with default features:
 
 ```toml
 [dependencies]
-use-math = "0.0.1"
+use-math = "0.0.3"
 ```
 
 Facade crate with geometry only:
 
 ```toml
 [dependencies]
-use-math = { version = "0.0.1", default-features = false, features = ["geometry"] }
+use-math = { version = "0.0.3", default-features = false, features = ["geometry"] }
 ```
 
 Focused crates directly:
 
 ```toml
 [dependencies]
-use-geometry = "0.0.1"
-use-combinatorics = "0.0.1"
+use-geometry = "0.0.3"
+use-combinatorics = "0.0.3"
 ```
 
 > [!NOTE]
@@ -303,7 +313,8 @@ The facade crate exposes a small feature surface:
 | `set`           | Re-exports from `use-set`, including membership predicates and order-preserving set operations                                                                 | No      |
 | `trigonometry`  | Re-exports from `use-trigonometry`, including `Angle`, unit-conversion helpers, normalization helpers, and direct trig wrappers                                | No      |
 | `statistics`    | Re-exports from `use-statistics`, including `StatisticsError`, mean/median, variance, and standard-deviation helpers                                           | No      |
-| `linear`        | Re-exports from `use-linear`, including `LinearVector2`, `Matrix2`, `dot`, `solve_2x2`, and `LinearError`                                                      | No      |
+| `matrix`        | Re-exports from `use-matrix`, including `Matrix2`, `Matrix3`, `Matrix4`, transpose helpers, determinants, and inverses for 2x2 and 3x3 matrices                | No      |
+| `linear`        | Re-exports from `use-linear`, including `solve_2x2` and `LinearError`; the `linear` feature also enables `matrix` and `vector`                                 | No      |
 | `number`        | Re-exports from `use-number`, including floating-point classification helpers and shared numeric constants                                                     | No      |
 | `complex`       | Re-exports from `use-complex`, including `Complex` and `Imaginary`                                                                                             | No      |
 | `calculus`      | Re-exports from `use-calculus`, including derivative, integral, and limit helpers                                                                              | No      |
@@ -316,7 +327,7 @@ If you want the facade but only one module, disable defaults and enable the feat
 
 ```toml
 [dependencies]
-use-math = { version = "0.0.1", default-features = false, features = ["combinatorics"] }
+use-math = { version = "0.0.3", default-features = false, features = ["combinatorics"] }
 ```
 
 ## Maturity and release model

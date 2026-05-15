@@ -28,7 +28,9 @@ complex = ["dep:use-complex"]
 geometry = ["dep:use-geometry"]
 geode = ["dep:use-geode"]
 integer = ["dep:use-integer"]
-linear = ["dep:use-linear"]
+matrix = ["dep:use-matrix"]
+linear = ["dep:use-linear", "matrix", "vector"]
+vector = ["dep:use-vector"]
 logic = ["dep:use-logic"]
 number = ["dep:use-number"]
 probability = ["dep:use-probability"]
@@ -51,7 +53,9 @@ full = [
 	"series",
 	"catalan",
 	"algebra",
+	"matrix",
 	"linear",
+	"vector",
 	"calculus",
 	"probability",
 	"statistics",
@@ -70,7 +74,9 @@ use-complex = { version = "0.0.3", path = "../use-complex", optional = true }
 use-geometry = { version = "0.0.3", path = "../use-geometry", optional = true }
 use-geode = { version = "0.0.3", path = "../use-geode", optional = true }
 use-integer = { version = "0.0.3", path = "../use-integer", optional = true }
+use-matrix = { version = "0.0.3", path = "../use-matrix", optional = true }
 use-linear = { version = "0.0.3", path = "../use-linear", optional = true }
+use-vector = { version = "0.0.3", path = "../use-vector", optional = true }
 use-logic = { version = "0.0.3", path = "../use-logic", optional = true }
 use-number = { version = "0.0.3", path = "../use-number", optional = true }
 use-probability = { version = "0.0.3", path = "../use-probability", optional = true }
@@ -112,6 +118,10 @@ required-features = ["geometry"]
 [[test]]
 name = "facade_geode"
 required-features = ["geode"]
+
+[[test]]
+name = "facade_vector"
+required-features = ["vector"]
 
 [lints]
 workspace = true

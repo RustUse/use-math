@@ -1,8 +1,8 @@
 # use-linear
 
 <p align="center">
-    <strong>Small 2D vector and 2×2 matrix helpers for `RustUse`.</strong><br>
-    Explicit dot products, matrix products, and small linear-system solves without a larger linear-algebra framework.
+    <strong>Small linear-system helpers for <code>RustUse</code>.</strong><br>
+    Solver-style helpers that build on <code>use-matrix</code> and <code>use-vector</code> instead of redefining primitives.
 </p>
 
 <p align="center">
@@ -16,73 +16,67 @@
 
 ```toml
 [dependencies]
-use-linear = "0.0.1"
+use-linear = "0.0.3"
+use-matrix = "0.0.3"
+use-vector = "0.0.3"
 ```
 
 ## Foundation
 
-`use-linear` provides a deliberately small numeric linear-algebra surface for 2D vectors and 2×2 matrices. The first slice includes a `Vector2` type, a `Matrix2` type, dot products, matrix-vector and matrix-matrix products, and explicit solving of small linear systems through `LinearError`. The crate stays close to ordinary `f64` math instead of introducing a large generic tensor framework.
+`use-linear` provides a deliberately small linear-algebra surface focused on
+algorithms that compose the primitive crates. The current slice includes
+`solve_2x2` plus `LinearError` for explicit handling of singular or non-finite
+systems. Matrix primitives live in `use-matrix`, and vector primitives live in
+`use-vector`.
 
 <table>
     <tr>
         <td width="33%" valign="top">
-            <strong>Vector primitives</strong><br>
-            <code>Vector2</code> covers basic 2D numeric vectors with arithmetic, dot products, and norms.
+            <strong>Algorithm layer</strong><br>
+            <code>solve_2x2</code> solves small systems without redefining the underlying matrix or vector types.
         </td>
         <td width="33%" valign="top">
-            <strong>Matrix primitives</strong><br>
-            <code>Matrix2</code> covers determinants, trace, transpose, matrix products, and matrix-vector products.
+            <strong>Explicit errors</strong><br>
+            <code>LinearError</code> keeps singular and non-finite solve failures visible at the call site.
         </td>
         <td width="33%" valign="top">
-            <strong>Small system solves</strong><br>
-            <code>solve_2x2</code> and <code>Matrix2::solve</code> keep singular handling explicit with <code>LinearError</code>.
+            <strong>Focused composition</strong><br>
+            Pair <code>use-linear</code> with <code>use-matrix</code> and <code>use-vector</code> when the primitive ownership boundaries matter.
         </td>
     </tr>
 </table>
 
-| Helper group              | Primary items              | Best fit                                                                  |
-| ------------------------- | -------------------------- | ------------------------------------------------------------------------- |
-| Vector operations         | `Vector2`, `dot`           | Small numeric code that needs explicit 2D linear operations               |
-| Matrix operations         | `Matrix2`                  | Call sites that need compact 2×2 products, determinants, and trace values |
-| Solves and error handling | `solve_2x2`, `LinearError` | Small systems where singular behavior should stay explicit                |
+| Helper group              | Primary items              | Best fit                                                            |
+| ------------------------- | -------------------------- | ------------------------------------------------------------------- |
+| Solves and error handling | `solve_2x2`, `LinearError` | Small systems where singular behavior should stay explicit          |
+| Neighbor primitives       | `use-matrix`, `use-vector` | Call sites that want focused matrix and vector ownership boundaries |
 
 ## When to use directly
 
-Choose `use-linear` directly when vector and matrix utilities are the only surface you need and you want to keep that concern narrower than the umbrella facade.
+Choose `use-linear` directly when solve-oriented helpers are the only linear
+surface you need and you want primitive ownership to stay in neighboring crates.
 
-| Scenario                                                | Use `use-linear` directly? | Why                                                                               |
-| ------------------------------------------------------- | -------------------------- | --------------------------------------------------------------------------------- |
-| You need 2D numeric vectors and 2×2 matrices            | Yes                        | The current surface already covers the common small linear-algebra cases directly |
-| You need explicit handling of singular 2×2 solves       | Yes                        | The API keeps failure visible through `LinearError`                               |
-| You also need geometry, calculus, or other math domains | Usually no                 | `use-math` can compose the concrete surfaces behind features                      |
+| Scenario                                                   | Use `use-linear` directly? | Why                                                                            |
+| ---------------------------------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
+| You need explicit handling of singular 2×2 solves          | Yes                        | The API keeps solve failures visible through `LinearError`                     |
+| You want matrix and vector types to stay in focused crates | Yes                        | `use-linear` composes `use-matrix` and `use-vector` instead of redefining them |
+| You also need geometry, calculus, or other math domains    | Usually no                 | `use-math` can compose the concrete surfaces behind features                   |
 
 ## Scope
 
-- The current surface is intentionally small and concrete.
-- Helpers stay focused on `f64`-based 2D vectors and 2×2 matrices instead of a broader generic tensor framework.
-- Geometry-specific spatial types and broader algebraic traits belong in adjacent focused crates.
+- `use-matrix` owns matrix primitives and direct matrix operations.
+- `use-vector` owns vector primitives and vector operations.
+- `use-linear` owns higher-level linear algorithms over those primitives.
+- The crate intentionally does not define its own matrix/vector types, geometry transforms, or decomposition frameworks.
 
 ## Examples
 
-### Vector and matrix products
+### Solving a 2x2 system
 
 ```rust
-use use_linear::{Matrix2, Vector2, dot};
-
-let vector = Vector2::new(3.0, 4.0);
-let other = Vector2::new(-2.0, 1.0);
-let matrix = Matrix2::new(2.0, 1.0, 5.0, 3.0);
-
-assert!((dot(vector, other) + 2.0).abs() < 1.0e-12);
-assert!((vector.magnitude() - 5.0).abs() < 1.0e-12);
-assert_eq!(matrix.mul_vector(Vector2::new(1.0, -1.0)), Vector2::new(1.0, 2.0));
-assert_eq!(matrix * Matrix2::identity(), matrix);
-```
-
-### Solving a 2×2 system
-
-```rust
-use use_linear::{Matrix2, Vector2, solve_2x2};
+use use_linear::solve_2x2;
+use use_matrix::Matrix2;
+use use_vector::Vector2;
 
 let matrix = Matrix2::new(2.0, 1.0, 5.0, 3.0);
 let rhs = Vector2::new(1.0, 2.0);
@@ -91,6 +85,24 @@ assert_eq!(solve_2x2(matrix, rhs)?, Vector2::new(1.0, -1.0));
 # Ok::<(), use_linear::LinearError>(())
 ```
 
+### Handling singular systems
+
+```rust
+use use_linear::{LinearError, solve_2x2};
+use use_matrix::Matrix2;
+use use_vector::Vector2;
+
+let matrix = Matrix2::new(1.0, 2.0, 2.0, 4.0);
+let rhs = Vector2::new(1.0, 2.0);
+
+assert_eq!(
+    solve_2x2(matrix, rhs),
+    Err(LinearError::SingularMatrix { determinant: 0.0 })
+);
+```
+
 ## Status
 
-`use-linear` is a concrete pre-1.0 crate in the `RustUse` docs surface. The API remains intentionally small while adjacent geometry and algebra crates continue to grow around it.
+`use-linear` is a concrete pre-1.0 crate in the `RustUse` math workspace. The
+API remains intentionally small while `use-matrix` and `use-vector` own the
+primitive surface and adjacent crates continue to grow around them.

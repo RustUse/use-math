@@ -84,11 +84,20 @@ pub use use_integer::{
     lcm,
 };
 
+#[cfg(feature = "matrix")]
+pub use use_matrix as matrix;
+
+#[cfg(feature = "matrix")]
+pub use use_matrix::{Matrix2, Matrix3, Matrix4};
+
 #[cfg(feature = "linear")]
 pub use use_linear as linear;
 
 #[cfg(feature = "linear")]
-pub use use_linear::{LinearError, Matrix2, Vector2 as LinearVector2, dot, solve_2x2};
+pub use use_linear::{LinearError, solve_2x2};
+
+#[cfg(feature = "vector")]
+pub use use_vector as vector;
 
 #[cfg(feature = "logic")]
 pub use use_logic as logic;

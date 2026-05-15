@@ -19,7 +19,7 @@ jobs:
         env:
             FOCUSED_CRATES: >-
                 use-arithmetic use-number use-integer use-rational use-real use-complex use-geometry
-              use-combinatorics use-series use-catalan use-geode use-algebra use-linear
+              use-combinatorics use-series use-catalan use-geode use-algebra use-matrix use-linear
                 use-calculus use-probability use-statistics use-trigonometry use-logic
                 use-set
         steps:
