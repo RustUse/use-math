@@ -15,7 +15,7 @@ keywords = ["math", "geode", "catalan", "series", "counting"]
 categories = ["mathematics", "algorithms"]
 
 [dependencies]
-use-catalan = { version = "0.0.5", path = "../use-catalan" }
+use-catalan = { version = "0.0.6", path = "../use-catalan" }
 
 [[example]]
 name = "use-geode-basic"

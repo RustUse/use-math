@@ -1,6 +1,6 @@
 [package]
-name = "use-equation"
-description = "Small equation-solving primitives for RustUse"
+name = "use-numerical"
+description = "Utility-first approximate numerical helpers for RustUse"
 publish = true
 authors.workspace = true
 version.workspace = true
@@ -10,8 +10,8 @@ repository.workspace = true
 rust-version.workspace = true
 readme = "README.md"
 homepage = "https://github.com/RustUse/use-math"
-documentation = "https://docs.rs/use-equation"
-keywords = ["math", "equation", "roots", "quadratic", "solver"]
+documentation = "https://docs.rs/use-numerical"
+keywords = ["math", "numerical", "approximation", "integration", "roots"]
 categories = ["mathematics", "science"]
 
 [package.metadata.docs.rs]
@@ -19,10 +19,10 @@ all-features = true
 
 [features]
 default = []
-polynomial = ["dep:use-polynomial"]
+interval = ["dep:use-interval"]
 
 [dependencies]
-use-polynomial = { version = "0.0.6", path = "../use-polynomial", optional = true }
+use-interval = { version = "0.0.6", path = "../use-interval", optional = true }
 
 [lints]
 workspace = true

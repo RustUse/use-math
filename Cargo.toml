@@ -10,6 +10,7 @@ members = [
     "crates/use-prime",
     "crates/use-polynomial",
     "crates/use-equation",
+    "crates/use-numerical",
     "crates/use-rational",
     "crates/use-real",
     "crates/use-interval",
@@ -37,7 +38,7 @@ license = "MIT OR Apache-2.0"
 publish = false
 repository = "https://github.com/RustUse/use-math"
 rust-version = "1.95.0"
-version = "0.0.5"
+version = "0.0.6"
 
 [workspace.dependencies]
 proptest = { version = "1.11.0", default-features = false, features = ["std"] }
@@ -55,6 +56,7 @@ first-publish-candidates = [
     "use-equation",
     "use-rational",
     "use-interval",
+    "use-numerical",
     "use-real",
     "use-complex",
     "use-geometry",

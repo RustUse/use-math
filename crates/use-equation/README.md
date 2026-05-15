@@ -16,14 +16,14 @@
 
 ```toml
 [dependencies]
-use-equation = "0.0.5"
+use-equation = "0.0.6"
 ```
 
 Optional low-degree polynomial bridging:
 
 ```toml
 [dependencies]
-use-equation = { version = "0.0.5", features = ["polynomial"] }
+use-equation = { version = "0.0.6", features = ["polynomial"] }
 ```
 
 ## What belongs here

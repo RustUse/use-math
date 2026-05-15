@@ -125,6 +125,9 @@ pub use use_equation::{
 #[cfg(all(feature = "equation", feature = "polynomial"))]
 pub use use_equation::solve_polynomial_degree_1_or_2;
 
+#[cfg(feature = "numerical")]
+pub use use_numerical as numerical;
+
 #[cfg(feature = "matrix")]
 pub use use_matrix as matrix;
 

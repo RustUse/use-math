@@ -15,8 +15,8 @@ keywords = ["math", "linear", "matrix", "vector", "algebra"]
 categories = ["mathematics", "science"]
 
 [dependencies]
-use-matrix = { version = "0.0.5", path = "../use-matrix" }
-use-vector = { version = "0.0.5", path = "../use-vector" }
+use-matrix = { version = "0.0.6", path = "../use-matrix" }
+use-vector = { version = "0.0.6", path = "../use-vector" }
 
 [[example]]
 name = "use-linear-2d-basics"

@@ -41,6 +41,11 @@ release = true
 version_group = "rustuse-math"
 
 [[package]]
+name = "use-numerical"
+release = true
+version_group = "rustuse-math"
+
+[[package]]
 name = "use-rational"
 release = true
 version_group = "rustuse-math"
@@ -149,6 +154,7 @@ changelog_include = [
   "use-prime",
   "use-polynomial",
   "use-equation",
+  "use-numerical",
   "use-rational",
   "use-interval",
   "use-real",

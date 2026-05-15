@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## [0.0.6](https://github.com/RustUse/use-math/compare/use-math-v0.0.5...use-math-v0.0.6) - 2026-05-15
+
 ### Added
 
 - Added the `use-modular` crate with normalized modular arithmetic helpers, congruence checks, modular inverses, exponentiation, and the optional `Modular` helper type for the RustUse math workspace.
@@ -12,6 +14,8 @@
 - Added the `polynomial` feature to the `use-math` facade with root polynomial reexports plus the `use_math::polynomial` namespace.
 - Added the `use-equation` crate with explicit linear and quadratic equation helpers, small `2x2` system solving, reusable `Roots` outputs, and a `RootSolver` trait for the RustUse math workspace.
 - Added the `equation` feature to the `use-math` facade with the `use_math::equation` namespace plus non-conflicting root equation reexports.
+- Added the `use-numerical` crate with epsilon comparisons, finite-difference helpers, deterministic integration rules, iterative root finders, and an optional bounded-interval bridge for the RustUse math workspace.
+- Added the `numerical` feature to the `use-math` facade with the `use_math::numerical` namespace and optional interval-bridge wiring when both `numerical` and `interval` are enabled.
 
 ### Changed
 
@@ -19,6 +23,7 @@
 - Extended workspace release metadata, publish-readiness lists, maintainer publish-order docs, and facade documentation to include `use-prime` as a focused crate in the lockstep release surface.
 - Extended workspace release metadata, publish-readiness lists, maintainer publish-order docs, and facade documentation to include `use-polynomial` as a focused crate in the lockstep release surface.
 - Extended workspace release metadata, publish-readiness lists, maintainer publish-order docs, and facade documentation to include `use-equation` as a focused crate in the lockstep release surface.
+- Extended workspace release metadata, publish-readiness lists, maintainer publish-order docs, and facade documentation to include `use-numerical` as a focused crate in the lockstep release surface.
 
 ## [0.0.5](https://github.com/RustUse/use-math/compare/use-math-v0.0.4...use-math-v0.0.5) - 2026-05-15
 
