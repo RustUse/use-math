@@ -190,6 +190,13 @@ name = "use-complex"
 version = "0.0.5"
 
 [[package]]
+name = "use-equation"
+version = "0.0.5"
+dependencies = [
+ "use-polynomial",
+]
+
+[[package]]
 name = "use-geode"
 version = "0.0.5"
 dependencies = [
@@ -233,6 +240,7 @@ dependencies = [
  "use-catalan",
  "use-combinatorics",
  "use-complex",
+ "use-equation",
  "use-geode",
  "use-geometry",
  "use-integer",
@@ -242,6 +250,7 @@ dependencies = [
  "use-matrix",
  "use-modular",
  "use-number",
+ "use-polynomial",
  "use-prime",
  "use-probability",
  "use-rational",
@@ -266,6 +275,10 @@ version = "0.0.5"
 
 [[package]]
 name = "use-number"
+version = "0.0.5"
+
+[[package]]
+name = "use-polynomial"
 version = "0.0.5"
 
 [[package]]

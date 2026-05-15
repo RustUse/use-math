@@ -31,16 +31,16 @@ predictable.
 
 ## Neighboring crates
 
-| Crate               | Responsibility                                                   |
-| ------------------- | ---------------------------------------------------------------- |
-| `use-prime`         | Primality checks, prime search, sieves, and factorization        |
-| `use-modular`       | Modular arithmetic, congruence, inverses, and exponentiation     |
-| `use-arithmetic`    | GCD, LCM, divisibility, parity, and arithmetic helpers           |
-| `use-integer`       | Integer classification and integer-specific descriptive helpers  |
-| `use-number`        | Broader number abstractions and shared numeric vocabulary        |
+| Crate               | Responsibility                                                  |
+| ------------------- | --------------------------------------------------------------- |
+| `use-prime`         | Primality checks, prime search, sieves, and factorization       |
+| `use-modular`       | Modular arithmetic, congruence, inverses, and exponentiation    |
+| `use-arithmetic`    | GCD, LCM, divisibility, parity, and arithmetic helpers          |
+| `use-integer`       | Integer classification and integer-specific descriptive helpers |
+| `use-number`        | Broader number abstractions and shared numeric vocabulary       |
 | `use-combinatorics` | Counting helpers that may consume prime utilities               |
-| `use-algebra`       | Algebraic structures and law checking over caller-supplied ops   |
-| `use-cryptography`  | Future cryptographic protocols and stronger prime requirements   |
+| `use-algebra`       | Algebraic structures and law checking over caller-supplied ops  |
+| `use-cryptography`  | Future cryptographic protocols and stronger prime requirements  |
 
 `use-prime` intentionally does not define modular arithmetic,
 probabilistic primality tests, cryptographic-strength prime generation, or

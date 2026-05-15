@@ -1,0 +1,28 @@
+[package]
+name = "use-equation"
+description = "Small equation-solving primitives for RustUse"
+publish = true
+authors.workspace = true
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+homepage = "https://github.com/RustUse/use-math"
+documentation = "https://docs.rs/use-equation"
+keywords = ["math", "equation", "roots", "quadratic", "solver"]
+categories = ["mathematics", "science"]
+
+[package.metadata.docs.rs]
+all-features = true
+
+[features]
+default = []
+polynomial = ["dep:use-polynomial"]
+
+[dependencies]
+use-polynomial = { version = "0.0.5", path = "../use-polynomial", optional = true }
+
+[lints]
+workspace = true

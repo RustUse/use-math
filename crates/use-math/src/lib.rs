@@ -107,6 +107,24 @@ pub use use_prime::{
     sieve, unique_prime_factors,
 };
 
+#[cfg(feature = "polynomial")]
+pub use use_polynomial as polynomial;
+
+#[cfg(feature = "polynomial")]
+pub use use_polynomial::{Polynomial, linear_root, quadratic_roots};
+
+#[cfg(feature = "equation")]
+pub use use_equation as equation;
+
+#[cfg(feature = "equation")]
+pub use use_equation::{
+    LinearEquation, LinearSystem2, QuadraticEquation, RootSolver, Roots, solve_linear,
+    solve_quadratic,
+};
+
+#[cfg(all(feature = "equation", feature = "polynomial"))]
+pub use use_equation::solve_polynomial_degree_1_or_2;
+
 #[cfg(feature = "matrix")]
 pub use use_matrix as matrix;
 

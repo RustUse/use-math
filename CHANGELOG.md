@@ -8,11 +8,17 @@
 - Added the `modular` feature to the `use-math` facade with root modular reexports plus the `use_math::modular` namespace.
 - Added the `use-prime` crate with primality checks, prime search, sieve helpers, deterministic factorization, and prime-factor utilities for the RustUse math workspace.
 - Added the `prime` feature to the `use-math` facade with root prime reexports plus the `use_math::prime` namespace.
+- Added the `use-polynomial` crate with coefficient-based polynomial primitives, evaluation, derivatives, arithmetic, integrals, and low-degree real-root helpers for the RustUse math workspace.
+- Added the `polynomial` feature to the `use-math` facade with root polynomial reexports plus the `use_math::polynomial` namespace.
+- Added the `use-equation` crate with explicit linear and quadratic equation helpers, small `2x2` system solving, reusable `Roots` outputs, and a `RootSolver` trait for the RustUse math workspace.
+- Added the `equation` feature to the `use-math` facade with the `use_math::equation` namespace plus non-conflicting root equation reexports.
 
 ### Changed
 
 - Extended workspace release metadata, publish-readiness lists, maintainer publish-order docs, and facade documentation to include `use-modular` as a focused crate in the lockstep release surface.
 - Extended workspace release metadata, publish-readiness lists, maintainer publish-order docs, and facade documentation to include `use-prime` as a focused crate in the lockstep release surface.
+- Extended workspace release metadata, publish-readiness lists, maintainer publish-order docs, and facade documentation to include `use-polynomial` as a focused crate in the lockstep release surface.
+- Extended workspace release metadata, publish-readiness lists, maintainer publish-order docs, and facade documentation to include `use-equation` as a focused crate in the lockstep release surface.
 
 ## [0.0.5](https://github.com/RustUse/use-math/compare/use-math-v0.0.4...use-math-v0.0.5) - 2026-05-15
 

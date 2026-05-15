@@ -246,6 +246,7 @@ use-geometry = "0.0.5"
 use-combinatorics = "0.0.5"
 use-modular = "0.0.5"
 use-prime = "0.0.5"
+use-polynomial = "0.0.5"
 ```
 
 > [!NOTE]
@@ -306,32 +307,33 @@ Use `try_new` constructor variants when coordinates or shapes originate outside 
 
 The facade crate exposes a small feature surface:
 
-| Feature         | Enables                                                                                                                                                        | Default |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| `arithmetic`    | Re-exports from `use-arithmetic`, including checked and overflow-mode arithmetic helpers, floor-division helpers, and the nested `use_math::arithmetic` module | No      |
-| `geometry`      | Re-exports from `use-geometry` and geometry facade examples/tests                                                                                              | No      |
-| `combinatorics` | Re-exports from `use-combinatorics` and combinatorics facade examples/tests                                                                                    | No      |
-| `catalan`       | Re-exports from `use-catalan`, including Catalan and Fuss-Catalan helpers                                                                                      | No      |
-| `geode`         | Re-exports from `use-geode`, including `TypeVector`, `hyper_catalan`, `geode_memoized`, and the nested `use_math::geode` module                                | No      |
-| `algebra`       | Re-exports from `use-algebra`, including finite algebra-law helpers such as `identity_element`, `is_abelian_group`, and `is_ring`                              | No      |
-| `modular`       | Re-exports from `use-modular`, including normalized residues, `Modular`, congruence checks, inverses, exponentiation, and the `use_math::modular` namespace    | No      |
-| `prime`         | Re-exports from `use-prime`, including primality checks, next/previous prime search, factorization helpers, sieves, and the `use_math::prime` namespace        | No      |
-| `series`        | Re-exports from `use-series`, including arithmetic and geometric progression helpers                                                                           | No      |
-| `integer`       | Re-exports from `use-integer`, including sign, parity, divisibility, and gcd/lcm helpers                                                                       | No      |
-| `logic`         | Re-exports from `use-logic`, including implication, equivalence, XOR, NAND, NOR, and majority helpers                                                          | No      |
-| `set`           | Re-exports from `use-set`, including membership predicates and order-preserving set operations                                                                 | No      |
-| `trigonometry`  | Re-exports from `use-trigonometry`, including `Angle`, unit-conversion helpers, normalization helpers, and direct trig wrappers                                | No      |
-| `statistics`    | Re-exports from `use-statistics`, including `StatisticsError`, mean/median, variance, and standard-deviation helpers                                           | No      |
-| `matrix`        | Re-exports from `use-matrix`, including `Matrix2`, `Matrix3`, `Matrix4`, transpose helpers, determinants, and inverses for 2x2 and 3x3 matrices                | No      |
-| `linear`        | Re-exports from `use-linear`, including `solve_2x2` and `LinearError`; the `linear` feature also enables `matrix` and `vector`                                 | No      |
-| `number`        | Re-exports from `use-number`, including floating-point classification helpers and shared numeric constants                                                     | No      |
-| `complex`       | Re-exports from `use-complex`, including `Complex` and `Imaginary`                                                                                             | No      |
-| `calculus`      | Re-exports from `use-calculus`, including derivative, integral, and limit helpers                                                                              | No      |
-| `probability`   | Re-exports from `use-probability`, including `Probability`, `Bernoulli`, and event helpers                                                                     | No      |
-| `rational`      | Re-exports from `use-rational`, including `Rational` and `RationalError`                                                                                       | No      |
-| `real`          | Re-exports from `use-real`, including `Real`, `RealInterval`, and `approx_eq`                                                                                  | No      |
-| `interval`      | Re-exports from `use-interval`, including `Bound`, `Interval`, containment checks, overlap tests, intersections, and the `use_math::interval` namespace        | No      |
-| `full`          | Enables every focused crate feature in the workspace                                                                                                           | Yes     |
+| Feature         | Enables                                                                                                                                                               | Default |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `arithmetic`    | Re-exports from `use-arithmetic`, including checked and overflow-mode arithmetic helpers, floor-division helpers, and the nested `use_math::arithmetic` module        | No      |
+| `geometry`      | Re-exports from `use-geometry` and geometry facade examples/tests                                                                                                     | No      |
+| `combinatorics` | Re-exports from `use-combinatorics` and combinatorics facade examples/tests                                                                                           | No      |
+| `catalan`       | Re-exports from `use-catalan`, including Catalan and Fuss-Catalan helpers                                                                                             | No      |
+| `geode`         | Re-exports from `use-geode`, including `TypeVector`, `hyper_catalan`, `geode_memoized`, and the nested `use_math::geode` module                                       | No      |
+| `algebra`       | Re-exports from `use-algebra`, including finite algebra-law helpers such as `identity_element`, `is_abelian_group`, and `is_ring`                                     | No      |
+| `modular`       | Re-exports from `use-modular`, including normalized residues, `Modular`, congruence checks, inverses, exponentiation, and the `use_math::modular` namespace           | No      |
+| `prime`         | Re-exports from `use-prime`, including primality checks, next/previous prime search, factorization helpers, sieves, and the `use_math::prime` namespace               | No      |
+| `polynomial`    | Re-exports from `use-polynomial`, including `Polynomial`, evaluation, derivatives, arithmetic, low-degree real-root helpers, and the `use_math::polynomial` namespace | No      |
+| `series`        | Re-exports from `use-series`, including arithmetic and geometric progression helpers                                                                                  | No      |
+| `integer`       | Re-exports from `use-integer`, including sign, parity, divisibility, and gcd/lcm helpers                                                                              | No      |
+| `logic`         | Re-exports from `use-logic`, including implication, equivalence, XOR, NAND, NOR, and majority helpers                                                                 | No      |
+| `set`           | Re-exports from `use-set`, including membership predicates and order-preserving set operations                                                                        | No      |
+| `trigonometry`  | Re-exports from `use-trigonometry`, including `Angle`, unit-conversion helpers, normalization helpers, and direct trig wrappers                                       | No      |
+| `statistics`    | Re-exports from `use-statistics`, including `StatisticsError`, mean/median, variance, and standard-deviation helpers                                                  | No      |
+| `matrix`        | Re-exports from `use-matrix`, including `Matrix2`, `Matrix3`, `Matrix4`, transpose helpers, determinants, and inverses for 2x2 and 3x3 matrices                       | No      |
+| `linear`        | Re-exports from `use-linear`, including `solve_2x2` and `LinearError`; the `linear` feature also enables `matrix` and `vector`                                        | No      |
+| `number`        | Re-exports from `use-number`, including floating-point classification helpers and shared numeric constants                                                            | No      |
+| `complex`       | Re-exports from `use-complex`, including `Complex` and `Imaginary`                                                                                                    | No      |
+| `calculus`      | Re-exports from `use-calculus`, including derivative, integral, and limit helpers                                                                                     | No      |
+| `probability`   | Re-exports from `use-probability`, including `Probability`, `Bernoulli`, and event helpers                                                                            | No      |
+| `rational`      | Re-exports from `use-rational`, including `Rational` and `RationalError`                                                                                              | No      |
+| `real`          | Re-exports from `use-real`, including `Real`, `RealInterval`, and `approx_eq`                                                                                         | No      |
+| `interval`      | Re-exports from `use-interval`, including `Bound`, `Interval`, containment checks, overlap tests, intersections, and the `use_math::interval` namespace               | No      |
+| `full`          | Enables every focused crate feature in the workspace                                                                                                                  | Yes     |
 
 If you want the facade but only one module, disable defaults and enable the feature you need:
 

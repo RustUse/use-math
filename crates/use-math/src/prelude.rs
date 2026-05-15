@@ -65,6 +65,18 @@ pub use crate::{
     sieve, unique_prime_factors,
 };
 
+#[cfg(feature = "polynomial")]
+pub use crate::{Polynomial, linear_root, quadratic_roots};
+
+#[cfg(feature = "equation")]
+pub use crate::{
+    LinearEquation, LinearSystem2, QuadraticEquation, RootSolver, Roots, solve_linear,
+    solve_quadratic,
+};
+
+#[cfg(all(feature = "equation", feature = "polynomial"))]
+pub use crate::solve_polynomial_degree_1_or_2;
+
 #[cfg(feature = "logic")]
 pub use crate::{equivalence, exclusive_or, implication, majority, nand, nor};
 
