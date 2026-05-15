@@ -3,7 +3,7 @@
 <p align="center">
 	<img alt="Rust 1.95.0+" src="https://img.shields.io/badge/Rust-1.95.0%2B-f46623?logo=rust&logoColor=white">
 	<img alt="Edition 2024" src="https://img.shields.io/badge/edition-2024-0f766e">
-	<img alt="18 workspace crates" src="https://img.shields.io/badge/workspace-18%20crates-1d4ed8">
+	<img alt="19 workspace crates" src="https://img.shields.io/badge/workspace-19%20crates-1d4ed8">
 	<img alt="Status pre-release" src="https://img.shields.io/badge/status-pre--release-c2410c">
 	<img alt="License MIT or Apache-2.0" src="https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-2a9d8f">
 </p>
@@ -25,13 +25,13 @@
 	<a href="#community-and-project-policy">Community</a>
 </p>
 
-This repository is the source workspace for RustUse's math surface. Today it combines concrete focused crates for geometry, checked combinatorics, Catalan-family sequences, progression helpers, finite algebra law helpers, integer helpers, boolean algebra helpers, small set helpers, explicit trigonometry helpers, descriptive statistics helpers, compact linear algebra helpers, raw-number helpers, complex numbers, numerical calculus, probability, real-number helpers, and rational arithmetic. `use-math` composes the whole workspace behind feature flags while keeping root re-exports aligned with the concrete APIs each focused crate exposes.
+This repository is the source workspace for RustUse's math surface. Today it combines concrete focused crates for geometry, checked combinatorics, Catalan-family sequences, Geode-array primitives, progression helpers, finite algebra law helpers, integer helpers, boolean algebra helpers, small set helpers, explicit trigonometry helpers, descriptive statistics helpers, compact linear algebra helpers, raw-number helpers, complex numbers, numerical calculus, probability, real-number helpers, and rational arithmetic. `use-math` composes the whole workspace behind feature flags while keeping root re-exports aligned with the concrete APIs each focused crate exposes.
 
 ## Current status
 
 - The GitHub repository is public before the first crates.io release is live.
 - Until then, consume the crates from a pinned Git revision or work from the workspace directly.
-- `use-geometry`, `use-combinatorics`, `use-catalan`, `use-series`, `use-algebra`, `use-integer`, `use-logic`, `use-set`, `use-trigonometry`, `use-statistics`, `use-linear`, `use-number`, `use-complex`, `use-calculus`, `use-probability`, `use-real`, and `use-rational` are the concrete focused APIs today.
+- `use-geometry`, `use-combinatorics`, `use-catalan`, `use-geode`, `use-series`, `use-algebra`, `use-integer`, `use-logic`, `use-set`, `use-trigonometry`, `use-statistics`, `use-linear`, `use-number`, `use-complex`, `use-calculus`, `use-probability`, `use-real`, and `use-rational` are the concrete focused APIs today.
 - The planned first release order is every focused crate first, then `use-math` after crates.io index propagation.
 
 <table>
@@ -43,8 +43,8 @@ This repository is the source workspace for RustUse's math surface. Today it com
 		</td>
 		<td width="33%" valign="top">
 			<strong>Use concrete focused crates</strong><br>
-			<code>crates/use-geometry/</code>, <code>crates/use-combinatorics/</code>, <code>crates/use-catalan/</code>, <code>crates/use-series/</code>, <code>crates/use-algebra/</code>, <code>crates/use-integer/</code>, <code>crates/use-logic/</code>, <code>crates/use-set/</code>, <code>crates/use-trigonometry/</code>, <code>crates/use-statistics/</code>, <code>crates/use-linear/</code>, <code>crates/use-number/</code>, <code>crates/use-complex/</code>, <code>crates/use-calculus/</code>, <code>crates/use-probability/</code>, <code>crates/use-real/</code>, and <code>crates/use-rational/</code><br>
-			Use direct APIs today when you want geometry primitives, checked counting helpers, Catalan-family sequence counts, arithmetic or geometric progression helpers, finite algebra law checks, integer classifications and divisor helpers, named boolean algebra helpers, explicit set operations, angle conversion and trig helpers, descriptive statistics summaries, compact vector-and-matrix helpers, raw-number classification or constants, complex-number primitives, numerical-calculus helpers, probability primitives, finite real-number helpers, or exact rational arithmetic without the wider facade.
+			<code>crates/use-geometry/</code>, <code>crates/use-combinatorics/</code>, <code>crates/use-catalan/</code>, <code>crates/use-geode/</code>, <code>crates/use-series/</code>, <code>crates/use-algebra/</code>, <code>crates/use-integer/</code>, <code>crates/use-logic/</code>, <code>crates/use-set/</code>, <code>crates/use-trigonometry/</code>, <code>crates/use-statistics/</code>, <code>crates/use-linear/</code>, <code>crates/use-number/</code>, <code>crates/use-complex/</code>, <code>crates/use-calculus/</code>, <code>crates/use-probability/</code>, <code>crates/use-real/</code>, and <code>crates/use-rational/</code><br>
+			Use direct APIs today when you want geometry primitives, checked counting helpers, Catalan-family sequence counts, Geode-array primitives, arithmetic or geometric progression helpers, finite algebra law checks, integer classifications and divisor helpers, named boolean algebra helpers, explicit set operations, angle conversion and trig helpers, descriptive statistics summaries, compact vector-and-matrix helpers, raw-number classification or constants, complex-number primitives, numerical-calculus helpers, probability primitives, finite real-number helpers, or exact rational arithmetic without the wider facade.
 		</td>
 		<td width="33%" valign="top">
 			<strong>Use algebra directly</strong><br>
@@ -56,7 +56,7 @@ This repository is the source workspace for RustUse's math surface. Today it com
 
 ## What this workspace ships
 
-RustUse/use-math is now an 18-crate workspace. Each crate is usable on its own, and the facade crate composes the focused crates when you want one import surface.
+RustUse/use-math is now a 19-crate workspace. Each crate is usable on its own, and the facade crate composes the focused crates when you want one import surface.
 
 | Crate               | Path                        | Purpose                                                                                                               | Best fit                                                                             |
 | ------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
@@ -64,6 +64,7 @@ RustUse/use-math is now an 18-crate workspace. Each crate is usable on its own, 
 | `use-geometry`      | `crates/use-geometry/`      | Utility-first 2D geometry primitives, shapes, bounds, orientation, and distance helpers                               | Geometry is the only math surface you need                                           |
 | `use-combinatorics` | `crates/use-combinatorics/` | Checked counting helpers for factorials, permutations, and combinations                                               | You only need combinatorics helpers                                                  |
 | `use-catalan`       | `crates/use-catalan/`       | Checked Catalan and Fuss-Catalan counting helpers                                                                     | You want exact Catalan-family counts without a broader sequence crate                |
+| `use-geode`         | `crates/use-geode/`         | Geode-array type vectors, hyper-Catalan coefficients, polygon subdivision counts, and small exact Geode recurrences   | You want exact Geode-array helpers without a broader series engine                   |
 | `use-series`        | `crates/use-series/`        | Checked arithmetic and geometric progression helpers                                                                  | You want exact nth-term and partial-sum helpers without a broader sequence framework |
 | `use-algebra`       | `crates/use-algebra/`       | Finite-sample algebraic law helpers for closure-defined operations and structures                                     | You want explicit group-like or ring-like checks without a trait hierarchy           |
 | `use-integer`       | `crates/use-integer/`       | Sign classification, parity checks, validated divisibility, and exact gcd/lcm helpers                                 | You want small integer helpers without a broader numeric framework                   |
@@ -87,6 +88,7 @@ All focused crates currently ship concrete APIs.
 | Validate 2D coordinates and shapes from user or file input    | `use-geometry`             |
 | Do checked counting without geometry types                    | `use-combinatorics`        |
 | Work with exact Catalan-family sequence helpers directly      | `use-catalan`              |
+| Work with exact Geode-array primitives directly               | `use-geode`                |
 | Work with progression nth-term and sum helpers directly       | `use-series`               |
 | Work with finite algebra law helpers directly                 | `use-algebra`              |
 | Work with sign, parity, and common-divisor helpers directly   | `use-integer`              |
@@ -116,6 +118,7 @@ Pick the crate based on the integration shape you want, not just the total featu
 | Geometry-only code with direct type access                       | `use-geometry`                                   | You avoid facade indirection and keep dependencies minimal                        |
 | Counting helpers only                                            | `use-combinatorics`                              | You get checked math helpers without bringing in geometry modules                 |
 | Catalan-family sequence helpers only                             | `use-catalan`                                    | You keep Catalan and Fuss-Catalan counting explicit and local                     |
+| Geode-array primitives only                                      | `use-geode`                                      | You keep finite type vectors and small exact Geode recurrences explicit and local |
 | Progression helpers only                                         | `use-series`                                     | You keep arithmetic and geometric nth-term and sum helpers explicit and local     |
 | Finite algebra law helpers only                                  | `use-algebra`                                    | You keep closure-based structure checks explicit and local                        |
 | Integer helpers only                                             | `use-integer`                                    | You keep parity, divisibility, and gcd/lcm logic explicit and local               |
@@ -145,6 +148,7 @@ Pick the crate based on the integration shape you want, not just the total featu
 │   ├── use-combinatorics/
 │   ├── use-complex/
 │   ├── use-geometry/
+│   ├── use-geode/
 │   ├── use-integer/
 │   ├── use-linear/
 │   ├── use-logic/
@@ -167,6 +171,7 @@ Pick the crate based on the integration shape you want, not just the total featu
 | `crates/use-geometry/`      | Direct 2D geometry APIs, validated constructors, and invariant checks                      |
 | `crates/use-combinatorics/` | Direct checked counting APIs                                                               |
 | `crates/use-catalan/`       | Direct Catalan-family counting APIs                                                        |
+| `crates/use-geode/`         | Direct Geode-array type-vector and coefficient APIs                                        |
 | `crates/use-series/`        | Direct arithmetic and geometric progression APIs                                           |
 | `crates/use-integer/`       | Direct integer classification and common-divisor helpers                                   |
 | `crates/use-logic/`         | Direct boolean algebra helper APIs                                                         |
@@ -284,6 +289,7 @@ The facade crate exposes a small feature surface:
 | `geometry`      | Re-exports from `use-geometry` and geometry facade examples/tests                                                                 | No      |
 | `combinatorics` | Re-exports from `use-combinatorics` and combinatorics facade examples/tests                                                       | No      |
 | `catalan`       | Re-exports from `use-catalan`, including Catalan and Fuss-Catalan helpers                                                         | No      |
+| `geode`         | Re-exports from `use-geode`, including `TypeVector`, `hyper_catalan`, `geode_memoized`, and the nested `use_math::geode` module   | No      |
 | `algebra`       | Re-exports from `use-algebra`, including finite algebra-law helpers such as `identity_element`, `is_abelian_group`, and `is_ring` | No      |
 | `series`        | Re-exports from `use-series`, including arithmetic and geometric progression helpers                                              | No      |
 | `integer`       | Re-exports from `use-integer`, including sign, parity, divisibility, and gcd/lcm helpers                                          | No      |

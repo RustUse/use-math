@@ -29,6 +29,15 @@ pub use crate::{
     try_orientation_2d, try_orientation_2d_with_tolerance,
 };
 
+#[cfg(feature = "geode")]
+pub use crate::{
+    GeodeError, TypeVector, face_count, geode_memoized, hyper_catalan, polygon_edge_count,
+    polygon_vertex_count,
+};
+
+#[cfg(feature = "geode")]
+pub use crate::geode::geode;
+
 #[cfg(feature = "integer")]
 pub use crate::{
     IntegerError, IntegerSign, are_coprime, classify_sign, gcd, is_divisible_by, is_even, is_odd,

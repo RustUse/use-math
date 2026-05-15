@@ -25,6 +25,7 @@ catalan = ["dep:use-catalan"]
 combinatorics = ["dep:use-combinatorics"]
 complex = ["dep:use-complex"]
 geometry = ["dep:use-geometry"]
+geode = ["dep:use-geode"]
 integer = ["dep:use-integer"]
 linear = ["dep:use-linear"]
 logic = ["dep:use-logic"]
@@ -43,6 +44,7 @@ full = [
 	"real",
 	"complex",
 	"geometry",
+	"geode",
 	"combinatorics",
 	"series",
 	"catalan",
@@ -63,6 +65,7 @@ use-catalan = { version = "0.0.1", path = "../use-catalan", optional = true }
 use-combinatorics = { version = "0.0.1", path = "../use-combinatorics", optional = true }
 use-complex = { version = "0.0.1", path = "../use-complex", optional = true }
 use-geometry = { version = "0.0.1", path = "../use-geometry", optional = true }
+use-geode = { version = "0.0.1", path = "../use-geode", optional = true }
 use-integer = { version = "0.0.1", path = "../use-integer", optional = true }
 use-linear = { version = "0.0.1", path = "../use-linear", optional = true }
 use-logic = { version = "0.0.1", path = "../use-logic", optional = true }
@@ -83,6 +86,10 @@ required-features = ["combinatorics"]
 name = "facade_validated_geometry"
 required-features = ["geometry"]
 
+[[example]]
+name = "facade_geode"
+required-features = ["geode"]
+
 [[test]]
 name = "facade_combinatorics"
 required-features = ["combinatorics"]
@@ -90,6 +97,10 @@ required-features = ["combinatorics"]
 [[test]]
 name = "facade_geometry"
 required-features = ["geometry"]
+
+[[test]]
+name = "facade_geode"
+required-features = ["geode"]
 
 [lints]
 workspace = true

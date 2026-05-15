@@ -51,6 +51,19 @@ pub use use_geometry::{
     try_orientation_2d, try_orientation_2d_with_tolerance,
 };
 
+#[cfg(feature = "geode")]
+pub mod geode {
+    pub use use_geode::*;
+}
+
+#[cfg(feature = "geode")]
+pub use use_geode::{
+    GeodeError, TypeVector, catalan_from_geode_dimension, checked_factorial,
+    checked_product_factorials, diagonal_geode_2d, diagonal_geode_3d, diagonal_geode_4d,
+    exact_divide, face_count, geode_memoized, geode_on_first_axis, hyper_catalan,
+    polygon_edge_count, polygon_vertex_count,
+};
+
 #[cfg(feature = "integer")]
 pub use use_integer as integer;
 

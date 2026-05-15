@@ -10,6 +10,32 @@ const fn gcd(mut left: u128, mut right: u128) -> u128 {
     left
 }
 
+fn checked_binomial(total: u128, choose: u64) -> Option<u128> {
+    let choose = choose.min(u64::try_from(total.saturating_sub(u128::from(choose))).ok()?);
+    let mut result = 1_u128;
+    let mut step = 1_u64;
+
+    while step <= choose {
+        let mut numerator = total - u128::from(choose) + u128::from(step);
+        let mut denominator = u128::from(step);
+
+        let numerator_gcd = gcd(numerator, denominator);
+        numerator /= numerator_gcd;
+        denominator /= numerator_gcd;
+
+        let result_gcd = gcd(result, denominator);
+        result /= result_gcd;
+        denominator /= result_gcd;
+
+        debug_assert_eq!(denominator, 1);
+
+        result = result.checked_mul(numerator)?;
+        step += 1;
+    }
+
+    Some(result)
+}
+
 /// Returns the `n`th Catalan number using checked `u128` arithmetic.
 ///
 /// # Errors
@@ -26,36 +52,13 @@ const fn gcd(mut left: u128, mut right: u128) -> u128 {
 /// # Ok::<(), use_catalan::CatalanError>(())
 /// ```
 pub fn catalan(n: u64) -> Result<u128, CatalanError> {
-    if n <= 1 {
-        return Ok(1);
+    match fuss_catalan(2, n) {
+        Ok(value) => Ok(value),
+        Err(CatalanError::FussCatalanOverflow { .. }) => Err(CatalanError::CatalanOverflow(n)),
+        Err(CatalanError::ZeroOrder | CatalanError::CatalanOverflow(_)) => {
+            unreachable!("fuss_catalan(2, n) only reports overflow or success")
+        },
     }
-
-    let mut result = 1_u128;
-    let mut step = 2_u64;
-
-    while step <= n {
-        let mut numerator = u128::from(n) + u128::from(step);
-        let mut denominator = u128::from(step);
-
-        let numerator_gcd = gcd(numerator, denominator);
-        numerator /= numerator_gcd;
-        denominator /= numerator_gcd;
-
-        let result_gcd = gcd(result, denominator);
-        result /= result_gcd;
-        denominator /= result_gcd;
-
-        debug_assert_eq!(denominator, 1);
-
-        result = match result.checked_mul(numerator) {
-            Some(value) => value,
-            None => return Err(CatalanError::CatalanOverflow(n)),
-        };
-
-        step += 1;
-    }
-
-    Ok(result)
 }
 
 /// Returns the `n`th Fuss-Catalan number for a positive `order`.
@@ -86,44 +89,16 @@ pub fn fuss_catalan(order: u64, n: u64) -> Result<u128, CatalanError> {
         return Ok(1);
     }
 
-    let width = u128::from(order - 1) * u128::from(n);
-    let mut remaining_divisor = width + 1;
-    let mut result = 1_u128;
-    let mut step = 1_u64;
+    let total = u128::from(order) * u128::from(n);
+    let divisor = u128::from(order - 1) * u128::from(n) + 1;
+    let binomial =
+        checked_binomial(total, n).ok_or(CatalanError::FussCatalanOverflow { order, n })?;
 
-    while step <= n {
-        let mut numerator = width + u128::from(step);
-        let mut denominator = u128::from(step);
-
-        let numerator_gcd = gcd(numerator, denominator);
-        numerator /= numerator_gcd;
-        denominator /= numerator_gcd;
-
-        let result_gcd = gcd(result, denominator);
-        result /= result_gcd;
-        denominator /= result_gcd;
-
-        let divisor_numerator_gcd = gcd(numerator, remaining_divisor);
-        numerator /= divisor_numerator_gcd;
-        remaining_divisor /= divisor_numerator_gcd;
-
-        let divisor_result_gcd = gcd(result, remaining_divisor);
-        result /= divisor_result_gcd;
-        remaining_divisor /= divisor_result_gcd;
-
-        debug_assert_eq!(denominator, 1);
-
-        result = match result.checked_mul(numerator) {
-            Some(value) => value,
-            None => return Err(CatalanError::FussCatalanOverflow { order, n }),
-        };
-
-        step += 1;
+    if binomial % divisor != 0 {
+        return Err(CatalanError::FussCatalanOverflow { order, n });
     }
 
-    debug_assert_eq!(remaining_divisor, 1);
-
-    Ok(result)
+    Ok(binomial / divisor)
 }
 
 #[cfg(test)]

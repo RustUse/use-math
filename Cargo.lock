@@ -186,6 +186,13 @@ name = "use-complex"
 version = "0.0.1"
 
 [[package]]
+name = "use-geode"
+version = "0.0.1"
+dependencies = [
+ "use-catalan",
+]
+
+[[package]]
 name = "use-geometry"
 version = "0.0.1"
 dependencies = [
@@ -213,6 +220,7 @@ dependencies = [
  "use-catalan",
  "use-combinatorics",
  "use-complex",
+ "use-geode",
  "use-geometry",
  "use-integer",
  "use-linear",

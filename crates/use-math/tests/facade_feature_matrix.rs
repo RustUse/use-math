@@ -22,6 +22,7 @@ fn facade_supports_geometry_and_combinatorics_together() -> Result<(), Box<dyn s
     feature = "real",
     feature = "complex",
     feature = "geometry",
+    feature = "geode",
     feature = "combinatorics",
     feature = "series",
     feature = "catalan",
@@ -41,6 +42,8 @@ fn facade_exposes_all_namespace_features() {
         integer as _, linear as _, logic as _, number as _, probability as _, rational as _,
         real as _, series as _, set as _, statistics as _, trigonometry as _,
     };
+
+    let _ = use_math::geode::TypeVector::new(vec![0]);
 }
 
 #[cfg(all(
