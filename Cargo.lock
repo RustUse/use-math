@@ -179,6 +179,10 @@ name = "use-catalan"
 version = "0.0.6"
 
 [[package]]
+name = "use-collatz"
+version = "0.0.6"
+
+[[package]]
 name = "use-combinatorics"
 version = "0.0.6"
 dependencies = [
@@ -238,6 +242,7 @@ dependencies = [
  "use-arithmetic",
  "use-calculus",
  "use-catalan",
+ "use-collatz",
  "use-combinatorics",
  "use-complex",
  "use-equation",

@@ -15,6 +15,13 @@ pub use crate::{
 #[cfg(feature = "catalan")]
 pub use crate::{CatalanError, catalan, fuss_catalan};
 
+#[cfg(feature = "collatz")]
+pub use crate::{
+    CollatzParity, CollatzRangeSummary, collatz_next, collatz_sequence, max_value_in_trajectory,
+    parity, parity_vector, reaches_one, stopping_time, total_stopping_time, trajectory_len,
+    verify_range,
+};
+
 #[cfg(feature = "calculus")]
 pub use crate::{
     CalculusError, Differentiator, IntegrationInterval, Integrator, LimitApproximator,

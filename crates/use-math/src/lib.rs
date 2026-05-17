@@ -39,6 +39,16 @@ pub use use_catalan as catalan;
 #[cfg(feature = "catalan")]
 pub use use_catalan::{CatalanError, catalan, fuss_catalan};
 
+#[cfg(feature = "collatz")]
+pub use use_collatz as collatz;
+
+#[cfg(feature = "collatz")]
+pub use use_collatz::{
+    CollatzParity, CollatzRangeSummary, collatz_next, collatz_sequence, max_value_in_trajectory,
+    parity, parity_vector, reaches_one, stopping_time, total_stopping_time, trajectory_len,
+    verify_range,
+};
+
 #[cfg(feature = "combinatorics")]
 pub use use_combinatorics as combinatorics;
 

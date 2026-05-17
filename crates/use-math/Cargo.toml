@@ -23,6 +23,7 @@ arithmetic = ["dep:use-arithmetic"]
 algebra = ["dep:use-algebra"]
 calculus = ["dep:use-calculus"]
 catalan = ["dep:use-catalan"]
+collatz = ["dep:use-collatz"]
 combinatorics = ["dep:use-combinatorics"]
 complex = ["dep:use-complex"]
 geometry = ["dep:use-geometry"]
@@ -58,6 +59,7 @@ full = [
 	"combinatorics",
 	"series",
 	"catalan",
+	"collatz",
 	"algebra",
 	"modular",
 	"prime",
@@ -81,6 +83,7 @@ use-arithmetic = { version = "0.0.6", path = "../use-arithmetic", optional = tru
 use-algebra = { version = "0.0.6", path = "../use-algebra", optional = true }
 use-calculus = { version = "0.0.6", path = "../use-calculus", optional = true }
 use-catalan = { version = "0.0.6", path = "../use-catalan", optional = true }
+use-collatz = { version = "0.0.6", path = "../use-collatz", optional = true }
 use-combinatorics = { version = "0.0.6", path = "../use-combinatorics", optional = true }
 use-complex = { version = "0.0.6", path = "../use-complex", optional = true }
 use-geometry = { version = "0.0.6", path = "../use-geometry", optional = true }
@@ -114,6 +117,10 @@ name = "facade_combinatorics"
 required-features = ["combinatorics"]
 
 [[example]]
+name = "facade_collatz"
+required-features = ["collatz"]
+
+[[example]]
 name = "facade_validated_geometry"
 required-features = ["geometry"]
 
@@ -128,6 +135,10 @@ required-features = ["arithmetic"]
 [[test]]
 name = "facade_combinatorics"
 required-features = ["combinatorics"]
+
+[[test]]
+name = "facade_collatz"
+required-features = ["collatz"]
 
 [[test]]
 name = "facade_geometry"

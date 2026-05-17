@@ -49,7 +49,7 @@ release-readiness and first-publish sequence:
 
 ```bash
 make release-readiness
-for crate in use-arithmetic use-number use-integer use-modular use-prime use-polynomial use-equation use-rational use-interval use-numerical use-real use-complex use-geometry use-combinatorics use-series use-catalan use-geode use-algebra use-vector use-matrix use-linear use-calculus use-probability use-statistics use-trigonometry use-logic use-set; do
+for crate in use-arithmetic use-number use-integer use-modular use-prime use-polynomial use-equation use-rational use-interval use-numerical use-real use-complex use-geometry use-combinatorics use-series use-catalan use-collatz use-geode use-algebra use-vector use-matrix use-linear use-calculus use-probability use-statistics use-trigonometry use-logic use-set; do
 	cargo publish -p "$crate"
 done
 cargo publish --dry-run -p use-math
@@ -178,7 +178,7 @@ For the first release wave, do not use `release-plz release`. Publish in manual
 dependency order.
 
 ```bash
-for crate in use-arithmetic use-number use-integer use-modular use-prime use-polynomial use-equation use-rational use-interval use-real use-complex use-geometry use-combinatorics use-series use-catalan use-geode use-algebra use-vector use-matrix use-linear use-calculus use-probability use-statistics use-trigonometry use-logic use-set; do
+for crate in use-arithmetic use-number use-integer use-modular use-prime use-polynomial use-equation use-rational use-interval use-real use-complex use-geometry use-combinatorics use-series use-catalan use-collatz use-geode use-algebra use-vector use-matrix use-linear use-calculus use-probability use-statistics use-trigonometry use-logic use-set; do
 	cargo publish -p "$crate"
 done
 ```
