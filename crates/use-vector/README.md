@@ -30,13 +30,13 @@ Scalar division follows normal `f64` semantics. Dividing by zero yields infiniti
 
 ## Neighboring crates
 
-| Crate          | Responsibility                                                          |
-| -------------- | ----------------------------------------------------------------------- |
-| `use-vector`   | Vector primitives and vector operations                                 |
-| `use-matrix`   | Matrix primitives                                                       |
-| `use-linear`   | Higher-level linear algebra algorithms and matrix-oriented workflows    |
-| `use-geometry` | Points, shapes, angles, geometric relationships, and spatial algorithms |
-| `use-physics`  | Physical formulas that use vectors                                      |
+| Crate                         | Responsibility                                                          |
+| ----------------------------- | ----------------------------------------------------------------------- |
+| `use-vector`                  | Vector primitives and vector operations                                 |
+| `use-matrix`                  | Matrix primitives                                                       |
+| `use-linear`                  | Higher-level linear algebra algorithms and matrix-oriented workflows    |
+| `use-geometry` (sibling repo) | Points, shapes, angles, geometric relationships, and spatial algorithms |
+| `use-physics`                 | Physical formulas that use vectors                                      |
 
 `use-vector` intentionally does not add geometry-specific types, matrices, unit-aware
 vectors, or domain-specific physics helpers.

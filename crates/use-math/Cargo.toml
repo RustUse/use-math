@@ -26,7 +26,6 @@ catalan = ["dep:use-catalan"]
 collatz = ["dep:use-collatz"]
 combinatorics = ["dep:use-combinatorics"]
 complex = ["dep:use-complex"]
-geometry = ["dep:use-geometry"]
 geode = ["dep:use-geode"]
 integer = ["dep:use-integer"]
 interval = ["dep:use-interval", "use-numerical?/interval"]
@@ -54,7 +53,6 @@ full = [
 	"rational",
 	"real",
 	"complex",
-	"geometry",
 	"geode",
 	"combinatorics",
 	"series",
@@ -86,7 +84,6 @@ use-catalan = { version = "0.0.6", path = "../use-catalan", optional = true }
 use-collatz = { version = "0.0.6", path = "../use-collatz", optional = true }
 use-combinatorics = { version = "0.0.6", path = "../use-combinatorics", optional = true }
 use-complex = { version = "0.0.6", path = "../use-complex", optional = true }
-use-geometry = { version = "0.0.6", path = "../use-geometry", optional = true }
 use-geode = { version = "0.0.6", path = "../use-geode", optional = true }
 use-integer = { version = "0.0.6", path = "../use-integer", optional = true }
 use-interval = { version = "0.0.6", path = "../use-interval", optional = true }
@@ -121,10 +118,6 @@ name = "facade_collatz"
 required-features = ["collatz"]
 
 [[example]]
-name = "facade_validated_geometry"
-required-features = ["geometry"]
-
-[[example]]
 name = "facade_geode"
 required-features = ["geode"]
 
@@ -139,10 +132,6 @@ required-features = ["combinatorics"]
 [[test]]
 name = "facade_collatz"
 required-features = ["collatz"]
-
-[[test]]
-name = "facade_geometry"
-required-features = ["geometry"]
 
 [[test]]
 name = "facade_numerical"

@@ -14,7 +14,7 @@ pub mod bound {
     ///
     /// `Open` excludes the endpoint, `Closed` includes it, and `Unbounded`
     /// leaves the side unconstrained.
-    #[derive(Debug, Clone, Copy, PartialEq)]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq)]
     pub enum Bound<T> {
         /// An excluded endpoint.
         Open(T),
@@ -46,7 +46,7 @@ pub mod interval {
     /// assert!(closed.contains(2.0));
     /// assert!(half_open.contains(0.5));
     /// ```
-    #[derive(Debug, Clone, Copy, PartialEq)]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq)]
     pub struct Interval<T> {
         /// The lower endpoint rule.
         pub lower: Bound<T>,
@@ -147,19 +147,19 @@ pub mod interval {
 
         /// Returns `true` when the interval has both lower and upper bounds.
         #[must_use]
-        pub fn is_bounded(&self) -> bool {
+        pub const fn is_bounded(&self) -> bool {
             self.has_lower_bound() && self.has_upper_bound()
         }
 
         /// Returns `true` when the interval has a lower bound.
         #[must_use]
-        pub fn has_lower_bound(&self) -> bool {
+        pub const fn has_lower_bound(&self) -> bool {
             !matches!(self.lower, Bound::Unbounded)
         }
 
         /// Returns `true` when the interval has an upper bound.
         #[must_use]
-        pub fn has_upper_bound(&self) -> bool {
+        pub const fn has_upper_bound(&self) -> bool {
             !matches!(self.upper, Bound::Unbounded)
         }
 
@@ -204,7 +204,7 @@ pub mod interval {
         }
     }
 
-    fn bound_value<T>(bound: &Bound<T>) -> Option<&T> {
+    const fn bound_value<T>(bound: &Bound<T>) -> Option<&T> {
         match bound {
             Bound::Open(value) | Bound::Closed(value) => Some(value),
             Bound::Unbounded => None,

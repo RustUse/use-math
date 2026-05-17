@@ -29,9 +29,9 @@ pub mod arithmetic {
     /// Returns `None` when `modulus <= 0`.
     #[must_use]
     pub fn mod_add(a: i64, b: i64, modulus: i64) -> Option<i64> {
-        let modulus = checked_modulus(modulus)?;
-        let sum = normalized_i128(a, modulus as i64)? + normalized_i128(b, modulus as i64)?;
-        i64::try_from(sum.rem_euclid(modulus)).ok()
+        let modulus_i128 = checked_modulus(modulus)?;
+        let sum = normalized_i128(a, modulus)? + normalized_i128(b, modulus)?;
+        i64::try_from(sum.rem_euclid(modulus_i128)).ok()
     }
 
     /// Computes `(a - b) mod modulus` and returns the normalized residue.
@@ -39,9 +39,9 @@ pub mod arithmetic {
     /// Returns `None` when `modulus <= 0`.
     #[must_use]
     pub fn mod_sub(a: i64, b: i64, modulus: i64) -> Option<i64> {
-        let modulus = checked_modulus(modulus)?;
-        let difference = normalized_i128(a, modulus as i64)? - normalized_i128(b, modulus as i64)?;
-        i64::try_from(difference.rem_euclid(modulus)).ok()
+        let modulus_i128 = checked_modulus(modulus)?;
+        let difference = normalized_i128(a, modulus)? - normalized_i128(b, modulus)?;
+        i64::try_from(difference.rem_euclid(modulus_i128)).ok()
     }
 
     /// Computes `(a * b) mod modulus` and returns the normalized residue.
@@ -50,9 +50,9 @@ pub mod arithmetic {
     /// Returns `None` when `modulus <= 0`.
     #[must_use]
     pub fn mod_mul(a: i64, b: i64, modulus: i64) -> Option<i64> {
-        let modulus = checked_modulus(modulus)?;
-        let product = normalized_i128(a, modulus as i64)? * normalized_i128(b, modulus as i64)?;
-        i64::try_from(product.rem_euclid(modulus)).ok()
+        let modulus_i128 = checked_modulus(modulus)?;
+        let product = normalized_i128(a, modulus)? * normalized_i128(b, modulus)?;
+        i64::try_from(product.rem_euclid(modulus_i128)).ok()
     }
 }
 
@@ -104,20 +104,30 @@ pub mod inverse {
             .and_then(|inverse| i64::try_from(inverse).ok())
     }
 
-    fn extended_gcd(a: i128, b: i128) -> (i128, i128, i128) {
-        let (mut old_r, mut r) = (a, b);
-        let (mut old_s, mut s) = (1_i128, 0_i128);
-        let (mut old_t, mut t) = (0_i128, 1_i128);
+    const fn extended_gcd(left: i128, right: i128) -> (i128, i128, i128) {
+        let (mut old_remainder, mut remainder) = (left, right);
+        let (mut old_left_coefficient, mut left_coefficient) = (1_i128, 0_i128);
+        let (mut old_right_coefficient, mut right_coefficient) = (0_i128, 1_i128);
 
-        while r != 0 {
-            let quotient = old_r / r;
+        while remainder != 0 {
+            let quotient = old_remainder / remainder;
 
-            (old_r, r) = (r, old_r - quotient * r);
-            (old_s, s) = (s, old_s - quotient * s);
-            (old_t, t) = (t, old_t - quotient * t);
+            (old_remainder, remainder) = (remainder, old_remainder - quotient * remainder);
+            (old_left_coefficient, left_coefficient) = (
+                left_coefficient,
+                old_left_coefficient - quotient * left_coefficient,
+            );
+            (old_right_coefficient, right_coefficient) = (
+                right_coefficient,
+                old_right_coefficient - quotient * right_coefficient,
+            );
         }
 
-        (old_r.abs(), old_s, old_t)
+        (
+            old_remainder.abs(),
+            old_left_coefficient,
+            old_right_coefficient,
+        )
     }
 }
 
@@ -177,6 +187,7 @@ impl Modular {
     ///
     /// Returns `None` when the moduli differ.
     #[must_use]
+    #[allow(clippy::should_implement_trait)]
     pub fn add(self, other: Self) -> Option<Self> {
         let modulus = self.same_modulus(other)?;
         Self::new(mod_add(self.value, other.value, modulus)?, modulus)
@@ -186,6 +197,7 @@ impl Modular {
     ///
     /// Returns `None` when the moduli differ.
     #[must_use]
+    #[allow(clippy::should_implement_trait)]
     pub fn sub(self, other: Self) -> Option<Self> {
         let modulus = self.same_modulus(other)?;
         Self::new(mod_sub(self.value, other.value, modulus)?, modulus)
@@ -195,6 +207,7 @@ impl Modular {
     ///
     /// Returns `None` when the moduli differ.
     #[must_use]
+    #[allow(clippy::should_implement_trait)]
     pub fn mul(self, other: Self) -> Option<Self> {
         let modulus = self.same_modulus(other)?;
         Self::new(mod_mul(self.value, other.value, modulus)?, modulus)
@@ -212,8 +225,12 @@ impl Modular {
         Self::new(mod_inverse(self.value, self.modulus)?, self.modulus)
     }
 
-    fn same_modulus(self, other: Self) -> Option<i64> {
-        (self.modulus == other.modulus).then_some(self.modulus)
+    const fn same_modulus(self, other: Self) -> Option<i64> {
+        if self.modulus == other.modulus {
+            Some(self.modulus)
+        } else {
+            None
+        }
     }
 }
 

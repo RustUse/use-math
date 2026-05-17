@@ -233,13 +233,13 @@ pub mod system {
         a22: f64,
         b2: f64,
     ) -> Option<(f64, f64)> {
-        let determinant = a11 * a22 - a12 * a21;
+        let determinant = a11.mul_add(a22, -(a12 * a21));
         if determinant == 0.0 || !determinant.is_finite() {
             return None;
         }
 
-        let x = (b1 * a22 - a12 * b2) / determinant;
-        let y = (a11 * b2 - b1 * a21) / determinant;
+        let x = b1.mul_add(a22, -(a12 * b2)) / determinant;
+        let y = a11.mul_add(b2, -(b1 * a21)) / determinant;
 
         if x.is_finite() && y.is_finite() {
             Some((x, y))

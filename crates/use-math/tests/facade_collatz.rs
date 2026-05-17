@@ -18,7 +18,7 @@ fn facade_prelude_exposes_collatz_workflow() {
 #[test]
 fn facade_root_and_namespace_reexports_collatz_workflow() {
     assert_eq!(use_math::stopping_time(3), Some(6));
-    assert_eq!(use_math::reaches_one(6), true);
+    assert!(use_math::reaches_one(6));
     assert_eq!(use_math::parity(8), Some(use_math::CollatzParity::Even));
     assert_eq!(collatz::parity(9), Some(collatz::CollatzParity::Odd));
     assert_eq!(collatz::collatz_next(1), Some(4));

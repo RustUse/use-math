@@ -2,7 +2,6 @@
 members = [
     "crates/use-math",
     "crates/use-arithmetic",
-    "crates/use-geometry",
     "crates/use-combinatorics",
     "crates/use-number",
     "crates/use-integer",
@@ -60,7 +59,6 @@ first-publish-candidates = [
     "use-numerical",
     "use-real",
     "use-complex",
-    "use-geometry",
     "use-combinatorics",
     "use-series",
     "use-catalan",

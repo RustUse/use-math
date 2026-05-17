@@ -103,7 +103,7 @@ fn update_max_pair(slot: &mut Option<(u64, u64)>, input: u64, value: u64) {
 /// assert_eq!(collatz_next(0), None);
 /// ```
 #[must_use]
-pub fn collatz_next(n: u64) -> Option<u64> {
+pub const fn collatz_next(n: u64) -> Option<u64> {
     if n == 0 {
         return None;
     }
@@ -246,7 +246,7 @@ pub fn reaches_one(n: u64) -> bool {
 /// assert_eq!(parity(0), None);
 /// ```
 #[must_use]
-pub fn parity(n: u64) -> Option<CollatzParity> {
+pub const fn parity(n: u64) -> Option<CollatzParity> {
     if n == 0 {
         return None;
     }

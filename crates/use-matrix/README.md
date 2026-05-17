@@ -31,13 +31,13 @@ infinities or `NaN` instead of panicking.
 
 ## Neighboring crates
 
-| Crate          | Responsibility                                                    |
-| -------------- | ----------------------------------------------------------------- |
-| `use-matrix`   | Matrix primitives and direct matrix operations                    |
-| `use-vector`   | Vector primitives and vector operations                           |
-| `use-linear`   | Higher-level linear algebra algorithms and solver-style workflows |
-| `use-geometry` | Geometric transforms, shapes, points, and spatial algorithms      |
-| `use-physics`  | Physical formulas that use matrices                               |
+| Crate                         | Responsibility                                                    |
+| ----------------------------- | ----------------------------------------------------------------- |
+| `use-matrix`                  | Matrix primitives and direct matrix operations                    |
+| `use-vector`                  | Vector primitives and vector operations                           |
+| `use-linear`                  | Higher-level linear algebra algorithms and solver-style workflows |
+| `use-geometry` (sibling repo) | Geometric transforms, shapes, points, and spatial algorithms      |
+| `use-physics`                 | Physical formulas that use matrices                               |
 
 `use-matrix` intentionally does not add geometry-specific transforms,
 quaternions, unit-aware matrices, or broader decomposition and solver APIs.

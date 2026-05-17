@@ -22,7 +22,7 @@ pub mod approx {
     /// Negative finite epsilons are converted to their absolute value. `NaN`
     /// becomes `0.0`, and infinite values clamp to [`f64::MAX`].
     #[must_use]
-    pub fn clamp_epsilon(epsilon: f64) -> f64 {
+    pub const fn clamp_epsilon(epsilon: f64) -> f64 {
         if epsilon.is_nan() {
             0.0
         } else if epsilon.is_infinite() {
@@ -121,6 +121,11 @@ pub mod difference {
 
 /// Deterministic numerical integration rules over `f64` intervals.
 pub mod integration {
+    #[allow(clippy::cast_precision_loss)]
+    const fn usize_to_f64(value: usize) -> f64 {
+        value as f64
+    }
+
     fn normalized_bounds(a: f64, b: f64) -> Option<(f64, f64, f64)> {
         if !a.is_finite() || !b.is_finite() {
             return None;
@@ -139,21 +144,26 @@ pub mod integration {
     /// sampled function value is not finite. Reversed bounds return the
     /// negative integral.
     #[must_use]
-    pub fn rectangle_rule<F>(f: F, a: f64, b: f64, n: usize) -> Option<f64>
+    pub fn rectangle_rule<F>(
+        integrand: F,
+        lower_bound: f64,
+        upper_bound: f64,
+        subinterval_count: usize,
+    ) -> Option<f64>
     where
         F: Fn(f64) -> f64,
     {
-        if n == 0 {
+        if subinterval_count == 0 {
             return None;
         }
 
-        let (start, end, sign) = normalized_bounds(a, b)?;
-        let step = (end - start) / n as f64;
+        let (start, end, sign) = normalized_bounds(lower_bound, upper_bound)?;
+        let step = (end - start) / usize_to_f64(subinterval_count);
         let mut sum = 0.0;
 
-        for index in 0..n {
-            let x = start + index as f64 * step;
-            let value = f(x);
+        for sample_index in 0..subinterval_count {
+            let sample_point = usize_to_f64(sample_index).mul_add(step, start);
+            let value = integrand(sample_point);
             if !value.is_finite() {
                 return None;
             }
@@ -170,21 +180,26 @@ pub mod integration {
     /// sampled function value is not finite. Reversed bounds return the
     /// negative integral.
     #[must_use]
-    pub fn midpoint_rule<F>(f: F, a: f64, b: f64, n: usize) -> Option<f64>
+    pub fn midpoint_rule<F>(
+        integrand: F,
+        lower_bound: f64,
+        upper_bound: f64,
+        subinterval_count: usize,
+    ) -> Option<f64>
     where
         F: Fn(f64) -> f64,
     {
-        if n == 0 {
+        if subinterval_count == 0 {
             return None;
         }
 
-        let (start, end, sign) = normalized_bounds(a, b)?;
-        let step = (end - start) / n as f64;
+        let (start, end, sign) = normalized_bounds(lower_bound, upper_bound)?;
+        let step = (end - start) / usize_to_f64(subinterval_count);
         let mut sum = 0.0;
 
-        for index in 0..n {
-            let x = start + (index as f64 + 0.5) * step;
-            let value = f(x);
+        for sample_index in 0..subinterval_count {
+            let sample_point = (usize_to_f64(sample_index) + 0.5).mul_add(step, start);
+            let value = integrand(sample_point);
             if !value.is_finite() {
                 return None;
             }
@@ -201,18 +216,23 @@ pub mod integration {
     /// sampled function value is not finite. Reversed bounds return the
     /// negative integral.
     #[must_use]
-    pub fn trapezoidal_rule<F>(f: F, a: f64, b: f64, n: usize) -> Option<f64>
+    pub fn trapezoidal_rule<F>(
+        integrand: F,
+        lower_bound: f64,
+        upper_bound: f64,
+        subinterval_count: usize,
+    ) -> Option<f64>
     where
         F: Fn(f64) -> f64,
     {
-        if n == 0 {
+        if subinterval_count == 0 {
             return None;
         }
 
-        let (start, end, sign) = normalized_bounds(a, b)?;
-        let step = (end - start) / n as f64;
-        let start_value = f(start);
-        let end_value = f(end);
+        let (start, end, sign) = normalized_bounds(lower_bound, upper_bound)?;
+        let step = (end - start) / usize_to_f64(subinterval_count);
+        let start_value = integrand(start);
+        let end_value = integrand(end);
 
         if !start_value.is_finite() || !end_value.is_finite() {
             return None;
@@ -220,9 +240,9 @@ pub mod integration {
 
         let mut sum = 0.5 * (start_value + end_value);
 
-        for index in 1..n {
-            let x = start + index as f64 * step;
-            let value = f(x);
+        for sample_index in 1..subinterval_count {
+            let sample_point = usize_to_f64(sample_index).mul_add(step, start);
+            let value = integrand(sample_point);
             if !value.is_finite() {
                 return None;
             }
@@ -239,18 +259,23 @@ pub mod integration {
     /// finite, or when a sampled function value is not finite. Reversed bounds
     /// return the negative integral.
     #[must_use]
-    pub fn simpsons_rule<F>(f: F, a: f64, b: f64, n: usize) -> Option<f64>
+    pub fn simpsons_rule<F>(
+        integrand: F,
+        lower_bound: f64,
+        upper_bound: f64,
+        subinterval_count: usize,
+    ) -> Option<f64>
     where
         F: Fn(f64) -> f64,
     {
-        if n == 0 || n % 2 != 0 {
+        if subinterval_count == 0 || !subinterval_count.is_multiple_of(2) {
             return None;
         }
 
-        let (start, end, sign) = normalized_bounds(a, b)?;
-        let step = (end - start) / n as f64;
-        let start_value = f(start);
-        let end_value = f(end);
+        let (start, end, sign) = normalized_bounds(lower_bound, upper_bound)?;
+        let step = (end - start) / usize_to_f64(subinterval_count);
+        let start_value = integrand(start);
+        let end_value = integrand(end);
 
         if !start_value.is_finite() || !end_value.is_finite() {
             return None;
@@ -258,14 +283,14 @@ pub mod integration {
 
         let mut sum = start_value + end_value;
 
-        for index in 1..n {
-            let x = start + index as f64 * step;
-            let value = f(x);
+        for sample_index in 1..subinterval_count {
+            let sample_point = usize_to_f64(sample_index).mul_add(step, start);
+            let value = integrand(sample_point);
             if !value.is_finite() {
                 return None;
             }
 
-            if index % 2 == 0 {
+            if sample_index.is_multiple_of(2) {
                 sum += 2.0 * value;
             } else {
                 sum += 4.0 * value;
@@ -377,7 +402,7 @@ pub mod root {
         let mut left_value = lower_value;
 
         for _ in 0..options.max_iterations {
-            let midpoint = left + (right - left) * 0.5;
+            let midpoint = (right - left).mul_add(0.5, left);
             let midpoint_value = f(midpoint);
 
             if !midpoint.is_finite() || !midpoint_value.is_finite() {
@@ -407,6 +432,15 @@ pub mod root {
     /// already approximately zero. The interval bounds and function values must
     /// be finite. Convergence uses [`RootOptions::tolerance`] as an absolute
     /// tolerance.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`RootError::InvalidInterval`] when the bounds are non-finite,
+    /// reversed, or do not bracket a root; [`RootError::InvalidTolerance`]
+    /// when the tolerance is not finite and positive;
+    /// [`RootError::NonFiniteValue`] when a function evaluation is non-finite;
+    /// and [`RootError::MaxIterationsReached`] when the iteration budget is
+    /// exhausted without convergence.
     pub fn bisection<F>(
         f: F,
         lower: f64,
@@ -424,6 +458,16 @@ pub mod root {
     /// This is an approximate iterative solver, not an exact equation helper.
     /// The tolerance must be finite and positive. Non-finite values and
     /// approximately zero derivatives return explicit errors.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`RootError::InvalidTolerance`] when the tolerance is not
+    /// finite and positive; [`RootError::NonFiniteValue`] when the initial
+    /// value, a function evaluation, a derivative evaluation, or the next
+    /// iterate is non-finite; [`RootError::ZeroDerivative`] when the
+    /// derivative is approximately zero; and
+    /// [`RootError::MaxIterationsReached`] when the iteration budget is
+    /// exhausted without convergence.
     pub fn newton_raphson<F, D>(
         f: F,
         derivative: D,
@@ -481,6 +525,15 @@ pub mod root {
     /// Unbounded and empty intervals return [`RootError::InvalidInterval`].
     /// Open endpoints participate in bracketing, but only closed endpoints are
     /// eligible for the immediate endpoint-root fast path.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`RootError::InvalidInterval`] when the interval is empty,
+    /// unbounded, or does not bracket a root; [`RootError::InvalidTolerance`]
+    /// when the tolerance is not finite and positive;
+    /// [`RootError::NonFiniteValue`] when a function evaluation is non-finite;
+    /// and [`RootError::MaxIterationsReached`] when the iteration budget is
+    /// exhausted without convergence.
     #[cfg(feature = "interval")]
     pub fn bisection_interval<F>(
         f: F,
@@ -551,7 +604,7 @@ mod tests {
 
     #[test]
     fn negative_epsilon_behavior_is_clamped_to_positive() {
-        assert_eq!(clamp_epsilon(-1.0e-6), 1.0e-6);
+        assert!((clamp_epsilon(-1.0e-6) - 1.0e-6).abs() <= f64::EPSILON);
         assert!(approx_eq(2.0, 2.0 + 5.0e-7, -1.0e-6));
     }
 
@@ -634,7 +687,7 @@ mod tests {
 
     #[test]
     fn bisection_succeeds_for_bracketed_root() {
-        let root = bisection(|x| x * x - 2.0, 1.0, 2.0, RootOptions::default()).unwrap();
+        let root = bisection(|x| x.mul_add(x, -2.0), 1.0, 2.0, RootOptions::default()).unwrap();
 
         assert!((root - 2.0_f64.sqrt()).abs() < 1.0e-8);
     }
@@ -643,13 +696,13 @@ mod tests {
     fn bisection_returns_endpoint_root_when_present() {
         let root = bisection(|x| x - 1.0, 1.0, 3.0, RootOptions::default()).unwrap();
 
-        assert_eq!(root, 1.0);
+        assert!((root - 1.0).abs() <= f64::EPSILON);
     }
 
     #[test]
     fn bisection_rejects_invalid_intervals() {
         assert_eq!(
-            bisection(|x| x * x + 1.0, -1.0, 1.0, RootOptions::default()),
+            bisection(|x| x.mul_add(x, 1.0), -1.0, 1.0, RootOptions::default()),
             Err(RootError::InvalidInterval)
         );
     }
@@ -658,7 +711,7 @@ mod tests {
     fn bisection_rejects_invalid_tolerance() {
         assert_eq!(
             bisection(
-                |x| x * x - 2.0,
+                |x| x.mul_add(x, -2.0),
                 1.0,
                 2.0,
                 RootOptions {
@@ -674,7 +727,7 @@ mod tests {
     fn bisection_reports_max_iterations_reached() {
         assert_eq!(
             bisection(
-                |x| x * x - 2.0,
+                |x| x.mul_add(x, -2.0),
                 1.0,
                 2.0,
                 RootOptions {
@@ -688,8 +741,13 @@ mod tests {
 
     #[test]
     fn newton_raphson_succeeds_for_simple_root() {
-        let root =
-            newton_raphson(|x| x * x - 2.0, |x| 2.0 * x, 1.0, RootOptions::default()).unwrap();
+        let root = newton_raphson(
+            |x| x.mul_add(x, -2.0),
+            |x| 2.0 * x,
+            1.0,
+            RootOptions::default(),
+        )
+        .unwrap();
 
         assert!((root - 2.0_f64.sqrt()).abs() < 1.0e-8);
     }
@@ -698,7 +756,7 @@ mod tests {
     fn newton_raphson_reports_zero_derivative() {
         assert_eq!(
             newton_raphson(
-                |x| x * x * x + 1.0,
+                |x| (x * x).mul_add(x, 1.0),
                 |x| 3.0 * x * x,
                 0.0,
                 RootOptions::default(),
@@ -711,7 +769,7 @@ mod tests {
     fn newton_raphson_rejects_invalid_tolerance() {
         assert_eq!(
             newton_raphson(
-                |x| x * x - 2.0,
+                |x| x.mul_add(x, -2.0),
                 |x| 2.0 * x,
                 1.0,
                 RootOptions {
@@ -727,7 +785,7 @@ mod tests {
     fn newton_raphson_reports_max_iterations_reached() {
         assert_eq!(
             newton_raphson(
-                |x| x * x - 2.0,
+                |x| x.mul_add(x, -2.0),
                 |x| 2.0 * x,
                 1.0,
                 RootOptions {
@@ -755,7 +813,7 @@ mod tests {
     #[test]
     fn bisection_interval_supports_bounded_intervals() {
         let root = bisection_interval(
-            |x| x * x - 2.0,
+            |x| x.mul_add(x, -2.0),
             Interval::closed(1.0, 2.0),
             RootOptions::default(),
         )

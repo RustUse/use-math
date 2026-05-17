@@ -30,15 +30,15 @@ reuse interval semantics without pulling in domain-specific policy.
 
 ## Neighboring crates
 
-| Crate              | Responsibility                                                     |
-| ------------------ | ------------------------------------------------------------------ |
-| `use-interval`     | Generic interval and bound primitives                              |
-| `use-real`         | Real-number abstractions, validated finite values, and comparisons |
-| `use-calculus`     | Numerical methods that may consume intervals                       |
-| `use-probability`  | Probability-specific interval interpretations                      |
-| `use-statistics`   | Statistical confidence intervals and descriptive interpretation    |
-| `use-geometry`     | Geometry-specific bounds, boxes, and spatial interval compositions |
-| `use-optimization` | Optimization algorithms and interval-based search strategies       |
+| Crate                         | Responsibility                                                     |
+| ----------------------------- | ------------------------------------------------------------------ |
+| `use-interval`                | Generic interval and bound primitives                              |
+| `use-real`                    | Real-number abstractions, validated finite values, and comparisons |
+| `use-calculus`                | Numerical methods that may consume intervals                       |
+| `use-probability`             | Probability-specific interval interpretations                      |
+| `use-statistics`              | Statistical confidence intervals and descriptive interpretation    |
+| `use-geometry` (sibling repo) | Geometry-specific bounds, boxes, and spatial interval compositions |
+| `use-optimization`            | Optimization algorithms and interval-based search strategies       |
 
 `use-interval` intentionally does not define confidence interval types,
 geometry-specific bounding boxes, unit-aware intervals, or equation-solving

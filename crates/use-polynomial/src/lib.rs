@@ -68,7 +68,7 @@ pub mod polynomial {
 
         /// Returns the polynomial degree, or `None` for the zero polynomial.
         #[must_use]
-        pub fn degree(&self) -> Option<usize> {
+        pub const fn degree(&self) -> Option<usize> {
             if self.coefficients.is_empty() {
                 None
             } else {
@@ -84,7 +84,7 @@ pub mod polynomial {
 
         /// Returns `true` when the polynomial is the zero polynomial.
         #[must_use]
-        pub fn is_zero(&self) -> bool {
+        pub const fn is_zero(&self) -> bool {
             self.coefficients.is_empty()
         }
 
@@ -101,6 +101,7 @@ pub mod polynomial {
 
         /// Returns the derivative of the polynomial.
         #[must_use]
+        #[allow(clippy::cast_precision_loss)]
         pub fn derivative(&self) -> Self {
             if self.coefficients.len() < 2 {
                 return Self::zero();
@@ -137,6 +138,7 @@ pub mod polynomial {
 
         /// Returns the indefinite integral with the provided constant term.
         #[must_use]
+        #[allow(clippy::cast_precision_loss)]
         pub fn integral(&self, constant: f64) -> Self {
             let mut coefficients = Vec::with_capacity(self.coefficients.len() + 1);
             coefficients.push(constant);
@@ -285,7 +287,7 @@ pub mod roots {
             return linear_root(b, c).into_iter().collect();
         }
 
-        let discriminant = b * b - 4.0 * a * c;
+        let discriminant = b.mul_add(b, -(4.0 * a * c));
 
         if discriminant.is_nan() || discriminant < 0.0 {
             return Vec::new();
@@ -347,8 +349,8 @@ mod tests {
     fn evaluates_with_horner_method() {
         let polynomial = Polynomial::new(vec![3.0, 2.0, 1.0]);
 
-        assert_eq!(polynomial.evaluate(2.0), 11.0);
-        assert_eq!(Polynomial::zero().evaluate(3.0), 0.0);
+        assert!((polynomial.evaluate(2.0) - 11.0).abs() <= f64::EPSILON);
+        assert!(Polynomial::zero().evaluate(3.0).abs() <= f64::EPSILON);
     }
 
     #[test]
@@ -369,7 +371,10 @@ mod tests {
     fn nth_derivative_behaves_as_expected() {
         let polynomial = Polynomial::new(vec![1.0, 2.0, 3.0, 4.0]);
 
-        assert_eq!(polynomial.nth_derivative(0), polynomial.clone());
+        assert_eq!(
+            polynomial.nth_derivative(0),
+            Polynomial::new(vec![1.0, 2.0, 3.0, 4.0])
+        );
         assert_eq!(
             polynomial.nth_derivative(1),
             Polynomial::new(vec![2.0, 6.0, 12.0])

@@ -208,13 +208,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "use-geometry"
-version = "0.0.6"
-dependencies = [
- "proptest",
-]
-
-[[package]]
 name = "use-integer"
 version = "0.0.6"
 
@@ -247,7 +240,6 @@ dependencies = [
  "use-complex",
  "use-equation",
  "use-geode",
- "use-geometry",
  "use-integer",
  "use-interval",
  "use-linear",

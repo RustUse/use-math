@@ -66,11 +66,6 @@ release = true
 version_group = "rustuse-math"
 
 [[package]]
-name = "use-geometry"
-release = true
-version_group = "rustuse-math"
-
-[[package]]
 name = "use-combinatorics"
 release = true
 version_group = "rustuse-math"
@@ -164,7 +159,6 @@ changelog_include = [
   "use-interval",
   "use-real",
   "use-complex",
-  "use-geometry",
   "use-combinatorics",
   "use-series",
   "use-catalan",

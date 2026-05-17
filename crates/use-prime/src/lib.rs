@@ -10,16 +10,16 @@ pub mod primality {
     /// `0` and `1` are not prime. `2` and `3` are prime. Even values greater
     /// than `2` are not prime.
     #[must_use]
-    pub fn is_prime(n: u64) -> bool {
+    pub const fn is_prime(n: u64) -> bool {
         match n {
             0 | 1 => false,
             2 | 3 => true,
-            _ if n % 2 == 0 => false,
+            _ if n.is_multiple_of(2) => false,
             _ => {
                 let mut divisor = 3_u64;
 
                 while divisor <= n / divisor {
-                    if n % divisor == 0 {
+                    if n.is_multiple_of(divisor) {
                         return false;
                     }
 
@@ -35,7 +35,7 @@ pub mod primality {
     ///
     /// Composite values are integers greater than `1` that are not prime.
     #[must_use]
-    pub fn is_composite(n: u64) -> bool {
+    pub const fn is_composite(n: u64) -> bool {
         n > 1 && !is_prime(n)
     }
 
@@ -54,7 +54,7 @@ pub mod primality {
             return Some(2);
         }
 
-        if candidate % 2 == 0 {
+        if candidate.is_multiple_of(2) {
             candidate = candidate.checked_add(1)?;
         }
 
@@ -71,7 +71,7 @@ pub mod primality {
     ///
     /// Returns `None` for `0`, `1`, and `2`.
     #[must_use]
-    pub fn previous_prime(n: u64) -> Option<u64> {
+    pub const fn previous_prime(n: u64) -> Option<u64> {
         if n <= 2 {
             return None;
         }
@@ -82,7 +82,7 @@ pub mod primality {
 
         let mut candidate = n - 1;
 
-        if candidate % 2 == 0 {
+        if candidate.is_multiple_of(2) {
             candidate -= 1;
         }
 
@@ -116,7 +116,7 @@ pub mod factorization {
         let mut factors = Vec::new();
         let mut exponent = 0_u32;
 
-        while remaining % 2 == 0 {
+        while remaining.is_multiple_of(2) {
             remaining /= 2;
             exponent += 1;
         }
@@ -129,7 +129,7 @@ pub mod factorization {
         while divisor <= remaining / divisor {
             let mut local_exponent = 0_u32;
 
-            while remaining % divisor == 0 {
+            while remaining.is_multiple_of(divisor) {
                 remaining /= divisor;
                 local_exponent += 1;
             }

@@ -1,20 +1,3 @@
-#[cfg(all(feature = "geometry", feature = "combinatorics"))]
-#[test]
-fn facade_supports_geometry_and_combinatorics_together() -> Result<(), Box<dyn std::error::Error>> {
-    use use_math::prelude::*;
-
-    let origin = Point2::try_new(0.0, 0.0)?;
-    let point = Point2::try_new(3.0, 4.0)?;
-    let distance = distance_2d(origin, point);
-
-    assert_eq!(factorial(4)?, 24);
-    assert_eq!(combinations(5, 2)?, 10);
-    assert!((distance - 5.0).abs() < 1.0e-10);
-    assert_eq!(midpoint_2d(origin, point), Point2::try_new(1.5, 2.0)?);
-
-    Ok(())
-}
-
 #[cfg(all(
     feature = "arithmetic",
     feature = "number",
@@ -22,7 +5,6 @@ fn facade_supports_geometry_and_combinatorics_together() -> Result<(), Box<dyn s
     feature = "rational",
     feature = "real",
     feature = "complex",
-    feature = "geometry",
     feature = "geode",
     feature = "combinatorics",
     feature = "series",
@@ -42,9 +24,9 @@ fn facade_supports_geometry_and_combinatorics_together() -> Result<(), Box<dyn s
 fn facade_exposes_all_namespace_features() {
     use use_math::{
         algebra as _, arithmetic as _, calculus as _, catalan as _, combinatorics as _,
-        complex as _, geometry as _, integer as _, linear as _, logic as _, matrix as _,
-        number as _, probability as _, rational as _, real as _, series as _, set as _,
-        statistics as _, trigonometry as _, vector as _,
+        complex as _, integer as _, linear as _, logic as _, matrix as _, number as _,
+        probability as _, rational as _, real as _, series as _, set as _, statistics as _,
+        trigonometry as _, vector as _,
     };
 
     let _ = use_math::geode::TypeVector::new(vec![0]);
@@ -52,7 +34,6 @@ fn facade_exposes_all_namespace_features() {
 
 #[cfg(all(
     feature = "arithmetic",
-    not(feature = "geometry"),
     not(feature = "combinatorics"),
     not(feature = "catalan"),
     not(feature = "series"),
@@ -88,7 +69,6 @@ fn facade_supports_arithmetic_without_other_concrete_features() {
 
 #[cfg(all(
     feature = "algebra",
-    not(feature = "geometry"),
     not(feature = "combinatorics"),
     not(feature = "catalan"),
     not(feature = "series"),
@@ -121,7 +101,6 @@ fn facade_supports_algebra_without_other_concrete_features() {
 
 #[cfg(all(
     feature = "matrix",
-    not(feature = "geometry"),
     not(feature = "combinatorics"),
     not(feature = "catalan"),
     not(feature = "series"),
@@ -165,25 +144,7 @@ fn facade_supports_matrix_without_other_concrete_features() {
     assert_eq!(matrix4.determinant(), 210.0);
 }
 
-#[cfg(all(feature = "geometry", not(feature = "combinatorics")))]
-#[test]
-fn facade_supports_geometry_without_combinatorics() -> Result<(), use_math::GeometryError> {
-    use use_math::{Point2, distance_2d, midpoint_2d};
-
-    let origin = Point2::try_new(0.0, 0.0)?;
-    let point = Point2::try_new(3.0, 4.0)?;
-
-    assert!((distance_2d(origin, point) - 5.0).abs() < 1.0e-10);
-    assert_eq!(midpoint_2d(origin, point), Point2::try_new(1.5, 2.0)?);
-
-    Ok(())
-}
-
-#[cfg(all(
-    feature = "complex",
-    not(feature = "geometry"),
-    not(feature = "combinatorics")
-))]
+#[cfg(all(feature = "complex", not(feature = "combinatorics")))]
 #[test]
 fn facade_supports_complex_without_other_concrete_features() {
     use use_math::{Complex, Imaginary};
@@ -199,7 +160,6 @@ fn facade_supports_complex_without_other_concrete_features() {
 
 #[cfg(all(
     feature = "calculus",
-    not(feature = "geometry"),
     not(feature = "combinatorics"),
     not(feature = "complex")
 ))]
@@ -237,7 +197,6 @@ fn facade_supports_calculus_without_other_concrete_features() -> Result<(), use_
 
 #[cfg(all(
     feature = "catalan",
-    not(feature = "geometry"),
     not(feature = "combinatorics"),
     not(feature = "integer"),
     not(feature = "complex"),
@@ -258,7 +217,6 @@ fn facade_supports_catalan_without_other_concrete_features() -> Result<(), use_m
 
 #[cfg(all(
     feature = "probability",
-    not(feature = "geometry"),
     not(feature = "combinatorics"),
     not(feature = "complex"),
     not(feature = "calculus")
@@ -282,7 +240,6 @@ fn facade_supports_probability_without_other_concrete_features()
 
 #[cfg(all(
     feature = "real",
-    not(feature = "geometry"),
     not(feature = "combinatorics"),
     not(feature = "complex"),
     not(feature = "calculus"),
@@ -305,7 +262,6 @@ fn facade_supports_real_without_other_concrete_features() -> Result<(), use_math
 
 #[cfg(all(
     feature = "series",
-    not(feature = "geometry"),
     not(feature = "combinatorics"),
     not(feature = "catalan"),
     not(feature = "integer"),
@@ -329,7 +285,6 @@ fn facade_supports_series_without_other_concrete_features() -> Result<(), use_ma
 
 #[cfg(all(
     feature = "logic",
-    not(feature = "geometry"),
     not(feature = "combinatorics"),
     not(feature = "catalan"),
     not(feature = "series"),
@@ -355,7 +310,6 @@ fn facade_supports_logic_without_other_concrete_features() {
 
 #[cfg(all(
     feature = "set",
-    not(feature = "geometry"),
     not(feature = "combinatorics"),
     not(feature = "catalan"),
     not(feature = "series"),
@@ -388,7 +342,6 @@ fn facade_supports_set_without_other_concrete_features() {
 
 #[cfg(all(
     feature = "trigonometry",
-    not(feature = "geometry"),
     not(feature = "combinatorics"),
     not(feature = "catalan"),
     not(feature = "series"),
@@ -424,7 +377,6 @@ fn facade_supports_trigonometry_without_other_concrete_features() {
 
 #[cfg(all(
     feature = "statistics",
-    not(feature = "geometry"),
     not(feature = "combinatorics"),
     not(feature = "catalan"),
     not(feature = "series"),
@@ -460,7 +412,6 @@ fn facade_supports_statistics_without_other_concrete_features()
 
 #[cfg(all(
     feature = "linear",
-    not(feature = "geometry"),
     not(feature = "combinatorics"),
     not(feature = "catalan"),
     not(feature = "series"),
@@ -492,7 +443,6 @@ fn facade_supports_linear_without_other_concrete_features() -> Result<(), use_ma
 
 #[cfg(all(
     feature = "number",
-    not(feature = "geometry"),
     not(feature = "combinatorics"),
     not(feature = "catalan"),
     not(feature = "series"),
@@ -536,7 +486,6 @@ fn facade_supports_number_without_other_concrete_features() {
 
 #[cfg(all(
     feature = "integer",
-    not(feature = "geometry"),
     not(feature = "combinatorics"),
     not(feature = "complex"),
     not(feature = "calculus"),
@@ -558,7 +507,6 @@ fn facade_supports_integer_without_other_concrete_features() -> Result<(), use_m
 
 #[cfg(all(
     feature = "rational",
-    not(feature = "geometry"),
     not(feature = "combinatorics"),
     not(feature = "complex"),
     not(feature = "calculus"),
@@ -580,9 +528,9 @@ fn facade_supports_rational_without_other_concrete_features() -> Result<(), use_
     Ok(())
 }
 
-#[cfg(all(feature = "combinatorics", not(feature = "geometry")))]
+#[cfg(feature = "combinatorics")]
 #[test]
-fn facade_supports_combinatorics_without_geometry() -> Result<(), use_math::CombinatoricsError> {
+fn facade_supports_combinatorics_feature() -> Result<(), use_math::CombinatoricsError> {
     use use_math::{combinations, factorial, permutations};
 
     assert_eq!(factorial(4)?, 24);
@@ -592,7 +540,7 @@ fn facade_supports_combinatorics_without_geometry() -> Result<(), use_math::Comb
     Ok(())
 }
 
-#[cfg(not(any(feature = "geometry", feature = "combinatorics", feature = "vector")))]
+#[cfg(not(any(feature = "combinatorics", feature = "vector")))]
 #[test]
 fn facade_compiles_without_optional_features() {
     let crate_loaded = true;

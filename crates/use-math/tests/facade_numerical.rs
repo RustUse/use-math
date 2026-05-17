@@ -9,9 +9,15 @@ fn facade_supports_numerical_namespace() {
 
     let slope = central_difference(|x| x * x, 3.0, 1.0e-6);
     let area = trapezoidal_rule(|x| x * x, 0.0, 1.0, 1_000).unwrap();
-    let bisection_root = bisection(|x| x * x - 2.0, 1.0, 2.0, RootOptions::default()).unwrap();
-    let newton_root =
-        newton_raphson(|x| x * x - 2.0, |x| 2.0 * x, 1.0, RootOptions::default()).unwrap();
+    let bisection_root =
+        bisection(|x| x.mul_add(x, -2.0), 1.0, 2.0, RootOptions::default()).unwrap();
+    let newton_root = newton_raphson(
+        |x| x.mul_add(x, -2.0),
+        |x| 2.0 * x,
+        1.0,
+        RootOptions::default(),
+    )
+    .unwrap();
 
     assert!((slope - 6.0).abs() < 1.0e-5);
     assert!((area - 1.0 / 3.0).abs() < 1.0e-6);
@@ -28,7 +34,7 @@ fn facade_supports_numerical_interval_bridge() {
     };
 
     let root = numerical::bisection_interval(
-        |x| x * x - 2.0,
+        |x| x.mul_add(x, -2.0),
         Interval::closed(1.0, 2.0),
         RootOptions::default(),
     )

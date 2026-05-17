@@ -121,7 +121,7 @@ matching SSH key secrets.
 
 - The workspace-level default keeps `publish = false`, while the current first-wave crate manifests already opt in with `publish = true`.
 - Before a release, confirm that only the intended first-wave crates remain publishable.
-- The current first-wave publish surface includes every focused crate under `crates/` plus `use-math`, while `use-geometry`, `use-combinatorics`, and `use-complex` expose concrete APIs today.
+- The current first-wave publish surface includes every focused crate still present under `crates/` plus `use-math`, while `use-combinatorics` and `use-complex` expose concrete APIs today.
 - Versions move in lockstep at `0.x.y` for now.
 - Until `1.0`, breaking API changes should bump the minor version and compatible additive changes should bump the patch version.
 - `Cargo.lock` is committed intentionally for reproducible CI, security checks, and release dry runs in this library workspace.

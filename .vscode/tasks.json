@@ -6,213 +6,204 @@
             "type": "shell",
             "command": "cargo",
             "args": [
-                "xfmt""set -euo pipefail; for crate in use-arithmetic use-number use-integer use-modular use-prime use-polynomial use-equation use-numerical use-rational use-interval use-real use-complex use-geometry use-combinatorics use-series use-catalan use-collatz use-geode use-algebra use-vector use-matrix use-linear use-calculus use-probability use-statistics use-trigonometry use-logic use-set; do cargo package --list -p \"$crate\"; cargo publish --dry-run --allow-dirty -p $crate; done""problemMatcher": []
-            },
-            {
-                "label": "cargo: check workspace",
-                "type": "shell",
-                "command": "cargo",
+                "xfmt"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "cargo: check workspace",
+            "type": "shell",
+            "command": "cargo",
+            "args": [
+                "xcheck"
+            ],
+            "group": "build",
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "cargo: examples",
+            "type": "shell",
+            "command": "cargo",
+            "args": [
+                "xexamples"
+            ],
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "cargo: clippy",
+            "type": "shell",
+            "command": "cargo",
+            "args": [
+                "xlint"
+            ],
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "cargo: test all-features",
+            "type": "shell",
+            "command": "cargo",
+            "args": [
+                "xtest"
+            ],
+            "group": "test",
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "cargo: test no-default-features",
+            "type": "shell",
+            "command": "cargo",
+            "args": [
+                "xtest-minimal"
+            ],
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "cargo: build workspace",
+            "type": "shell",
+            "command": "cargo",
+            "args": [
+                "xbuild"
+            ],
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "cargo: doc",
+            "type": "shell",
+            "command": "cargo",
+            "args": [
+                "xdoc"
+            ],
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "cargo: deny",
+            "type": "shell",
+            "command": "cargo",
+            "args": [
+                "xdeny"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "cargo: audit",
+            "type": "shell",
+            "command": "cargo",
+            "args": [
+                "xaudit"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "dev: bootstrap optional cargo tools",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "scripts/bootstrap-dev-tools.sh"
+            ],
+            "windows": {
+                "command": "powershell",
                 "args": [
-                    "xcheck""$ErrorActionPreference = 'Stop'; $crates = @('use-arithmetic','use-number','use-integer','use-modular','use-prime','use-polynomial','use-equation','use-numerical','use-rational','use-interval','use-real','use-complex','use-geometry','use-combinatorics','use-series','use-catalan','use-collatz','use-geode','use-algebra','use-vector','use-matrix','use-linear','use-calculus','use-probability','use-statistics','use-trigonometry','use-logic','use-set'); foreach ($crate in $crates) { cargo package --list -p $crate; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; cargo publish --dry-run --allow-dirty -p $crate; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE } }""group": "build",
-                    "problemMatcher": [
-                        "$rustc"
-                    ]
-                },
-                {
-                    "label": "cargo: examples",
-                    "type": "shell",
-                    "command": "cargo",
-                    "args": [
-                        "xexamples"
-                    ],
-                    "problemMatcher": [
-                        "$rustc"
-                    ]
-                },
-                {
-                    "label": "cargo: clippy",
-                    "type": "shell",
-                    "command": "cargo",
-                    "args": [
-                        "xlint"
-                    ],
-                    "problemMatcher": [
-                        "$rustc"
-                    ]
-                },
-                {
-                    "label": "cargo: test all-features",
-                    "type": "shell",
-                    "command": "cargo",
-                    "args": [
-                        "xtest"
-                    ],
-                    "group": "test",
-                    "problemMatcher": [
-                        "$rustc"
-                    ]
-                },
-                {
-                    "label": "cargo: test no-default-features",
-                    "type": "shell",
-                    "command": "cargo",
-                    "args": [
-                        "xtest-minimal"
-                    ],
-                    "problemMatcher": [
-                        "$rustc"
-                    ]
-                },
-                {
-                    "label": "cargo: build workspace",
-                    "type": "shell",
-                    "command": "cargo",
-                    "args": [
-                        "xbuild"
-                    ],
-                    "problemMatcher": [
-                        "$rustc"
-                    ]
-                },
-                {
-                    "label": "cargo: doc",
-                    "type": "shell",
-                    "command": "cargo",
-                    "args": [
-                        "xdoc"
-                    ],
-                    "problemMatcher": [
-                        "$rustc"
-                    ]
-                },
-                {
-                    "label": "cargo: deny",
-                    "type": "shell",
-                    "command": "cargo",
-                    "args": [
-                        "xdeny"
-                    ],
-                    "problemMatcher": []
-                },
-                {
-                    "label": "cargo: audit",
-                    "type": "shell",
-                    "command": "cargo",
-                    "args": [
-                        "xaudit"
-                    ],
-                    "problemMatcher": []
-                },
-                {
-                    "label": "dev: bootstrap optional cargo tools",
-                    "type": "shell",
-                    "command": "bash",
-                    "args": [
-                        "scripts/bootstrap-dev-tools.sh"
-                    ],
-                    "windows": {
-                        "command": "powershell",
-                        "args": [
-                            "-ExecutionPolicy",
-                            "Bypass",
-                            "-File",
-                            "scripts/bootstrap-dev-tools.ps1"
-                        ]
-                    },
-                    "problemMatcher": []
-                },
-                {
-                    "label": "cargo: publish dry-run use-geometry",
-                    "type": "shell",
-                    "command": "cargo",
-                    "args": [
-                        "publish",
-                        "--dry-run",
-                        "--allow-dirty",
-                        "-p",
-                        "use-geometry"
-                    ],
-                    "problemMatcher": []
-                },
-                {
-                    "label": "cargo: publish dry-run use-combinatorics",
-                    "type": "shell",
-                    "command": "cargo",
-                    "args": [
-                        "publish",
-                        "--dry-run",
-                        "--allow-dirty",
-                        "-p",
-                        "use-combinatorics"
-                    ],
-                    "problemMatcher": []
-                },
-                {
-                    "label": "cargo: publish dry-run use-collatz",
-                    "type": "shell",
-                    "command": "cargo",
-                    "args": [
-                        "publish",
-                        "--dry-run",
-                        "--allow-dirty",
-                        "-p",
-                        "use-collatz"
-                    ],
-                    "problemMatcher": []
-                },
-                {
-                    "label": "cargo: publish dry-run focused crates",
-                    "type": "shell",
-                    "command": "bash",
-                    "args": [
-                        "-lc",
-                        "set -euo pipefail; for crate in use-arithmetic use-number use-integer use-modular use-prime use-polynomial use-equation use-rational use-interval use-numerical use-real use-complex use-geometry use-combinatorics use-series use-catalan use-collatz use-geode use-algebra use-vector use-matrix use-linear use-calculus use-probability use-statistics use-trigonometry use-logic use-set; do cargo package --list -p \"$crate\"; cargo publish --dry-run --allow-dirty -p \"$crate\"; done"
-                    ],
-                    "windows": {
-                        "command": "powershell",
-                        "args": [
-                            "-NoProfile",
-                            "-ExecutionPolicy",
-                            "Bypass",
-                            "-Command",
-                            "$ErrorActionPreference = 'Stop'; $crates = @('use-arithmetic','use-number','use-integer','use-modular','use-prime','use-polynomial','use-equation','use-rational','use-interval','use-numerical','use-real','use-complex','use-geometry','use-combinatorics','use-series','use-catalan','use-collatz','use-geode','use-algebra','use-vector','use-matrix','use-linear','use-calculus','use-probability','use-statistics','use-trigonometry','use-logic','use-set'); foreach ($crate in $crates) { cargo package --list -p $crate; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; cargo publish --dry-run --allow-dirty -p $crate; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE } }"
-                        ]
-                    },
-                    "problemMatcher": []
-                },
-                {
-                    "label": "cargo: facade publish dry-run (post-publication)",
-                    "type": "shell",
-                    "command": "cargo",
-                    "args": [
-                        "publish",
-                        "--dry-run",
-                        "--allow-dirty",
-                        "-p",
-                        "use-math"
-                    ],
-                    "problemMatcher": []
-                },
-                {
-                    "label": "cargo: verify workspace",
-                    "dependsOrder": "sequence",
-                    "dependsOn": [
-                        "cargo: fmt (check)",
-                        "cargo: check workspace",
-                        "cargo: clippy",
-                        "cargo: test all-features",
-                        "cargo: build workspace"
-                    ]
-                },
-                {
-                    "label": "cargo: release readiness",
-                    "dependsOrder": "sequence",
-                    "dependsOn": [
-                        "cargo: verify workspace",
-                        "cargo: examples",
-                        "cargo: test no-default-features",
-                        "cargo: publish dry-run focused crates"
-                    ]
-                }
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    "scripts/bootstrap-dev-tools.ps1"
+                ]
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "cargo: publish dry-run use-combinatorics",
+            "type": "shell",
+            "command": "cargo",
+            "args": [
+                "publish",
+                "--dry-run",
+                "--allow-dirty",
+                "-p",
+                "use-combinatorics"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "cargo: publish dry-run use-collatz",
+            "type": "shell",
+            "command": "cargo",
+            "args": [
+                "publish",
+                "--dry-run",
+                "--allow-dirty",
+                "-p",
+                "use-collatz"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "cargo: publish dry-run focused crates",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-lc",
+                "set -euo pipefail; for crate in use-arithmetic use-number use-integer use-modular use-prime use-polynomial use-equation use-rational use-interval use-numerical use-real use-complex use-combinatorics use-series use-catalan use-collatz use-geode use-algebra use-vector use-matrix use-linear use-calculus use-probability use-statistics use-trigonometry use-logic use-set; do cargo package --list -p \"$crate\"; cargo publish --dry-run --allow-dirty -p \"$crate\"; done"
+            ],
+            "windows": {
+                "command": "powershell",
+                "args": [
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-Command",
+                    "$ErrorActionPreference = 'Stop'; $crates = @('use-arithmetic','use-number','use-integer','use-modular','use-prime','use-polynomial','use-equation','use-rational','use-interval','use-numerical','use-real','use-complex','use-combinatorics','use-series','use-catalan','use-collatz','use-geode','use-algebra','use-vector','use-matrix','use-linear','use-calculus','use-probability','use-statistics','use-trigonometry','use-logic','use-set'); foreach ($crate in $crates) { cargo package --list -p $crate; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; cargo publish --dry-run --allow-dirty -p $crate; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE } }"
+                ]
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "cargo: facade publish dry-run (post-publication)",
+            "type": "shell",
+            "command": "cargo",
+            "args": [
+                "publish",
+                "--dry-run",
+                "--allow-dirty",
+                "-p",
+                "use-math"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "cargo: verify workspace",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "cargo: fmt (check)",
+                "cargo: check workspace",
+                "cargo: clippy",
+                "cargo: test all-features",
+                "cargo: build workspace"
+            ]
+        },
+        {
+            "label": "cargo: release readiness",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "cargo: verify workspace",
+                "cargo: examples",
+                "cargo: test no-default-features",
+                "cargo: publish dry-run focused crates"
             ]
         }
+    ]
+}
