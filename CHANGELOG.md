@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+### Added
+
+- Added the `use-eigen` crate with structural eigenvalue, eigenvector, eigenpair, eigensystem, eigenspace, and multiplicity primitives for the RustUse math workspace.
+- Added the `eigen` feature to the `use-math` facade with root eigen reexports plus the `use_math::eigen` namespace.
+
+### Changed
+
+- Extended workspace release metadata, publish-readiness lists, maintainer publish-order docs, and facade documentation to include `use-eigen` as a focused crate in the lockstep release surface.
+
 ## [0.0.6](https://github.com/RustUse/use-math/compare/use-math-v0.0.5...use-math-v0.0.6) - 2026-05-15
 
 ### Added

@@ -111,6 +111,11 @@ release = true
 version_group = "rustuse-math"
 
 [[package]]
+name = "use-eigen"
+release = true
+version_group = "rustuse-math"
+
+[[package]]
 name = "use-calculus"
 release = true
 version_group = "rustuse-math"
@@ -168,6 +173,7 @@ changelog_include = [
   "use-vector",
   "use-matrix",
   "use-linear",
+  "use-eigen",
   "use-calculus",
   "use-probability",
   "use-statistics",

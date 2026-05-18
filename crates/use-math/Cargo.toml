@@ -33,6 +33,7 @@ modular = ["dep:use-modular"]
 prime = ["dep:use-prime"]
 polynomial = ["dep:use-polynomial", "use-equation?/polynomial"]
 equation = ["dep:use-equation"]
+eigen = ["dep:use-eigen"]
 numerical = ["dep:use-numerical"]
 matrix = ["dep:use-matrix"]
 linear = ["dep:use-linear", "matrix", "vector"]
@@ -63,6 +64,7 @@ full = [
 	"prime",
 	"polynomial",
 	"equation",
+	"eigen",
 	"numerical",
 	"interval",
 	"matrix",
@@ -91,6 +93,7 @@ use-modular = { version = "0.0.6", path = "../use-modular", optional = true }
 use-prime = { version = "0.0.6", path = "../use-prime", optional = true }
 use-polynomial = { version = "0.0.6", path = "../use-polynomial", optional = true }
 use-equation = { version = "0.0.6", path = "../use-equation", optional = true }
+use-eigen = { version = "0.0.6", path = "../use-eigen", optional = true }
 use-numerical = { version = "0.0.6", path = "../use-numerical", optional = true }
 use-matrix = { version = "0.0.6", path = "../use-matrix", optional = true }
 use-linear = { version = "0.0.6", path = "../use-linear", optional = true }

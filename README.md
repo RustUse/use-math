@@ -3,7 +3,7 @@
 <p align="center">
 	<img alt="Rust 1.95.0+" src="https://img.shields.io/badge/Rust-1.95.0%2B-f46623?logo=rust&logoColor=white">
 	<img alt="Edition 2024" src="https://img.shields.io/badge/edition-2024-0f766e">
-	<img alt="28 workspace crates" src="https://img.shields.io/badge/workspace-28%20crates-1d4ed8">
+	<img alt="29 workspace crates" src="https://img.shields.io/badge/workspace-29%20crates-1d4ed8">
 	<img alt="Status crates.io live" src="https://img.shields.io/badge/status-crates.io%20live-16a34a">
 	<img alt="License MIT or Apache-2.0" src="https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-2a9d8f">
 </p>
@@ -25,13 +25,13 @@
 	<a href="#community-and-project-policy">Community</a>
 </p>
 
-This repository is the source workspace for RustUse's math surface. Today it combines concrete focused crates for arithmetic helpers, modular arithmetic, prime utilities, polynomial primitives, equation helpers, approximate numerical helpers, vector primitives, matrix primitives, interval primitives, checked combinatorics, Catalan-family sequences, Collatz trajectory exploration, Geode-array primitives, progression helpers, finite algebra law helpers, integer helpers, boolean algebra helpers, small set helpers, explicit trigonometry helpers, descriptive statistics helpers, solver-style linear helpers, raw-number helpers, complex numbers, numerical calculus, probability, real-number helpers, and rational arithmetic. `use-math` composes the workspace behind feature flags while keeping root re-exports aligned with the concrete APIs each focused crate exposes. Geometry now lives in the sibling `use-geometry` repository and is no longer re-exported by the `use-math` facade.
+This repository is the source workspace for RustUse's math surface. Today it combines concrete focused crates for arithmetic helpers, modular arithmetic, prime utilities, polynomial primitives, equation helpers, structural eigenvalue primitives, approximate numerical helpers, vector primitives, matrix primitives, interval primitives, checked combinatorics, Catalan-family sequences, Collatz trajectory exploration, Geode-array primitives, progression helpers, finite algebra law helpers, integer helpers, boolean algebra helpers, small set helpers, explicit trigonometry helpers, descriptive statistics helpers, solver-style linear helpers, raw-number helpers, complex numbers, numerical calculus, probability, real-number helpers, and rational arithmetic. `use-math` composes the workspace behind feature flags while keeping root re-exports aligned with the concrete APIs each focused crate exposes. Geometry now lives in the sibling `use-geometry` repository and is no longer re-exported by the `use-math` facade.
 
 ## Current status
 
 - The crates.io release line is live.
 - Use published crates for released versions, or pin a Git revision when you need unreleased workspace changes.
-- `use-arithmetic`, `use-modular`, `use-prime`, `use-polynomial`, `use-equation`, `use-numerical`, `use-vector`, `use-matrix`, `use-combinatorics`, `use-catalan`, `use-collatz`, `use-geode`, `use-series`, `use-algebra`, `use-integer`, `use-logic`, `use-set`, `use-trigonometry`, `use-statistics`, `use-linear`, `use-number`, `use-complex`, `use-calculus`, `use-probability`, `use-real`, `use-interval`, and `use-rational` are the concrete focused APIs in this workspace today.
+- `use-arithmetic`, `use-modular`, `use-prime`, `use-polynomial`, `use-equation`, `use-eigen`, `use-numerical`, `use-vector`, `use-matrix`, `use-combinatorics`, `use-catalan`, `use-collatz`, `use-geode`, `use-series`, `use-algebra`, `use-integer`, `use-logic`, `use-set`, `use-trigonometry`, `use-statistics`, `use-linear`, `use-number`, `use-complex`, `use-calculus`, `use-probability`, `use-real`, `use-interval`, and `use-rational` are the concrete focused APIs in this workspace today.
 - Geometry moved to the sibling `use-geometry` repository and is no longer part of the `use-math` workspace or facade.
 - Future lockstep releases still publish focused crates first in dependency order, including `use-polynomial` before `use-equation`, `use-interval` before `use-numerical` and `use-real`, `use-vector` before `use-matrix`, `use-matrix` before `use-linear`, and `use-math` after crates.io index propagation.
 
@@ -44,8 +44,8 @@ This repository is the source workspace for RustUse's math surface. Today it com
 		</td>
 		<td width="33%" valign="top">
 			<strong>Use concrete focused crates</strong><br>
-			<code>crates/use-arithmetic/</code>, <code>crates/use-modular/</code>, <code>crates/use-prime/</code>, <code>crates/use-polynomial/</code>, <code>crates/use-equation/</code>, <code>crates/use-numerical/</code>, <code>crates/use-vector/</code>, <code>crates/use-matrix/</code>, <code>crates/use-combinatorics/</code>, <code>crates/use-catalan/</code>, <code>crates/use-collatz/</code>, <code>crates/use-geode/</code>, <code>crates/use-series/</code>, <code>crates/use-algebra/</code>, <code>crates/use-integer/</code>, <code>crates/use-logic/</code>, <code>crates/use-set/</code>, <code>crates/use-trigonometry/</code>, <code>crates/use-statistics/</code>, <code>crates/use-linear/</code>, <code>crates/use-number/</code>, <code>crates/use-complex/</code>, <code>crates/use-calculus/</code>, <code>crates/use-probability/</code>, <code>crates/use-real/</code>, <code>crates/use-interval/</code>, and <code>crates/use-rational/</code><br>
-			Use direct APIs today when you want arithmetic primitives, modular arithmetic, prime search and factorization, coefficient-based polynomial helpers, explicit equation solving, approximate numerical methods, reusable vector primitives, reusable matrix primitives, reusable interval and bound primitives, checked counting helpers, Catalan-family sequence counts, Collatz trajectories and stopping-time summaries, Geode-array primitives, arithmetic or geometric progression helpers, finite algebra law checks, integer classifications and divisor helpers, named boolean algebra helpers, explicit set operations, angle conversion and trig helpers, descriptive statistics summaries, small linear-system helpers, raw-number classification or constants, complex-number primitives, numerical-calculus helpers, probability primitives, validated real-number helpers, or exact rational arithmetic without the wider facade.
+			<code>crates/use-arithmetic/</code>, <code>crates/use-modular/</code>, <code>crates/use-prime/</code>, <code>crates/use-polynomial/</code>, <code>crates/use-equation/</code>, <code>crates/use-eigen/</code>, <code>crates/use-numerical/</code>, <code>crates/use-vector/</code>, <code>crates/use-matrix/</code>, <code>crates/use-combinatorics/</code>, <code>crates/use-catalan/</code>, <code>crates/use-collatz/</code>, <code>crates/use-geode/</code>, <code>crates/use-series/</code>, <code>crates/use-algebra/</code>, <code>crates/use-integer/</code>, <code>crates/use-logic/</code>, <code>crates/use-set/</code>, <code>crates/use-trigonometry/</code>, <code>crates/use-statistics/</code>, <code>crates/use-linear/</code>, <code>crates/use-number/</code>, <code>crates/use-complex/</code>, <code>crates/use-calculus/</code>, <code>crates/use-probability/</code>, <code>crates/use-real/</code>, <code>crates/use-interval/</code>, and <code>crates/use-rational/</code><br>
+			Use direct APIs today when you want arithmetic primitives, modular arithmetic, prime search and factorization, coefficient-based polynomial helpers, explicit equation solving, structural eigenvalues and eigensystems, approximate numerical methods, reusable vector primitives, reusable matrix primitives, reusable interval and bound primitives, checked counting helpers, Catalan-family sequence counts, Collatz trajectories and stopping-time summaries, Geode-array primitives, arithmetic or geometric progression helpers, finite algebra law checks, integer classifications and divisor helpers, named boolean algebra helpers, explicit set operations, angle conversion and trig helpers, descriptive statistics summaries, small linear-system helpers, raw-number classification or constants, complex-number primitives, numerical-calculus helpers, probability primitives, validated real-number helpers, or exact rational arithmetic without the wider facade.
 		</td>
 		<td width="33%" valign="top">
 			<strong>Use algebra directly</strong><br>
@@ -57,7 +57,7 @@ This repository is the source workspace for RustUse's math surface. Today it com
 
 ## What this workspace ships
 
-RustUse/use-math is now a 28-crate workspace. Each crate is usable on its own, and the facade crate composes the focused crates in this workspace when you want one import surface.
+RustUse/use-math is now a 29-crate workspace. Each crate is usable on its own, and the facade crate composes the focused crates in this workspace when you want one import surface.
 
 | Crate               | Path                        | Purpose                                                                                                               | Best fit                                                                             |
 | ------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
@@ -67,6 +67,7 @@ RustUse/use-math is now a 28-crate workspace. Each crate is usable on its own, a
 | `use-prime`         | `crates/use-prime/`         | Primality checks, prime search, sieve helpers, factorization, and prime-factor utilities                              | You want prime utilities without a broader algebra or symbolic layer                 |
 | `use-polynomial`    | `crates/use-polynomial/`    | Coefficient-based polynomial primitives with evaluation, derivatives, arithmetic, and low-degree real roots           | You want direct polynomial operations without symbolic algebra                       |
 | `use-equation`      | `crates/use-equation/`      | Explicit linear and quadratic equation helpers, small `2x2` systems, and reusable root types                          | You want small exact-style equation helpers without broader linear algebra           |
+| `use-eigen`         | `crates/use-eigen/`         | Structural eigenvalue, eigenvector, eigenpair, eigensystem, multiplicity, and eigenspace primitives                   | You want explicit eigen-related vocabulary without a numerical solver stack          |
 | `use-numerical`     | `crates/use-numerical/`     | Epsilon comparisons, finite-difference helpers, deterministic integration rules, and iterative root finding           | You want approximation-oriented numerical methods without symbolic math              |
 | `use-vector`        | `crates/use-vector/`        | Reusable 2D, 3D, and 4D vector primitives with dot products, `Vector3::cross`, normalization, distance, and lerp      | You want vector math without geometry-specific or matrix-specific abstractions       |
 | `use-matrix`        | `crates/use-matrix/`        | Reusable 2x2, 3x3, and 4x4 matrix primitives with transpose, determinant, inverse, and matrix-vector products         | You want reusable matrix math without geometry-specific transforms                   |
@@ -100,6 +101,7 @@ All focused crates currently ship concrete APIs.
 | Work with prime utilities directly                            | `use-prime`                   |
 | Work with direct polynomial helpers directly                  | `use-polynomial`              |
 | Work with small equation helpers directly                     | `use-equation`                |
+| Work with structural eigen primitives directly                | `use-eigen`                   |
 | Work with approximate numerical helpers directly              | `use-numerical`               |
 | Work with reusable vector primitives directly                 | `use-vector`                  |
 | Work with reusable matrix primitives directly                 | `use-matrix`                  |
@@ -140,6 +142,7 @@ Pick the crate based on the integration shape you want, not just the total featu
 | Prime utilities only                                         | `use-prime`                                      | You keep primality, factorization, and sieve helpers explicit and local              |
 | Polynomial helpers only                                      | `use-polynomial`                                 | You keep coefficient-based polynomial operations and low-degree roots explicit       |
 | Equation helpers only                                        | `use-equation`                                   | You keep direct solving helpers and root results explicit and local                  |
+| Eigenvalue and eigensystem primitives only                   | `use-eigen`                                      | You keep eigen-related structure explicit without implying a solver implementation   |
 | Approximate numerical helpers only                           | `use-numerical`                                  | You keep epsilon comparisons, integration rules, and iterative solvers explicit      |
 | Reusable vector primitives only                              | `use-vector`                                     | You keep dot products, interpolation, distance, and normalization explicit and local |
 | Matrix primitives only                                       | `use-matrix`                                     | You keep direct matrix construction and operations explicit and local                |
@@ -179,6 +182,7 @@ Pick the crate based on the integration shape you want, not just the total featu
 │   ├── use-collatz/
 │   ├── use-combinatorics/
 │   ├── use-complex/
+│   ├── use-eigen/
 │   ├── use-equation/
 │   ├── use-geode/
 │   ├── use-integer/
@@ -212,6 +216,7 @@ Pick the crate based on the integration shape you want, not just the total featu
 | `crates/use-prime/`         | Direct prime-utility helpers                                                               |
 | `crates/use-polynomial/`    | Direct coefficient-based polynomial helpers                                                |
 | `crates/use-equation/`      | Direct small equation-solving helpers                                                      |
+| `crates/use-eigen/`         | Direct structural eigenvalue, eigenvector, eigensystem, and eigenspace APIs                |
 | `crates/use-numerical/`     | Direct approximation-oriented numerical helpers                                            |
 | `crates/use-combinatorics/` | Direct checked counting APIs                                                               |
 | `crates/use-catalan/`       | Direct Catalan-family counting APIs                                                        |
@@ -276,6 +281,7 @@ use-modular = "0.0.6"
 use-prime = "0.0.6"
 use-polynomial = "0.0.6"
 use-equation = "0.0.6"
+use-eigen = "0.0.6"
 use-numerical = "0.0.6"
 ```
 
@@ -309,33 +315,36 @@ Use `try_new` constructor variants when coordinates or shapes originate outside 
 
 The facade crate exposes a small feature surface:
 
-| Feature         | Enables                                                                                                                                                               | Default |
-| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| `arithmetic`    | Re-exports from `use-arithmetic`, including checked and overflow-mode arithmetic helpers, floor-division helpers, and the nested `use_math::arithmetic` module        | No      |
-| `combinatorics` | Re-exports from `use-combinatorics` and combinatorics facade examples/tests                                                                                           | No      |
-| `catalan`       | Re-exports from `use-catalan`, including Catalan and Fuss-Catalan helpers                                                                                             | No      |
-| `collatz`       | Re-exports from `use-collatz`, including trajectory helpers, parity utilities, bounded range summaries, and Collatz facade examples/tests                             | No      |
-| `geode`         | Re-exports from `use-geode`, including `TypeVector`, `hyper_catalan`, `geode_memoized`, and the nested `use_math::geode` module                                       | No      |
-| `algebra`       | Re-exports from `use-algebra`, including finite algebra-law helpers such as `identity_element`, `is_abelian_group`, and `is_ring`                                     | No      |
-| `modular`       | Re-exports from `use-modular`, including normalized residues, `Modular`, congruence checks, inverses, exponentiation, and the `use_math::modular` namespace           | No      |
-| `prime`         | Re-exports from `use-prime`, including primality checks, next/previous prime search, factorization helpers, sieves, and the `use_math::prime` namespace               | No      |
-| `polynomial`    | Re-exports from `use-polynomial`, including `Polynomial`, evaluation, derivatives, arithmetic, low-degree real-root helpers, and the `use_math::polynomial` namespace | No      |
-| `series`        | Re-exports from `use-series`, including arithmetic and geometric progression helpers                                                                                  | No      |
-| `integer`       | Re-exports from `use-integer`, including sign, parity, divisibility, and gcd/lcm helpers                                                                              | No      |
-| `logic`         | Re-exports from `use-logic`, including implication, equivalence, XOR, NAND, NOR, and majority helpers                                                                 | No      |
-| `set`           | Re-exports from `use-set`, including membership predicates and order-preserving set operations                                                                        | No      |
-| `trigonometry`  | Re-exports from `use-trigonometry`, including `Angle`, unit-conversion helpers, normalization helpers, and direct trig wrappers                                       | No      |
-| `statistics`    | Re-exports from `use-statistics`, including `StatisticsError`, mean/median, variance, and standard-deviation helpers                                                  | No      |
-| `matrix`        | Re-exports from `use-matrix`, including `Matrix2`, `Matrix3`, `Matrix4`, transpose helpers, determinants, and inverses for 2x2 and 3x3 matrices                       | No      |
-| `linear`        | Re-exports from `use-linear`, including `solve_2x2` and `LinearError`; the `linear` feature also enables `matrix` and `vector`                                        | No      |
-| `number`        | Re-exports from `use-number`, including floating-point classification helpers and shared numeric constants                                                            | No      |
-| `complex`       | Re-exports from `use-complex`, including `Complex` and `Imaginary`                                                                                                    | No      |
-| `calculus`      | Re-exports from `use-calculus`, including derivative, integral, and limit helpers                                                                                     | No      |
-| `probability`   | Re-exports from `use-probability`, including `Probability`, `Bernoulli`, and event helpers                                                                            | No      |
-| `rational`      | Re-exports from `use-rational`, including `Rational` and `RationalError`                                                                                              | No      |
-| `real`          | Re-exports from `use-real`, including `Real`, `RealInterval`, and `approx_eq`                                                                                         | No      |
-| `interval`      | Re-exports from `use-interval`, including `Bound`, `Interval`, containment checks, overlap tests, intersections, and the `use_math::interval` namespace               | No      |
-| `full`          | Enables every focused crate feature in the workspace                                                                                                                  | Yes     |
+| Feature         | Enables                                                                                                                                                                                                                                                                              | Default |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| `arithmetic`    | Re-exports from `use-arithmetic`, including checked and overflow-mode arithmetic helpers, floor-division helpers, and the nested `use_math::arithmetic` module                                                                                                                       | No      |
+| `combinatorics` | Re-exports from `use-combinatorics` and combinatorics facade examples/tests                                                                                                                                                                                                          | No      |
+| `catalan`       | Re-exports from `use-catalan`, including Catalan and Fuss-Catalan helpers                                                                                                                                                                                                            | No      |
+| `collatz`       | Re-exports from `use-collatz`, including trajectory helpers, parity utilities, bounded range summaries, and Collatz facade examples/tests                                                                                                                                            | No      |
+| `geode`         | Re-exports from `use-geode`, including `TypeVector`, `hyper_catalan`, `geode_memoized`, and the nested `use_math::geode` module                                                                                                                                                      | No      |
+| `algebra`       | Re-exports from `use-algebra`, including finite algebra-law helpers such as `identity_element`, `is_abelian_group`, and `is_ring`                                                                                                                                                    | No      |
+| `modular`       | Re-exports from `use-modular`, including normalized residues, `Modular`, congruence checks, inverses, exponentiation, and the `use_math::modular` namespace                                                                                                                          | No      |
+| `prime`         | Re-exports from `use-prime`, including primality checks, next/previous prime search, factorization helpers, sieves, and the `use_math::prime` namespace                                                                                                                              | No      |
+| `polynomial`    | Re-exports from `use-polynomial`, including `Polynomial`, evaluation, derivatives, arithmetic, low-degree real-root helpers, and the `use_math::polynomial` namespace                                                                                                                | No      |
+| `equation`      | Re-exports from `use-equation`, including `Roots`, `RootSolver`, `LinearEquation`, `QuadraticEquation`, `LinearSystem2`, `solve_linear`, `solve_quadratic`, and the `use_math::equation` namespace. The low-degree polynomial bridge is also available when `polynomial` is enabled. | No      |
+| `eigen`         | Re-exports from `use-eigen`, including `Eigenvalue`, `Eigenvector`, `Eigenpair`, `Eigensystem`, `EigenSpace`, `EigenMultiplicity`, and the nested `use_math::eigen` module                                                                                                           | No      |
+| `numerical`     | Re-exports from `use-numerical`, including epsilon comparison, finite-difference helpers, deterministic integration rules, iterative root finding, and the optional `bisection_interval` bridge when `interval` is also enabled                                                      | No      |
+| `series`        | Re-exports from `use-series`, including arithmetic and geometric progression helpers                                                                                                                                                                                                 | No      |
+| `integer`       | Re-exports from `use-integer`, including sign, parity, divisibility, and gcd/lcm helpers                                                                                                                                                                                             | No      |
+| `logic`         | Re-exports from `use-logic`, including implication, equivalence, XOR, NAND, NOR, and majority helpers                                                                                                                                                                                | No      |
+| `set`           | Re-exports from `use-set`, including membership predicates and order-preserving set operations                                                                                                                                                                                       | No      |
+| `trigonometry`  | Re-exports from `use-trigonometry`, including `Angle`, unit-conversion helpers, normalization helpers, and direct trig wrappers                                                                                                                                                      | No      |
+| `statistics`    | Re-exports from `use-statistics`, including `StatisticsError`, mean/median, variance, and standard-deviation helpers                                                                                                                                                                 | No      |
+| `matrix`        | Re-exports from `use-matrix`, including `Matrix2`, `Matrix3`, `Matrix4`, transpose helpers, determinants, and inverses for 2x2 and 3x3 matrices                                                                                                                                      | No      |
+| `linear`        | Re-exports from `use-linear`, including `solve_2x2` and `LinearError`; the `linear` feature also enables `matrix` and `vector`                                                                                                                                                       | No      |
+| `number`        | Re-exports from `use-number`, including floating-point classification helpers and shared numeric constants                                                                                                                                                                           | No      |
+| `complex`       | Re-exports from `use-complex`, including `Complex` and `Imaginary`                                                                                                                                                                                                                   | No      |
+| `calculus`      | Re-exports from `use-calculus`, including derivative, integral, and limit helpers                                                                                                                                                                                                    | No      |
+| `probability`   | Re-exports from `use-probability`, including `Probability`, `Bernoulli`, and event helpers                                                                                                                                                                                           | No      |
+| `rational`      | Re-exports from `use-rational`, including `Rational` and `RationalError`                                                                                                                                                                                                             | No      |
+| `real`          | Re-exports from `use-real`, including `Real`, `RealInterval`, and `approx_eq`                                                                                                                                                                                                        | No      |
+| `interval`      | Re-exports from `use-interval`, including `Bound`, `Interval`, containment checks, overlap tests, intersections, and the `use_math::interval` namespace                                                                                                                              | No      |
+| `full`          | Enables every focused crate feature in the workspace                                                                                                                                                                                                                                 | Yes     |
 
 If you want the facade but only one module, disable defaults and enable the feature you need:
 

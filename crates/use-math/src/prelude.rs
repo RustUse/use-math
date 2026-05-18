@@ -76,6 +76,11 @@ pub use crate::{
 #[cfg(all(feature = "equation", feature = "polynomial"))]
 pub use crate::solve_polynomial_degree_1_or_2;
 
+#[cfg(feature = "eigen")]
+pub use crate::{
+    EigenError, EigenMultiplicity, EigenSpace, Eigenpair, Eigensystem, Eigenvalue, Eigenvector,
+};
+
 #[cfg(feature = "logic")]
 pub use crate::{equivalence, exclusive_or, implication, majority, nand, nor};
 

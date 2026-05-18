@@ -194,6 +194,10 @@ name = "use-complex"
 version = "0.0.6"
 
 [[package]]
+name = "use-eigen"
+version = "0.0.6"
+
+[[package]]
 name = "use-equation"
 version = "0.0.6"
 dependencies = [
@@ -238,6 +242,7 @@ dependencies = [
  "use-collatz",
  "use-combinatorics",
  "use-complex",
+ "use-eigen",
  "use-equation",
  "use-geode",
  "use-integer",

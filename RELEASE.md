@@ -51,6 +51,7 @@ The repository now includes a dedicated release-validation path:
 - The workflow intentionally dry-runs every focused crate first. The final `use-math` dry-run still depends on those crate versions being visible in the crates.io index.
 - `.github/workflows/facade-publish-readiness.yml` is a manual post-publication check that dry-runs `use-math` only after the focused crates are live on crates.io.
 - The facade workflow now fails fast unless every focused crate already resolves from crates.io, so the manual gate is explicit instead of relying on a downstream Cargo error.
+- The focused-crate release surface now includes `use-eigen` alongside the existing publishable crates, and it remains publish-independent from the other focused crates in the first wave.
 
 ## Branch Protection Gate
 

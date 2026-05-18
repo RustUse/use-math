@@ -124,6 +124,14 @@ pub use use_equation::{
 #[cfg(all(feature = "equation", feature = "polynomial"))]
 pub use use_equation::solve_polynomial_degree_1_or_2;
 
+#[cfg(feature = "eigen")]
+pub use use_eigen as eigen;
+
+#[cfg(feature = "eigen")]
+pub use use_eigen::{
+    EigenError, EigenMultiplicity, EigenSpace, Eigenpair, Eigensystem, Eigenvalue, Eigenvector,
+};
+
 #[cfg(feature = "numerical")]
 pub use use_numerical as numerical;
 
