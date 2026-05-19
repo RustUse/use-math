@@ -90,6 +90,9 @@ pub use crate::{Matrix2, Matrix3, Matrix4};
 #[cfg(feature = "linear")]
 pub use crate::{LinearError, solve_2x2};
 
+#[cfg(feature = "vector")]
+pub use crate::{Vector, Vector2, Vector3, Vector4};
+
 #[cfg(feature = "number")]
 pub use crate::{
     GOLDEN_RATIO, GOLDEN_RATIO_F32, NumberCategory, NumberSign, SQRT_3, SQRT_3_F32,

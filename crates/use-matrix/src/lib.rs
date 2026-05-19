@@ -217,9 +217,12 @@ pub mod matrix2 {
         type Output = Vector2;
 
         fn mul(self, rhs: Vector2) -> Self::Output {
+            let x_component = rhs.x();
+            let y_component = rhs.y();
+
             Vector2::new(
-                dot2(self.m00, rhs.x, self.m01, rhs.y),
-                dot2(self.m10, rhs.x, self.m11, rhs.y),
+                dot2(self.m00, x_component, self.m01, y_component),
+                dot2(self.m10, x_component, self.m11, y_component),
             )
         }
     }
@@ -506,10 +509,35 @@ pub mod matrix3 {
         type Output = Vector3;
 
         fn mul(self, rhs: Vector3) -> Self::Output {
+            let x_component = rhs.x();
+            let y_component = rhs.y();
+            let z_component = rhs.z();
+
             Vector3::new(
-                dot3(self.m00, rhs.x, self.m01, rhs.y, self.m02, rhs.z),
-                dot3(self.m10, rhs.x, self.m11, rhs.y, self.m12, rhs.z),
-                dot3(self.m20, rhs.x, self.m21, rhs.y, self.m22, rhs.z),
+                dot3(
+                    self.m00,
+                    x_component,
+                    self.m01,
+                    y_component,
+                    self.m02,
+                    z_component,
+                ),
+                dot3(
+                    self.m10,
+                    x_component,
+                    self.m11,
+                    y_component,
+                    self.m12,
+                    z_component,
+                ),
+                dot3(
+                    self.m20,
+                    x_component,
+                    self.m21,
+                    y_component,
+                    self.m22,
+                    z_component,
+                ),
             )
         }
     }
@@ -866,18 +894,51 @@ pub mod matrix4 {
         type Output = Vector4;
 
         fn mul(self, rhs: Vector4) -> Self::Output {
+            let x_component = rhs.x();
+            let y_component = rhs.y();
+            let z_component = rhs.z();
+            let w_component = rhs.w();
+
             Vector4::new(
                 dot4(
-                    self.m00, rhs.x, self.m01, rhs.y, self.m02, rhs.z, self.m03, rhs.w,
+                    self.m00,
+                    x_component,
+                    self.m01,
+                    y_component,
+                    self.m02,
+                    z_component,
+                    self.m03,
+                    w_component,
                 ),
                 dot4(
-                    self.m10, rhs.x, self.m11, rhs.y, self.m12, rhs.z, self.m13, rhs.w,
+                    self.m10,
+                    x_component,
+                    self.m11,
+                    y_component,
+                    self.m12,
+                    z_component,
+                    self.m13,
+                    w_component,
                 ),
                 dot4(
-                    self.m20, rhs.x, self.m21, rhs.y, self.m22, rhs.z, self.m23, rhs.w,
+                    self.m20,
+                    x_component,
+                    self.m21,
+                    y_component,
+                    self.m22,
+                    z_component,
+                    self.m23,
+                    w_component,
                 ),
                 dot4(
-                    self.m30, rhs.x, self.m31, rhs.y, self.m32, rhs.z, self.m33, rhs.w,
+                    self.m30,
+                    x_component,
+                    self.m31,
+                    y_component,
+                    self.m32,
+                    z_component,
+                    self.m33,
+                    w_component,
                 ),
             )
         }

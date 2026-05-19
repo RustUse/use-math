@@ -3,7 +3,7 @@ name = "use-math"
 description = "Utility-first facade crate for RustUse math utilities"
 publish = true
 authors.workspace = true
-version.workspace = true
+version = "0.0.7"
 edition.workspace = true
 license.workspace = true
 repository.workspace = true
@@ -95,9 +95,9 @@ use-polynomial = { version = "0.0.6", path = "../use-polynomial", optional = tru
 use-equation = { version = "0.0.6", path = "../use-equation", optional = true }
 use-eigen = { version = "0.0.6", path = "../use-eigen", optional = true }
 use-numerical = { version = "0.0.6", path = "../use-numerical", optional = true }
-use-matrix = { version = "0.0.6", path = "../use-matrix", optional = true }
-use-linear = { version = "0.0.6", path = "../use-linear", optional = true }
-use-vector = { version = "0.0.6", path = "../use-vector", optional = true }
+use-matrix = { version = "0.0.7", path = "../use-matrix", optional = true }
+use-linear = { version = "0.0.7", path = "../use-linear", optional = true }
+use-vector = { version = "0.0.7", path = "../use-vector", optional = true }
 use-logic = { version = "0.0.6", path = "../use-logic", optional = true }
 use-number = { version = "0.0.6", path = "../use-number", optional = true }
 use-probability = { version = "0.0.6", path = "../use-probability", optional = true }

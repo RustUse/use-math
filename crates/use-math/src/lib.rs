@@ -150,6 +150,9 @@ pub use use_linear::{LinearError, solve_2x2};
 #[cfg(feature = "vector")]
 pub use use_vector as vector;
 
+#[cfg(feature = "vector")]
+pub use use_vector::{Vector, Vector2, Vector3, Vector4};
+
 #[cfg(feature = "logic")]
 pub use use_logic as logic;
 

@@ -221,7 +221,7 @@ version = "0.0.6"
 
 [[package]]
 name = "use-linear"
-version = "0.0.6"
+version = "0.0.7"
 dependencies = [
  "use-matrix",
  "use-vector",
@@ -233,7 +233,7 @@ version = "0.0.6"
 
 [[package]]
 name = "use-math"
-version = "0.0.6"
+version = "0.0.7"
 dependencies = [
  "use-algebra",
  "use-arithmetic",
@@ -267,7 +267,7 @@ dependencies = [
 
 [[package]]
 name = "use-matrix"
-version = "0.0.6"
+version = "0.0.7"
 dependencies = [
  "use-vector",
 ]
@@ -328,7 +328,7 @@ version = "0.0.6"
 
 [[package]]
 name = "use-vector"
-version = "0.0.6"
+version = "0.0.7"
 
 [[package]]
 name = "wasip2"

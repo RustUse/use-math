@@ -16,7 +16,7 @@
 
 ```toml
 [dependencies]
-use-matrix = "0.0.5"
+use-matrix = "0.0.7"
 ```
 
 ## What belongs here

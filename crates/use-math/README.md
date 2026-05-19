@@ -22,13 +22,13 @@
 	<a href="#design-constraints">Constraints</a>
 </p>
 
-`use-math` composes the focused `RustUse` math crates into one entry point while keeping their APIs direct and explicit. It re-exports the currently supported arithmetic, prime, polynomial, equation, eigenvalue, interval, combinatorics, Catalan-family, Collatz-trajectory, Geode-array, progression, integer-helper, boolean-algebra, set-helper, trigonometry, descriptive statistics, compact linear algebra, finite algebra law, raw-number, complex-number, numerical-calculus, probability, real-number, and rational-number surfaces at the crate root, exposes nested modules for every focused crate in the workspace, surfaces vector primitives through `use_math::vector`, interval primitives through `use_math::interval`, prime utilities through `use_math::prime`, polynomial helpers through `use_math::polynomial`, equation helpers through `use_math::equation`, eigen primitives through `use_math::eigen`, approximate numerical helpers through `use_math::numerical`, Collatz helpers through `use_math::collatz`, and keeps the shared `prelude` limited to the items that already have concrete ergonomic value.
+`use-math` composes the focused `RustUse` math crates into one entry point while keeping their APIs direct and explicit. It re-exports the currently supported arithmetic, prime, polynomial, equation, eigenvalue, vector, interval, combinatorics, Catalan-family, Collatz-trajectory, Geode-array, progression, integer-helper, boolean-algebra, set-helper, trigonometry, descriptive statistics, compact linear algebra, finite algebra law, raw-number, complex-number, numerical-calculus, probability, real-number, and rational-number surfaces at the crate root, exposes nested modules for every focused crate in the workspace, surfaces vector primitives through `use_math::vector`, interval primitives through `use_math::interval`, prime utilities through `use_math::prime`, polynomial helpers through `use_math::polynomial`, equation helpers through `use_math::equation`, eigen primitives through `use_math::eigen`, approximate numerical helpers through `use_math::numerical`, Collatz helpers through `use_math::collatz`, and keeps the shared `prelude` limited to the items that already have concrete ergonomic value.
 
 <table>
 	<tr>
 		<td width="33%" valign="top">
 			<strong>Root re-exports</strong><br>
-			Call functions like <code>checked_add</code>, <code>div_floor</code>, <code>factorial</code>, <code>catalan</code>, <code>collatz_sequence</code>, <code>hyper_catalan</code>, <code>geode_memoized</code>, <code>arithmetic_sum</code>, <code>classify_number</code>, <code>gcd</code>, <code>identity_element</code>, <code>implication</code>, <code>is_prime</code>, <code>prime_factors</code>, <code>quadratic_roots</code>, <code>solve_linear</code>, <code>solve_quadratic</code>, <code>is_ring</code>, <code>set_union</code>, <code>sin_deg</code>, <code>mean</code>, <code>solve_2x2</code>, or types like <code>Polynomial</code>, <code>Roots</code>, <code>LinearEquation</code>, <code>QuadraticEquation</code>, <code>Eigenvalue</code>, <code>Eigenvector</code>, <code>Eigenpair</code>, <code>Eigensystem</code>, <code>TypeVector</code>, <code>IntegerSign</code>, <code>Bound</code>, <code>Interval</code>, <code>NumberCategory</code>, <code>Angle</code>, <code>CollatzRangeSummary</code>, <code>Matrix2</code>, <code>Matrix3</code>, <code>Matrix4</code>, <code>Complex</code>, <code>Differentiator</code>, <code>Probability</code>, <code>Real</code>, and <code>Rational</code> directly from <code>use_math</code>.
+			Call functions like <code>checked_add</code>, <code>div_floor</code>, <code>factorial</code>, <code>catalan</code>, <code>collatz_sequence</code>, <code>hyper_catalan</code>, <code>geode_memoized</code>, <code>arithmetic_sum</code>, <code>classify_number</code>, <code>gcd</code>, <code>identity_element</code>, <code>implication</code>, <code>is_prime</code>, <code>prime_factors</code>, <code>quadratic_roots</code>, <code>solve_linear</code>, <code>solve_quadratic</code>, <code>is_ring</code>, <code>set_union</code>, <code>sin_deg</code>, <code>mean</code>, <code>solve_2x2</code>, or types like <code>Polynomial</code>, <code>Roots</code>, <code>LinearEquation</code>, <code>QuadraticEquation</code>, <code>Eigenvalue</code>, <code>Eigenvector</code>, <code>Eigenpair</code>, <code>Eigensystem</code>, <code>TypeVector</code>, <code>Vector</code>, <code>Vector2</code>, <code>Vector3</code>, <code>Vector4</code>, <code>IntegerSign</code>, <code>Bound</code>, <code>Interval</code>, <code>NumberCategory</code>, <code>Angle</code>, <code>CollatzRangeSummary</code>, <code>Matrix2</code>, <code>Matrix3</code>, <code>Matrix4</code>, <code>Complex</code>, <code>Differentiator</code>, <code>Probability</code>, <code>Real</code>, and <code>Rational</code> directly from <code>use_math</code>.
 		</td>
 		<td width="33%" valign="top">
 			<strong>Nested modules</strong><br>
@@ -45,7 +45,7 @@
 
 | Entry point               | What it exposes                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Best fit                                                          |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| Root re-exports           | Direct access to enabled arithmetic, modular arithmetic, prime utilities, polynomial primitives, non-conflicting equation helpers, structural eigen primitives, interval, combinatorics, Catalan-family, Geode-array, progression, integer-helper, boolean-algebra, set-helper, trigonometry, descriptive statistics, compact linear algebra, finite algebra law, raw-number, complex-number, numerical-calculus, probability, real-number, and rational-number items | Call sites that want short imports                                |
+| Root re-exports           | Direct access to enabled arithmetic, modular arithmetic, prime utilities, polynomial primitives, non-conflicting equation helpers, structural eigen primitives, vector primitives, interval, combinatorics, Catalan-family, Geode-array, progression, integer-helper, boolean-algebra, set-helper, trigonometry, descriptive statistics, compact linear algebra, finite algebra law, raw-number, complex-number, numerical-calculus, probability, real-number, and rational-number items | Call sites that want short imports                                |
 | `use_math::arithmetic`    | The `use-arithmetic` crate as a nested module                                                                                                                                                                                                                                                                                                                                                                                                                         | Code that prefers explicit arithmetic namespacing                 |
 | `use_math::modular`       | The `use-modular` crate as a nested module with normalized residues, congruence checks, inverses, exponentiation, and the `Modular` helper type                                                                                                                                                                                                                                                                                                                       | Code that wants explicit modular arithmetic namespacing           |
 | `use_math::prime`         | The `use-prime` crate as a nested module with primality checks, next and previous prime search, factorization helpers, and sieve utilities                                                                                                                                                                                                                                                                                                                            | Code that wants explicit prime-utility namespacing                |
@@ -53,7 +53,7 @@
 | `use_math::equation`      | The `use-equation` crate as a nested module with `Roots`, `RootSolver`, linear and quadratic equation helpers, small `2x2` systems, and the optional low-degree polynomial bridge when both `equation` and `polynomial` are enabled                                                                                                                                                                                                                                   | Code that wants explicit equation-solving namespacing             |
 | `use_math::eigen`         | The `use-eigen` crate as a nested module with `Eigenvalue`, `Eigenvector`, `Eigenpair`, `Eigensystem`, `EigenSpace`, and `EigenMultiplicity`                                                                                                                                                                                                                                                                                                                          | Code that wants explicit eigen namespacing                        |
 | `use_math::numerical`     | The `use-numerical` crate as a nested module with epsilon comparisons, finite differences, deterministic integration rules, iterative root finding, and the optional interval-based bisection bridge when both `numerical` and `interval` are enabled                                                                                                                                                                                                                 | Code that wants explicit approximate numerical namespacing        |
-| `use_math::vector`        | The `use-vector` crate as a nested module with `Vector2`, `Vector3`, `Vector4`, and vector operations                                                                                                                                                                                                                                                                                                                                                                 | Code that wants reusable vector math without root-name collisions |
+| `use_math::vector`        | The `use-vector` crate as a nested module with `Vector`, `Vector2`, `Vector3`, `Vector4`, const-generic vector operations, and component helpers                                                                                                                                                                                                                                                                                                                      | Code that wants reusable vector math with explicit namespacing    |
 | `use_math::interval`      | The `use-interval` crate as a nested module with `Bound`, `Interval`, containment checks, overlap tests, and intersection operations                                                                                                                                                                                                                                                                                                                                  | Code that wants explicit interval namespacing                     |
 | `use_math::matrix`        | The `use-matrix` crate as a nested module with `Matrix2`, `Matrix3`, `Matrix4`, and direct matrix operations                                                                                                                                                                                                                                                                                                                                                          | Code that wants explicit matrix namespacing                       |
 | `use_math::combinatorics` | The `use-combinatorics` crate as a nested module                                                                                                                                                                                                                                                                                                                                                                                                                      | Code that prefers explicit combinatorics namespacing              |
@@ -142,70 +142,70 @@ Default features enable the current full surface:
 
 ```toml
 [dependencies]
-use-math = "0.0.6"
+use-math = "0.0.7"
 ```
 
 Combinatorics only:
 
 ```toml
 [dependencies]
-use-math = { version = "0.0.6", default-features = false, features = ["combinatorics"] }
+use-math = { version = "0.0.7", default-features = false, features = ["combinatorics"] }
 ```
 
 Collatz only:
 
 ```toml
 [dependencies]
-use-math = { version = "0.0.6", default-features = false, features = ["collatz"] }
+use-math = { version = "0.0.7", default-features = false, features = ["collatz"] }
 ```
 
 Interval only:
 
 ```toml
 [dependencies]
-use-math = { version = "0.0.6", default-features = false, features = ["interval"] }
+use-math = { version = "0.0.7", default-features = false, features = ["interval"] }
 ```
 
 Modular only:
 
 ```toml
 [dependencies]
-use-math = { version = "0.0.6", default-features = false, features = ["modular"] }
+use-math = { version = "0.0.7", default-features = false, features = ["modular"] }
 ```
 
 Prime only:
 
 ```toml
 [dependencies]
-use-math = { version = "0.0.6", default-features = false, features = ["prime"] }
+use-math = { version = "0.0.7", default-features = false, features = ["prime"] }
 ```
 
 Polynomial only:
 
 ```toml
 [dependencies]
-use-math = { version = "0.0.6", default-features = false, features = ["polynomial"] }
+use-math = { version = "0.0.7", default-features = false, features = ["polynomial"] }
 ```
 
 Equation only:
 
 ```toml
 [dependencies]
-use-math = { version = "0.0.6", default-features = false, features = ["equation"] }
+use-math = { version = "0.0.7", default-features = false, features = ["equation"] }
 ```
 
 Numerical only:
 
 ```toml
 [dependencies]
-use-math = { version = "0.0.6", default-features = false, features = ["numerical"] }
+use-math = { version = "0.0.7", default-features = false, features = ["numerical"] }
 ```
 
 Eigen only:
 
 ```toml
 [dependencies]
-use-math = { version = "0.0.6", default-features = false, features = ["eigen"] }
+use-math = { version = "0.0.7", default-features = false, features = ["eigen"] }
 ```
 
 ## Quick examples
@@ -624,7 +624,7 @@ assert_eq!(half.checked_div(third)?, Rational::try_new(3, 2)?);
 | `statistics`    | Re-exports from `use-statistics`, including `StatisticsError`, mean/median, variance, and standard-deviation helpers                                                                                                                                                                 | No      |
 | `matrix`        | Re-exports from `use-matrix`, including `Matrix2`, `Matrix3`, `Matrix4`, determinants, transpose helpers, and inverses for 2x2 and 3x3 matrices                                                                                                                                      | No      |
 | `linear`        | Re-exports from `use-linear`, including `solve_2x2` and `LinearError`; the `linear` feature also enables the `matrix` and `vector` facade surfaces                                                                                                                                   | No      |
-| `vector`        | Re-exports the `use-vector` crate as `use_math::vector`, including `Vector2`, `Vector3`, `Vector4`, normalization, distance, interpolation, and `Vector3::cross`                                                                                                                     | No      |
+| `vector`        | Re-exports from `use-vector`, including root `Vector`, `Vector2`, `Vector3`, `Vector4` types plus the `use_math::vector` namespace with normalization, distance, interpolation, component helpers, and `Vector3::cross`                                                               | No      |
 | `number`        | Re-exports from `use-number`, including floating-point classification helpers and shared numeric constants                                                                                                                                                                           | No      |
 | `complex`       | Re-exports from `use-complex`, including `Complex` and `Imaginary`                                                                                                                                                                                                                   | No      |
 | `calculus`      | Re-exports from `use-calculus`, including `Differentiator`, `Integrator`, and limit helpers                                                                                                                                                                                          | No      |

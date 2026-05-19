@@ -1,4 +1,4 @@
-use use_math::vector;
+use use_math::{Vector, Vector2, Vector3, Vector4, vector};
 
 fn approx_eq(left: f64, right: f64) -> bool {
     (left - right).abs() < 1.0e-12
@@ -19,4 +19,20 @@ fn facade_namespace_reexports_vector_workflow() {
         vector::Vector3::new(2.0, 2.0, 2.0)
     );
     assert_eq!(midpoint, vector::Vector4::new(2.0, 4.0, 6.0, 8.0));
+}
+
+#[test]
+fn facade_root_reexports_vector_types() {
+    let generic = Vector::<5>::from_array([1.0, 2.0, 3.0, 4.0, 5.0]);
+    let displacement = Vector2::new(3.0, 4.0);
+    let normal = Vector3::new(0.0, 0.0, 1.0);
+    let midpoint = Vector4::ZERO.lerp(Vector4::new(4.0, 8.0, 12.0, 16.0), 0.5);
+
+    assert_eq!(generic.dimension(), 5);
+    assert!(approx_eq(displacement.magnitude(), 5.0));
+    assert!(approx_eq(normal.z(), 1.0));
+
+    for (actual, expected) in midpoint.into_array().into_iter().zip([2.0, 4.0, 6.0, 8.0]) {
+        assert!(approx_eq(actual, expected));
+    }
 }

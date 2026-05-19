@@ -1,8 +1,8 @@
 # use-vector
 
 <p align="center">
-    <strong>Small 2D, 3D, and 4D vector primitives for <code>RustUse</code>.</strong><br>
-    Explicit dot products, cross products, normalization, distances, and interpolation without geometry-specific or matrix-specific abstractions.
+    <strong>Const-generic <code>f64</code> vector primitives for <code>RustUse</code>.</strong><br>
+    Explicit dot products, normalization, distances, interpolation, component-wise helpers, and 3D cross products without geometry-specific or matrix-specific abstractions.
 </p>
 
 <p align="center">
@@ -16,14 +16,22 @@
 
 ```toml
 [dependencies]
-use-vector = "0.0.5"
+use-vector = "0.0.7"
 ```
 
 ## What belongs here
 
 `use-vector` owns plain `f64` vector primitives and reusable vector operations.
-The current surface includes `Vector2`, `Vector3`, `Vector4`, dot products,
-`Vector3::cross`, norms, normalization, scaling, distances, and linear interpolation.
+The core type is `Vector<const N: usize>`, with `Vector2`, `Vector3`, and
+`Vector4` aliases for common dimensions. The current surface includes array
+construction, indexing, named accessors for 2D/3D/4D aliases, dot products,
+`Vector3::cross`, norms, normalization, scaling, distances, linear interpolation,
+component-wise mapping/zipping, component min/max/clamp/abs helpers, and finite
+or `NaN` checks.
+
+Components are stored privately. Use `vector[index]`, `as_array`, `into_array`,
+or named accessors such as `x()`, `y()`, `z()`, and `w()` instead of public
+fields.
 
 Scalar division follows normal `f64` semantics. Dividing by zero yields infinities or
 `NaN` instead of panicking.
@@ -43,14 +51,15 @@ vectors, or domain-specific physics helpers.
 
 ## Examples
 
-### Vector magnitude
+### Generic vector magnitude
 
 ```rust
-use use_vector::Vector2;
+use use_vector::Vector;
 
-let a = Vector2::new(3.0, 4.0);
+let vector = Vector::<3>::from_array([2.0, 3.0, 6.0]);
 
-assert_eq!(a.magnitude(), 5.0);
+assert_eq!(vector.dimension(), 3);
+assert_eq!(vector.magnitude(), 7.0);
 ```
 
 ### Dot and cross products
@@ -78,8 +87,22 @@ let unit = Vector2::new(3.0, 4.0)
     .normalize()
     .expect("non-zero finite vector should normalize");
 
-assert!((unit.x - 0.6).abs() < 1.0e-12);
-assert!((unit.y - 0.8).abs() < 1.0e-12);
+assert!((unit.x() - 0.6).abs() < 1.0e-12);
+assert!((unit.y() - 0.8).abs() < 1.0e-12);
+```
+
+### Component helpers
+
+```rust
+use use_vector::Vector;
+
+let vector = Vector::<3>::from_array([-1.0, 2.0, 5.0]);
+let lower = Vector::<3>::ZERO;
+let upper = Vector::<3>::from_array([2.0, 3.0, 4.0]);
+
+assert_eq!(vector.abs().into_array(), [1.0, 2.0, 5.0]);
+assert_eq!(vector.clamp_components(lower, upper).into_array(), [0.0, 2.0, 4.0]);
+assert!(vector.is_finite());
 ```
 
 ### Distance

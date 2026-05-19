@@ -16,9 +16,9 @@
 
 ```toml
 [dependencies]
-use-linear = "0.0.5"
-use-matrix = "0.0.5"
-use-vector = "0.0.5"
+use-linear = "0.0.7"
+use-matrix = "0.0.7"
+use-vector = "0.0.7"
 ```
 
 ## Foundation

@@ -3,7 +3,7 @@ name = "use-matrix"
 description = "Small matrix primitives and operations for RustUse"
 publish = true
 authors.workspace = true
-version.workspace = true
+version = "0.0.7"
 edition.workspace = true
 license.workspace = true
 repository.workspace = true
@@ -18,7 +18,7 @@ categories = ["mathematics", "science"]
 all-features = true
 
 [dependencies]
-use-vector = { version = "0.0.6", path = "../use-vector" }
+use-vector = { version = "0.0.7", path = "../use-vector" }
 
 [lints]
 workspace = true

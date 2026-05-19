@@ -2,14 +2,19 @@
 
 ## Unreleased
 
+## [0.0.7](https://github.com/RustUse/use-math/compare/use-math-v0.0.6...use-math-v0.0.7) - 2026-05-19
+
 ### Added
 
 - Added the `use-eigen` crate with structural eigenvalue, eigenvector, eigenpair, eigensystem, eigenspace, and multiplicity primitives for the RustUse math workspace.
 - Added the `eigen` feature to the `use-math` facade with root eigen reexports plus the `use_math::eigen` namespace.
+- Added `Vector<const N: usize>` to `use-vector` with array-backed construction, indexing, component-wise helpers, finite/`NaN` checks, and `Vector2`/`Vector3`/`Vector4` aliases for common dimensions.
+- Added root `Vector`, `Vector2`, `Vector3`, and `Vector4` reexports to the `use-math` facade while keeping the existing `use_math::vector` namespace.
 
 ### Changed
 
 - Extended workspace release metadata, publish-readiness lists, maintainer publish-order docs, and facade documentation to include `use-eigen` as a focused crate in the lockstep release surface.
+- Redesigned `use-vector` around the const-generic `Vector<N>` core. This is a breaking change for callers that read public `.x`, `.y`, `.z`, or `.w` fields directly; use indexing, array conversions, or `x()`/`y()`/`z()`/`w()` accessors instead.
 
 ## [0.0.6](https://github.com/RustUse/use-math/compare/use-math-v0.0.5...use-math-v0.0.6) - 2026-05-15
 

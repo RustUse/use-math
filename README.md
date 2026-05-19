@@ -69,7 +69,7 @@ RustUse/use-math is now a 29-crate workspace. Each crate is usable on its own, a
 | `use-equation`      | `crates/use-equation/`      | Explicit linear and quadratic equation helpers, small `2x2` systems, and reusable root types                          | You want small exact-style equation helpers without broader linear algebra           |
 | `use-eigen`         | `crates/use-eigen/`         | Structural eigenvalue, eigenvector, eigenpair, eigensystem, multiplicity, and eigenspace primitives                   | You want explicit eigen-related vocabulary without a numerical solver stack          |
 | `use-numerical`     | `crates/use-numerical/`     | Epsilon comparisons, finite-difference helpers, deterministic integration rules, and iterative root finding           | You want approximation-oriented numerical methods without symbolic math              |
-| `use-vector`        | `crates/use-vector/`        | Reusable 2D, 3D, and 4D vector primitives with dot products, `Vector3::cross`, normalization, distance, and lerp      | You want vector math without geometry-specific or matrix-specific abstractions       |
+| `use-vector`        | `crates/use-vector/`        | Const-generic reusable vector primitives with aliases for 2D, 3D, and 4D vectors, dot products, `Vector3::cross`, normalization, distance, lerp, and component helpers | You want vector math without geometry-specific or matrix-specific abstractions       |
 | `use-matrix`        | `crates/use-matrix/`        | Reusable 2x2, 3x3, and 4x4 matrix primitives with transpose, determinant, inverse, and matrix-vector products         | You want reusable matrix math without geometry-specific transforms                   |
 | `use-combinatorics` | `crates/use-combinatorics/` | Checked counting helpers for factorials, permutations, and combinations                                               | You only need combinatorics helpers                                                  |
 | `use-catalan`       | `crates/use-catalan/`       | Checked Catalan and Fuss-Catalan counting helpers                                                                     | You want exact Catalan-family counts without a broader sequence crate                |
@@ -144,7 +144,7 @@ Pick the crate based on the integration shape you want, not just the total featu
 | Equation helpers only                                        | `use-equation`                                   | You keep direct solving helpers and root results explicit and local                  |
 | Eigenvalue and eigensystem primitives only                   | `use-eigen`                                      | You keep eigen-related structure explicit without implying a solver implementation   |
 | Approximate numerical helpers only                           | `use-numerical`                                  | You keep epsilon comparisons, integration rules, and iterative solvers explicit      |
-| Reusable vector primitives only                              | `use-vector`                                     | You keep dot products, interpolation, distance, and normalization explicit and local |
+| Reusable vector primitives only                              | `use-vector`                                     | You keep const-generic vectors, dot products, component helpers, interpolation, distance, and normalization explicit and local |
 | Matrix primitives only                                       | `use-matrix`                                     | You keep direct matrix construction and operations explicit and local                |
 | Need RustUse geometry primitives                             | `use-geometry` (sibling repo)                    | Geometry now lives outside this workspace and is no longer re-exported by `use-math` |
 | Counting helpers only                                        | `use-combinatorics`                              | You get checked math helpers without bringing in geometry modules                    |
@@ -230,7 +230,7 @@ Pick the crate based on the integration shape you want, not just the total featu
 | `crates/use-statistics/`    | Direct descriptive-statistics helper APIs                                                  |
 | `crates/use-matrix/`        | Direct matrix primitive and matrix-operation APIs                                          |
 | `crates/use-linear/`        | Direct solver-style linear helper APIs                                                     |
-| `crates/use-vector/`        | Direct reusable vector primitives and vector-operation APIs                                |
+| `crates/use-vector/`        | Direct const-generic vector primitive and vector-operation APIs                            |
 | `crates/use-number/`        | Direct raw-number helper APIs                                                              |
 | `crates/use-interval/`      | Direct interval and bound primitive APIs                                                   |
 | `crates/use-algebra/`       | Direct finite algebra law helper APIs                                                      |
@@ -261,14 +261,14 @@ Facade crate with default features:
 
 ```toml
 [dependencies]
-use-math = "0.0.6"
+use-math = "0.0.7"
 ```
 
 Facade crate with combinatorics only:
 
 ```toml
 [dependencies]
-use-math = { version = "0.0.6", default-features = false, features = ["combinatorics"] }
+use-math = { version = "0.0.7", default-features = false, features = ["combinatorics"] }
 ```
 
 Focused crates directly:
@@ -350,7 +350,7 @@ If you want the facade but only one module, disable defaults and enable the feat
 
 ```toml
 [dependencies]
-use-math = { version = "0.0.6", default-features = false, features = ["combinatorics"] }
+use-math = { version = "0.0.7", default-features = false, features = ["combinatorics"] }
 ```
 
 ## Maturity and release model
