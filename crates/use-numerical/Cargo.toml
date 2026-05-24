@@ -22,7 +22,7 @@ default = []
 interval = ["dep:use-interval"]
 
 [dependencies]
-use-interval = { version = "0.0.6", path = "../use-interval", optional = true }
+use-interval = { version = "0.0.7", path = "../use-interval", optional = true }
 
 [lints]
 workspace = true

@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## [0.0.8](https://github.com/RustUse/use-math/compare/use-math-v0.0.7...use-math-v0.0.8) - 2026-05-24
+
+### Changed
+
+- Remove use-geometry; update workspace & docs
+
 ## [0.0.7](https://github.com/RustUse/use-math/compare/use-math-v0.0.6...use-math-v0.0.7) - 2026-05-19
 
 ### Added
