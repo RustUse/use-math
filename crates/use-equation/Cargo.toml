@@ -22,7 +22,7 @@ default = []
 polynomial = ["dep:use-polynomial"]
 
 [dependencies]
-use-polynomial = { version = "0.0.6", path = "../use-polynomial", optional = true }
+use-polynomial = { version = "0.0.7", path = "../use-polynomial", optional = true }
 
 [lints]
 workspace = true

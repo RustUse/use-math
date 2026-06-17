@@ -3,7 +3,7 @@ name = "use-linear"
 description = "Utility-first linear-algebra scaffolding for RustUse"
 publish = true
 authors.workspace = true
-version = "0.0.7"
+version = "0.0.8"
 edition.workspace = true
 license.workspace = true
 repository.workspace = true
@@ -15,8 +15,8 @@ keywords = ["math", "linear", "matrix", "vector", "algebra"]
 categories = ["mathematics", "science"]
 
 [dependencies]
-use-matrix = { version = "0.0.7", path = "../use-matrix" }
-use-vector = { version = "0.0.7", path = "../use-vector" }
+use-matrix = { version = "0.0.8", path = "../use-matrix" }
+use-vector = { version = "0.0.8", path = "../use-vector" }
 
 [[example]]
 name = "use-linear-2d-basics"

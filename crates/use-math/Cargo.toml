@@ -3,7 +3,7 @@ name = "use-math"
 description = "Utility-first facade crate for RustUse math utilities"
 publish = true
 authors.workspace = true
-version = "0.0.7"
+version = "0.0.8"
 edition.workspace = true
 license.workspace = true
 repository.workspace = true
@@ -79,34 +79,34 @@ full = [
 ]
 
 [dependencies]
-use-arithmetic = { version = "0.0.6", path = "../use-arithmetic", optional = true }
-use-algebra = { version = "0.0.6", path = "../use-algebra", optional = true }
-use-calculus = { version = "0.0.6", path = "../use-calculus", optional = true }
-use-catalan = { version = "0.0.6", path = "../use-catalan", optional = true }
-use-collatz = { version = "0.0.6", path = "../use-collatz", optional = true }
-use-combinatorics = { version = "0.0.6", path = "../use-combinatorics", optional = true }
-use-complex = { version = "0.0.6", path = "../use-complex", optional = true }
-use-geode = { version = "0.0.6", path = "../use-geode", optional = true }
-use-integer = { version = "0.0.6", path = "../use-integer", optional = true }
-use-interval = { version = "0.0.6", path = "../use-interval", optional = true }
-use-modular = { version = "0.0.6", path = "../use-modular", optional = true }
-use-prime = { version = "0.0.6", path = "../use-prime", optional = true }
-use-polynomial = { version = "0.0.6", path = "../use-polynomial", optional = true }
-use-equation = { version = "0.0.6", path = "../use-equation", optional = true }
-use-eigen = { version = "0.0.6", path = "../use-eigen", optional = true }
-use-numerical = { version = "0.0.6", path = "../use-numerical", optional = true }
-use-matrix = { version = "0.0.7", path = "../use-matrix", optional = true }
-use-linear = { version = "0.0.7", path = "../use-linear", optional = true }
-use-vector = { version = "0.0.7", path = "../use-vector", optional = true }
-use-logic = { version = "0.0.6", path = "../use-logic", optional = true }
-use-number = { version = "0.0.6", path = "../use-number", optional = true }
-use-probability = { version = "0.0.6", path = "../use-probability", optional = true }
-use-rational = { version = "0.0.6", path = "../use-rational", optional = true }
-use-real = { version = "0.0.6", path = "../use-real", optional = true }
-use-series = { version = "0.0.6", path = "../use-series", optional = true }
-use-set = { version = "0.0.6", path = "../use-set", optional = true }
-use-statistics = { version = "0.0.6", path = "../use-statistics", optional = true }
-use-trigonometry = { version = "0.0.6", path = "../use-trigonometry", optional = true }
+use-arithmetic = { version = "0.0.7", path = "../use-arithmetic", optional = true }
+use-algebra = { version = "0.0.7", path = "../use-algebra", optional = true }
+use-calculus = { version = "0.0.7", path = "../use-calculus", optional = true }
+use-catalan = { version = "0.0.7", path = "../use-catalan", optional = true }
+use-collatz = { version = "0.0.7", path = "../use-collatz", optional = true }
+use-combinatorics = { version = "0.0.7", path = "../use-combinatorics", optional = true }
+use-complex = { version = "0.0.7", path = "../use-complex", optional = true }
+use-geode = { version = "0.0.7", path = "../use-geode", optional = true }
+use-integer = { version = "0.0.7", path = "../use-integer", optional = true }
+use-interval = { version = "0.0.7", path = "../use-interval", optional = true }
+use-modular = { version = "0.0.7", path = "../use-modular", optional = true }
+use-prime = { version = "0.0.7", path = "../use-prime", optional = true }
+use-polynomial = { version = "0.0.7", path = "../use-polynomial", optional = true }
+use-equation = { version = "0.0.7", path = "../use-equation", optional = true }
+use-eigen = { version = "0.0.7", path = "../use-eigen", optional = true }
+use-numerical = { version = "0.0.7", path = "../use-numerical", optional = true }
+use-matrix = { version = "0.0.8", path = "../use-matrix", optional = true }
+use-linear = { version = "0.0.8", path = "../use-linear", optional = true }
+use-vector = { version = "0.0.8", path = "../use-vector", optional = true }
+use-logic = { version = "0.0.7", path = "../use-logic", optional = true }
+use-number = { version = "0.0.7", path = "../use-number", optional = true }
+use-probability = { version = "0.0.7", path = "../use-probability", optional = true }
+use-rational = { version = "0.0.7", path = "../use-rational", optional = true }
+use-real = { version = "0.0.7", path = "../use-real", optional = true }
+use-series = { version = "0.0.7", path = "../use-series", optional = true }
+use-set = { version = "0.0.7", path = "../use-set", optional = true }
+use-statistics = { version = "0.0.7", path = "../use-statistics", optional = true }
+use-trigonometry = { version = "0.0.7", path = "../use-trigonometry", optional = true }
 
 [[example]]
 name = "facade_arithmetic"
